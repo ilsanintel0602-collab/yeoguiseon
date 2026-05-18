@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>여기선 v4.0 - 로딩</title>
+<meta http-equiv="refresh" content="0; url=./app.html">
+<style>
+body { font-family: 'Apple SD Gothic Neo', sans-serif; background:#1a1a1a; color:#fff; display:flex; align-items:center; justify-content:center; height:100vh; margin:0; text-align:center; }
+.spinner { width:60px; height:60px; border:5px solid rgba(255,255,255,0.2); border-top-color:#2ecc71; border-radius:50%; margin:0 auto 20px; animation:spin 0.8s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+.link { display:inline-block; padding:14px 28px; background:#2ecc71; color:#fff; text-decoration:none; border-radius:8px; }
+</style>
+<script>window.location.replace('./app.html');</script>
+</head>
+<body>
+<div>
+  <div class="spinner"></div>
+  <div style="font-size:28px;margin-bottom:12px;">♻️ 여기선 v4.0</div>
+  <div style="font-size:16px;opacity:0.7;margin-bottom:24px;">전국 분리수거 앱 로딩 중...</div>
+  <a href="./app.html" class="link">자동 이동 안 되면 클릭</a>
+</div>
+</body>
+</html>

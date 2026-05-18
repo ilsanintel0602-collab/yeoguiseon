@@ -1,0 +1,48 @@
+{
+  "name": "여기선 v4 - OCR 통합 분리수거",
+  "short_name": "여기선v4",
+  "description": "카메라로 비추면 우리 동네 분리수거 방법을 알려드려요. 한국어 OCR + 브랜드 DB로 한국 제품 인식 강화. API 키 없이 즉시 사용 가능.",
+  "lang": "ko",
+  "dir": "ltr",
+  "start_url": "./app.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1a1a1a",
+  "theme_color": "#2ecc71",
+  "categories": ["utilities", "lifestyle", "education"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "바로 촬영",
+      "short_name": "촬영",
+      "description": "앱 열고 바로 분리수거 사진 찍기",
+      "url": "./app.html?action=capture"
+    }
+  ]
+}

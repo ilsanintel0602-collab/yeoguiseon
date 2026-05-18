@@ -1,0 +1,616 @@
+{
+  "$schema": "여기선 v3.0 - 환경부 표준 분리수거 룰",
+  "version": "3.0.0",
+  "lastUpdated": "2026-05-17",
+  "source": "환경부 '내손안에 분리배출' 가이드라인 / 자원순환정보시스템 (recycling-info.or.kr)",
+  "officialUrl": "https://www.me.go.kr/",
+  "references": [
+    "https://www.recycling-info.or.kr/",
+    "https://xn--oy2b29bd3a601b.kr/",
+    "https://me.go.kr/home/web/public_info/read.do"
+  ],
+  "notice": "본 데이터는 환경부 표준 가이드라인 기준이며, 실제 배출 기준은 거주 지자체에 따라 달라질 수 있습니다 (regionVariation=true 항목 참고).",
+
+  "categories": {
+    "plastic": {
+      "name": "플라스틱",
+      "color": "#3498db",
+      "icon": "recycle",
+      "description": "용기류 합성수지 (PET, PP, PE, PS 등)",
+      "generalSteps": [
+        "내용물 비우기 및 헹구기",
+        "라벨/스티커 제거",
+        "압착하여 부피 줄이기",
+        "재질별 분리 배출"
+      ]
+    },
+    "vinyl": {
+      "name": "비닐류",
+      "color": "#9b59b6",
+      "icon": "bag",
+      "description": "필름·시트형 합성수지 (비닐봉지, 포장재, 과자봉지 등)",
+      "generalSteps": [
+        "내용물 비우기",
+        "물로 가볍게 헹구기",
+        "이물질 제거",
+        "비닐류 전용 봉투/마대에 배출"
+      ]
+    },
+    "paper": {
+      "name": "종이",
+      "color": "#8b4513",
+      "icon": "paper",
+      "description": "신문지, 박스, 책자 등 종이류",
+      "generalSteps": [
+        "테이프, 스티커, 철핀 등 이물질 제거",
+        "물에 젖지 않게 보관",
+        "납작하게 펴거나 묶어서 배출"
+      ]
+    },
+    "can": {
+      "name": "캔/금속",
+      "color": "#95a5a6",
+      "icon": "can",
+      "description": "철캔, 알루미늄캔, 기타 금속류",
+      "generalSteps": [
+        "내용물 비우기",
+        "물로 헹구기",
+        "라벨 제거 (가능한 경우)",
+        "압착하여 배출"
+      ]
+    },
+    "glass": {
+      "name": "유리",
+      "color": "#2ecc71",
+      "icon": "bottle",
+      "description": "유리병 (보증금 환불 가능 품목 포함)",
+      "generalSteps": [
+        "내용물 비우기",
+        "뚜껑 제거",
+        "물로 헹구기",
+        "병류 전용 수거함 배출 (깨진 유리는 별도)"
+      ]
+    },
+    "styrofoam": {
+      "name": "스티로폼",
+      "color": "#ecf0f1",
+      "icon": "box",
+      "description": "발포 폴리스티렌 완충재/박스",
+      "generalSteps": [
+        "테이프, 운송장, 라벨 완전 제거",
+        "내용물 및 이물질 제거",
+        "흰색 스티로폼만 분리배출",
+        "색상/오염된 것은 종량제봉투에"
+      ]
+    },
+    "food": {
+      "name": "음식물",
+      "color": "#e67e22",
+      "icon": "food",
+      "description": "동물 사료로 재활용 가능한 음식물쓰레기",
+      "generalSteps": [
+        "물기 최대한 제거",
+        "이물질(비닐, 뼈 등) 제거",
+        "음식물쓰레기 전용 봉투/RFID 통에 배출"
+      ]
+    },
+    "general": {
+      "name": "일반쓰레기",
+      "color": "#34495e",
+      "icon": "trash",
+      "description": "재활용 불가능한 모든 폐기물",
+      "generalSteps": [
+        "종량제봉투에 담기",
+        "지정된 요일/장소에 배출"
+      ]
+    },
+    "battery": {
+      "name": "폐건전지",
+      "color": "#f39c12",
+      "icon": "battery",
+      "description": "1차/2차 전지, 리튬이온 배터리 등 (생활계 유해폐기물)",
+      "generalSteps": [
+        "물기 제거",
+        "원상태 유지 (분해 금지)",
+        "리튬배터리 부풀음 시 비닐랩으로 감싸기",
+        "동주민센터/아파트 전용수거함에 배출"
+      ]
+    },
+    "lamp": {
+      "name": "폐형광등",
+      "color": "#1abc9c",
+      "icon": "lamp",
+      "description": "수은 함유 폐형광등 (생활계 유해폐기물)",
+      "generalSteps": [
+        "포장재 제거",
+        "모양별(직관/환형/콤팩트) 구분",
+        "깨지지 않게 운반",
+        "동주민센터/아파트 전용수거함에 배출"
+      ]
+    },
+    "clothes": {
+      "name": "의류",
+      "color": "#e74c3c",
+      "icon": "shirt",
+      "description": "재사용/재활용 가능한 헌 옷, 신발, 가방류",
+      "generalSteps": [
+        "깨끗하게 세탁",
+        "비에 젖지 않게 보관",
+        "의류수거함에 배출",
+        "오염/훼손 심한 것은 종량제봉투에"
+      ]
+    }
+  },
+
+  "items": {
+    "pet_bottle": {
+      "name": "페트병 (투명)",
+      "category": "plastic",
+      "note": "투명 페트병은 별도 분리배출 의무 (2021년 시행)",
+      "steps": ["내용물 비우기", "라벨(비닐) 제거", "압착하여 부피 줄이기", "뚜껑 닫아서 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "plastic_bottle": {
+      "name": "플라스틱 병 (유색/기타)",
+      "category": "plastic",
+      "note": "샴푸통, 세제통 등 유색 플라스틱 용기",
+      "steps": ["내용물 비우기", "물로 헹구기", "라벨 제거", "플라스틱류로 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "plastic_container": {
+      "name": "플라스틱 용기",
+      "category": "plastic",
+      "note": "반찬통, 도시락 용기, 컵 등",
+      "steps": ["내용물 비우기", "물로 깨끗이 헹구기", "이물질 제거", "재질별 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "instant_rice_bowl": {
+      "name": "즉석밥 용기",
+      "category": "plastic",
+      "note": "환경부 기준은 플라스틱(세척 후), 일부 지자체는 일반쓰레기",
+      "steps": ["내용물 비우기", "깨끗이 세척", "플라스틱류 배출"],
+      "regionVariation": true,
+      "knownVariations": "오염 제거 어려우면 종량제봉투 권장하는 지자체 많음",
+      "confidence": "medium"
+    },
+    "plastic_cap": {
+      "name": "플라스틱 뚜껑",
+      "category": "plastic",
+      "note": "페트병 뚜껑은 닫아서 배출 권장 (재활용 공정에서 분리)",
+      "steps": ["내용물 제거", "페트병에 닫아서 배출 또는 플라스틱류로"],
+      "regionVariation": true,
+      "knownVariations": "소형 뚜껑은 일반쓰레기 권장 지역도 있음",
+      "confidence": "medium"
+    },
+
+    "vinyl_bag": {
+      "name": "비닐봉지",
+      "category": "vinyl",
+      "note": "검정 비닐봉지 포함, 깨끗하게 비우고 배출",
+      "steps": ["내용물 비우기", "이물질 제거", "비닐류로 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "vinyl_packaging": {
+      "name": "비닐 포장재",
+      "category": "vinyl",
+      "note": "라면 봉지, 과자 봉지 외 포장 비닐",
+      "steps": ["내용물 비우기", "물로 가볍게 헹구기", "비닐류로 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "snack_bag": {
+      "name": "과자 봉지",
+      "category": "vinyl",
+      "note": "은박 코팅된 과자/라면 봉지",
+      "steps": ["부스러기 털어내기", "비닐류로 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "food_contaminated_vinyl": {
+      "name": "음식물 묻은 비닐",
+      "category": "general",
+      "note": "기름/양념 등으로 오염되어 세척 불가능한 비닐",
+      "steps": ["종량제봉투에 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+
+    "newspaper": {
+      "name": "신문지",
+      "category": "paper",
+      "note": "물기 없이 펴서 묶음 배출",
+      "steps": ["펴서 정리", "끈으로 묶기", "종이류로 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "magazine": {
+      "name": "잡지/책자",
+      "category": "paper",
+      "note": "스프링/비닐 표지 제거 후 배출",
+      "steps": ["스프링 등 이물질 제거", "묶어서 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "paper_box": {
+      "name": "종이박스",
+      "category": "paper",
+      "note": "택배박스 - 테이프와 운송장 반드시 제거",
+      "steps": ["테이프, 송장, 철핀 제거", "납작하게 펴기", "끈으로 묶어서 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "milk_carton": {
+      "name": "우유팩",
+      "category": "paper",
+      "note": "일반 종이와 별도 수거 (종이팩 전용 함)",
+      "steps": ["내용물 비우기", "물로 헹구기", "펼쳐서 말리기", "종이팩 전용함 또는 종이류 별도 묶음"],
+      "regionVariation": true,
+      "knownVariations": "종이팩 전용 수거함이 없는 지역은 일반 종이와 함께 배출",
+      "confidence": "high"
+    },
+    "juice_carton": {
+      "name": "주스팩 (멸균팩)",
+      "category": "paper",
+      "note": "알루미늄 코팅된 멸균팩 - 일반 우유팩과 별도",
+      "steps": ["내용물 비우기", "헹구기", "펼쳐서 말리기", "멸균팩 별도 분리 권장"],
+      "regionVariation": true,
+      "knownVariations": "지자체별로 일반 종이팩과 함께 또는 별도 수거",
+      "confidence": "medium"
+    },
+    "paper_cup": {
+      "name": "종이컵 (일반)",
+      "category": "paper",
+      "note": "음료 자국 등 가볍게 씻은 후 배출",
+      "steps": ["내용물 비우기", "헹구기", "종이팩류로 배출"],
+      "regionVariation": true,
+      "knownVariations": "PE 코팅 종이컵은 종량제봉투 권장 (환경부 2021 안내)",
+      "confidence": "medium"
+    },
+    "paper_cup_coated": {
+      "name": "코팅 종이컵/종이용기",
+      "category": "general",
+      "note": "PE/PLA 코팅된 일회용 종이용기 - 재활용 공정 달라 종량제봉투 권장",
+      "steps": ["내용물 비우기", "종량제봉투에 배출"],
+      "regionVariation": true,
+      "knownVariations": "지자체에 따라 종이팩류로 분리 허용. 환경부 표준은 일반쓰레기",
+      "confidence": "medium"
+    },
+    "receipt": {
+      "name": "영수증",
+      "category": "general",
+      "note": "감열지는 BPA 코팅으로 재활용 불가",
+      "steps": ["종량제봉투에 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "book": {
+      "name": "책",
+      "category": "paper",
+      "note": "표지(비닐 코팅) 제거 후 묶음 배출",
+      "steps": ["하드커버/비닐 코팅 표지 제거", "끈으로 묶어서 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "note": {
+      "name": "노트",
+      "category": "paper",
+      "note": "스프링은 분리하여 캔/금속류로 배출",
+      "steps": ["스프링/철핀 분리", "종이류로 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+
+    "can": {
+      "name": "캔 (일반)",
+      "category": "can",
+      "note": "철/알루미늄 캔",
+      "steps": ["내용물 비우기", "헹구기", "압착하여 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "beverage_can": {
+      "name": "음료수 캔",
+      "category": "can",
+      "note": "알루미늄 캔",
+      "steps": ["내용물 비우기", "물로 헹구기", "압착", "캔/금속류로 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "food_can": {
+      "name": "통조림 캔",
+      "category": "can",
+      "note": "참치/햄/과일 통조림 등",
+      "steps": ["내용물 비우기", "기름기 제거 및 헹구기", "라벨 제거", "캔류로 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "tin_can": {
+      "name": "양철캔",
+      "category": "can",
+      "note": "철 재질 캔",
+      "steps": ["내용물 비우기", "헹구기", "캔/금속류로 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "aerosol_can": {
+      "name": "에어로졸 캔 (스프레이)",
+      "category": "can",
+      "note": "내용물 완전 배출 후 구멍 뚫어 배출 (폭발 위험)",
+      "steps": ["내용물 완전 사용/배출", "뾰족한 도구로 구멍 뚫기", "캔류로 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+
+    "glass_bottle": {
+      "name": "유리병",
+      "category": "glass",
+      "note": "주류병/음료병 등 (빈용기 보증금 환불 가능 품목은 별도)",
+      "steps": ["뚜껑 제거", "내용물 비우기", "헹구기", "병류 전용함 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "broken_glass_bottle": {
+      "name": "깨진 유리병",
+      "category": "general",
+      "note": "재활용 불가, 신문지 등으로 감싸 종량제봉투/특수마대에 배출",
+      "steps": ["신문지로 감싸기", "'유리주의' 표시", "종량제봉투 또는 특수마대"],
+      "regionVariation": true,
+      "knownVariations": "지자체별 특수규격마대 사용 의무 지역 있음",
+      "confidence": "high"
+    },
+    "broken_ceramic": {
+      "name": "깨진 도자기/사기그릇",
+      "category": "general",
+      "note": "재활용 불가",
+      "steps": ["안전하게 포장", "특수마대 또는 종량제봉투"],
+      "regionVariation": true,
+      "knownVariations": "불연성 폐기물 전용마대 사용 지역 다수",
+      "confidence": "high"
+    },
+    "cosmetics_bottle": {
+      "name": "화장품 유리병",
+      "category": "glass",
+      "note": "유색/혼합재질이라도 내용물 비우면 유리로 배출 가능",
+      "steps": ["내용물 비우기", "펌프(플라스틱) 분리", "유리병류로 배출"],
+      "regionVariation": true,
+      "knownVariations": "혼합재질이 많아 종량제봉투로 권장하는 지자체 있음",
+      "confidence": "medium"
+    },
+
+    "styrofoam_box": {
+      "name": "스티로폼 박스",
+      "category": "styrofoam",
+      "note": "택배/농수산물 스티로폼 박스",
+      "steps": ["테이프, 송장, 라벨 완전 제거", "내용물 제거", "깨끗한 흰색만 분리배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "styrofoam_white": {
+      "name": "흰색 스티로폼 (완충재)",
+      "category": "styrofoam",
+      "note": "가전제품 완충재 등",
+      "steps": ["이물질/테이프 제거", "스티로폼류로 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "styrofoam_colored": {
+      "name": "색깔 있는 스티로폼/오염 스티로폼",
+      "category": "general",
+      "note": "유색·검정·은박 스티로폼, 컵라면 용기, 오염 스티로폼",
+      "steps": ["종량제봉투에 배출"],
+      "regionVariation": true,
+      "knownVariations": "일부 지자체는 색상 무관 분리수거 허용",
+      "confidence": "medium"
+    },
+
+    "food_waste": {
+      "name": "음식물 쓰레기 (일반)",
+      "category": "food",
+      "note": "동물 사료/퇴비화 가능한 음식물",
+      "steps": ["물기 제거", "이물질(뼈, 비닐 등) 분리", "음식물 전용봉투/RFID 통"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "fruit_peel": {
+      "name": "과일 껍질",
+      "category": "food",
+      "note": "사과/귤/바나나/딸기 꼭지 등은 음식물",
+      "steps": ["물기 제거", "음식물쓰레기로 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "vegetable_scraps": {
+      "name": "채소 자투리",
+      "category": "food",
+      "note": "양파/마늘 껍질 외피, 옥수수대 등은 일반쓰레기",
+      "steps": ["부드러운 채소는 음식물", "단단한 줄기/껍질은 일반쓰레기"],
+      "regionVariation": true,
+      "knownVariations": "지자체에 따라 양파껍질/대파뿌리 분류 다름",
+      "confidence": "medium"
+    },
+    "meat_bone": {
+      "name": "고기 뼈 (육류 뼈)",
+      "category": "general",
+      "note": "소/돼지/닭 뼈, 비계, 내장 - 분쇄 불가",
+      "steps": ["종량제봉투에 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "fish_bone": {
+      "name": "생선 뼈/큰 가시",
+      "category": "general",
+      "note": "조개껍데기, 게/새우 껍질, 큰 생선뼈는 일반쓰레기",
+      "steps": ["종량제봉투에 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "tea_bag": {
+      "name": "티백/커피 찌꺼기",
+      "category": "general",
+      "note": "환경부 기준: 일회용 티백/한약재/커피찌꺼기는 일반쓰레기",
+      "steps": ["종량제봉투에 배출"],
+      "regionVariation": true,
+      "knownVariations": "내용물만 음식물, 봉투는 일반쓰레기로 분리하는 지역 있음",
+      "confidence": "medium"
+    },
+
+    "rubber_glove": {
+      "name": "고무장갑",
+      "category": "general",
+      "note": "합성고무로 재활용 불가 - 환경부 표준은 일반쓰레기",
+      "steps": ["종량제봉투에 배출"],
+      "regionVariation": true,
+      "knownVariations": "서울 강남구는 비닐류로 분류, 성동/광진구는 특수마대 사용",
+      "confidence": "high"
+    },
+    "toothbrush": {
+      "name": "칫솔",
+      "category": "general",
+      "note": "복합재질로 재활용 불가",
+      "steps": ["종량제봉투에 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "hanger": {
+      "name": "옷걸이",
+      "category": "general",
+      "note": "철제는 분리 후 캔/금속류, 플라스틱은 일반쓰레기 권장",
+      "steps": ["재질 확인", "철제: 금속류 / 플라스틱: 종량제봉투"],
+      "regionVariation": true,
+      "knownVariations": "지자체에 따라 플라스틱 옷걸이도 분리수거 허용",
+      "confidence": "medium"
+    },
+    "cosmetic_pump": {
+      "name": "화장품 펌프",
+      "category": "general",
+      "note": "스프링(금속)+플라스틱 복합재질로 재활용 어려움",
+      "steps": ["종량제봉투에 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "ceramic_dish": {
+      "name": "도자기/사기 그릇",
+      "category": "general",
+      "note": "재활용 불가 (유리류와 다름)",
+      "steps": ["특수마대 또는 종량제봉투"],
+      "regionVariation": true,
+      "knownVariations": "불연성 폐기물 전용마대 사용 지역 다수",
+      "confidence": "high"
+    },
+    "mirror": {
+      "name": "거울",
+      "category": "general",
+      "note": "유리 코팅재로 재활용 불가",
+      "steps": ["신문지로 감싸기", "특수마대 또는 종량제봉투"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "light_bulb": {
+      "name": "백열전구/LED 전구",
+      "category": "general",
+      "note": "형광등과 다름 - 수은 없어 일반쓰레기",
+      "steps": ["깨지지 않게 포장", "종량제봉투에 배출"],
+      "regionVariation": true,
+      "knownVariations": "일부 지자체는 LED 전구도 폐형광등 수거함에 배출 가능",
+      "confidence": "medium"
+    },
+    "aluminum_foil": {
+      "name": "알루미늄 호일",
+      "category": "general",
+      "note": "오염된 알루미늄 호일은 일반쓰레기",
+      "steps": ["종량제봉투에 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+
+    "battery": {
+      "name": "폐건전지",
+      "category": "battery",
+      "note": "건전지/리튬이온/충전지 - 생활계 유해폐기물",
+      "steps": ["물기 제거", "분해 금지", "동주민센터/아파트 전용수거함 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "lithium_battery": {
+      "name": "리튬이온 배터리 (보조배터리 등)",
+      "category": "battery",
+      "note": "부풀어 오른 경우 화재/폭발 위험",
+      "steps": ["부풀음 시 비닐랩으로 감싸기", "동주민센터/구청 담당자에게 직접 전달"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "lamp": {
+      "name": "폐형광등",
+      "category": "lamp",
+      "note": "수은 함유로 별도 수거 필수",
+      "steps": ["포장 제거", "깨지지 않게 운반", "전용수거함 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "clothes": {
+      "name": "헌 옷/의류",
+      "category": "clothes",
+      "note": "재사용 가능한 의류, 가방, 신발, 담요 등",
+      "steps": ["세탁/건조", "의류수거함 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    },
+    "electronics": {
+      "name": "소형가전",
+      "category": "general",
+      "note": "1m 미만 소형가전은 무상 방문수거 신청 가능 (E-순환거버넌스 15990903)",
+      "steps": ["E-순환거버넌스(15990903) 또는 주민센터 신청", "무상 방문수거"],
+      "regionVariation": true,
+      "knownVariations": "아파트의 경우 별도 수거함 운영 지역 있음",
+      "confidence": "high"
+    },
+    "furniture": {
+      "name": "대형폐기물 (가구)",
+      "category": "general",
+      "note": "주민센터/구청에 신고 후 스티커 부착하여 배출",
+      "steps": ["구청/주민센터 또는 온라인 신고", "수수료 결제 및 스티커 발급", "지정 장소에 배출"],
+      "regionVariation": true,
+      "knownVariations": "수수료/배출 방법 지자체별 상이",
+      "confidence": "high"
+    },
+    "medicine": {
+      "name": "폐의약품",
+      "category": "general",
+      "note": "약국/보건소에 비치된 폐의약품 수거함에 배출 (절대 변기/하수구 금지)",
+      "steps": ["포장재(종이박스, 설명서) 제거", "약국/보건소 수거함에 배출"],
+      "regionVariation": false,
+      "confidence": "high"
+    }
+  },
+
+  "regionVariationItems": [
+    "instant_rice_bowl",
+    "plastic_cap",
+    "milk_carton",
+    "juice_carton",
+    "paper_cup",
+    "paper_cup_coated",
+    "broken_glass_bottle",
+    "broken_ceramic",
+    "cosmetics_bottle",
+    "styrofoam_colored",
+    "vegetable_scraps",
+    "tea_bag",
+    "rubber_glove",
+    "hanger",
+    "ceramic_dish",
+    "light_bulb",
+    "electronics",
+    "furniture"
+  ],
+
+  "confidenceLegend": {
+    "high": "환경부 가이드라인 기준 전국 90% 이상 동일",
+    "medium": "지자체별 차이 있으나 환경부 표준 기준 제공",
+    "low": "지역별 차이가 커 반드시 거주지 확인 필요"
+  }
+}

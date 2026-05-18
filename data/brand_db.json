@@ -1,0 +1,1232 @@
+{
+  "$schema": "여기선 v4 - 한국 제품 브랜드 DB",
+  "version": "4.0.1",
+  "lastUpdated": "2026-05-18",
+  "description": "한국 주요 생활용품의 정확한 브랜드/제품명 → 분리수거 분류 매핑. OCR로 추출한 텍스트에서 브랜드명/제품명이 매칭되면 즉시 정답. confidence는 0.92~0.98로 최상위.",
+  "matchingNote": "정규화: 공백·특수문자 제거, 소문자 변환 후 부분 매칭. brand_keyword가 텍스트에 포함되면 매칭.",
+  "brands": [
+    {
+      "name": "라네즈 슬리핑마스크",
+      "brand_keyword": [
+        "라네즈",
+        "laneige",
+        "라네즈슬리핑",
+        "laneige sleeping",
+        "라네즈 슬리핑"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "confidence": 0.95,
+      "note": "내용물 비우고 라벨 제거 후 플라스틱",
+      "type": "cosmetic"
+    },
+    {
+      "name": "설화수 자음생크림",
+      "brand_keyword": [
+        "설화수",
+        "sulwhasoo",
+        "자음생"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "confidence": 0.95,
+      "type": "cosmetic"
+    },
+    {
+      "name": "헤라 블랙쿠션",
+      "brand_keyword": [
+        "헤라",
+        "hera"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "confidence": 0.93,
+      "type": "cosmetic"
+    },
+    {
+      "name": "이니스프리 그린티 세럼",
+      "brand_keyword": [
+        "이니스프리",
+        "innisfree",
+        "그린티세럼"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "confidence": 0.95,
+      "type": "cosmetic"
+    },
+    {
+      "name": "미샤 타임 레볼루션",
+      "brand_keyword": [
+        "미샤",
+        "missha",
+        "타임레볼루션"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "confidence": 0.93,
+      "type": "cosmetic"
+    },
+    {
+      "name": "더페이스샵 더테라피",
+      "brand_keyword": [
+        "더페이스샵",
+        "the face shop",
+        "더테라피"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "confidence": 0.93,
+      "type": "cosmetic"
+    },
+    {
+      "name": "토니모리 마스크팩",
+      "brand_keyword": [
+        "토니모리",
+        "tonymoly"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.92,
+      "type": "cosmetic"
+    },
+    {
+      "name": "메디힐 마스크팩",
+      "brand_keyword": [
+        "메디힐",
+        "mediheal"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.95,
+      "type": "cosmetic"
+    },
+    {
+      "name": "닥터자르트 마스크",
+      "brand_keyword": [
+        "닥터자르트",
+        "drjart",
+        "dr.jart"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.93,
+      "type": "cosmetic"
+    },
+    {
+      "name": "오휘 더퍼스트",
+      "brand_keyword": [
+        "오휘",
+        "ohui",
+        "더퍼스트"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "confidence": 0.93,
+      "type": "cosmetic"
+    },
+    {
+      "name": "후 비첩",
+      "brand_keyword": [
+        "whoo",
+        "비첩"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "confidence": 0.92,
+      "type": "cosmetic"
+    },
+    {
+      "name": "숨37도 시크릿",
+      "brand_keyword": [
+        "숨37",
+        "숨37도",
+        "su:m37"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "confidence": 0.92,
+      "type": "cosmetic"
+    },
+    {
+      "name": "아이오페 에어쿠션",
+      "brand_keyword": [
+        "아이오페",
+        "iope"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "confidence": 0.92,
+      "type": "cosmetic"
+    },
+    {
+      "name": "라로슈포제 시카플라스트",
+      "brand_keyword": [
+        "라로슈포제",
+        "la roche posay"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "confidence": 0.93,
+      "type": "cosmetic"
+    },
+    {
+      "name": "닥터자르트 시카페어",
+      "brand_keyword": [
+        "시카페어",
+        "cicapair"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "confidence": 0.92,
+      "type": "cosmetic"
+    },
+    {
+      "name": "달바 미스트",
+      "brand_keyword": [
+        "달바",
+        "dalba"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "confidence": 0.92,
+      "type": "cosmetic"
+    },
+    {
+      "name": "비욘드 샴푸",
+      "brand_keyword": [
+        "비욘드",
+        "beyond"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.92,
+      "type": "haircare"
+    },
+    {
+      "name": "려 자양윤모 샴푸",
+      "brand_keyword": [
+        "려샴푸",
+        "ryo"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.93,
+      "type": "haircare"
+    },
+    {
+      "name": "미쟝센 퍼펙트 세럼",
+      "brand_keyword": [
+        "미쟝센",
+        "mise en scene"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.92,
+      "type": "haircare"
+    },
+    {
+      "name": "아모스 그린티",
+      "brand_keyword": [
+        "아모스",
+        "amos"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.9,
+      "type": "haircare"
+    },
+    {
+      "name": "케라시스 샴푸",
+      "brand_keyword": [
+        "케라시스",
+        "kerasys"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.92,
+      "type": "haircare"
+    },
+    {
+      "name": "엘라스틴 샴푸",
+      "brand_keyword": [
+        "엘라스틴",
+        "elastine"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.92,
+      "type": "haircare"
+    },
+    {
+      "name": "송염 치약",
+      "brand_keyword": [
+        "송염"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.92,
+      "type": "oral"
+    },
+    {
+      "name": "센소다인 치약",
+      "brand_keyword": [
+        "센소다인",
+        "sensodyne"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.93,
+      "type": "oral"
+    },
+    {
+      "name": "2080 치약",
+      "brand_keyword": [
+        "2080",
+        "이공팔공"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.9,
+      "type": "oral"
+    },
+    {
+      "name": "삼다수",
+      "brand_keyword": [
+        "삼다수",
+        "samdasoo",
+        "제주삼다수"
+      ],
+      "item_id": "pet_bottle",
+      "category": "plastic",
+      "confidence": 0.98,
+      "note": "라벨 제거 후 압착 배출",
+      "type": "water"
+    },
+    {
+      "name": "백산수",
+      "brand_keyword": [
+        "백산수",
+        "baeksansoo"
+      ],
+      "item_id": "pet_bottle",
+      "category": "plastic",
+      "confidence": 0.98,
+      "type": "water"
+    },
+    {
+      "name": "아이시스",
+      "brand_keyword": [
+        "아이시스",
+        "isis"
+      ],
+      "item_id": "pet_bottle",
+      "category": "plastic",
+      "confidence": 0.96,
+      "type": "water"
+    },
+    {
+      "name": "에비앙",
+      "brand_keyword": [
+        "에비앙",
+        "evian"
+      ],
+      "item_id": "pet_bottle",
+      "category": "plastic",
+      "confidence": 0.96,
+      "type": "water"
+    },
+    {
+      "name": "코카콜라",
+      "brand_keyword": [
+        "코카콜라",
+        "coca cola",
+        "coke"
+      ],
+      "item_id": "pet_bottle",
+      "category": "plastic",
+      "confidence": 0.97,
+      "type": "beverage"
+    },
+    {
+      "name": "펩시콜라",
+      "brand_keyword": [
+        "펩시",
+        "pepsi"
+      ],
+      "item_id": "pet_bottle",
+      "category": "plastic",
+      "confidence": 0.96,
+      "type": "beverage"
+    },
+    {
+      "name": "스프라이트",
+      "brand_keyword": [
+        "스프라이트",
+        "sprite"
+      ],
+      "item_id": "pet_bottle",
+      "category": "plastic",
+      "confidence": 0.96,
+      "type": "beverage"
+    },
+    {
+      "name": "칠성사이다",
+      "brand_keyword": [
+        "칠성사이다",
+        "칠성"
+      ],
+      "item_id": "pet_bottle",
+      "category": "plastic",
+      "confidence": 0.96,
+      "type": "beverage"
+    },
+    {
+      "name": "포카리스웨트",
+      "brand_keyword": [
+        "포카리",
+        "pocari",
+        "포카리스웨트"
+      ],
+      "item_id": "pet_bottle",
+      "category": "plastic",
+      "confidence": 0.97,
+      "type": "beverage"
+    },
+    {
+      "name": "게토레이",
+      "brand_keyword": [
+        "게토레이",
+        "gatorade"
+      ],
+      "item_id": "pet_bottle",
+      "category": "plastic",
+      "confidence": 0.96,
+      "type": "beverage"
+    },
+    {
+      "name": "박카스",
+      "brand_keyword": [
+        "박카스",
+        "bacchus"
+      ],
+      "item_id": "glass_bottle",
+      "category": "glass",
+      "confidence": 0.97,
+      "note": "병뚜껑 제거 후 유리 배출",
+      "type": "drink"
+    },
+    {
+      "name": "비타500",
+      "brand_keyword": [
+        "비타500",
+        "vita500"
+      ],
+      "item_id": "glass_bottle",
+      "category": "glass",
+      "confidence": 0.95,
+      "type": "drink"
+    },
+    {
+      "name": "데미소다",
+      "brand_keyword": [
+        "데미소다",
+        "demisoda"
+      ],
+      "item_id": "pet_bottle",
+      "category": "plastic",
+      "confidence": 0.94,
+      "type": "beverage"
+    },
+    {
+      "name": "환타",
+      "brand_keyword": [
+        "환타",
+        "fanta"
+      ],
+      "item_id": "pet_bottle",
+      "category": "plastic",
+      "confidence": 0.95,
+      "type": "beverage"
+    },
+    {
+      "name": "맥콜",
+      "brand_keyword": [
+        "맥콜"
+      ],
+      "item_id": "can",
+      "category": "can",
+      "confidence": 0.94,
+      "type": "beverage"
+    },
+    {
+      "name": "맥심 커피",
+      "brand_keyword": [
+        "맥심",
+        "maxim"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.92,
+      "note": "스틱은 비닐, 병은 유리",
+      "type": "coffee"
+    },
+    {
+      "name": "카누 아메리카노",
+      "brand_keyword": [
+        "카누",
+        "kanu"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.92,
+      "type": "coffee"
+    },
+    {
+      "name": "스타벅스 디카페인",
+      "brand_keyword": [
+        "스타벅스",
+        "starbucks"
+      ],
+      "item_id": "paper_cup_coated",
+      "category": "paper",
+      "confidence": 0.9,
+      "note": "테이크아웃 컵은 종이류",
+      "type": "coffee"
+    },
+    {
+      "name": "조지아 커피",
+      "brand_keyword": [
+        "조지아",
+        "georgia"
+      ],
+      "item_id": "can",
+      "category": "can",
+      "confidence": 0.93,
+      "type": "coffee"
+    },
+    {
+      "name": "레쓰비",
+      "brand_keyword": [
+        "레쓰비",
+        "letsbe"
+      ],
+      "item_id": "can",
+      "category": "can",
+      "confidence": 0.92,
+      "type": "coffee"
+    },
+    {
+      "name": "참이슬",
+      "brand_keyword": [
+        "참이슬",
+        "jinro"
+      ],
+      "item_id": "glass_bottle",
+      "category": "glass",
+      "confidence": 0.98,
+      "note": "병뚜껑 제거, 보증금 환불 가능",
+      "type": "alcohol"
+    },
+    {
+      "name": "처음처럼",
+      "brand_keyword": [
+        "처음처럼",
+        "chumchurum"
+      ],
+      "item_id": "glass_bottle",
+      "category": "glass",
+      "confidence": 0.98,
+      "type": "alcohol"
+    },
+    {
+      "name": "카스 맥주",
+      "brand_keyword": [
+        "카스",
+        "cass"
+      ],
+      "item_id": "glass_bottle",
+      "category": "glass",
+      "confidence": 0.97,
+      "type": "alcohol"
+    },
+    {
+      "name": "하이트 맥주",
+      "brand_keyword": [
+        "하이트",
+        "hite"
+      ],
+      "item_id": "glass_bottle",
+      "category": "glass",
+      "confidence": 0.97,
+      "type": "alcohol"
+    },
+    {
+      "name": "테라 맥주",
+      "brand_keyword": [
+        "테라맥주",
+        "terra beer"
+      ],
+      "item_id": "glass_bottle",
+      "category": "glass",
+      "confidence": 0.95,
+      "type": "alcohol"
+    },
+    {
+      "name": "켈리 맥주",
+      "brand_keyword": [
+        "켈리"
+      ],
+      "item_id": "glass_bottle",
+      "category": "glass",
+      "confidence": 0.93,
+      "type": "alcohol"
+    },
+    {
+      "name": "햇반",
+      "brand_keyword": [
+        "햇반",
+        "hetbahn"
+      ],
+      "item_id": "instant_rice_bowl",
+      "category": "plastic",
+      "confidence": 0.98,
+      "note": "내용물 비우고 헹군 후 플라스틱. 단 비비고 즉석밥과 구분.",
+      "type": "rice"
+    },
+    {
+      "name": "오뚜기 즉석밥",
+      "brand_keyword": [
+        "오뚜기밥",
+        "오뚜기 밥"
+      ],
+      "item_id": "instant_rice_bowl",
+      "category": "plastic",
+      "confidence": 0.96,
+      "type": "rice"
+    },
+    {
+      "name": "비비고 즉석밥",
+      "brand_keyword": [
+        "비비고밥",
+        "비비고 밥"
+      ],
+      "item_id": "instant_rice_bowl",
+      "category": "plastic",
+      "confidence": 0.96,
+      "type": "rice"
+    },
+    {
+      "name": "신라면",
+      "brand_keyword": [
+        "신라면",
+        "shin ramyun"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.98,
+      "note": "라면 봉지는 비닐류. 컵라면 용기는 플라스틱",
+      "type": "ramyun"
+    },
+    {
+      "name": "진라면",
+      "brand_keyword": [
+        "진라면",
+        "jin ramen"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.97,
+      "type": "ramyun"
+    },
+    {
+      "name": "안성탕면",
+      "brand_keyword": [
+        "안성탕면",
+        "안성 탕면"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.96,
+      "type": "ramyun"
+    },
+    {
+      "name": "너구리",
+      "brand_keyword": [
+        "너구리",
+        "neoguri"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.96,
+      "type": "ramyun"
+    },
+    {
+      "name": "짜파게티",
+      "brand_keyword": [
+        "짜파게티",
+        "chapagetti"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.96,
+      "type": "ramyun"
+    },
+    {
+      "name": "팔도비빔면",
+      "brand_keyword": [
+        "팔도비빔면",
+        "paldo"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.94,
+      "type": "ramyun"
+    },
+    {
+      "name": "농심 새우깡",
+      "brand_keyword": [
+        "새우깡"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.97,
+      "type": "snack"
+    },
+    {
+      "name": "포카칩",
+      "brand_keyword": [
+        "포카칩",
+        "poca chip"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.97,
+      "type": "snack"
+    },
+    {
+      "name": "허니버터칩",
+      "brand_keyword": [
+        "허니버터칩",
+        "honey butter chip"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.96,
+      "type": "snack"
+    },
+    {
+      "name": "꼬깔콘",
+      "brand_keyword": [
+        "꼬깔콘"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.94,
+      "type": "snack"
+    },
+    {
+      "name": "초코파이",
+      "brand_keyword": [
+        "초코파이",
+        "choco pie"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.95,
+      "type": "snack"
+    },
+    {
+      "name": "오레오",
+      "brand_keyword": [
+        "오레오",
+        "oreo"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.94,
+      "type": "snack"
+    },
+    {
+      "name": "오징어땅콩",
+      "brand_keyword": [
+        "오징어땅콩"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.93,
+      "type": "snack"
+    },
+    {
+      "name": "서울우유",
+      "brand_keyword": [
+        "서울우유"
+      ],
+      "item_id": "milk_carton",
+      "category": "paper",
+      "confidence": 0.97,
+      "note": "내용물 비우고 헹군 후 종이팩 분리수거",
+      "type": "dairy"
+    },
+    {
+      "name": "매일우유",
+      "brand_keyword": [
+        "매일우유"
+      ],
+      "item_id": "milk_carton",
+      "category": "paper",
+      "confidence": 0.96,
+      "type": "dairy"
+    },
+    {
+      "name": "남양우유",
+      "brand_keyword": [
+        "남양우유"
+      ],
+      "item_id": "milk_carton",
+      "category": "paper",
+      "confidence": 0.96,
+      "type": "dairy"
+    },
+    {
+      "name": "빙그레 바나나우유",
+      "brand_keyword": [
+        "바나나우유",
+        "빙그레"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.95,
+      "type": "dairy"
+    },
+    {
+      "name": "요플레",
+      "brand_keyword": [
+        "요플레",
+        "yoplait"
+      ],
+      "item_id": "plastic_container",
+      "category": "plastic",
+      "confidence": 0.94,
+      "type": "dairy"
+    },
+    {
+      "name": "요거트",
+      "brand_keyword": [
+        "요거트",
+        "야쿠르트"
+      ],
+      "item_id": "plastic_container",
+      "category": "plastic",
+      "confidence": 0.9,
+      "type": "dairy"
+    },
+    {
+      "name": "동원참치",
+      "brand_keyword": [
+        "동원참치"
+      ],
+      "item_id": "food_can",
+      "category": "can",
+      "confidence": 0.98,
+      "note": "내용물 깨끗이 비우고 캔 헹궈서 배출",
+      "type": "canned"
+    },
+    {
+      "name": "스팸",
+      "brand_keyword": [
+        "스팸",
+        "spam"
+      ],
+      "item_id": "food_can",
+      "category": "can",
+      "confidence": 0.97,
+      "type": "canned"
+    },
+    {
+      "name": "런천미트",
+      "brand_keyword": [
+        "런천미트",
+        "luncheon"
+      ],
+      "item_id": "food_can",
+      "category": "can",
+      "confidence": 0.93,
+      "type": "canned"
+    },
+    {
+      "name": "오뚜기 카레",
+      "brand_keyword": [
+        "오뚜기카레"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.95,
+      "type": "instant"
+    },
+    {
+      "name": "오뚜기 3분요리",
+      "brand_keyword": [
+        "3분짜장",
+        "3분카레",
+        "3분요리"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.93,
+      "type": "instant"
+    },
+    {
+      "name": "비비고 만두",
+      "brand_keyword": [
+        "비비고만두",
+        "bibigo"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.93,
+      "type": "instant"
+    },
+    {
+      "name": "종가집 김치",
+      "brand_keyword": [
+        "종가집"
+      ],
+      "item_id": "plastic_container",
+      "category": "plastic",
+      "confidence": 0.93,
+      "type": "kimchi"
+    },
+    {
+      "name": "비비고 김치",
+      "brand_keyword": [
+        "비비고김치"
+      ],
+      "item_id": "plastic_container",
+      "category": "plastic",
+      "confidence": 0.92,
+      "type": "kimchi"
+    },
+    {
+      "name": "퐁퐁 주방세제",
+      "brand_keyword": [
+        "퐁퐁"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.95,
+      "note": "내용물 비우고 헹군 후 압착하여 플라스틱",
+      "type": "detergent"
+    },
+    {
+      "name": "트리오 주방세제",
+      "brand_keyword": [
+        "트리오",
+        "trio"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.94,
+      "type": "detergent"
+    },
+    {
+      "name": "참그린 주방세제",
+      "brand_keyword": [
+        "참그린"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.92,
+      "type": "detergent"
+    },
+    {
+      "name": "스파크 세탁세제",
+      "brand_keyword": [
+        "스파크"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.92,
+      "type": "detergent"
+    },
+    {
+      "name": "비트 세탁세제",
+      "brand_keyword": [
+        "비트세제"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.92,
+      "type": "detergent"
+    },
+    {
+      "name": "다우니 섬유유연제",
+      "brand_keyword": [
+        "다우니",
+        "downy"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.95,
+      "type": "softener"
+    },
+    {
+      "name": "샤프란 섬유유연제",
+      "brand_keyword": [
+        "샤프란"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.94,
+      "type": "softener"
+    },
+    {
+      "name": "피죤 섬유유연제",
+      "brand_keyword": [
+        "피죤"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.94,
+      "type": "softener"
+    },
+    {
+      "name": "페브리즈 탈취제",
+      "brand_keyword": [
+        "페브리즈",
+        "febreze"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.95,
+      "type": "spray"
+    },
+    {
+      "name": "홈스타 곰팡이 제거제",
+      "brand_keyword": [
+        "홈스타"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.92,
+      "type": "cleaner"
+    },
+    {
+      "name": "락스",
+      "brand_keyword": [
+        "유한락스",
+        "락스"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.95,
+      "note": "남은 내용물 주의, 환기되는 곳에서 비움",
+      "type": "cleaner"
+    },
+    {
+      "name": "메소드 청소세제",
+      "brand_keyword": [
+        "메소드",
+        "method"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.91,
+      "type": "cleaner"
+    },
+    {
+      "name": "오쏘몰",
+      "brand_keyword": [
+        "오쏘몰",
+        "orthomol"
+      ],
+      "item_id": "glass_bottle",
+      "category": "glass",
+      "confidence": 0.9,
+      "type": "supplement"
+    },
+    {
+      "name": "센트룸",
+      "brand_keyword": [
+        "센트룸",
+        "centrum"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.92,
+      "type": "supplement"
+    },
+    {
+      "name": "AHC 토너",
+      "brand_keyword": [
+        "ahc"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "confidence": 0.92,
+      "type": "cosmetic"
+    },
+    {
+      "name": "닥터지 클렌저",
+      "brand_keyword": [
+        "닥터지",
+        "dr.g"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.92,
+      "type": "cosmetic"
+    },
+    {
+      "name": "셀퓨전씨",
+      "brand_keyword": [
+        "셀퓨전",
+        "셀퓨전씨",
+        "cell fusion c"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.91,
+      "type": "cosmetic"
+    },
+    {
+      "name": "비레디 선크림",
+      "brand_keyword": [
+        "비레디",
+        "be ready"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "confidence": 0.91,
+      "type": "cosmetic"
+    },
+    {
+      "name": "라운드랩 1025 독도토너",
+      "brand_keyword": [
+        "라운드랩",
+        "round lab",
+        "1025"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "confidence": 0.92,
+      "type": "cosmetic"
+    },
+    {
+      "name": "토리든 다이브인",
+      "brand_keyword": [
+        "토리든",
+        "torriden"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "confidence": 0.91,
+      "type": "cosmetic"
+    },
+    {
+      "name": "조선일보",
+      "brand_keyword": [
+        "조선일보"
+      ],
+      "item_id": "newspaper",
+      "category": "paper",
+      "confidence": 0.97,
+      "type": "newspaper"
+    },
+    {
+      "name": "중앙일보",
+      "brand_keyword": [
+        "중앙일보"
+      ],
+      "item_id": "newspaper",
+      "category": "paper",
+      "confidence": 0.97,
+      "type": "newspaper"
+    },
+    {
+      "name": "동아일보",
+      "brand_keyword": [
+        "동아일보"
+      ],
+      "item_id": "newspaper",
+      "category": "paper",
+      "confidence": 0.97,
+      "type": "newspaper"
+    },
+    {
+      "name": "한겨레",
+      "brand_keyword": [
+        "한겨레"
+      ],
+      "item_id": "newspaper",
+      "category": "paper",
+      "confidence": 0.97,
+      "type": "newspaper"
+    },
+    {
+      "name": "경향신문",
+      "brand_keyword": [
+        "경향신문"
+      ],
+      "item_id": "newspaper",
+      "category": "paper",
+      "confidence": 0.97,
+      "type": "newspaper"
+    },
+    {
+      "name": "두산 듀라셀 건전지",
+      "brand_keyword": [
+        "듀라셀",
+        "duracell"
+      ],
+      "item_id": "battery",
+      "category": "battery",
+      "confidence": 0.97,
+      "note": "전용 수거함에 배출",
+      "type": "battery"
+    },
+    {
+      "name": "에너자이저 건전지",
+      "brand_keyword": [
+        "에너자이저",
+        "energizer"
+      ],
+      "item_id": "battery",
+      "category": "battery",
+      "confidence": 0.97,
+      "type": "battery"
+    },
+    {
+      "name": "벡셀 건전지",
+      "brand_keyword": [
+        "벡셀",
+        "vexel"
+      ],
+      "item_id": "battery",
+      "category": "battery",
+      "confidence": 0.94,
+      "type": "battery"
+    }
+  ],
+  "stats": {
+    "totalBrands": 100,
+    "categories": {
+      "cosmetic": 25,
+      "haircare_oral": 11,
+      "beverage_water": 15,
+      "alcohol": 6,
+      "food_instant": 15,
+      "coffee": 5,
+      "detergent_cleaner": 12,
+      "newspaper": 5,
+      "battery": 3,
+      "supplement_other": 3
+    }
+  },
+  "notes": {
+    "priority": "브랜드 매칭은 OCR 키워드 매칭보다 우선 (confidence가 일반적으로 더 높음). analyzeHybrid()에서 brand >= 0.85 부터 채택.",
+    "matching": "brand_keyword 배열의 어떤 것이든 정규화된 OCR 텍스트에 포함되면 매칭. 가장 긴 키워드부터 우선 검사.",
+    "fallback": "브랜드 매칭 안 되면 OCR 키워드 매칭으로 폴백.",
+    "extension": "새 브랜드 추가 시 brand_keyword에 다양한 변형(한글/영문/띄어쓰기 변형) 포함 권장."
+  }
+}

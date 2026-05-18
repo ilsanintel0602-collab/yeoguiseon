@@ -1,0 +1,553 @@
+{
+  "$schema": "여기선 v4 - OCR 키워드 → 카테고리 매핑",
+  "version": "4.0.3",
+  "lastUpdated": "2026-05-18",
+  "description": "Tesseract.js로 라벨에서 추출한 한국어/영문 텍스트를 분리수거 카테고리로 매핑.",
+  "keywords": [
+    {
+      "match": [
+        "환원수",
+        "생수",
+        "먹는샘물",
+        "샘물",
+        "삼다수",
+        "백산수",
+        "아이시스",
+        "에비앙"
+      ],
+      "item_id": "pet_bottle",
+      "category": "plastic",
+      "priority": 90
+    },
+    {
+      "match": [
+        "탄산수",
+        "스파클링"
+      ],
+      "item_id": "pet_bottle",
+      "category": "plastic",
+      "priority": 85
+    },
+    {
+      "match": [
+        "주스",
+        "쥬스",
+        "사이다",
+        "콜라",
+        "포카리",
+        "게토레이",
+        "데미소다"
+      ],
+      "item_id": "pet_bottle",
+      "category": "plastic",
+      "priority": 85
+    },
+    {
+      "match": [
+        "스킨",
+        "토너",
+        "로션",
+        "에멀젼",
+        "에센스",
+        "세럼",
+        "앰플",
+        "수분크림",
+        "영양크림",
+        "아이크림",
+        "선크림",
+        "선블록",
+        "선스크린"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "priority": 90
+    },
+    {
+      "match": [
+        "미스트",
+        "립밤",
+        "립스틱",
+        "립글로스",
+        "쿠션",
+        "파운데이션",
+        "컨실러",
+        "마스카라",
+        "아이라이너",
+        "아이섀도"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "priority": 85
+    },
+    {
+      "match": [
+        "바디로션",
+        "바디워시",
+        "바디크림",
+        "바디오일"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "priority": 85
+    },
+    {
+      "match": [
+        "샴푸",
+        "린스",
+        "트리트먼트",
+        "컨디셔너",
+        "헤어팩"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "priority": 90
+    },
+    {
+      "match": [
+        "치약",
+        "치솔",
+        "칫솔",
+        "구강세정제",
+        "가글"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "priority": 85
+    },
+    {
+      "match": [
+        "우유",
+        "두유"
+      ],
+      "item_id": "milk_carton",
+      "category": "paper",
+      "priority": 90
+    },
+    {
+      "match": [
+        "요거트",
+        "요구르트",
+        "요플레",
+        "발효유",
+        "액티비아",
+        "불가리스"
+      ],
+      "item_id": "plastic_container",
+      "category": "plastic",
+      "priority": 88
+    },
+    {
+      "match": [
+        "멸균우유",
+        "두유팩",
+        "주스팩"
+      ],
+      "item_id": "milk_carton",
+      "category": "paper",
+      "priority": 85
+    },
+    {
+      "match": [
+        "맥주",
+        "소주",
+        "막걸리",
+        "와인",
+        "위스키",
+        "양주",
+        "사케"
+      ],
+      "item_id": "glass_bottle",
+      "category": "glass",
+      "priority": 90
+    },
+    {
+      "match": [
+        "참이슬",
+        "처음처럼",
+        "카스",
+        "하이트",
+        "테라",
+        "켈리"
+      ],
+      "item_id": "glass_bottle",
+      "category": "glass",
+      "priority": 90
+    },
+    {
+      "match": [
+        "참치캔",
+        "꽁치캔",
+        "고등어캔",
+        "통조림"
+      ],
+      "item_id": "food_can",
+      "category": "can",
+      "priority": 90
+    },
+    {
+      "match": [
+        "스팸",
+        "런천미트"
+      ],
+      "item_id": "food_can",
+      "category": "can",
+      "priority": 85
+    },
+    {
+      "match": [
+        "옥수수통조림",
+        "황도통조림",
+        "복숭아통조림"
+      ],
+      "item_id": "food_can",
+      "category": "can",
+      "priority": 85
+    },
+    {
+      "match": [
+        "라면",
+        "신라면",
+        "진라면",
+        "안성탕면",
+        "너구리",
+        "짜파게티",
+        "비빔면",
+        "팔도비빔면"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "priority": 90
+    },
+    {
+      "match": [
+        "과자",
+        "스낵",
+        "포카칩",
+        "새우깡",
+        "허니버터칩",
+        "오징어땅콩",
+        "꼬깔콘"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "priority": 85
+    },
+    {
+      "match": [
+        "김봉지",
+        "조미김",
+        "도시락김"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "priority": 80
+    },
+    {
+      "match": [
+        "즉석밥",
+        "햇반",
+        "오뚜기밥",
+        "비비고밥"
+      ],
+      "item_id": "instant_rice_bowl",
+      "category": "plastic",
+      "priority": 90
+    },
+    {
+      "match": [
+        "컵라면",
+        "용기면",
+        "도시락"
+      ],
+      "item_id": "plastic_container",
+      "category": "plastic",
+      "priority": 85
+    },
+    {
+      "match": [
+        "세제",
+        "주방세제",
+        "세탁세제",
+        "섬유유연제",
+        "표백제",
+        "퐁퐁",
+        "트리오"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "priority": 90
+    },
+    {
+      "match": [
+        "손세정제",
+        "핸드워시",
+        "핸드솝",
+        "비누"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "priority": 85
+    },
+    {
+      "match": [
+        "신문",
+        "조선일보",
+        "중앙일보",
+        "동아일보",
+        "한겨레",
+        "경향신문"
+      ],
+      "item_id": "newspaper",
+      "category": "paper",
+      "priority": 95
+    },
+    {
+      "match": [
+        "택배",
+        "송장",
+        "골판지박스"
+      ],
+      "item_id": "paper_box",
+      "category": "paper",
+      "priority": 75
+    },
+    {
+      "match": [
+        "배터리",
+        "건전지",
+        "BATTERY",
+        "AA",
+        "AAA"
+      ],
+      "item_id": "battery",
+      "category": "battery",
+      "priority": 90
+    },
+    {
+      "match": [
+        "형광등",
+        "LED등",
+        "전구"
+      ],
+      "item_id": "lamp",
+      "category": "lamp",
+      "priority": 85
+    },
+    {
+      "match": [
+        "사과",
+        "배",
+        "감",
+        "귤",
+        "오렌지",
+        "레몬",
+        "포도",
+        "딸기",
+        "수박",
+        "참외",
+        "복숭아",
+        "자두",
+        "체리"
+      ],
+      "item_id": "fruit_peel",
+      "category": "food",
+      "priority": 80
+    },
+    {
+      "match": [
+        "양파",
+        "마늘",
+        "파",
+        "대파",
+        "쪽파",
+        "양배추",
+        "배추",
+        "무",
+        "당근",
+        "감자",
+        "고구마",
+        "오이",
+        "호박"
+      ],
+      "item_id": "vegetable_scraps",
+      "category": "food",
+      "priority": 80
+    },
+    {
+      "match": [
+        "생선",
+        "갈치",
+        "오징어",
+        "닭",
+        "돼지고기",
+        "소고기",
+        "달걀",
+        "두부",
+        "콩나물",
+        "시금치",
+        "상추"
+      ],
+      "item_id": "food_waste",
+      "category": "food",
+      "priority": 75
+    },
+    {
+      "match": [
+        "김치",
+        "깍두기",
+        "나물",
+        "찌개",
+        "국밥",
+        "탕"
+      ],
+      "item_id": "food_waste",
+      "category": "food",
+      "priority": 75
+    },
+    {
+      "match": [
+        "스티로폼",
+        "EPS",
+        "발포폴리스티렌",
+        "발포 폴리스티렌",
+        "발포스티렌"
+      ],
+      "item_id": "styrofoam_box",
+      "category": "styrofoam",
+      "priority": 85
+    },
+    {
+      "match": [
+        "완충재",
+        "보냉재",
+        "아이스박스",
+        "냉동포장"
+      ],
+      "item_id": "styrofoam_white",
+      "category": "styrofoam",
+      "priority": 80
+    },
+    {
+      "match": [
+        "면100%",
+        "면 100%",
+        "cotton",
+        "polyester",
+        "폴리에스터",
+        "나일론",
+        "wool",
+        "캐시미어",
+        "린넨"
+      ],
+      "item_id": "clothes",
+      "category": "clothes",
+      "priority": 70
+    },
+    {
+      "match": [
+        "의류수거함",
+        "헌옷",
+        "헌 옷",
+        "옷기부",
+        "의류기부",
+        "구제",
+        "리유즈"
+      ],
+      "item_id": "clothes",
+      "category": "clothes",
+      "priority": 90
+    },
+    {
+      "match": [
+        "신발",
+        "운동화",
+        "구두",
+        "슬리퍼",
+        "샌들"
+      ],
+      "item_id": "clothes",
+      "category": "clothes",
+      "priority": 75
+    },
+    {
+      "match": [
+        "PET",
+        "PETE",
+        "페트"
+      ],
+      "item_id": "pet_bottle",
+      "category": "plastic",
+      "priority": 70
+    },
+    {
+      "match": [
+        "HDPE",
+        "LDPE",
+        "PP",
+        "PS"
+      ],
+      "category": "plastic",
+      "priority": 60
+    },
+    {
+      "match": [
+        "OTHER",
+        "OTHERS",
+        "기타",
+        "복합재질"
+      ],
+      "category": "general",
+      "priority": 50
+    },
+    {
+      "match": [
+        "종이"
+      ],
+      "category": "paper",
+      "priority": 60
+    },
+    {
+      "match": [
+        "유리"
+      ],
+      "category": "glass",
+      "priority": 60
+    },
+    {
+      "match": [
+        "캔",
+        "철",
+        "알루미늄",
+        "AL"
+      ],
+      "category": "can",
+      "priority": 65
+    },
+    {
+      "match": [
+        "비닐"
+      ],
+      "category": "vinyl",
+      "priority": 65
+    }
+  ],
+  "categoryWeight": {
+    "plastic": 1.0,
+    "vinyl": 1.0,
+    "paper": 1.0,
+    "can": 1.0,
+    "glass": 1.0,
+    "styrofoam": 1.0,
+    "battery": 1.2,
+    "lamp": 1.2,
+    "food": 0.9,
+    "clothes": 1.0,
+    "general": 0.7
+  },
+  "notes": {
+    "matching": "match 배열의 단어가 OCR 결과 텍스트에 포함되면 매칭. 대소문자 무시, 띄어쓰기 무시.",
+    "priority": "0~100. 여러 단어가 동시에 매칭되면 priority * categoryWeight가 가장 높은 항목 선택.",
+    "fallback": "어떤 키워드도 매칭 안 되면 YOLO 결과만 사용.",
+    "minConfidence": "OCR 텍스트가 너무 짧거나(2글자 미만) 신뢰도가 낮으면 무시."
+  }
+}
