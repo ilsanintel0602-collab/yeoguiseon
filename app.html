@@ -1859,10 +1859,11 @@ if ('serviceWorker' in navigator) {
   }, 5000);
 }
 
-// ===== 임시 내장 키 (v5.4) =====
-// ⚠️ 임시: Cloudflare Worker 설정 완료 후 제거 예정
-// 사용자 입력 키가 있으면 그것 우선, 없으면 임베드 키 사용
-const EMBEDDED_GEMINI_KEY = 'AIzaSyB6sgbPoqy7bCDPoOn9YUsf_2v6xxZh6nQ';
+// ===== 내장 키 (v5.5) =====
+// ✅ HTTP 리퍼러 제한 적용됨 (ilsanintel0602-collab.github.io만 허용)
+// 외부 도메인에서 사용 시 403 거부 — GitHub 공개돼도 안전
+// 사용자 입력 키가 있으면 그것 우선, 없으면 내장 키 사용
+const EMBEDDED_GEMINI_KEY = 'AIzaSyBy_jn2lOD2AlRs5HyqwePMo7EICopj2VU';
 
 // ===== 초기화 =====
 async function init() {
