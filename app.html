@@ -758,7 +758,7 @@ async function analyzeWithLLM(imageDataUrl) {
   const base64 = imageDataUrl.replace(/^data:image\/\w+;base64,/, '');
   if (state.provider === 'google') {
     // v5: Gemini 1.5 Flash → 2.0 Flash (더 빠르고 정확)
-    const modelName = 'gemini-2.0-flash';
+    const modelName = 'gemini-2.5-flash';
     const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${state.apiKey}`, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -888,16 +888,23 @@ async function analyzeGeminiPrimary(imageDataUrl) {
 // ===== v4 하이브리드 분석: 브랜드 DB + OCR + YOLO (+ LLM 폴백) =====
 // v5 변경: API 키 있으면 Gemini 메인, 없으면 기존 하이브리드
 async function analyzeHybrid(imageDataUrl, onOcrProgress) {
+  // v5.5d: 진단 toast — 어디서 실패하는지 보여줌
+  const keyTail = state.apiKey ? '...' + state.apiKey.slice(-6) : '없음';
+  toast(`🔍 분석 시작 (키: ${keyTail}, ${state.provider})`, false);
   // v5: API 키 있으면 Gemini 우선 (0.01초 캐시 + 1~2초 신규)
   if (state.apiKey && state.provider === 'google') {
     try {
       const r = await analyzeGeminiPrimary(imageDataUrl);
       console.log('[v5] Gemini 메인 성공:', r);
+      toast(`✨ Gemini 분석 성공: ${r.item_label_ko || r.item_id}`, false);
       return r;
     } catch (e) {
       console.warn('[v5] Gemini 실패, 폴백 사용:', e);
+      toast(`⚠️ Gemini 실패: ${e.message} → COCO-SSD 폴백`, true);
       // 폴백: 아래 기존 로직
     }
+  } else {
+    toast('⚠️ API 키 없음 → COCO-SSD만 사용', true);
   }
   // YOLO + OCR 병렬 실행 (시간 절약)
   const yoloPromise = detectWithYolo(imageDataUrl).catch(err => {
@@ -1930,14 +1937,15 @@ if ('serviceWorker' in navigator) {
   }, 5000);
 }
 
-// ===== 내장 키 (v5.5) =====
+// ===== 내장 키 (v5.5.1 — 결제 등록 후 작동 키) =====
 // ✅ HTTP 리퍼러 제한 적용됨 (ilsanintel0602-collab.github.io만 허용)
 // 외부 도메인에서 사용 시 403 거부 — GitHub 공개돼도 안전
-const EMBEDDED_GEMINI_KEY = 'AIzaSyBy_jn2lOD2AlRs5HyqwePMo7EICopj2VU';
+const EMBEDDED_GEMINI_KEY = 'AQ.Ab8RN6ImzSMsKoZCMlrnB3fHuagHV_GlrGOzXnBs0T84ItI8rQ';
 
 // v5.5: 옛 (이제 작동 안 하는) 키 목록 — localStorage에서 자동 폐기
 const DEPRECATED_KEYS = [
-  'AIzaSyB6sgbPoqy7bCDPoOn9YUsf_2v6xxZh6nQ',  // v5.4 노출된 키 (삭제 예정)
+  'AIzaSyB6sgbPoqy7bCDPoOn9YUsf_2v6xxZh6nQ',  // v5.4 노출된 키 (만료됨)
+  'AIzaSyBy_jn2lOD2AlRs5HyqwePMo7EICopj2VU',  // v5.5 here 프로젝트 키 (quota 0)
 ];
 
 // ===== 초기화 =====
