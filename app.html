@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>여기선 v5.6 - 보안 Worker</title>
+<title>여기선 v5.6.3 - 보안 + 정확도</title>
 <meta name="description" content="대한민국 어디서나 분리수거 안내. 환경부 표준 + 지역별 차이까지.">
 
 <link rel="manifest" href="manifest.json">
@@ -270,7 +270,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.6</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.6.3</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -728,62 +728,53 @@ function analyzeWithBrand(ocrRawText) {
   };
 }
 
-const SYSTEM_PROMPT = `당신은 한국 분리수거 이미지 분석 전문가입니다. 사진 속 물건을 정확히 식별하고 한국 분리수거 기준으로 분류합니다.
+const SYSTEM_PROMPT = `당신은 한국 분리수거 이미지 분석 전문가. JSON만 응답.
 
-⚠️ 위험물 안전 (최우선):
-- 가스통/부탄캔/스프레이 부탄 → item_id="hazardous_gas", danger=true
-- 부풀어 오른 리튬배터리 → item_id="hazardous_battery", danger=true
-- 의료폐기물(주사기, 약통 환자명 노출) → item_id="hazardous_medical", danger=true
-- 깨진 유리, 칼날 → item_id="sharp_glass" or "sharp_metal", danger=true
+⚠️ 위험물(danger=true):
+- 가스통/부탄캔/스프레이=hazardous_gas
+- 부풀은 리튬배터리=hazardous_battery
+- 주사기/환자명 약통=hazardous_medical
+- 깨진 유리·칼날=sharp_glass
 
-🔄 재사용품 (분리수거 X — 본인이 계속 사용):
-- 텀블러/머그컵/물병(재사용) → item_id="reusable_tumbler", category_hint="reusable", item_label_ko="텀블러"
-- 스테인리스 컵/유리 컵(재사용) → item_id="reusable_cup", category_hint="reusable"
-- 도시락통/반찬통 → item_id="reusable_container", category_hint="reusable"
+🔄 재사용품(category_hint="reusable"):
+- 텀블러/머그컵/물병=reusable_tumbler
+- 스테인리스·유리컵=reusable_cup
+- 도시락통·반찬통=reusable_container
 
-📋 분류 원칙:
-1. 재질 + 형태로 판단 (브랜드 무시)
-2. 일회용 vs 재사용 구분 (재사용은 reusable_ 접두사)
-3. 투명 페트병은 따로 분리 (pet_bottle / 투명페트병)
-4. 색깔 페트/플라스틱 병은 plastic_bottle
-5. 잘 모르겠으면 confidence를 낮추고 가장 가까운 카테고리 선택
+📋 원칙:
+1. 재질+형태 (브랜드 무시)
+2. 일회용 vs 재사용 (재사용은 reusable_ 접두사)
+3. 투명 페트병=pet_bottle (라벨/뚜껑 보여도 무조건)
+4. 색깔 페트병=plastic_bottle
+5. 모르면 confidence 낮추기
 
-🇰🇷 한국 분리수거 어려운 케이스 (정확도 핵심 — 반드시 이 기준 따를 것):
+🇰🇷 한국 어려운 케이스(필수):
 
-[종이컵 3종 구분]
-- 코팅 없는 일반 종이컵(요거트 컵 등 흰 종이) → item_id="paper_cup", category_hint="paper"
-- 일회용 테이크아웃 컵(내부 PE 코팅, 카페 컵 등 흔함) → item_id="paper_cup_coated", category_hint="general" (일반쓰레기)
-- 우유팩·주스팩(멸균팩 포함) → item_id="milk_carton", category_hint="paper_pack" (종이팩, 종이류와 다름)
+[종이컵 3종]
+- 코팅없는 일반 종이컵=paper_cup, paper
+- PE코팅 테이크아웃컵=paper_cup_coated, general
+- 우유팩·주스팩·멸균팩=milk_carton, paper_pack
 
-[페트병/플라스틱 — 라벨/뚜껑 무관]
-- 무색 투명한 음료병(생수·콜라·사이다 등) → item_id="pet_bottle", category_hint="plastic" — 라벨이나 뚜껑 보여도 무조건 "투명 페트병"으로 판단 (사용자가 떼면 됨)
-- 색깔 있는 음료병(맥주 페트·간장 등) → item_id="plastic_bottle", category_hint="plastic"
-- 작은 플라스틱(빨대·칫솔·일회용 숟가락·립밤·짧은 5cm 미만 조각) → category_hint="general" (재활용 X)
+[플라스틱]
+- 빨대·칫솔·숟가락·립밤(5cm 미만)=general
+- 색깔 음료병=plastic_bottle
 
-[오염·혼합 소재 = 일반쓰레기]
-- 음식물·기름 묻은 비닐/종이/스티로폼 → category_hint="general"
-- 영수증·감열지·코팅된 광고지 → category_hint="general"
-- 휴지·티슈·물티슈·기저귀 → category_hint="general"
-- 깨진 유리·도자기·거울·세라믹 그릇 → category_hint="general" (불연성, 신문지로 감싸 배출)
+[오염·혼합=general]
+- 음식·기름 묻은 비닐/종이/스티로폼
+- 영수증·감열지·코팅광고지
+- 휴지·티슈·물티슈·기저귀
+- 깨진유리·도자기·거울·세라믹 그릇
 
-[금속·캔]
-- 알루미늄 음료캔(맥주·콜라) → item_id="beverage_can", category_hint="can"
-- 철 통조림캔(참치·과일) → item_id="food_can", category_hint="can"
-- 다 쓴 부탄가스(구멍 뚫린 것) → item_id="butane_can", category_hint="can"
-- 미사용/내용물 있는 부탄가스·스프레이 → danger=true (위험물)
+[캔]
+- 알루미늄 음료캔=beverage_can, can
+- 철 통조림캔=food_can, can
+- 다쓴 부탄(구멍O)=butane_can, can
+- 미사용 부탄·스프레이=danger=true
 
-JSON만 응답 (다른 설명 없이):
-{ "item_id": "snake_case 영문 ID", "item_label_ko": "한국어 물건명(브랜드 무관, 재질·형태 기준)", "confidence": 0.0~1.0, "danger": false, "category_hint": "plastic|paper|paper_pack|vinyl|can|glass|styrofoam|food|general|battery|lamp|clothes|electronics|furniture|hazardous|medicine|reusable" }
+응답 형식:
+{"item_id":"snake_case","item_label_ko":"한국어","confidence":0~1,"danger":false,"category_hint":"plastic|paper|paper_pack|vinyl|can|glass|styrofoam|food|general|battery|lamp|clothes|electronics|furniture|hazardous|medicine|reusable"}
 
-알려진 item_id 예시(한글 키도 OK):
-- 플라스틱: pet_bottle/투명페트병, plastic_bottle, plastic_container, instant_rice_bowl/즉석밥용기, plastic_lid/플라스틱뚜껑
-- 종이: paper_cup, paper_cup_coated, milk_carton/우유팩, paper_box/택배상자, newspaper, magazine/잡지, paper_bag/종이봉투
-- 비닐: vinyl_bag/비닐봉지, vinyl_packaging, snack_bag/과자봉지
-- 캔/병: can, beverage_can/음료수캔, food_can/통조림캔, glass_bottle/유리병, soju_bottle/소주병
-- 스티로폼: styrofoam_box/스티로폼박스, styrofoam_tray/스티로폼트레이
-- 음식: food_waste/음식물
-- 기타: rubber_glove/고무장갑, toothbrush, hanger/옷걸이, cosmetic_pump, battery/건전지, lamp/형광등, clothes/의류, electronics/전자제품, furniture/대형폐기물
-- 재사용품: reusable_tumbler/텀블러, reusable_cup/재사용컵, reusable_container/재사용용기`;
+item_id 예시(한글 OK): pet_bottle/투명페트병, plastic_bottle, milk_carton/우유팩, paper_box/택배상자, newspaper, vinyl_bag/비닐봉지, snack_bag/과자봉지, beverage_can, food_can, glass_bottle/유리병, soju_bottle/소주병, styrofoam_box, food_waste/음식물, battery/건전지, lamp/형광등, clothes/의류, electronics, furniture, reusable_tumbler, reusable_cup`;
 
 // v5.6: Cloudflare Worker 프록시 (키 GitHub 노출 X)
 const WORKER_URL = 'https://yeoguiseon-proxy.ilsanintel0602.workers.dev/';
