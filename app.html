@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>여기선 v5.5 - 한국 분리수거 AI</title>
+<title>여기선 v5.6 - 보안 Worker</title>
 <meta name="description" content="대한민국 어디서나 분리수거 안내. 환경부 표준 + 지역별 차이까지.">
 
 <link rel="manifest" href="manifest.json">
@@ -270,7 +270,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.5</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.6</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -754,10 +754,35 @@ JSON만 응답 (다른 설명 없이):
 - 기타: rubber_glove/고무장갑, toothbrush, hanger/옷걸이, cosmetic_pump, battery/건전지, lamp/형광등, clothes/의류, electronics/전자제품, furniture/대형폐기물
 - 재사용품: reusable_tumbler/텀블러, reusable_cup/재사용컵, reusable_container/재사용용기`;
 
+// v5.6: Cloudflare Worker 프록시 (키 GitHub 노출 X)
+const WORKER_URL = 'https://yeoguiseon-proxy.ilsanintel0602.workers.dev/';
+const USE_WORKER = true;  // false 시 직접 Gemini 호출 (디버그용)
+
 async function analyzeWithLLM(imageDataUrl) {
   const base64 = imageDataUrl.replace(/^data:image\/\w+;base64,/, '');
   if (state.provider === 'google') {
-    // v5: Gemini 1.5 Flash → 2.0 Flash (더 빠르고 정확)
+    // v5.6: Worker 프록시 호출 — 키는 Cloudflare 서버에만 존재
+    if (USE_WORKER) {
+      const res = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          imageBase64: base64,
+          prompt: SYSTEM_PROMPT,
+          mimeType: 'image/jpeg'
+        })
+      });
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.error || `Worker 오류 (${res.status})`);
+      }
+      const data = await res.json();
+      if (data.ok && data.result) {
+        return typeof data.result === 'string' ? JSON.parse(data.result) : data.result;
+      }
+      throw new Error(data.error || 'Worker 응답 형식 오류');
+    }
+    // 폴백: 직접 Gemini 호출 (USE_WORKER false 시, 디버그용)
     const modelName = 'gemini-2.5-flash';
     const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${state.apiKey}`, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -888,9 +913,9 @@ async function analyzeGeminiPrimary(imageDataUrl) {
 // ===== v4 하이브리드 분석: 브랜드 DB + OCR + YOLO (+ LLM 폴백) =====
 // v5 변경: API 키 있으면 Gemini 메인, 없으면 기존 하이브리드
 async function analyzeHybrid(imageDataUrl, onOcrProgress) {
-  // v5.5d: 진단 toast — 어디서 실패하는지 보여줌
-  const keyTail = state.apiKey ? '...' + state.apiKey.slice(-6) : '없음';
-  toast(`🔍 분석 시작 (키: ${keyTail}, ${state.provider})`, false);
+  // v5.6: 진단 toast — Worker 사용 표시
+  const keyDisplay = state.apiKey === 'WORKER' ? 'Worker(보안)' : (state.apiKey ? '...' + state.apiKey.slice(-6) : '없음');
+  toast(`🔍 분석 시작 (${keyDisplay}, ${state.provider})`, false);
   // v5: API 키 있으면 Gemini 우선 (0.01초 캐시 + 1~2초 신규)
   if (state.apiKey && state.provider === 'google') {
     try {
@@ -1937,15 +1962,17 @@ if ('serviceWorker' in navigator) {
   }, 5000);
 }
 
-// ===== 내장 키 (v5.5.1 — 결제 등록 후 작동 키) =====
-// ✅ HTTP 리퍼러 제한 적용됨 (ilsanintel0602-collab.github.io만 허용)
-// 외부 도메인에서 사용 시 403 거부 — GitHub 공개돼도 안전
-const EMBEDDED_GEMINI_KEY = 'AQ.Ab8RN6ImzSMsKoZCMlrnB3fHuagHV_GlrGOzXnBs0T84ItI8rQ';
+// ===== Cloudflare Worker 프록시 (v5.6 — 키 GitHub 노출 X) =====
+// ✅ 키는 Cloudflare 서버 환경변수에만 존재
+// ✅ Worker가 Origin 검증 (github.io만 허용)
+// ✅ Worker가 Rate limiting (분당 10회/IP)
+const EMBEDDED_GEMINI_KEY = '';  // v5.6: Worker가 키 보관 — 코드에 키 X
 
-// v5.5: 옛 (이제 작동 안 하는) 키 목록 — localStorage에서 자동 폐기
+// v5.6: 옛 (이제 작동 안 하는) 키 목록 — localStorage에서 자동 폐기
 const DEPRECATED_KEYS = [
   'AIzaSyB6sgbPoqy7bCDPoOn9YUsf_2v6xxZh6nQ',  // v5.4 노출된 키 (만료됨)
   'AIzaSyBy_jn2lOD2AlRs5HyqwePMo7EICopj2VU',  // v5.5 here 프로젝트 키 (quota 0)
+  'AQ.Ab8RN6ImzSMsKoZCMlrnB3fHuagHV_GlrGOzXnBs0T84ItI8rQ',  // v5.5.1 — Worker로 이전됨
 ];
 
 // ===== 초기화 =====
@@ -1956,9 +1983,9 @@ async function init() {
     console.log('[v5.5] 옛 API 키 폐기:', storedKey.slice(-6));
     LS.remove('apiKey');
   }
-  // 내장 키 우선 — 사용자가 별도로 다른 키를 저장한 경우만 그것 사용
+  // v5.6: Worker 사용 — 키 없어도 호출 가능 ('WORKER' 플래그)
   const userKey = LS.get('apiKey');
-  state.apiKey = (userKey && userKey !== EMBEDDED_GEMINI_KEY) ? userKey : EMBEDDED_GEMINI_KEY;
+  state.apiKey = userKey || 'WORKER';  // 'WORKER' = Worker 프록시 사용
   state.provider = LS.get('provider') || 'google';
   state.regionLevel1 = LS.get('regionLevel1');
   state.regionLevel2 = LS.get('regionLevel2');
