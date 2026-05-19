@@ -337,15 +337,21 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
       </div>
     </div>
     <div class="settings-section">
-      <h3>🔑 정확도 향상 <span class="optional">(선택)</span></h3>
-      <p class="field-hint" style="margin-bottom:12px;">✨ API 키 <b>없이도 사용 가능</b>합니다.<br>더 정확한 분석을 원하시면 입력해주세요.</p>
-      <div class="radio-row">
-        <label><input type="radio" name="provider" value="google" checked><span>Google Gemini</span></label>
-        <label><input type="radio" name="provider" value="anthropic"><span>Claude</span></label>
-      </div>
-      <label>API 키</label>
-      <input type="password" class="form-input" id="apiKeyInput" placeholder="키를 붙여넣으세요 (선택)">
-      <p class="field-hint">Gemini: <a href="https://aistudio.google.com" target="_blank" style="color:var(--primary)">aistudio.google.com</a></p>
+      <h3>✨ AI 분석 상태</h3>
+      <p class="field-hint" style="margin-bottom:12px;">🟢 <b>Gemini AI 자동 분석 작동 중</b><br>API 키 입력 필요 없어요. 우리 시스템이 자동으로 분석합니다.</p>
+      <details style="margin-top:8px;">
+        <summary style="cursor:pointer;color:var(--text-secondary);font-size:13px;padding:6px 0;">⚙️ 고급 설정 (본인 API 키 사용)</summary>
+        <div style="padding:8px 0 0;border-top:1px solid var(--border);margin-top:8px;">
+          <p class="field-hint" style="margin-bottom:12px;font-size:12px;">본인 API 키를 직접 입력하면 그것을 우선 사용합니다. 비워두면 자동 모드.</p>
+          <div class="radio-row">
+            <label><input type="radio" name="provider" value="google" checked><span>Google Gemini</span></label>
+            <label><input type="radio" name="provider" value="anthropic"><span>Claude</span></label>
+          </div>
+          <label>API 키 (선택)</label>
+          <input type="password" class="form-input" id="apiKeyInput" placeholder="비워두면 내장 키 사용">
+          <p class="field-hint">Gemini 키 발급: <a href="https://aistudio.google.com" target="_blank" style="color:var(--primary)">aistudio.google.com</a></p>
+        </div>
+      </details>
     </div>
     <button class="btn btn-primary" id="saveSettingsBtn">저장</button>
     <button class="btn btn-secondary" id="clearDataBtn" style="margin-top:12px">모든 데이터 삭제</button>
@@ -1801,28 +1807,39 @@ function clearAllData() {
 // ===== GPS 전국 매핑 =====
 function findRegionByCoords(lat, lng) {
   if (!REGIONS) return { level1: null, level2: null };
-  // 1. 광역 박스 매칭
-  let foundL1 = null;
-  for (const [code, r] of Object.entries(REGIONS.level1)) {
-    const b = r.boundingBox;
-    if (b && lat >= b.minLat && lat <= b.maxLat && lng >= b.minLng && lng <= b.maxLng) {
-      foundL1 = code; break;
-    }
-  }
-  if (!foundL1) return { level1: null, level2: null };
-  // 2. 해당 광역의 시군구 중 가장 가까운 곳 (또는 매칭)
-  let foundL2 = null;
-  let bestArea = Infinity;
+  // v5.5: 시군구(level2) 우선 매칭 — 광역 박스 오버랩 해결
+  // (예: 일산동구 GPS가 인천광역시 박스에도 걸리는 문제)
+  const candidates = [];
   for (const [code, r] of Object.entries(REGIONS.level2)) {
-    if (r.parent !== foundL1) continue;
     const b = r.boundingBox;
     if (!b) continue;
     if (lat >= b.minLat && lat <= b.maxLat && lng >= b.minLng && lng <= b.maxLng) {
       const area = (b.maxLat - b.minLat) * (b.maxLng - b.minLng);
-      if (area < bestArea) { foundL2 = code; bestArea = area; }
+      // 중심점까지의 거리 (작을수록 정확)
+      const cLat = (b.minLat + b.maxLat) / 2;
+      const cLng = (b.minLng + b.maxLng) / 2;
+      const dist = Math.hypot(lat - cLat, lng - cLng);
+      candidates.push({ code, level1: r.parent, area, dist });
     }
   }
-  return { level1: foundL1, level2: foundL2 };
+  if (candidates.length > 0) {
+    // 가장 작은 박스 우선, 동률이면 중심점 가까운 것
+    candidates.sort((a, b) => a.area - b.area || a.dist - b.dist);
+    const win = candidates[0];
+    console.log('[GPS v5.5] level2 매칭:', win.code, '후보 수:', candidates.length);
+    return { level1: win.level1, level2: win.code };
+  }
+  // 시군구 매칭 실패 → 광역만이라도 (큰 박스는 마지막 폴백)
+  let foundL1 = null;
+  let smallestL1Area = Infinity;
+  for (const [code, r] of Object.entries(REGIONS.level1)) {
+    const b = r.boundingBox;
+    if (b && lat >= b.minLat && lat <= b.maxLat && lng >= b.minLng && lng <= b.maxLng) {
+      const a = (b.maxLat - b.minLat) * (b.maxLng - b.minLng);
+      if (a < smallestL1Area) { foundL1 = code; smallestL1Area = a; }
+    }
+  }
+  return { level1: foundL1, level2: null };
 }
 
 async function detectLocation() {
@@ -1916,12 +1933,24 @@ if ('serviceWorker' in navigator) {
 // ===== 내장 키 (v5.5) =====
 // ✅ HTTP 리퍼러 제한 적용됨 (ilsanintel0602-collab.github.io만 허용)
 // 외부 도메인에서 사용 시 403 거부 — GitHub 공개돼도 안전
-// 사용자 입력 키가 있으면 그것 우선, 없으면 내장 키 사용
 const EMBEDDED_GEMINI_KEY = 'AIzaSyBy_jn2lOD2AlRs5HyqwePMo7EICopj2VU';
+
+// v5.5: 옛 (이제 작동 안 하는) 키 목록 — localStorage에서 자동 폐기
+const DEPRECATED_KEYS = [
+  'AIzaSyB6sgbPoqy7bCDPoOn9YUsf_2v6xxZh6nQ',  // v5.4 노출된 키 (삭제 예정)
+];
 
 // ===== 초기화 =====
 async function init() {
-  state.apiKey = LS.get('apiKey') || EMBEDDED_GEMINI_KEY;
+  // v5.5 마이그레이션: localStorage에 옛 키 있으면 자동 폐기
+  const storedKey = LS.get('apiKey');
+  if (storedKey && DEPRECATED_KEYS.includes(storedKey)) {
+    console.log('[v5.5] 옛 API 키 폐기:', storedKey.slice(-6));
+    LS.remove('apiKey');
+  }
+  // 내장 키 우선 — 사용자가 별도로 다른 키를 저장한 경우만 그것 사용
+  const userKey = LS.get('apiKey');
+  state.apiKey = (userKey && userKey !== EMBEDDED_GEMINI_KEY) ? userKey : EMBEDDED_GEMINI_KEY;
   state.provider = LS.get('provider') || 'google';
   state.regionLevel1 = LS.get('regionLevel1');
   state.regionLevel2 = LS.get('regionLevel2');
