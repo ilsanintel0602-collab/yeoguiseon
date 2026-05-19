@@ -1968,19 +1968,24 @@ if ('serviceWorker' in navigator) {
 // ✅ Worker가 Rate limiting (분당 10회/IP)
 const EMBEDDED_GEMINI_KEY = '';  // v5.6: Worker가 키 보관 — 코드에 키 X
 
-// v5.6: 옛 (이제 작동 안 하는) 키 목록 — localStorage에서 자동 폐기
-const DEPRECATED_KEYS = [
-  'AIzaSyB6sgbPoqy7bCDPoOn9YUsf_2v6xxZh6nQ',  // v5.4 노출된 키 (만료됨)
-  'AIzaSyBy_jn2lOD2AlRs5HyqwePMo7EICopj2VU',  // v5.5 here 프로젝트 키 (quota 0)
-  'AQ.Ab8RN6ImzSMsKoZCMlrnB3fHuagHV_GlrGOzXnBs0T84ItI8rQ',  // v5.5.1 — Worker로 이전됨
+// v5.6.1: 옛 키 목록 — 평문 대신 끝 8자 suffix로 식별 (GitHub secret scanning 회피, 동작 동일)
+//          마이그레이션 기능 유지: localStorage에 옛 키 저장돼 있으면 endsWith 매칭으로 자동 폐기
+const DEPRECATED_KEY_SUFFIXES = [
+  '6xxZh6nQ',   // v5.4 (만료됨)
+  'ICopj2VU',   // v5.5 here 프로젝트 키 (quota 0)
+  '84ItI8rQ',   // v5.5.1 (Worker로 이전됨)
 ];
+function isDeprecatedKey(k) {
+  if (!k || typeof k !== 'string' || k.length < 8) return false;
+  return DEPRECATED_KEY_SUFFIXES.some(suffix => k.endsWith(suffix));
+}
 
 // ===== 초기화 =====
 async function init() {
   // v5.5 마이그레이션: localStorage에 옛 키 있으면 자동 폐기
   const storedKey = LS.get('apiKey');
-  if (storedKey && DEPRECATED_KEYS.includes(storedKey)) {
-    console.log('[v5.5] 옛 API 키 폐기:', storedKey.slice(-6));
+  if (storedKey && isDeprecatedKey(storedKey)) {
+    console.log('[v5.6.1] 옛 API 키 폐기:', storedKey.slice(-6));
     LS.remove('apiKey');
   }
   // v5.6: Worker 사용 — 키 없어도 호출 가능 ('WORKER' 플래그)
