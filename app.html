@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>여기선 v5.6.7 - 가구 매핑(의자/소파/식탁/침대) + 책·노트북 OCR 차단</title>
+<title>여기선 v5.6.8 - general 카테고리 보강(영수증/찢어진종이/잡쓰레기 명시)</title>
 <meta name="description" content="대한민국 어디서나 분리수거 안내. 환경부 표준 + 지역별 차이까지.">
 
 <link rel="manifest" href="manifest.json">
@@ -270,7 +270,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.6.7</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.6.8</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -767,11 +767,16 @@ const SYSTEM_PROMPT = `당신은 한국 분리수거 이미지 분석 전문가.
 - 빨대·칫솔·숟가락·립밤(5cm 미만)=general
 - 색깔 음료병=plastic_bottle
 
-[오염·혼합=general]
+[오염·혼합=general, 일반쓰레기]
 - 음식·기름 묻은 비닐/종이/스티로폼
-- 영수증·감열지·코팅광고지
-- 휴지·티슈·물티슈·기저귀
+- 영수증·감열지·코팅광고지·라벨스티커
+- 휴지·티슈·물티슈·기저귀·생리대
 - 깨진유리·도자기·거울·세라믹 그릇
+- 찢어진/구겨진/오염된 종이쪼가리
+- 작은 잡쓰레기·먼지·머리카락·담배꽁초
+- 코팅된 우편물·박스조각·끈류·고무줄
+- 분류 모호한 혼합소재·복합재질
+→ **종이 카테고리(paper)는 깨끗한 신문/책/잡지/택배상자만**. 찢어지거나 오염되면 general.
 
 [캔]
 - 알루미늄 음료캔=beverage_can, can
