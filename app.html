@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>여기선 v5.6.3 - 보안 + 정확도</title>
+<title>여기선 v5.6.4 - Gemini safety + cup 매핑</title>
 <meta name="description" content="대한민국 어디서나 분리수거 안내. 환경부 표준 + 지역별 차이까지.">
 
 <link rel="manifest" href="manifest.json">
@@ -270,7 +270,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.6.3</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.6.4</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -517,7 +517,8 @@ async function loadYoloModel(onProgress) {
 
 // COCO → 분리수거 매핑 (최소)
 const COCO_TO_ITEM = {
-  'bottle': 'pet_bottle', 'wine glass': 'glass_bottle', 'cup': 'paper_cup',
+  // v5.6.4: cup → 통계상 유리/머그가 다수 + Gemini 살아나면 자동 보정. paper_cup 강제 매핑은 종이컵 위험 분류.
+  'bottle': 'pet_bottle', 'wine glass': 'glass_bottle', 'cup': 'reusable_cup',
   'fork': null, 'knife': null, 'spoon': null, 'bowl': null,
   'banana': 'food_waste', 'apple': 'food_waste', 'orange': 'food_waste',
   'sandwich': 'food_waste', 'broccoli': 'food_waste', 'carrot': 'food_waste',
@@ -527,7 +528,7 @@ const COCO_TO_ITEM = {
   'vase': 'glass_bottle', 'clock': null
 };
 const COCO_KO = {
-  'bottle': '병', 'cup': '컵', 'bowl': '그릇', 'wine glass': '와인잔',
+  'bottle': '병', 'cup': '컵 (재사용 가정, 정확 분류는 박스 탭)', 'bowl': '그릇', 'wine glass': '와인잔',
   'banana': '바나나', 'apple': '사과', 'orange': '오렌지', 'broccoli': '브로콜리',
   'carrot': '당근', 'pizza': '피자', 'sandwich': '샌드위치', 'donut': '도넛', 'cake': '케이크',
   'book': '책', 'toothbrush': '칫솔', 'cell phone': '휴대폰', 'laptop': '노트북',
@@ -799,10 +800,21 @@ async function analyzeWithLLM(imageDataUrl) {
         throw new Error(errData.error || `Worker 오류 (${res.status})`);
       }
       const data = await res.json();
+      // v5.6.4: finishReason/blockReason 노출 → safety filter·MAX_TOKENS 차단 식별
+      const reasonInfo = data.blockReason
+        ? ` (blockReason=${data.blockReason})`
+        : (data.finishReason && data.finishReason !== 'STOP' && data.finishReason !== 'unknown')
+          ? ` (finishReason=${data.finishReason})`
+          : '';
       if (data.ok && data.result) {
-        return typeof data.result === 'string' ? JSON.parse(data.result) : data.result;
+        const parsed = typeof data.result === 'string' ? JSON.parse(data.result) : data.result;
+        // 빈 객체 / item_id 누락 시 reason 정보를 동봉해 throw
+        if (!parsed || (typeof parsed === 'object' && !parsed.item_id && Object.keys(parsed).length === 0)) {
+          throw new Error(`Gemini 빈 응답${reasonInfo}`);
+        }
+        return parsed;
       }
-      throw new Error(data.error || 'Worker 응답 형식 오류');
+      throw new Error((data.error || 'Worker 응답 형식 오류') + reasonInfo);
     }
     // 폴백: 직접 Gemini 호출 (USE_WORKER false 시, 디버그용)
     const modelName = 'gemini-2.5-flash';
