@@ -156,7 +156,14 @@
       "aliases": [
         "무색페트병(물병)",
         "생수",
-        "무색페트병"
+        "무색페트병",
+        "페트병",
+        "투명페트병",
+        "콜라병",
+        "사이다병",
+        "물병(플라스틱)",
+        "플라스틱병(투명)",
+        "PET병"
       ],
       "_bunribaechulSeq": 123,
       "lastVerified": "2026-05-18",
@@ -174,7 +181,17 @@
         "플라스틱류로 배출"
       ],
       "regionVariation": false,
-      "confidence": "high"
+      "confidence": "high",
+      "aliases": [
+        "플라스틱병",
+        "유색페트병",
+        "샴푸통",
+        "세제통",
+        "린스통",
+        "비누통",
+        "선크림통(큰)",
+        "음료수병(색)"
+      ]
     },
     "plastic_container": {
       "name": "플라스틱 용기",
@@ -226,7 +243,12 @@
       "regionVariation": false,
       "confidence": "high",
       "aliases": [
-        "검정 비닐봉지"
+        "검정 비닐봉지",
+        "비닐봉지",
+        "비닐",
+        "검정봉지",
+        "마트봉지",
+        "비닐백"
       ],
       "_bunribaechulSeq": 101,
       "lastVerified": "2026-05-18",
@@ -254,7 +276,14 @@
         "비닐류로 배출"
       ],
       "regionVariation": false,
-      "confidence": "high"
+      "confidence": "high",
+      "aliases": [
+        "과자봉지",
+        "라면봉지",
+        "스낵봉지",
+        "스낵포장",
+        "초콜릿포장"
+      ]
     },
     "food_contaminated_vinyl": {
       "name": "음식물 묻은 비닐",
@@ -276,7 +305,14 @@
         "종이류로 배출"
       ],
       "regionVariation": false,
-      "confidence": "high"
+      "confidence": "high",
+      "aliases": [
+        "신문",
+        "신문지",
+        "잡지",
+        "전단지",
+        "광고지"
+      ]
     },
     "magazine": {
       "name": "잡지/책자",
@@ -305,7 +341,14 @@
       ],
       "regionVariation": false,
       "confidence": "high",
-      "aliases": [],
+      "aliases": [
+        "종이박스",
+        "택배상자",
+        "박스",
+        "상자",
+        "골판지",
+        "박스종이"
+      ],
       "_bunribaechulSeq": 19,
       "lastVerified": "2026-05-18",
       "caution": "· 택배상자에 부착된 송장은 제거한 후 배출 · 상자에 부착된 테이프는 제거한 후 배출",
@@ -323,7 +366,14 @@
       ],
       "regionVariation": true,
       "knownVariations": "종이팩 전용 수거함이 없는 지역은 일반 종이와 함께 배출",
-      "confidence": "high"
+      "confidence": "high",
+      "aliases": [
+        "우유팩",
+        "주스팩",
+        "두유팩",
+        "멸균팩",
+        "종이팩"
+      ]
     },
     "juice_carton": {
       "name": "주스팩 (멸균팩)",
@@ -402,7 +452,18 @@
       "regionVariation": false,
       "confidence": "high",
       "aliases": [
-        "책상책꽂이"
+        "책상책꽂이",
+        "책",
+        "공책",
+        "잡지책",
+        "동화책",
+        "교과서",
+        "백과사전",
+        "메모노트",
+        "수첩",
+        "달력",
+        "잡지",
+        "전단지"
       ],
       "_bunribaechulSeq": 756,
       "lastVerified": "2026-05-18",
@@ -453,7 +514,15 @@
         "캔/금속류로 배출"
       ],
       "regionVariation": false,
-      "confidence": "high"
+      "confidence": "high",
+      "aliases": [
+        "음료캔",
+        "맥주캔",
+        "콜라캔",
+        "사이다캔",
+        "에너지드링크캔",
+        "캔(음료)"
+      ]
     },
     "food_can": {
       "name": "통조림 캔",
@@ -466,7 +535,15 @@
         "캔류로 배출"
       ],
       "regionVariation": false,
-      "confidence": "high"
+      "confidence": "high",
+      "aliases": [
+        "통조림",
+        "참치캔",
+        "햄캔",
+        "꽁치캔",
+        "콩캔",
+        "캔(식품)"
+      ]
     },
     "tin_can": {
       "name": "양철캔",
@@ -505,7 +582,12 @@
       "regionVariation": false,
       "confidence": "high",
       "aliases": [
-        "깨끗한 유리병"
+        "깨끗한 유리병",
+        "유리병",
+        "와인병",
+        "잼병",
+        "꿀병",
+        "올리브유병"
       ],
       "_bunribaechulSeq": 534,
       "lastVerified": "2026-05-18",
@@ -560,7 +642,13 @@
         "깨끗한 흰색만 분리배출"
       ],
       "regionVariation": false,
-      "confidence": "high"
+      "confidence": "high",
+      "aliases": [
+        "스티로폼",
+        "스티로폼박스",
+        "발포플라스틱",
+        "포장스티로폼"
+      ]
     },
     "styrofoam_white": {
       "name": "흰색 스티로폼 (완충재)",
@@ -594,7 +682,15 @@
         "음식물 전용봉투/RFID 통"
       ],
       "regionVariation": false,
-      "confidence": "high"
+      "confidence": "high",
+      "aliases": [
+        "음식물",
+        "음식쓰레기",
+        "과일껍질",
+        "음식찌꺼기",
+        "남은음식",
+        "음식 쓰레기"
+      ]
     },
     "fruit_peel": {
       "name": "과일 껍질",
@@ -793,7 +889,13 @@
         "AA건전지",
         "AA 건전지",
         "전지",
-        "CR 건전지"
+        "CR 건전지",
+        "건전지",
+        "리튬배터리",
+        "충전지",
+        "보조배터리",
+        "체온계",
+        "수은 체온계"
       ],
       "_bunribaechulSeq": 635,
       "lastVerified": "2026-05-18",
@@ -825,7 +927,12 @@
       "aliases": [
         "LED조명(전구형, 직관형)은 형광등 수거함으로 배출합",
         "형광등 유리커버",
-        "형광등과 LED"
+        "형광등과 LED",
+        "형광등",
+        "LED등",
+        "백열전구",
+        "전구",
+        "조명"
       ],
       "_bunribaechulSeq": 538,
       "lastVerified": "2026-05-18",
@@ -849,7 +956,15 @@
         "셔츠",
         "스카프",
         "샌들",
-        "부츠"
+        "부츠",
+        "옷",
+        "헌옷",
+        "바지",
+        "양말",
+        "신발",
+        "모자",
+        "수건",
+        "이불"
       ],
       "_bunribaechulSeq": 536,
       "lastVerified": "2026-05-18",
@@ -866,7 +981,18 @@
       ],
       "regionVariation": true,
       "knownVariations": "아파트의 경우 별도 수거함 운영 지역 있음",
-      "confidence": "high"
+      "confidence": "high",
+      "aliases": [
+        "충전기",
+        "케이블",
+        "이어폰",
+        "USB",
+        "마우스",
+        "키보드",
+        "드라이어",
+        "청소기",
+        "리모컨"
+      ]
     },
     "furniture": {
       "name": "대형폐기물 (가구)",
@@ -879,7 +1005,15 @@
       ],
       "regionVariation": true,
       "knownVariations": "수수료/배출 방법 지자체별 상이",
-      "confidence": "high"
+      "confidence": "high",
+      "aliases": [
+        "침대",
+        "매트리스",
+        "책장",
+        "책상",
+        "장롱",
+        "쇼파"
+      ]
     },
     "medicine": {
       "name": "폐의약품",
@@ -890,7 +1024,16 @@
         "약국/보건소 수거함에 배출"
       ],
       "regionVariation": false,
-      "confidence": "high"
+      "confidence": "high",
+      "aliases": [
+        "약통",
+        "약",
+        "연고",
+        "물약",
+        "알약",
+        "캡슐약",
+        "의약품"
+      ]
     },
     "종이팩": {
       "name": "종이팩",
@@ -15763,7 +15906,9 @@
         "스테인리스 컵",
         "스테인리스컵",
         "재사용 컵",
-        "재사용컵"
+        "재사용컵",
+        "유리 컵",
+        "스테인리스 잔"
       ]
     },
     "reusable_tumbler": {
@@ -15781,7 +15926,8 @@
         "텀블러 컵",
         "스테인리스 텀블러",
         "보온병",
-        "물병"
+        "물병",
+        "물병(스테인리스)"
       ]
     },
     "침대": {
@@ -15798,6 +15944,215 @@
       "aliases": [
         "매트리스",
         "침대 프레임"
+      ]
+    },
+    "soju_bottle": {
+      "name": "소주병/맥주병",
+      "category": "glass",
+      "note": "공병 보증금 환불 가능 (소매점). 깨끗이 비워서 배출.",
+      "steps": [
+        "내용물 비우기",
+        "라벨 가능하면 제거",
+        "보증금 환불 또는 유리류 배출함"
+      ],
+      "regionVariation": false,
+      "confidence": "high",
+      "aliases": [
+        "소주병",
+        "맥주병",
+        "막걸리병",
+        "공병"
+      ]
+    },
+    "tissue_diaper": {
+      "name": "휴지/기저귀/생리대",
+      "category": "general",
+      "note": "위생용품은 모두 일반쓰레기. 분리수거 불가",
+      "steps": [
+        "일반쓰레기(종량제봉투)로 배출"
+      ],
+      "regionVariation": false,
+      "confidence": "high",
+      "aliases": [
+        "휴지",
+        "두루마리 휴지",
+        "물티슈",
+        "기저귀",
+        "생리대",
+        "위생용품",
+        "키친타올"
+      ]
+    },
+    "ceramic_broken_glass": {
+      "name": "도자기/깨진 유리/거울",
+      "category": "general",
+      "note": "불연성 폐기물. 깨진 유리는 신문지로 감싸 '위험' 표시",
+      "steps": [
+        "깨진 유리는 신문지로 안전하게 감싸기",
+        "'위험' 표시",
+        "불연성 종량제봉투 또는 일반쓰레기"
+      ],
+      "regionVariation": false,
+      "confidence": "high",
+      "aliases": [
+        "도자기",
+        "깨진 유리",
+        "깨진 그릇",
+        "거울",
+        "사기 그릇",
+        "토기"
+      ]
+    },
+    "mask_glove": {
+      "name": "마스크/일회용 장갑",
+      "category": "general",
+      "note": "위생상 일반쓰레기. 끈은 자르고 배출",
+      "steps": [
+        "마스크 끈 자르기",
+        "일반쓰레기(종량제봉투)로 배출"
+      ],
+      "regionVariation": false,
+      "confidence": "high",
+      "aliases": [
+        "마스크",
+        "KF94",
+        "보건용 마스크",
+        "비닐장갑",
+        "일회용 장갑",
+        "라텍스 장갑"
+      ]
+    },
+    "cigarette_butt": {
+      "name": "담배꽁초/담배갑",
+      "category": "general",
+      "note": "필터에 화학물질. 일반쓰레기",
+      "steps": [
+        "완전히 끄고 일반쓰레기(종량제봉투)"
+      ],
+      "regionVariation": false,
+      "confidence": "high",
+      "aliases": [
+        "담배꽁초",
+        "꽁초",
+        "담배갑",
+        "담배 케이스",
+        "라이터"
+      ]
+    },
+    "toy_general": {
+      "name": "장난감/인형/공",
+      "category": "general",
+      "note": "복합소재. 큰 것은 대형폐기물 신고",
+      "steps": [
+        "일반쓰레기 또는 대형폐기물 신고 (크기에 따라)"
+      ],
+      "regionVariation": true,
+      "confidence": "medium",
+      "aliases": [
+        "장난감",
+        "인형",
+        "테디베어",
+        "공",
+        "농구공",
+        "축구공",
+        "고무공"
+      ]
+    },
+    "cosmetic_container": {
+      "name": "화장품 용기",
+      "category": "plastic",
+      "note": "비우고 헹궈서 플라스틱류. 작은 것은 일반쓰레기 가능",
+      "steps": [
+        "내용물 비우기",
+        "헹구기",
+        "라벨 제거",
+        "플라스틱류 또는 일반쓰레기"
+      ],
+      "regionVariation": false,
+      "confidence": "high",
+      "aliases": [
+        "화장품",
+        "선크림",
+        "립밤",
+        "립스틱",
+        "마스카라",
+        "스킨",
+        "로션통",
+        "샴푸통(소형)"
+      ]
+    },
+    "small_metal_utensil": {
+      "name": "수저/젓가락/포크 (금속)",
+      "category": "can",
+      "note": "스테인리스/금속은 캔류와 함께. 작은 것은 일반쓰레기 가능",
+      "steps": [
+        "금속이면 캔류 배출함",
+        "플라스틱이면 일반쓰레기"
+      ],
+      "regionVariation": false,
+      "confidence": "medium",
+      "aliases": [
+        "수저",
+        "숟가락",
+        "젓가락(금속)",
+        "포크",
+        "스푼",
+        "스테인리스 수저"
+      ]
+    },
+    "plant_flower": {
+      "name": "꽃/화분/식물",
+      "category": "general",
+      "note": "흙은 별도 분리. 화분(플라스틱)은 플라스틱류",
+      "steps": [
+        "흙 털어내기",
+        "식물은 음식물 X 일반쓰레기",
+        "화분은 재질별 분리"
+      ],
+      "regionVariation": false,
+      "confidence": "medium",
+      "aliases": [
+        "꽃다발",
+        "꽃",
+        "시든 꽃",
+        "화분",
+        "분재",
+        "다육이"
+      ]
+    },
+    "glasses_lens": {
+      "name": "안경/콘택트렌즈",
+      "category": "general",
+      "note": "복합소재. 일반쓰레기 또는 안경점에 기부",
+      "steps": [
+        "일반쓰레기 또는 시각장애인 단체에 기부"
+      ],
+      "regionVariation": false,
+      "confidence": "high",
+      "aliases": [
+        "안경",
+        "선글라스",
+        "콘택트렌즈",
+        "렌즈",
+        "안경테"
+      ]
+    },
+    "lunchbox_container": {
+      "name": "도시락통/반찬통 (재사용)",
+      "category": "reusable",
+      "note": "깨끗이 세척 후 본인이 다시 사용",
+      "steps": [
+        "세척 후 재사용",
+        "버릴 때만 플라스틱류 또는 캔류"
+      ],
+      "regionVariation": false,
+      "confidence": "high",
+      "aliases": [
+        "도시락통",
+        "반찬통",
+        "보관 용기",
+        "타파웨어",
+        "락앤락"
       ]
     }
   },
