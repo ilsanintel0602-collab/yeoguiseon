@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>여기선 v5.8 - 데이터 99% + 노트북·종이컵 일관성 강화</title>
+<title>여기선 v5.9 - 데이터-앱 연동 정비 (환경부 출처·feature·caution·시군구 URL 노출)</title>
 <meta name="description" content="대한민국 어디서나 분리수거 안내. 환경부 표준 + 지역별 차이까지.">
 
 <link rel="manifest" href="manifest.json">
@@ -270,7 +270,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.8</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.9</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -373,11 +373,12 @@ let OCR_KEYWORDS = null; // v4: OCR 키워드 → 카테고리 매핑
 let BRAND_DB = null;     // v4 A2: 한국 제품 브랜드 DB
 let BAG_PRICES = null;   // v5: 행안부 시군구별 종량제봉투 가격
 let RECYCLE_CENTERS = null; // v5: 행안부 전국 재활용센터
+let REGION_URLS = null;  // v5.9: 시군구 공식 URL DB (250개 — 분리수거·대형폐기물)
 
 // 데이터 로드
 async function loadAllData() {
   try {
-    const [n, r, e, o, b, bp, rc] = await Promise.all([
+    const [n, r, e, o, b, bp, rc, ru] = await Promise.all([
       fetch('./data/national_rules.json').then(r => r.json()),
       fetch('./data/regions_meta.json').then(r => r.json()),
       fetch('./data/region_exceptions.json').then(r => r.json()),
@@ -396,6 +397,10 @@ async function loadAllData() {
       fetch('./data/recycle_centers.json').then(r => r.json()).catch(err => {
         console.warn('[여기선 v5] 재활용센터 데이터 로드 실패:', err);
         return null;
+      }),
+      fetch('./data/region_urls.json').then(r => r.json()).catch(err => {
+        console.warn('[여기선 v5.9] 시군구 URL DB 로드 실패:', err);
+        return null;
       })
     ]);
     NATIONAL = n;
@@ -405,6 +410,7 @@ async function loadAllData() {
     BRAND_DB = b;
     BAG_PRICES = bp;
     RECYCLE_CENTERS = rc;
+    REGION_URLS = ru;  // v5.9: 시군구 URL DB
     console.log('[여기선 v4] 데이터 로드:',
       Object.keys(NATIONAL.items).length, '물건,',
       Object.keys(REGIONS.level2).length, '시군구,',
@@ -790,7 +796,7 @@ item_id 예시(한글 OK): pet_bottle/투명페트병, plastic_bottle, milk_cart
 const WORKER_URL = 'https://yeoguiseon-proxy.ilsanintel0602.workers.dev/';
 const USE_WORKER = true;  // false 시 직접 Gemini 호출 (디버그용)
 
-async function analyzeWithLLM(imageDataUrl) {
+async function analyzeWithLLM(imageDataUrl, isRetry = false) {
   const base64 = imageDataUrl.replace(/^data:image\/\w+;base64,/, '');
   if (state.provider === 'google') {
     // v5.6: Worker 프록시 호출 — 키는 Cloudflare 서버에만 존재
@@ -817,11 +823,22 @@ async function analyzeWithLLM(imageDataUrl) {
           : '';
       if (data.ok && data.result) {
         const parsed = typeof data.result === 'string' ? JSON.parse(data.result) : data.result;
-        // 빈 객체 / item_id 누락 시 reason 정보를 동봉해 throw
-        if (!parsed || (typeof parsed === 'object' && !parsed.item_id && Object.keys(parsed).length === 0)) {
+        // v5.8.1: item_id 누락도 빈 응답으로 간주 (기존: 빈 객체만 검사 → item_id 누락 새는 케이스 잡음)
+        const isEmpty = !parsed || (typeof parsed === 'object' && !parsed.item_id);
+        if (isEmpty) {
+          // v5.8.1: 1회 자동 재시도 (Gemini 일시적 빈 응답 대응)
+          if (!isRetry) {
+            console.warn('[v5.8.1] Gemini 빈 응답 — 1회 재시도', reasonInfo);
+            return await analyzeWithLLM(imageDataUrl, true);
+          }
           throw new Error(`Gemini 빈 응답${reasonInfo}`);
         }
         return parsed;
+      }
+      // v5.8.1: 실패 응답도 재시도 1회
+      if (!isRetry) {
+        console.warn('[v5.8.1] Worker 응답 형식 오류 — 1회 재시도', reasonInfo);
+        return await analyzeWithLLM(imageDataUrl, true);
       }
       throw new Error((data.error || 'Worker 응답 형식 오류') + reasonInfo);
     }
@@ -1444,6 +1461,23 @@ function renderResult(aiData) {
 
   if (rule.note) html += `<div class="note-box">💡 ${rule.note}</div>`;
 
+  // v5.9: 환경부 feature (부가 정보) 노출
+  if (rule.feature && rule.feature.length > 10) {
+    const __feat = rule.feature.replace(/\s+/g, ' ').slice(0, 240);
+    const __more = rule.feature.length > 240 ? '...' : '';
+    html += `<details style="margin-top:8px;padding:8px 12px;background:#f3f4f6;border-radius:6px;font-size:13px;">`;
+    html += `<summary style="cursor:pointer;opacity:0.85;">📖 환경부 추가 안내</summary>`;
+    html += `<div style="margin-top:6px;line-height:1.5;">${__feat}${__more}</div>`;
+    html += `</details>`;
+  }
+  // v5.9: 환경부 caution (주의) 노출 — note에 이미 들어 있으면 스킵
+  if (rule.caution && rule.caution.length > 5 && !(rule.note || '').includes(rule.caution.slice(0, 30))) {
+    const __caut = rule.caution.replace(/\s+/g, ' ').slice(0, 150);
+    html += `<div style="margin-top:8px;padding:8px 12px;background:#fef3c7;border-left:3px solid #f59e0b;border-radius:6px;font-size:13px;">`;
+    html += `⚠️ <b>주의</b>: ${__caut}`;
+    html += `</div>`;
+  }
+
   // v5: 위험물 안전 안내 (Gemini가 danger=true 반환했을 때)
   if (aiData.danger) {
     html += `<div style="margin-top:16px;padding:16px;background:#fee;border-left:4px solid #d33;border-radius:8px;">`;
@@ -1478,6 +1512,22 @@ function renderResult(aiData) {
     html += `</div>`;
   }
 
+  // v5.9: 대형폐기물 카테고리 시 시군구별 신고 URL (REGION_URLS.json 활용)
+  const __isBulky = rule.category === 'furniture' || rule.category === 'electronics' || aiData.category_hint === 'furniture' || aiData.category_hint === 'electronics';
+  if (__isBulky && regionCode && typeof REGION_URLS !== 'undefined' && REGION_URLS?.regions) {
+    const __reg = REGION_URLS.regions[regionCode];
+    if (__reg && (__reg.bulkWasteUrl || __reg.cleanUrl || __reg.officialUrl)) {
+      const __url = __reg.bulkWasteUrl || __reg.cleanUrl || __reg.officialUrl;
+      const __urlLabel = __reg.bulkWasteUrl ? '대형폐기물 신고' : (__reg.cleanUrl ? '청소·환경 안내' : '시군구 공식');
+      html += `<div style="margin-top:16px;padding:12px 16px;background:#fff7e6;border-radius:8px;border-left:3px solid #f59e0b;">`;
+      html += `<h4 style="margin:0 0 8px;font-size:15px;">🏗️ ${__reg.shortName || __reg.name} 대형폐기물 신고</h4>`;
+      html += `<div style="font-size:13px;"><a href="${__url}" target="_blank" style="color:var(--primary);font-weight:600;">${__urlLabel} 페이지 →</a></div>`;
+      if (__reg.phone) html += `<div style="font-size:12px;opacity:0.75;margin-top:4px;">📞 ${__reg.phone}</div>`;
+      html += `<div style="font-size:12px;opacity:0.7;margin-top:4px;">신고 후 수수료 결제 → 필증 → 지정 장소 배출</div>`;
+      html += `</div>`;
+    }
+  }
+
   // v5: 근처 재활용센터 (대형폐기물·폐가전 시 강조)
   if (RECYCLE_CENTERS?.data && regionCode) {
     const nearby = RECYCLE_CENTERS.data.filter(c => c.sggCode === regionCode);
@@ -1508,9 +1558,11 @@ function renderResult(aiData) {
   if (regionMeta?.officialUrl) {
     html += `<br>📞 ${regionMeta.name}: <a href="${regionMeta.officialUrl}" target="_blank" style="color:var(--primary)">공식 안내</a>`;
   }
-  // v5: 출처 + 신뢰도 표시 (RecycleAI 차별점)
-  if (rule.source && rule.source.includes('http')) {
-    html += `<br>📚 데이터 출처: <a href="${rule.source}" target="_blank" style="color:var(--primary)">${rule.sourceName || '공식 출처'}</a>`;
+  // v5.9: 출처 + 신뢰도 표시 (RecycleAI 차별점) — source / sourceUrl 둘 다 폴백
+  const __srcLink = rule.source || rule.sourceUrl;
+  if (__srcLink && __srcLink.includes('http')) {
+    const __srcName = rule.sourceName || (__srcLink.includes('bunribaechul') || __srcLink.includes('xn--oy2b29bd3a601b') ? '분리배출.kr (환경부)' : '공식 출처');
+    html += `<br>📚 데이터 출처: <a href="${__srcLink}" target="_blank" style="color:var(--primary)">${__srcName}</a>`;
     if (rule.sourceGrade) html += ` <span style="background:#dcfce7;padding:2px 6px;border-radius:4px;font-size:11px;">${rule.sourceGrade}등급</span>`;
   }
   if (rule.lastVerified) html += `<br>📅 확인일: ${rule.lastVerified}`;
