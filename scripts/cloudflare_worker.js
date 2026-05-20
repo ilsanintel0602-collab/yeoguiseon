@@ -1,8 +1,17 @@
 /**
- * 여기선 PWA - Gemini API Proxy Worker (v1.1 — safetySettings + finishReason)
+ * 여기선 PWA - Gemini API Proxy Worker (v1.3 — maxOutputTokens 1024 조정)
  * ------------------------------------------------
  * 목적: 클라이언트에 API 키 노출 없이 Gemini 호출
  * 배포: Cloudflare Workers (ES Module, fetch handler)
+ *
+ * v1.3 (2026-05-20 벤치마크 측정 후):
+ *   - 512가 부족 (벤치마크 102장 중 43건 MAX_TOKENS로 잘림, 특히 종이박스).
+ *   - 1024로 올림 → 정상 응답(100~200토큰)은 영향 0, 잘림 케이스 거의 0.
+ *   - OCR 차단 안전망은 SYSTEM_PROMPT 원칙 6(책·노트북·문서)으로 유지.
+ *
+ * v1.2 (2026-05-20 후속):
+ *   - generationConfig.maxOutputTokens=512 추가 → 책·노트북 같은
+ *     텍스트 많은 물건에서 Gemini가 본문 OCR로 빠져 응답이 잘리던 이슈 해결
  *
  * v1.1 (2026-05-20):
  *   - safetySettings 명시 (BLOCK_NONE × 4) → 분리수거 프롬프트가
@@ -122,6 +131,9 @@ export default {
       generationConfig: {
         responseMimeType: "application/json",
         temperature: Number.isFinite(body.temperature) ? body.temperature : 0.2,
+        // v1.3: 1024 토큰 — v1.2의 512가 너무 빡빡해서 종이박스 등 평범 케이스도 잘림.
+        // 정상 응답(100~200 토큰)은 영향 X. 책·노트북 OCR 차단은 SYSTEM_PROMPT 원칙 6 담당.
+        maxOutputTokens: 1024,
       },
       // v1.1: 한국 분리수거 작업은 명백히 안전 → 기본 medium filter 해제.
       // "주사기·리튬배터리·깨진 유리" 같은 단어가 medium에서 차단되던 이슈 차단.

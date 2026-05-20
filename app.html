@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>여기선 v5.6.5 - COCO-SSD 모호매핑 제거 + 라이브 500ms</title>
+<title>여기선 v5.6.7 - 가구 매핑(의자/소파/식탁/침대) + 책·노트북 OCR 차단</title>
 <meta name="description" content="대한민국 어디서나 분리수거 안내. 환경부 표준 + 지역별 차이까지.">
 
 <link rel="manifest" href="manifest.json">
@@ -270,7 +270,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.6.5</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.6.7</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -518,7 +518,8 @@ async function loadYoloModel(onProgress) {
 // COCO → 분리수거 매핑 (최소)
 const COCO_TO_ITEM = {
   // v5.6.5: 모호한 매핑(cup, vase) 제거 → 잘못된 폴백 결과 방지.
-  // 명확한 매핑만 유지: bottle(페트), wine glass(유리), 음식, 책, 전자기기, 칫솔.
+  // v5.6.7: 가구류 추가 매핑 (chair·couch·dining table). 모두 한글 item_id로 NATIONAL.items 매칭.
+  // 명확한 매핑만 유지: bottle(페트), wine glass(유리), 음식, 책, 전자기기, 칫솔, 가구.
   // cup·vase는 종류 다양해서 COCO-SSD로는 정확 분류 불가 → Gemini 필요.
   'bottle': 'pet_bottle', 'wine glass': 'glass_bottle', 'cup': null,
   'fork': null, 'knife': null, 'spoon': null, 'bowl': null,
@@ -527,7 +528,9 @@ const COCO_TO_ITEM = {
   'pizza': 'food_waste', 'donut': 'food_waste', 'cake': 'food_waste',
   'book': 'book', 'cell phone': 'electronics', 'laptop': 'electronics',
   'toothbrush': 'toothbrush', 'scissors': null,
-  'vase': null, 'clock': null
+  'vase': null, 'clock': null,
+  // v5.6.7: 가구류 — NATIONAL.items의 한글 key 활용
+  'chair': '의자', 'couch': '소파', 'dining table': '식탁', 'bed': 'furniture'
 };
 const COCO_KO = {
   'bottle': '병', 'cup': '컵 (촬영해서 정확 분류)', 'bowl': '그릇', 'wine glass': '와인잔',
@@ -538,7 +541,8 @@ const COCO_KO = {
 };
 // v4 보강: COCO-SSD가 한국 일반 플라스틱 용기/통을 microwave/tv/oven으로 자주 오인.
 // 한국 분리수거 맥락에서 가전류 인식은 신뢰 못 함 → 모두 SKIP (가전은 별도 절차 안내)
-const SKIP_CLASSES = ['person', 'car', 'bicycle', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'bird', 'cat', 'dog', 'horse', 'cow', 'sheep', 'bear', 'chair', 'couch', 'bed', 'dining table', 'tv', 'remote', 'keyboard', 'mouse', 'microwave', 'oven', 'sink', 'refrigerator', 'toilet', 'backpack', 'handbag', 'umbrella', 'tie', 'suitcase', 'frisbee', 'kite', 'sports ball', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard', 'tennis racket', 'teddy bear', 'hair drier', 'potted plant', 'cell phone', 'laptop', 'toaster', 'fan'];
+// v5.6.7: chair·couch·bed·dining table 제거 (대형폐기물 안내 가능하도록 COCO_TO_ITEM에 매핑)
+const SKIP_CLASSES = ['person', 'car', 'bicycle', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'bird', 'cat', 'dog', 'horse', 'cow', 'sheep', 'bear', 'tv', 'remote', 'keyboard', 'mouse', 'microwave', 'oven', 'sink', 'refrigerator', 'toilet', 'backpack', 'handbag', 'umbrella', 'tie', 'suitcase', 'frisbee', 'kite', 'sports ball', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard', 'tennis racket', 'teddy bear', 'hair drier', 'potted plant', 'cell phone', 'laptop', 'toaster', 'fan'];
 
 async function detectWithYolo(imageDataUrl) {
   if (!yoloModel) await loadYoloModel();
@@ -750,6 +754,7 @@ const SYSTEM_PROMPT = `당신은 한국 분리수거 이미지 분석 전문가.
 3. 투명 페트병=pet_bottle (라벨/뚜껑 보여도 무조건)
 4. 색깔 페트병=plastic_bottle
 5. 모르면 confidence 낮추기
+6. **책·노트북·문서·종이박스 등 표면에 글자/그림 많은 물건: 본문/화면 내용 무시하고 외형/재질만으로 분류** (책=book/paper, 노트북=electronics, 종이박스=paper_box). 절대 OCR하지 말고 짧게 JSON 응답.
 
 🇰🇷 한국 어려운 케이스(필수):
 
