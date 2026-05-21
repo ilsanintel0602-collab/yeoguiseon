@@ -1770,22 +1770,35 @@ function renderResult(aiData) {
   content.innerHTML = html;
   openSheet();
 
-  // v5.15 Phase 8 seed: 가벼운 피드백 버튼 핸들러
-  const __saveFeedback = (vote) => {
+  // v5.15 Phase 8 seed → v5.19 자동 시스템: localStorage + Worker 동시 전송
+  const __saveFeedback = (vote, userCorrection = "") => {
+    const record = {
+      vote,
+      item_id: aiData.item_id,
+      item_name: itemName,
+      category: cat?.name,
+      source: aiData.source,
+      region: regionMeta?.shortName,
+      user_correction: userCorrection,
+      version: 'v5.19',
+      ts: Date.now(),
+    };
+    // 1) localStorage 저장 (오프라인 폴백)
     try {
       const log = JSON.parse(localStorage.getItem('fb_v5') || '[]');
-      log.push({
-        vote,
-        item_id: aiData.item_id,
-        item_name: itemName,
-        category: cat?.name,
-        source: aiData.source,
-        region: regionMeta?.shortName,
-        ts: Date.now(),
-      });
+      log.push(record);
       if (log.length > 200) log.shift();
       localStorage.setItem('fb_v5', JSON.stringify(log));
-    } catch (e) { console.warn('feedback save fail', e); }
+    } catch (e) { console.warn('feedback local save fail', e); }
+    // 2) Worker /feedback에 자동 전송 (Phase 8 본격)
+    try {
+      fetch(WORKER_URL.replace(/\/$/, '') + '/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(record),
+        keepalive: true,
+      }).catch(() => {});  // 실패해도 사용자 흐름 영향 X
+    } catch (e) { /* worker 전송 실패 무시 */ }
   };
   $('fbGood')?.addEventListener('click', (e) => {
     __saveFeedback('good');

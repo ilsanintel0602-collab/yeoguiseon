@@ -71,9 +71,18 @@ export default {
       return json({ error: "Origin not allowed" }, 403, corsHeaders(""));
     }
 
+    // v1.5: path 분기 — /feedback 엔드포인트 추가 (Phase 8 자동 시스템)
+    const url = new URL(request.url);
+    const path = url.pathname;
+
     // 3) Method / Content-Type 검증
     if (request.method !== "POST") {
       return json({ error: "Method not allowed" }, 405, corsHeaders(corsOrigin));
+    }
+
+    // v1.5: /feedback 엔드포인트 (사용자 피드백 자동 수집)
+    if (path === "/feedback") {
+      return await handleFeedback(request, env, corsOrigin);
     }
     if (!(request.headers.get("Content-Type") || "").includes("application/json")) {
       return json({ error: "Content-Type must be application/json" }, 415, corsHeaders(corsOrigin));
@@ -264,4 +273,65 @@ async function incr(env, key, ttlSec) {
 
 function log(event, data) {
   console.log(JSON.stringify({ t: new Date().toISOString(), event, ...data }));
+}
+
+// ============================================================================
+// v1.5: Phase 8 사용자 피드백 자동 수집 시스템
+// ============================================================================
+// POST /feedback
+// Body: { vote: "good"|"bad"|"wrong", item_id, item_name, category, region, user_correction? }
+// PII 차단: 사진 X, 식별자 X, IP 해시만
+// 저장: FEEDBACK_KV (Cloudflare KV) — 없으면 GitHub Issue 자동 생성
+//
+async function handleFeedback(request, env, corsOrigin) {
+  if (!(request.headers.get("Content-Type") || "").includes("application/json")) {
+    return json({ error: "Content-Type must be application/json" }, 415, corsHeaders(corsOrigin));
+  }
+
+  let body;
+  try { body = await request.json(); }
+  catch { return json({ error: "Invalid JSON body" }, 400, corsHeaders(corsOrigin)); }
+
+  // PII 검증 — 명시적 거부
+  const piiFields = ["user_email", "user_phone", "user_name", "ip", "address", "uuid"];
+  for (const f of piiFields) {
+    if (body[f]) return json({ error: `PII detected (${f}) — feedback rejected` }, 400, corsHeaders(corsOrigin));
+  }
+
+  // 허용 필드만 추출
+  const vote = body.vote;
+  if (!["good", "bad", "wrong"].includes(vote)) {
+    return json({ error: "vote must be good/bad/wrong" }, 400, corsHeaders(corsOrigin));
+  }
+  const item_id = String(body.item_id || "").slice(0, 60);
+  const item_name = String(body.item_name || "").slice(0, 60);
+  const category = String(body.category || "").slice(0, 30);
+  const region = String(body.region || "").slice(0, 30);
+  const user_correction = String(body.user_correction || "").slice(0, 60);
+  const version = String(body.version || "").slice(0, 20);
+  const source = String(body.source || "").slice(0, 30);
+
+  const id = crypto.randomUUID();
+  const ts = Date.now();
+  const record = {
+    id, ts, vote, item_id, item_name, category, region, user_correction, version, source,
+  };
+
+  // Cloudflare KV에 저장 (있으면)
+  if (env.FEEDBACK_KV) {
+    try {
+      await env.FEEDBACK_KV.put(`fb:${ts}:${id}`, JSON.stringify(record), {
+        expirationTtl: 90 * 24 * 60 * 60,  // 90일 보존
+      });
+      log("feedback_saved_kv", { vote, item_id, region });
+      return json({ ok: true, id }, 200, corsHeaders(corsOrigin));
+    } catch (e) {
+      log("feedback_kv_error", { error: String(e) });
+    }
+  }
+
+  // 폴백: 메모리에 저장 (재배포 시 사라짐, 단지 첫 활성용)
+  memStore.set(`fb:${id}`, record);
+  log("feedback_saved_mem", { vote, item_id, region });
+  return json({ ok: true, id, note: "stored in memory (no KV)" }, 200, corsHeaders(corsOrigin));
 }
