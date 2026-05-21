@@ -1,8 +1,12 @@
 /**
- * 여기선 PWA - Gemini API Proxy Worker (v1.9.2 — /data/all 추가 + GET 라우팅)
+ * 여기선 PWA - Gemini API Proxy Worker (v1.9.3 — gemini-2.5-flash 핫픽스)
  * ------------------------------------------------
  * 목적: 클라이언트에 API 키 노출 없이 Gemini 호출 + D1 DB 직접 서비스
  * 배포: Cloudflare Workers (ES Module, fetch handler)
+ *
+ * v1.9.3 (2026-05-22):
+ *   - 핫픽스: 코드 기본 모델 gemini-2.0-flash → gemini-2.5-flash (2.0 deprecated, 2.5는 2025년 stable)
+ *   - 이유: Cloudflare 대시보드 GEMINI_MODEL 환경변수가 reset된 경우에도 코드가 항상 2.5 사용 보장
  *
  * v1.9.2 (2026-05-22):
  *   - /data/all 추가: 정적 national_rules.json과 동일 구조로 응답 (점진적 D1 전환)
@@ -63,7 +67,7 @@
  * 환경변수 (Cloudflare Dashboard → Settings → Variables and Secrets):
  *   - GEMINI_API_KEY  (Secret, 필수)
  *   - ALLOWED_ORIGINS (Plain, 선택, 콤마 구분)
- *   - GEMINI_MODEL    (Plain, 선택, 기본 gemini-2.0-flash)
+ *   - GEMINI_MODEL    (Plain, 선택, 기본 gemini-2.5-flash — v1.9.3: 2.0-flash 404 → 2.5-flash)
  *   - DAILY_LIMIT     (Plain, 선택, 기본 100)
  *   - MINUTE_LIMIT    (Plain, 선택, 기본 10)
  *   - RATE_LIMIT_KV   (KV Namespace binding, 권장 — 없으면 메모리 fallback)
@@ -213,7 +217,7 @@ export default {
     }
 
     // 6) Gemini 호출 (캐시 miss)
-    const model = env.GEMINI_MODEL || "gemini-2.0-flash";
+    const model = env.GEMINI_MODEL || "gemini-2.5-flash";
     const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${env.GEMINI_API_KEY}`;
     const payload = {
       contents: [{
@@ -618,7 +622,7 @@ async function handleAugment(request, env, corsOrigin) {
 
 JSON 응답만:`;
 
-  const model = env.GEMINI_MODEL || "gemini-2.0-flash";
+  const model = env.GEMINI_MODEL || "gemini-2.5-flash";
   const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${env.GEMINI_API_KEY}`;
   const payload = {
     contents: [{ parts: [{ text: prompt }] }],
