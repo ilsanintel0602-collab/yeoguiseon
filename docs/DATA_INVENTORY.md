@@ -2,23 +2,36 @@
 
 > 🛡️ **여기선 v6의 모든 데이터 자산을 완전 명시.** 새 데이터 추가 시 반드시 이 문서 갱신.
 >
-> 마지막 갱신: 2026-05-21 (v5.13 — 카테고리별 봉투 매칭 + 아이콘 cache-bust)
+> 마지막 갱신: 2026-05-21 (v5.24 — _inherits + cityGuide UI + augment_v2 진행 중)
 
 ---
 
-## 데이터 파일 전체 목록
+## 데이터 파일 전체 목록 (v5.24 기준)
 
 | 파일 | 용도 | 크기 | 출처 |
 |---|---|---|---|
-| **national_rules.json** | 전국 표준 분리수거 룰 | 738 items | 환경부 분리배출.kr + 행안부 표준 |
+| **national_rules.json** | 전국 표준 분리수거 룰 | **765 items** (+27 vs v5.13) | 환경부 분리배출.kr + 행안부 표준 + 일상 어휘 |
 | **regions_meta.json** | 226 시군구 메타 | 226 + 광역시 본청 = 250 | 행안부 행정표준코드 |
-| **region_exceptions.json** | 지역 예외 룰 | 5개 (강남·일산동·...) | 각 시군구 공식 페이지 |
+| **region_exceptions.json** | 지역 예외 룰 | **20개 시군구** (vs 5개) — _inherits 상속 지원 | 각 시군구 공식 페이지 |
 | **region_urls.json** | 시군구 URL DB (분리수거·대형폐기물) | 32 (시범) | 공식 도메인 |
 | **bag_prices.json** | 종량제봉투 가격 | 249 시군구 (98.4%) | 행안부 #15025538 |
 | **recycle_centers.json** | 전국 재활용센터 | 전국 | 행안부 + 시군구 |
-| **ocr_keywords.json** | OCR 한국어 매핑 | — | 자체 구축 |
+| **ocr_keywords.json** | OCR 한국어 매핑 | 단순화됨 (AA 등 위험 키워드 제거) | 자체 구축 |
 | **brand_db.json** | 한국 제품 브랜드 DB | — | 자체 구축 |
 | **raw_bunribaechul_730.json** | 환경부 원본 (참고용) | 730 품목 | 환경부 분리배출.kr |
+| **.augment_progress.json** ⭐ | augment_v2 진행 상황 | 동적 (실시간) | 자동 |
+| **alias backup_*.json** | 데이터 변경 시 자동 백업 | 다수 | 자동 |
+
+### 📈 v5.24 데이터 변화 (오늘)
+
+| 항목 | v5.13 | v5.24 | 증감 |
+|---|---|---|---|
+| **alias 총 수** | ~12,000 (오염 포함) → ~2,061 (정리) | **2,336** | +275 (룰 기반) |
+| **alias 평균/item** | 2.7 | **3.1** | +0.4 |
+| **electronics 평균** | 1.2 | **1.97** | 약점 해소 |
+| **furniture 평균** | 1.3 | **1.55** | 약점 해소 |
+| **시군구 cityGuide** | 5 | **20** | +15 (+300%) |
+| **시군구 룰 (일산동구 기준)** | 30 | **37** | +7 |
 
 ---
 
@@ -95,12 +108,28 @@
 
 ---
 
-## region_exceptions.json 필드별 활용
+## region_exceptions.json 필드별 활용 (v5.24 최신)
 
-| 필드 | 데이터 유무 | app.html 활용 | 노출 |
-|---|---|---|---|
-| `exceptions.<code>.exceptions.<item>` | 강남구 4개, 일산동구 등 | EXCEPTIONS 매칭 로직 | 지역 차이 안내 | ✅ |
-| `exceptions.<code>.cityGuide` | 일산동구 | UI 가이드 | 배출 시간·요일 | ✅ |
+| 필드 | 데이터 유무 | app.html 활용 라인 | 사용자 노출 | 상태 |
+|---|---|---|---|---|
+| `exceptions.<code>.exceptions.<item>` | 강남구 4 / 일산동구 37 | matchRule 476~493 | 지역 차이 안내 | ✅ |
+| **`exceptions.<code>._inherits`** ⭐ | 덕양구·일산서구 | **matchRule v5.24 신규** (while 루프) | 자동 상속 (보이지 않음) | ✅ |
+| `exceptions.<code>.cityGuide` | 일산동구 + 19개 | **renderResult v5.24 신규** (cityHtml) | 📍 우리 지역 안내 박스 | ✅ |
+| `cityGuide.applianceRecycle.phone` | 모든 시군구 | 결과 카드 (electronics) | 📞 폐가전 1599-0903 | ✅ |
+| `cityGuide.bulkyWasteUrl` | 일산동구·인근 | 결과 카드 (furniture) | 🛋 대형폐기물 신고 | ✅ |
+| `cityGuide.paperPackExchange` | 고양시 | 결과 카드 (paper/paper_pack) | 🎁 종이팩-화장지 교환 | ✅ |
+| `cityGuide.disposalTime` | 일산동구·인근 | 결과 카드 (food) | 🕐 배출 시간 | ✅ |
+| `cityGuide.garbageBag.color` | 일산동구·인근 | 결과 카드 (general/battery/lamp) | 🛍 봉투 색 | ✅ |
+| `cityGuide.phones` | 거의 모든 시군구 | 결과 카드 (공통) | 📞 시청 자원순환과 | ✅ |
+| `cityGuide.officialUrl` | 모든 시군구 | 결과 카드 (마지막 줄) | 🌐 공식 분리수거 안내 | ✅ |
+
+### 20개 시군구 커버리지 (v5.24)
+
+**서울 (8):** 강남구(11680, 4 룰), 마포구(11440), 은평구(11380), 서대문구(11410), 영등포구(11560), 양천구(11470), 강서구(11500), 종로구(11110), 중구(11140), 용산구(11170)
+
+**경기 (12):** 고양 덕양구(41281, _inherits→41285), 고양 일산동구(41285, **37 룰** + 풍부 cityGuide), 고양 일산서구(41287, _inherits→41285), 파주(41480), 김포(41570), 의정부(41150), 부천(41210), 성남(41130), 안양(41170)
+
+**활용율:** 일산동구 37 룰 → _inherits 통해 덕양구·일산서구 자동 활용 = **데이터 1배로 시군구 3배 커버리지**
 
 ---
 

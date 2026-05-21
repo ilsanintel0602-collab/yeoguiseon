@@ -1,6 +1,31 @@
 # 일관성 유지 규칙 (충돌·에러 방지)
 
 > **이 문서는 절대 규칙입니다.** 모든 작업에서 반드시 준수.
+>
+> 마지막 갱신: 2026-05-21 (v5.25 — _inherits + cityGuide UI + 텍스트 검색 규칙 추가)
+
+---
+
+## 0. v5.25 추가 규칙 (NEW)
+
+### 0.1 region_exceptions.json — 시군구 코드 표준
+- **5자리 행안부 표준 코드**만 사용 (예: 11680 강남, 41285 일산동구)
+- 메타 키 (예: `_app_compat_note`) 절대 추가 X — `EXCEPTIONS[code].exceptions?.[item]` 검사 시 .exceptions 못 찾으면 빈 객체로 fallback되지만, 깔끔하게 5자리 키만
+- 동일 코드 중복 추가 금지 (JSON 파싱 시 마지막이 이김)
+
+### 0.2 _inherits 체인
+- 동일 시 내 자치구가 같은 룰 → `_inherits: "부모코드"` 사용 (예: 덕양구 → 일산동구)
+- 무한 루프 방지: app.html의 matchRule에 `safetyCounter = 5` 설정됨
+- 부모 코드는 반드시 region_exceptions에 존재해야 함
+
+### 0.3 cityGuide 필드 (5자리 코드 모두)
+필수: `city`, `officialUrl`, `phones` 또는 `applianceRecycle.phone`  
+선택: `disposalTime`, `pickupTime`, `garbageBag`, `bulkyWasteUrl`, `paperPackExchange`
+
+### 0.4 텍스트 검색 (v5.25)
+- 전역 `_escGlobal()` 함수만 사용 (renderResult 안의 `_esc`는 지역변수)
+- 검색 결과 클릭 → matchRule → renderResult 흐름 유지
+- 검색은 NATIONAL.items + aliases 매칭 (region_exceptions 키 검색 X)
 
 ---
 

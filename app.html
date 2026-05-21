@@ -157,7 +157,24 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .capture-btn { width: 80px; height: 80px; border-radius: 999px; background: #fff; padding: 6px; box-shadow: 0 0 0 4px rgba(255,255,255,0.4), 0 16px 40px rgba(0,0,0,0.4); transition: transform 0.1s; }
 .capture-btn:active { transform: scale(0.94); }
 .capture-btn-inner { display: block; width: 100%; height: 100%; border-radius: 999px; background: #fff; border: 2px solid rgba(0,0,0,0.06); }
-.gallery-btn { padding: 8px 18px; background: rgba(255,255,255,0.15); border-radius: 999px; color: #fff; font-size: 14px; }
+.gallery-btn { padding: 8px 18px; background: rgba(255,255,255,0.15); border-radius: 999px; color: #fff; font-size: 14px; cursor: pointer; border: none; }
+.alt-actions { display: flex; gap: 10px; margin-top: 10px; justify-content: center; flex-wrap: wrap; }
+
+/* v5.25: 텍스트 검색 모달 */
+.search-modal { position: fixed; inset: 0; z-index: 80; display: flex; align-items: center; justify-content: center; padding: 16px; }
+.search-modal[aria-hidden="true"] { display: none; }
+.search-modal-bg { position: absolute; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(2px); }
+.search-modal-content { position: relative; background: var(--card); color: var(--text); border-radius: 16px; padding: 20px; width: 100%; max-width: 480px; max-height: 80vh; display: flex; flex-direction: column; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+.search-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.search-input { width: 100%; padding: 14px 16px; font-size: 16px; border: 2px solid var(--divider); border-radius: 10px; background: var(--bg); color: var(--text); box-sizing: border-box; outline: none; }
+.search-input:focus { border-color: var(--primary); }
+.search-tip { font-size: 12px; opacity: 0.7; margin: 8px 4px 4px; }
+.search-results { flex: 1; overflow-y: auto; margin-top: 10px; min-height: 100px; }
+.search-placeholder { text-align: center; opacity: 0.5; padding: 32px 16px; font-size: 14px; }
+.search-result-item { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid var(--divider); background: var(--bg); border-radius: 10px; margin-bottom: 6px; font-size: 15px; cursor: pointer; text-align: left; color: var(--text); width: 100%; transition: all 0.15s; }
+.search-result-item:hover, .search-result-item:focus { background: rgba(46,204,113,0.1); border-color: var(--primary); transform: translateY(-1px); }
+.search-result-name { flex: 1; }
+.search-result-cat { font-size: 11px; opacity: 0.7; padding: 3px 8px; background: var(--note-bg); border-radius: 6px; white-space: nowrap; }
 
 .sheet {
   position: fixed; bottom: 0; left: 0; right: 0; z-index: 60;
@@ -295,7 +312,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.23</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.25</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -324,8 +341,27 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 <footer class="capture-bar">
   <p class="capture-hint" id="captureHint">버튼을 눌러 사진을 찍어주세요</p>
   <button class="capture-btn" id="captureBtn"><span class="capture-btn-inner"></span></button>
-  <button class="gallery-btn" id="galleryBtn">🖼️ 갤러리에서 선택</button>
+  <div class="alt-actions">
+    <button class="gallery-btn" id="galleryBtn">🖼️ 갤러리</button>
+    <button class="gallery-btn" id="searchBtn">🔍 이름으로 찾기</button>
+  </div>
 </footer>
+
+<!-- v5.25: 텍스트 검색 모달 -->
+<div class="search-modal" id="searchModal" aria-hidden="true">
+  <div class="search-modal-bg" id="searchBgClose"></div>
+  <div class="search-modal-content">
+    <div class="search-header">
+      <h3 style="margin:0;font-size:18px;">🔍 물건 이름으로 찾기</h3>
+      <button class="settings-close" id="searchClose" aria-label="닫기">✕</button>
+    </div>
+    <input type="text" class="search-input" id="searchInput" placeholder="예: 노트북, 건전지, 우유팩, 종이박스..." autocomplete="off">
+    <p class="search-tip">사진 못 찍는 상황이거나 정확히 알고 싶을 때 사용하세요. 한글·영어·별명 모두 OK.</p>
+    <div class="search-results" id="searchResults">
+      <p class="search-placeholder">물건 이름을 입력하세요. 765개 품목 · 2,300+ 검색어 매칭.</p>
+    </div>
+  </div>
+</div>
 
 <section class="sheet" id="sheet" aria-hidden="true">
   <button class="sheet-handle" id="sheetHandle"><span class="sheet-handle-bar"></span></button>
@@ -380,7 +416,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     </div>
     <button class="btn btn-primary" id="saveSettingsBtn">저장</button>
     <button class="btn btn-secondary" id="clearDataBtn" style="margin-top:12px">모든 데이터 삭제</button>
-    <p style="text-align:center; margin-top:24px; font-size:13px; color:#999;">여기선 v5.23 · 전국 226개 시군구 + Gemini AI + 행안부 데이터</p>
+    <p style="text-align:center; margin-top:24px; font-size:13px; color:#999;">여기선 v5.25 · 텍스트 검색 + 전국 226개 시군구 + Gemini AI</p>
   </div>
 </aside>
 
@@ -471,20 +507,125 @@ function toast(msg, isError) {
   setTimeout(() => t.className = 'toast', 3000);
 }
 
+// ===== v5.25: 텍스트 검색 (사진 없이 사용) =====
+// 전역 escape (renderResult 내부의 _esc와 동일 — 검색 함수에서도 안전 사용)
+function _escGlobal(s) {
+  return String(s || '').replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+}
+
+function searchByText(query) {
+  if (!NATIONAL?.items || !query) return [];
+  const q = query.trim().toLowerCase();
+  if (q.length < 1) return [];
+
+  const out = [];
+  for (const [key, item] of Object.entries(NATIONAL.items)) {
+    const name = (item.name || key).toLowerCase();
+    const aliases = (item.aliases || []).map(a => String(a).toLowerCase());
+    let score = 0;
+    if (name === q || aliases.includes(q)) score = 100;       // 정확
+    else if (name.startsWith(q) || aliases.some(a => a.startsWith(q))) score = 80;
+    else if (name.includes(q) || aliases.some(a => a.includes(q))) score = 50;
+    else if (q.includes(name) && name.length >= 2) score = 30; // 입력이 더 김 (부분 포함)
+    if (score > 0) out.push({ key, name: item.name || key, category: item.category, score, nameLen: name.length });
+  }
+  // 점수 높은 순 → 짧은 이름 먼저 (간결한 게 우선)
+  out.sort((a, b) => b.score - a.score || a.nameLen - b.nameLen);
+  return out.slice(0, 12);
+}
+
+function openSearch() {
+  $('searchModal').setAttribute('aria-hidden', 'false');
+  $('searchInput').value = '';
+  $('searchResults').innerHTML = '<p class="search-placeholder">물건 이름을 입력하세요. 765개 품목 · 2,300+ 검색어 매칭.</p>';
+  setTimeout(() => $('searchInput').focus(), 100);
+}
+
+function closeSearch() {
+  $('searchModal').setAttribute('aria-hidden', 'true');
+}
+
+function renderSearchResults(query) {
+  const box = $('searchResults');
+  if (!query || !query.trim()) {
+    box.innerHTML = '<p class="search-placeholder">물건 이름을 입력하세요. 765개 품목 · 2,300+ 검색어 매칭.</p>';
+    return;
+  }
+  const results = searchByText(query);
+  if (!results.length) {
+    box.innerHTML = `<p class="search-placeholder">"${_escGlobal(query)}"에 매칭되는 결과 없음.<br>다른 표현(별명·영어 등)으로 시도해보세요.</p>`;
+    return;
+  }
+  const catIcons = { plastic: '♻️', paper: '📄', paper_pack: '🥛', vinyl: '🛍', can: '🥫', glass: '🍾', styrofoam: '📦', food: '🍎', general: '🗑', battery: '🔋', lamp: '💡', clothes: '👕', electronics: '🔌', furniture: '🛋', hazardous: '⚠️', medicine: '💊', reusable: '🔄' };
+  const catNames = { plastic: '플라스틱', paper: '종이', paper_pack: '종이팩', vinyl: '비닐', can: '캔', glass: '유리', styrofoam: '스티로폼', food: '음식물', general: '일반', battery: '건전지', lamp: '형광등', clothes: '의류', electronics: '전자', furniture: '가구', hazardous: '위험물', medicine: '약품', reusable: '재사용' };
+
+  box.innerHTML = results.map(r => `
+    <button class="search-result-item" data-key="${_escGlobal(r.key)}" type="button">
+      <span class="search-result-name">${catIcons[r.category] || '📦'} ${_escGlobal(r.name)}</span>
+      <span class="search-result-cat">${catNames[r.category] || r.category}</span>
+    </button>
+  `).join('');
+
+  box.querySelectorAll('.search-result-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.key;
+      const ruleResult = matchRule(key, state.regionLevel2, null);
+      // renderResult가 받는 aiData 형태로 정리
+      const aiData = {
+        item_id: key,
+        item_label_ko: NATIONAL.items[key]?.name || key,
+        confidence: 0.95,
+        source: 'text-search',
+        category_hint: ruleResult.category,
+        _category_fallback: false,
+        _dbMatched: true,
+        ...ruleResult
+      };
+      closeSearch();
+      openSheet();
+      try { renderResult(aiData); } catch (e) { console.error('[search] render fail', e); }
+    });
+  });
+}
+
 // ===== 핵심 매칭 함수 (v3 새 로직) =====
 function matchRule(itemId, regionCode, categoryHint) {
-  // 1. 지역 예외 우선
-  if (regionCode && EXCEPTIONS[regionCode]) {
-    const ex = EXCEPTIONS[regionCode].exceptions[itemId];
+  // v5.23+: cityGuide 수집 (시군구 안내 정보) + _inherits 상속 따라가기
+  let cityGuide = null;
+  let currentRegion = regionCode;
+  let safetyCounter = 5;  // 무한 루프 방지
+
+  // 1. 지역 예외 우선 — _inherits 체인 따라가기 (예: 덕양구→일산동구)
+  while (currentRegion && EXCEPTIONS[currentRegion] && safetyCounter-- > 0) {
+    // v5.25 안전망: region_exceptions name이 regions_meta name과 명백히 다르면 무시
+    // (잘못된 코드 매핑으로부터 사용자 보호 — 잘못된 안내 표시 방지)
+    if (REGIONS?.level2?.[currentRegion]?.name) {
+      const metaName = REGIONS.level2[currentRegion].name;
+      const exName = EXCEPTIONS[currentRegion].name || '';
+      // 시·구·군 핵심 단어 추출 (예: "경기도 광명시" → "광명")
+      const metaCore = (metaName.match(/(\S+?)(시|구|군)$/) || [])[1] || metaName.slice(-3);
+      if (metaCore && metaCore.length >= 2 && !exName.includes(metaCore)) {
+        // 명백히 다른 시군구 — 잘못 매핑. 환경부 표준만 사용
+        console.warn(`[matchRule] 매핑 불일치 ${currentRegion}: ex="${exName}" meta="${metaName}"`);
+        break;
+      }
+    }
+    if (!cityGuide && EXCEPTIONS[currentRegion].cityGuide) {
+      cityGuide = EXCEPTIONS[currentRegion].cityGuide;
+    }
+    const ex = EXCEPTIONS[currentRegion].exceptions?.[itemId];
     if (ex) {
       return {
         ...ex,
         source_type: 'region_exception',
-        region_name: EXCEPTIONS[regionCode].name
+        region_name: EXCEPTIONS[currentRegion].name,
+        cityGuide  // 시군구 안내 (전화, URL 등)
       };
     }
+    // _inherits 따라가기 (없으면 종료)
+    currentRegion = EXCEPTIONS[currentRegion]._inherits || null;
   }
-  // 2. 환경부 표준
+  // 2. 환경부 표준 — cityGuide도 함께 (지역 안내 정보 결합)
   const item = NATIONAL?.items?.[itemId];
   if (item) {
     return {
@@ -494,7 +635,8 @@ function matchRule(itemId, regionCode, categoryHint) {
       confidence: item.confidence || 'medium',
       source_type: 'national_default',
       source_url: NATIONAL.officialUrl,
-      knownVariations: item.knownVariations
+      knownVariations: item.knownVariations,
+      cityGuide  // 지역 안내 정보도 결합 (위에서 수집됨)
     };
   }
   // 3. v5.5 — 카테고리 힌트 폴백 (item_id 매칭 실패해도 카테고리는 알려줌)
@@ -1760,6 +1902,62 @@ function renderResult(aiData) {
   html += `<br>🤝 <b>최종 판단은 사용자가 합니다.</b> AI 안내는 참고용.`;
   html += `<br><button class="report-link" id="reportBtn">정보가 틀려요 신고하기</button></div>`;
 
+  // v5.24: 우리 지역 안내 (cityGuide) — 카테고리에 맞춰 핵심만 표시
+  if (rule.cityGuide) {
+    const cg = rule.cityGuide;
+    const cat = rule.category;
+    let cityHtml = '';
+
+    // 카테고리별 가장 유용한 정보 1~2개 우선 표시
+    if (cat === 'electronics' && cg.applianceRecycle) {
+      const ar = cg.applianceRecycle;
+      cityHtml += `📞 <b>폐가전 무상수거</b>: <a href="tel:${ar.phone}" style="color:var(--primary);font-weight:600;">${ar.phone}</a>`;
+      if (ar.url) cityHtml += ` · <a href="${ar.url}" target="_blank" style="color:var(--primary);">예약</a>`;
+      if (ar.note) cityHtml += `<div style="font-size:12px;opacity:0.85;margin-top:4px;">${ar.note}</div>`;
+      cityHtml += `<br>`;
+    }
+    if (cat === 'furniture' && cg.bulkyWasteUrl) {
+      cityHtml += `🛋 <b>대형폐기물 신고</b>: <a href="${cg.bulkyWasteUrl}" target="_blank" style="color:var(--primary);">${cg.bulkyWasteUrl.replace(/^https?:\/\//, '')}</a><br>`;
+    }
+    if ((cat === 'paper' || cat === 'paper_pack') && cg.paperPackExchange) {
+      const pe = cg.paperPackExchange;
+      cityHtml += `🎁 <b>${pe.name || '종이팩-화장지 교환'}</b>`;
+      if (pe.where) cityHtml += `: ${pe.where}`;
+      if (pe.rule) cityHtml += `<div style="font-size:12px;opacity:0.85;margin-top:4px;">${pe.rule}</div>`;
+      cityHtml += `<br>`;
+    }
+    if (cat === 'food' && cg.disposalTime) {
+      cityHtml += `🕐 <b>배출 시간</b>: ${cg.disposalTime}<br>`;
+    }
+    if ((cat === 'general' || cat === 'battery' || cat === 'lamp') && cg.garbageBag?.color) {
+      cityHtml += `🛍 <b>봉투 색</b>: ${cg.garbageBag.color}`;
+      if (cg.garbageBag.purchaseUrl) cityHtml += ` · <a href="${cg.garbageBag.purchaseUrl}" target="_blank" style="color:var(--primary);">구매</a>`;
+      cityHtml += `<br>`;
+    }
+
+    // 공통: 시청/구청 대표 연락처 (있으면)
+    if (cg.phones) {
+      const phoneEntries = Object.entries(cg.phones).slice(0, 2);
+      if (phoneEntries.length) {
+        cityHtml += `📞 <b>문의</b>: ` + phoneEntries.map(([k, v]) =>
+          `${k} <a href="tel:${v}" style="color:var(--primary);">${v}</a>`
+        ).join(' · ') + `<br>`;
+      }
+    }
+
+    // 공식 페이지 (마지막 줄)
+    if (cg.officialUrl) {
+      cityHtml += `🌐 <a href="${cg.officialUrl}" target="_blank" style="color:var(--primary);">${cg.city || '시군구'} 공식 분리수거 안내</a>`;
+    }
+
+    if (cityHtml) {
+      html += `<div style="margin-top:14px;padding:14px 16px;background:#f0f9ff;border-left:3px solid #0369a1;border-radius:10px;font-size:13px;line-height:1.7;">`;
+      html += `<div style="font-weight:700;color:#0369a1;margin-bottom:8px;">📍 ${cg.city || '우리 지역'} 안내</div>`;
+      html += cityHtml;
+      html += `</div>`;
+    }
+  }
+
   // v5.15 Phase 8 seed: 가벼운 피드백 버튼 (localStorage 누적, 향후 자동 보강 데이터)
   html += `<div style="margin-top:16px;padding:14px 16px;background:var(--note-bg);border-radius:10px;text-align:center;">`;
   html += `<div style="font-size:14px;margin-bottom:10px;opacity:0.85;">이 안내, 도움 됐어요?</div>`;
@@ -2365,6 +2563,12 @@ async function init() {
   $('sheetHandle').onclick = closeSheet;
   $('gpsBtn').onclick = detectLocation;
   $('regionLevel1').onchange = (e) => populateLevel2Select(e.target.value);
+  // v5.25: 텍스트 검색
+  $('searchBtn').onclick = openSearch;
+  $('searchClose').onclick = closeSearch;
+  $('searchBgClose').onclick = closeSearch;
+  $('searchInput').oninput = (e) => renderSearchResults(e.target.value);
+  $('searchInput').onkeydown = (e) => { if (e.key === 'Escape') closeSearch(); };
 
   // YOLO 모델 로드
   try {

@@ -1,8 +1,11 @@
 /**
- * 여기선 PWA - Gemini API Proxy Worker (v1.7.1 — /augment 유연한 파서)
+ * 여기선 PWA - Gemini API Proxy Worker (v1.7.2 — /augment maxTokens 2048)
  * ------------------------------------------------
  * 목적: 클라이언트에 API 키 노출 없이 Gemini 호출
  * 배포: Cloudflare Workers (ES Module, fetch handler)
+ *
+ * v1.7.2 (2026-05-21):
+ *   - /augment maxOutputTokens 512 → 2048 (한국어 alias 응답 잘림 해결)
  *
  * v1.7.1 (2026-05-21):
  *   - Gemini가 {aliases:[...]} 객체로 응답해도 잡아냄 (이전엔 빈 배열로 떨어짐)
@@ -426,7 +429,8 @@ JSON 응답만:`;
     contents: [{ parts: [{ text: prompt }] }],
     generationConfig: {
       responseMimeType: "application/json",
-      maxOutputTokens: 512,
+      // v1.7.2: 512는 한국어 12개 alias 다 생성 전 잘림. 2048로 안전 확대 (비용 영향 미세)
+      maxOutputTokens: 2048,
       temperature: 0.7,
     },
     safetySettings: [
