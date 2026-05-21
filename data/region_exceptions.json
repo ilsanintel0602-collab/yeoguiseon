@@ -34,9 +34,15 @@
           "note": "병뚜껑은 페트병에 끼워 배출",
           "confidence": "medium"
         }
+      },
+      "cityGuide": {
+        "city": "서울특별시 강남구",
+        "officialUrl": "https://www.gangnam.go.kr/",
+        "cleanUrl": "https://clean.gangnam.go.kr/",
+        "specialNote": "강남구는 IoT 분리수거함(현금 환급) 운영. 종이팩·페트병 전용 수거기 사용 가능.",
+        "phone": "02-3423-5000"
       }
     },
-
     "41285": {
       "name": "경기도 고양시 일산동구",
       "shortName": "일산동구",
@@ -69,18 +75,42 @@
           "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)"
         },
         "sources": [
-          {"url": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp", "grade": "A", "note": "생활폐기물 안내"},
-          {"url": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab3.jsp", "grade": "A", "note": "음식폐기물 안내"},
-          {"url": "https://clean.gys.or.kr/", "grade": "A", "note": "대형폐기물 인터넷 신고센터"},
-          {"url": "https://www.goyang.go.kr/www/chrge/BD_selectTrashChrge.do", "grade": "A", "note": "쓰레기봉투요금"},
-          {"url": "https://m.gys.or.kr/page/city/bag/intro.php", "grade": "A", "note": "종량제 봉투 판매(고양도시관리공사)"}
+          {
+            "url": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
+            "grade": "A",
+            "note": "생활폐기물 안내"
+          },
+          {
+            "url": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab3.jsp",
+            "grade": "A",
+            "note": "음식폐기물 안내"
+          },
+          {
+            "url": "https://clean.gys.or.kr/",
+            "grade": "A",
+            "note": "대형폐기물 인터넷 신고센터"
+          },
+          {
+            "url": "https://www.goyang.go.kr/www/chrge/BD_selectTrashChrge.do",
+            "grade": "A",
+            "note": "쓰레기봉투요금"
+          },
+          {
+            "url": "https://m.gys.or.kr/page/city/bag/intro.php",
+            "grade": "A",
+            "note": "종량제 봉투 판매(고양도시관리공사)"
+          }
         ]
       },
       "exceptions": {
         "instant_rice_bowl": {
           "category": "general",
           "note": "음식 묻은 즉석밥 용기는 일반쓰레기로 (오염 제거가 어려운 경우 종량제봉투에)",
-          "steps": ["내용물 깨끗이 제거", "오염이 심하면 종량제봉투", "오염 없으면 헹궈서 플라스틱류"],
+          "steps": [
+            "내용물 깨끗이 제거",
+            "오염이 심하면 종량제봉투",
+            "오염 없으면 헹궈서 플라스틱류"
+          ],
           "confidence": "medium",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
           "sourceGrade": "A"
@@ -88,7 +118,11 @@
         "broken_glass_bottle": {
           "category": "general",
           "note": "고양시는 깨진 유리·사기를 '불연성 마대'에 담아 배출 (종량제봉투 X)",
-          "steps": ["신문지로 감싸기", "'유리주의' 표시", "불연성 마대(흰색이 아닌 청회색 마대)에 담아 배출"],
+          "steps": [
+            "신문지로 감싸기",
+            "'유리주의' 표시",
+            "불연성 마대(흰색이 아닌 청회색 마대)에 담아 배출"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
           "sourceGrade": "A"
@@ -96,7 +130,11 @@
         "broken_ceramic": {
           "category": "general",
           "note": "고양시 — 깨진 도자기·사기그릇은 불연성 폐기물. 불연성 마대 사용",
-          "steps": ["안전하게 포장(신문지 등)", "'사기/도자기 주의' 표시", "불연성 마대에 담아 배출"],
+          "steps": [
+            "안전하게 포장(신문지 등)",
+            "'사기/도자기 주의' 표시",
+            "불연성 마대에 담아 배출"
+          ],
           "confidence": "high",
           "source": "https://ene.gys.or.kr/",
           "sourceGrade": "B"
@@ -104,7 +142,10 @@
         "ceramic_dish": {
           "category": "general",
           "note": "깨지지 않은 도자기/사기 그릇도 재활용 불가 — 고양시 불연성 마대 사용 권장",
-          "steps": ["깨지지 않게 포장", "불연성 마대 또는 종량제봉투"],
+          "steps": [
+            "깨지지 않게 포장",
+            "불연성 마대 또는 종량제봉투"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
           "sourceGrade": "A"
@@ -112,7 +153,11 @@
         "mirror": {
           "category": "general",
           "note": "거울은 유리코팅이라 재활용 불가 — 고양시 불연성 마대",
-          "steps": ["신문지로 감싸기", "'유리주의' 표시", "불연성 마대 또는 종량제봉투"],
+          "steps": [
+            "신문지로 감싸기",
+            "'유리주의' 표시",
+            "불연성 마대 또는 종량제봉투"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
           "sourceGrade": "A"
@@ -120,7 +165,11 @@
         "light_bulb": {
           "category": "general",
           "note": "백열/LED 전구는 수은 없어 일반쓰레기 (폐형광등과 다름). 깨지면 불연성 마대",
-          "steps": ["깨지지 않게 포장", "종량제봉투에 배출", "깨졌으면 불연성 마대"],
+          "steps": [
+            "깨지지 않게 포장",
+            "종량제봉투에 배출",
+            "깨졌으면 불연성 마대"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
           "sourceGrade": "A"
@@ -128,7 +177,12 @@
         "milk_carton": {
           "category": "paper",
           "note": "고양시는 44개 동 행정복지센터에서 종이팩 1kg → 화장지 1롤 교환 사업 운영",
-          "steps": ["내용물 비우기", "물로 헹구고 말리기", "납작하게 압착", "동주민센터 교환 또는 종이팩 전용함"],
+          "steps": [
+            "내용물 비우기",
+            "물로 헹구고 말리기",
+            "납작하게 압착",
+            "동주민센터 교환 또는 종이팩 전용함"
+          ],
           "confidence": "high",
           "source": "https://www.kyeongin.com/article/1710566",
           "sourceGrade": "B",
@@ -137,7 +191,12 @@
         "juice_carton": {
           "category": "paper",
           "note": "멸균팩도 동 행정복지센터 종이팩 교환사업 대상 (일반 우유팩과 함께 가능)",
-          "steps": ["내용물 비우기", "물로 헹구고 말리기", "납작하게 압착", "동주민센터 교환 또는 종이팩 전용함"],
+          "steps": [
+            "내용물 비우기",
+            "물로 헹구고 말리기",
+            "납작하게 압착",
+            "동주민센터 교환 또는 종이팩 전용함"
+          ],
           "confidence": "high",
           "source": "http://www.vop.co.kr/A00000740247.html",
           "sourceGrade": "B"
@@ -145,7 +204,11 @@
         "paper_cup_coated": {
           "category": "general",
           "note": "PE 코팅 일회용 종이컵·종이용기는 종량제봉투. 오염 없는 멸균팩(우유팩)은 동주민센터 교환사업으로",
-          "steps": ["내용물 비우기", "PE 코팅이면 종량제봉투", "멸균팩(우유팩 형태)이면 헹궈 말려 종이팩 교환"],
+          "steps": [
+            "내용물 비우기",
+            "PE 코팅이면 종량제봉투",
+            "멸균팩(우유팩 형태)이면 헹궈 말려 종이팩 교환"
+          ],
           "confidence": "medium",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
           "sourceGrade": "A"
@@ -153,7 +216,12 @@
         "food_waste": {
           "category": "food",
           "note": "고양시는 RFID 종량기 또는 음식물 전용봉투 사용. 공동주택(60세대 이상)은 대부분 RFID",
-          "steps": ["물기 꼭 짜기", "이물질(비닐·뼈·껍데기) 분리", "RFID 종량기 카드 인식 → 투입 → 닫힘 버튼", "또는 전용봉투에 담아 지정 수거함"],
+          "steps": [
+            "물기 꼭 짜기",
+            "이물질(비닐·뼈·껍데기) 분리",
+            "RFID 종량기 카드 인식 → 투입 → 닫힘 버튼",
+            "또는 전용봉투에 담아 지정 수거함"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab3.jsp",
           "sourceGrade": "A"
@@ -161,7 +229,10 @@
         "fruit_peel": {
           "category": "food",
           "note": "사과·귤·바나나·딸기 꼭지 등은 음식물. 단단한 과일씨(복숭아·아보카도)는 일반쓰레기",
-          "steps": ["물기 제거", "음식물 전용봉투/RFID 종량기"],
+          "steps": [
+            "물기 제거",
+            "음식물 전용봉투/RFID 종량기"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab3.jsp",
           "sourceGrade": "A"
@@ -169,7 +240,10 @@
         "vegetable_scraps": {
           "category": "general",
           "note": "양파·마늘 껍질 외피, 옥수수대·옥수수 껍질, 대파 뿌리는 일반쓰레기. 부드러운 채소 자투리만 음식물",
-          "steps": ["부드러운 자투리: 음식물", "단단한 껍질·줄기·뿌리: 종량제봉투"],
+          "steps": [
+            "부드러운 자투리: 음식물",
+            "단단한 껍질·줄기·뿌리: 종량제봉투"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab3.jsp",
           "sourceGrade": "A"
@@ -177,7 +251,9 @@
         "eggshell": {
           "category": "general",
           "note": "계란·메추리알 등 알 껍데기는 석회질이라 사료/퇴비 불가 — 일반쓰레기",
-          "steps": ["종량제봉투에 배출"],
+          "steps": [
+            "종량제봉투에 배출"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab3.jsp",
           "sourceGrade": "A"
@@ -185,7 +261,9 @@
         "onion_peel": {
           "category": "general",
           "note": "양파·마늘의 마른 겉껍질은 영양 없고 질겨 사료 부적합 — 일반쓰레기",
-          "steps": ["종량제봉투에 배출"],
+          "steps": [
+            "종량제봉투에 배출"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab3.jsp",
           "sourceGrade": "A"
@@ -193,7 +271,9 @@
         "meat_bone": {
           "category": "general",
           "note": "소·돼지·닭 뼈, 비계, 내장은 모두 일반쓰레기",
-          "steps": ["물기 제거 후 종량제봉투에 배출"],
+          "steps": [
+            "물기 제거 후 종량제봉투에 배출"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab3.jsp",
           "sourceGrade": "A"
@@ -201,7 +281,9 @@
         "fish_bone": {
           "category": "general",
           "note": "조개껍데기·게·새우 껍데기, 큰 생선뼈는 일반쓰레기 (분쇄 불가)",
-          "steps": ["종량제봉투에 배출"],
+          "steps": [
+            "종량제봉투에 배출"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab3.jsp",
           "sourceGrade": "A"
@@ -209,7 +291,9 @@
         "tea_bag": {
           "category": "general",
           "note": "티백·한약재 찌꺼기·커피 찌꺼기는 일반쓰레기 (봉투째 종량제봉투)",
-          "steps": ["종량제봉투에 배출"],
+          "steps": [
+            "종량제봉투에 배출"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab3.jsp",
           "sourceGrade": "A"
@@ -217,16 +301,28 @@
         "electronics": {
           "category": "general",
           "note": "고양시 — 폐가전 무상 방문수거 운영. 1599-0903 또는 15990903.or.kr",
-          "steps": ["1599-0903 또는 15990903.or.kr에서 예약", "대형(냉장고·세탁기·TV·에어컨)은 1개부터 가능", "소형(청소기·선풍기·전기밥솥 등)은 5개 이상 모아서 신청", "예약일에 문 앞 배출"],
+          "steps": [
+            "1599-0903 또는 15990903.or.kr에서 예약",
+            "대형(냉장고·세탁기·TV·에어컨)은 1개부터 가능",
+            "소형(청소기·선풍기·전기밥솥 등)은 5개 이상 모아서 신청",
+            "예약일에 문 앞 배출"
+          ],
           "confidence": "high",
           "source": "https://15990903.or.kr/",
           "sourceGrade": "A",
-          "extraPhones": {"일산동구청_환경녹지과": "031-8075-6243"}
+          "extraPhones": {
+            "일산동구청_환경녹지과": "031-8075-6243"
+          }
         },
         "furniture": {
           "category": "general",
           "note": "고양시 대형폐기물 인터넷 신고센터에서 결제·필증 출력 후 부착하여 배출",
-          "steps": ["clean.gys.or.kr 접속", "품목 선택 → 수수료 결제", "필증 출력(또는 신고번호 종이에 기재)", "지정 장소에 배출"],
+          "steps": [
+            "clean.gys.or.kr 접속",
+            "품목 선택 → 수수료 결제",
+            "필증 출력(또는 신고번호 종이에 기재)",
+            "지정 장소에 배출"
+          ],
           "confidence": "high",
           "source": "https://clean.gys.or.kr/clean/waste_list",
           "sourceGrade": "A",
@@ -235,7 +331,10 @@
         "battery": {
           "category": "battery",
           "note": "동 행정복지센터·아파트 전용 수거함에 배출. 고양시 44개 동주민센터에서 폐건전지 수거",
-          "steps": ["물기 제거, 분해 금지", "동주민센터/아파트 폐건전지 수거함"],
+          "steps": [
+            "물기 제거, 분해 금지",
+            "동주민센터/아파트 폐건전지 수거함"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
           "sourceGrade": "A"
@@ -243,7 +342,10 @@
         "lithium_battery": {
           "category": "battery",
           "note": "보조배터리·노트북 배터리 — 부풀음 시 화재 위험. 비닐랩으로 감싸 동주민센터 환경녹지과로 직접 전달",
-          "steps": ["부풀어 오른 경우 비닐랩으로 감싸기", "동주민센터 또는 일산동구청 환경녹지과(031-8075-6243)에 직접 전달"],
+          "steps": [
+            "부풀어 오른 경우 비닐랩으로 감싸기",
+            "동주민센터 또는 일산동구청 환경녹지과(031-8075-6243)에 직접 전달"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
           "sourceGrade": "A"
@@ -251,7 +353,12 @@
         "lamp": {
           "category": "lamp",
           "note": "수은 함유 폐형광등 — 동 행정복지센터·아파트 전용 수거함에 배출 (깨지지 않게 운반)",
-          "steps": ["포장재 제거", "직관/환형/콤팩트 구분", "깨지지 않게 운반", "동주민센터/아파트 폐형광등 수거함"],
+          "steps": [
+            "포장재 제거",
+            "직관/환형/콤팩트 구분",
+            "깨지지 않게 운반",
+            "동주민센터/아파트 폐형광등 수거함"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
           "sourceGrade": "A"
@@ -259,7 +366,12 @@
         "styrofoam_box": {
           "category": "styrofoam",
           "note": "고양시 — 흰색·깨끗한 스티로폼만 분리배출. 색상/오염/이물질 묻은 것은 종량제봉투",
-          "steps": ["테이프·송장·라벨 완전 제거", "내용물 비우고 세척", "흰색 + 오염 없음 → 스티로폼류", "색깔 있거나 오염 → 종량제봉투"],
+          "steps": [
+            "테이프·송장·라벨 완전 제거",
+            "내용물 비우고 세척",
+            "흰색 + 오염 없음 → 스티로폼류",
+            "색깔 있거나 오염 → 종량제봉투"
+          ],
           "confidence": "high",
           "source": "https://ene.gys.or.kr/",
           "sourceGrade": "B"
@@ -267,7 +379,9 @@
         "styrofoam_colored": {
           "category": "general",
           "note": "색깔 있는 스티로폼·컵라면 용기·오염 스티로폼은 종량제봉투",
-          "steps": ["종량제봉투에 배출"],
+          "steps": [
+            "종량제봉투에 배출"
+          ],
           "confidence": "high",
           "source": "https://ene.gys.or.kr/",
           "sourceGrade": "B"
@@ -275,7 +389,12 @@
         "cosmetics_bottle": {
           "category": "glass",
           "note": "화장품 유리병 — 펌프 분리 후 유리병류로. 펌프(스프링+플라스틱)는 일반쓰레기",
-          "steps": ["내용물 비우기", "펌프·뚜껑 분리", "유리병류로 배출", "펌프는 종량제봉투"],
+          "steps": [
+            "내용물 비우기",
+            "펌프·뚜껑 분리",
+            "유리병류로 배출",
+            "펌프는 종량제봉투"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
           "sourceGrade": "A"
@@ -283,7 +402,9 @@
         "cosmetic_pump": {
           "category": "general",
           "note": "스프링(금속)+플라스틱 복합재질 — 일반쓰레기",
-          "steps": ["종량제봉투에 배출"],
+          "steps": [
+            "종량제봉투에 배출"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
           "sourceGrade": "A"
@@ -291,7 +412,9 @@
         "rubber_glove": {
           "category": "general",
           "note": "고양시 — 환경부 표준대로 고무장갑은 일반쓰레기 (강남구처럼 비닐 분류 X)",
-          "steps": ["종량제봉투에 배출"],
+          "steps": [
+            "종량제봉투에 배출"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
           "sourceGrade": "A"
@@ -299,7 +422,11 @@
         "hanger": {
           "category": "general",
           "note": "철제 옷걸이는 분리하여 캔/금속류, 플라스틱 옷걸이는 일반쓰레기",
-          "steps": ["재질 확인", "철제: 금속류로 배출", "플라스틱: 종량제봉투"],
+          "steps": [
+            "재질 확인",
+            "철제: 금속류로 배출",
+            "플라스틱: 종량제봉투"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
           "sourceGrade": "A"
@@ -307,7 +434,11 @@
         "clothes": {
           "category": "clothes",
           "note": "재사용 가능한 의류·신발·가방은 의류수거함. 오염·훼손 심한 것은 종량제봉투",
-          "steps": ["세탁·건조", "의류수거함 배출", "오염 심함 → 종량제봉투"],
+          "steps": [
+            "세탁·건조",
+            "의류수거함 배출",
+            "오염 심함 → 종량제봉투"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
           "sourceGrade": "A"
@@ -315,7 +446,11 @@
         "paper_box": {
           "category": "paper",
           "note": "테이프·송장·철핀 반드시 제거. 비에 젖지 않게 보관 후 배출",
-          "steps": ["테이프·송장·철핀 제거", "납작하게 펴기", "끈으로 묶어서 배출"],
+          "steps": [
+            "테이프·송장·철핀 제거",
+            "납작하게 펴기",
+            "끈으로 묶어서 배출"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
           "sourceGrade": "A"
@@ -323,7 +458,11 @@
         "vinyl_bag": {
           "category": "vinyl",
           "note": "검정 비닐 포함 — 내용물 비우고 이물질 제거 후 비닐류로 배출",
-          "steps": ["내용물 비우기", "이물질·음식물 제거", "비닐류로 배출 (오염 심하면 종량제봉투)"],
+          "steps": [
+            "내용물 비우기",
+            "이물질·음식물 제거",
+            "비닐류로 배출 (오염 심하면 종량제봉투)"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
           "sourceGrade": "A"
@@ -331,14 +470,17 @@
         "medicine": {
           "category": "general",
           "note": "폐의약품은 약국·보건소 폐의약품 수거함에 배출 (변기·하수구·종량제봉투 절대 금지)",
-          "steps": ["포장재(종이박스·설명서) 제거", "알약은 통째로, 시럽은 한 병에 모아", "관내 약국 또는 일산동구 보건소 수거함"],
+          "steps": [
+            "포장재(종이박스·설명서) 제거",
+            "알약은 통째로, 시럽은 한 병에 모아",
+            "관내 약국 또는 일산동구 보건소 수거함"
+          ],
           "confidence": "high",
           "source": "https://www.goyang.go.kr/health/index.do",
           "sourceGrade": "A"
         }
       }
     },
-
     "41281": {
       "name": "경기도 고양시 덕양구",
       "shortName": "덕양구",
@@ -398,7 +540,6 @@
         }
       }
     },
-
     "41287": {
       "name": "경기도 고양시 일산서구",
       "shortName": "일산서구",
