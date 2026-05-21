@@ -316,8 +316,8 @@
         "배터리",
         "건전지",
         "BATTERY",
-        "AA",
-        "AAA"
+        "AA 건전지",
+        "AAA 건전지"
       ],
       "item_id": "battery",
       "category": "battery",
@@ -471,7 +471,6 @@
     },
     {
       "match": [
-        "PET",
         "PETE",
         "페트"
       ],
@@ -482,9 +481,7 @@
     {
       "match": [
         "HDPE",
-        "LDPE",
-        "PP",
-        "PS"
+        "LDPE"
       ],
       "category": "plastic",
       "priority": 60
