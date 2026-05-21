@@ -160,7 +160,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .gallery-btn { padding: 8px 18px; background: rgba(255,255,255,0.15); border-radius: 999px; color: #fff; font-size: 14px; cursor: pointer; border: none; }
 .alt-actions { display: flex; gap: 10px; margin-top: 10px; justify-content: center; flex-wrap: wrap; }
 
-/* v5.28.2: 첫 사용자 onboarding 모달 */
+/* v5.28.3: 첫 사용자 onboarding 모달 */
 .onboard-modal { position: fixed; inset: 0; z-index: 90; display: flex; align-items: center; justify-content: center; padding: 24px; }
 .onboard-modal[aria-hidden="true"] { display: none; }
 .onboard-bg { position: absolute; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); }
@@ -176,8 +176,10 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 /* v5.25: 텍스트 검색 모달 */
 .search-modal { position: fixed; inset: 0; z-index: 80; display: flex; align-items: center; justify-content: center; padding: 16px; }
 .search-modal[aria-hidden="true"] { display: none; }
-.search-modal-bg { position: absolute; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(2px); }
-.search-modal-content { position: relative; background: var(--card); color: var(--text); border-radius: 16px; padding: 20px; width: 100%; max-width: 480px; max-height: 80vh; display: flex; flex-direction: column; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+/* v5.28.3 핫픽스: backdrop-filter가 stacking context 만들어서 input 클릭 차단 → z-index 명시 */
+.search-modal-bg { position: absolute; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(2px); z-index: 0; }
+.search-modal-content { position: relative; background: var(--card); color: var(--text); border-radius: 16px; padding: 20px; width: 100%; max-width: 480px; max-height: 80vh; display: flex; flex-direction: column; box-shadow: 0 20px 60px rgba(0,0,0,0.3); z-index: 1; }
+.search-input { -webkit-user-select: text; user-select: text; pointer-events: auto; }
 .search-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
 .search-input { width: 100%; padding: 14px 16px; font-size: 16px; border: 2px solid var(--divider); border-radius: 10px; background: var(--bg); color: var(--text); box-sizing: border-box; outline: none; }
 .search-input:focus { border-color: var(--primary); }
@@ -325,7 +327,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.28.2</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.28.3</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -348,7 +350,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   <div id="detectStatus" style="position:absolute;top:12px;left:50%;transform:translateX(-50%);padding:6px 14px;background:rgba(0,0,0,0.6);color:white;border-radius:20px;font-size:13px;display:none;z-index:5;">
     🟢 자동 인식 중...
   </div>
-  <!-- v5.28.2: capture 제거 → 갤러리 버튼이 정말 갤러리 띄움 (이전엔 카메라 떴음) -->
+  <!-- v5.28.3: capture 제거 → 갤러리 버튼이 정말 갤러리 띄움 (이전엔 카메라 떴음) -->
   <input type="file" id="galleryInput" accept="image/*" hidden>
 </main>
 
@@ -361,7 +363,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   </div>
 </footer>
 
-<!-- v5.28.2: 첫 사용자 onboarding 모달 (3 step) -->
+<!-- v5.28.3: 첫 사용자 onboarding 모달 (3 step) -->
 <div class="onboard-modal" id="onboardModal" aria-hidden="true">
   <div class="onboard-bg"></div>
   <div class="onboard-content">
@@ -451,7 +453,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     </div>
     <button class="btn btn-primary" id="saveSettingsBtn">저장</button>
     <button class="btn btn-secondary" id="clearDataBtn" style="margin-top:12px">모든 데이터 삭제</button>
-    <p style="text-align:center; margin-top:24px; font-size:13px; color:#999;">여기선 v5.28.2 · 한국어 + English guide · 캐싱 · Claude 앙상블 · 텍스트 검색</p>
+    <p style="text-align:center; margin-top:24px; font-size:13px; color:#999;">여기선 v5.28.3 · 한국어 + English guide · 캐싱 · Claude 앙상블 · 텍스트 검색</p>
   </div>
 </aside>
 
@@ -471,7 +473,7 @@ let BAG_PRICES = null;   // v5: 행안부 시군구별 종량제봉투 가격
 let RECYCLE_CENTERS = null; // v5: 행안부 전국 재활용센터
 let REGION_URLS = null;  // v5.9: 시군구 공식 URL DB (250개 — 분리수거·대형폐기물)
 
-// v5.28.2: 정적 JSON 우선 + D1로 items만 덮어쓰기 (안전 모드)
+// v5.28.3: 정적 JSON 우선 + D1로 items만 덮어쓰기 (안전 모드)
 //   - 정적 national_rules.json을 항상 메인으로 로드 (categories·version 등 메타 보존)
 //   - D1 응답이 정상이면 items만 덮어쓰기 (cron 갱신 효과)
 //   - D1 실패 시 정적 그대로 유지 (앱 동작 보장)
@@ -494,10 +496,10 @@ async function fetchItemsD1WithFallback() {
     if (!d1Data.ok || !d1Data.items || Object.keys(d1Data.items).length < 100) {
       throw new Error('invalid D1 response');
     }
-    console.log('[여기선 v5.28.2] D1 items 병합:', Object.keys(d1Data.items).length, '물건 (static categories 등 보존)');
+    console.log('[여기선 v5.28.3] D1 items 병합:', Object.keys(d1Data.items).length, '물건 (static categories 등 보존)');
     return { ...staticData, items: d1Data.items, _source: 'd1+static' };
   } catch (err) {
-    console.warn('[여기선 v5.28.2] D1 실패 → 정적 JSON 그대로:', err.message);
+    console.warn('[여기선 v5.28.3] D1 실패 → 정적 JSON 그대로:', err.message);
     return { ...staticData, _source: 'static' };
   }
 }
@@ -538,7 +540,7 @@ async function loadAllData() {
     BAG_PRICES = bp;
     RECYCLE_CENTERS = rc;
     REGION_URLS = ru;  // v5.9: 시군구 URL DB
-    console.log('[여기선 v5.28.2] 데이터 로드 (items source:',
+    console.log('[여기선 v5.28.3] 데이터 로드 (items source:',
       NATIONAL._source || '?', '):',
       Object.keys(NATIONAL.items).length, '물건,',
       Object.keys(REGIONS.level2).length, '시군구,',
@@ -574,7 +576,7 @@ function toast(msg, isError, duration) {
   setTimeout(() => t.className = 'toast', duration || 3000);
 }
 
-// ===== v5.28.2: 첫 사용자 onboarding =====
+// ===== v5.28.3: 첫 사용자 onboarding =====
 function showOnboarding() {
   const modal = $('onboardModal');
   if (!modal) return;
@@ -616,7 +618,7 @@ function _escGlobal(s) {
   return String(s || '').replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
 }
 
-// v5.28.2: 카테고리 영어 보조 (외국인 거주자) — 환경부 다국어 PDF 링크와 함께
+// v5.28.3: 카테고리 영어 보조 (외국인 거주자) — 환경부 다국어 PDF 링크와 함께
 const CAT_EN = {
   plastic: 'Plastic', paper: 'Paper', paper_pack: 'Paper Pack',
   vinyl: 'Vinyl/Film', can: 'Can/Metal', glass: 'Glass', styrofoam: 'Styrofoam',
@@ -627,7 +629,7 @@ const CAT_EN = {
 };
 const ME_MULTILINGUAL_PDF = 'https://www.me.go.kr/home/web/index.do?menuId=10184';
 
-// v5.28.2 (Phase B-aux): 정확 매칭 시 ID/name 일치 우선, 동점 시 안정 정렬
+// v5.28.3 (Phase B-aux): 정확 매칭 시 ID/name 일치 우선, 동점 시 안정 정렬
 // - 100점: id === q (가장 강력)
 // - 95점: name === q (이름 정확 일치)
 // - 90점: aliases includes q (alias 정확 일치)
@@ -706,7 +708,7 @@ function renderSearchResults(query) {
   const catIcons = { plastic: '♻️', paper: '📄', paper_pack: '🥛', vinyl: '🛍', can: '🥫', glass: '🍾', styrofoam: '📦', food: '🍎', general: '🗑', battery: '🔋', lamp: '💡', clothes: '👕', electronics: '🔌', furniture: '🛋', hazardous: '⚠️', medicine: '💊', reusable: '🔄' };
   const catNames = { plastic: '플라스틱', paper: '종이', paper_pack: '종이팩', vinyl: '비닐', can: '캔', glass: '유리', styrofoam: '스티로폼', food: '음식물', general: '일반', battery: '건전지', lamp: '형광등', clothes: '의류', electronics: '전자', furniture: '가구', hazardous: '위험물', medicine: '약품', reusable: '재사용' };
 
-  // v5.28.2 (Phase C5-3): 결과 카드 탭 안내 강화 — › 화살표 + "탭하기" 시각 신호
+  // v5.28.3 (Phase C5-3): 결과 카드 탭 안내 강화 — › 화살표 + "탭하기" 시각 신호
   box.innerHTML = `
     <p style="margin:0 0 10px;font-size:12px;color:#888;text-align:center;">👇 결과를 탭하면 상세 안내가 열려요</p>
   ` + results.map(r => `
@@ -1528,6 +1530,14 @@ async function startRealtimeDetection() {
     return;
   }
 
+  // v5.28.3: 카메라 켜자마자 영역 선택 안내 (분석 후 ❌, 카메라 켤 때 ✅, 1회만)
+  if (!LS.get('hintAreaShown')) {
+    setTimeout(() => {
+      toast('💡 사물을 손가락으로 드래그하면 그 영역만 정확히 분석돼요', false, 6000);
+      LS.set('hintAreaShown', true);
+    }, 1500);
+  }
+
   // 캔버스 크기 비디오에 맞춤
   const resize = () => {
     canvas.width = video.clientWidth;
@@ -1547,7 +1557,7 @@ async function startRealtimeDetection() {
     if (now - detectionState.lastDetectTime > 1500 && video.videoWidth > 0 && yoloModel) {
       detectionState.lastDetectTime = now;
       try {
-        // v5.28.2 (Phase C5-1): NMS(중복 박스 제거) + 라벨 안정화
+        // v5.28.3 (Phase C5-1): NMS(중복 박스 제거) + 라벨 안정화
         // - detect 결과를 score 순 정렬 → IoU 0.3+ 중복 제거 → 1개만 표시 (이전 2개 → 1개)
         // - 같은 물체에 박스 1개만 보장. 사용자 혼란 0.
         const dets = await yoloModel.detect(video, 5, 0.5);
@@ -1675,7 +1685,7 @@ function drawBoxes(canvas) {
   // drawCameraGuide와 별개 — 둘 다 호출됨
   const ctx = canvas.getContext('2d');
   // 가이드와 중복 그리기 방지: clearRect 안 함 (drawCameraGuide가 이미 함)
-  // v5.28.2: 라벨 안정화 — 항상 "한글라벨 ▸ 탭" 형식. 신뢰도 숫자 제거 (깜빡임 원인).
+  // v5.28.3: 라벨 안정화 — 항상 "한글라벨 ▸ 탭" 형식. 신뢰도 숫자 제거 (깜빡임 원인).
   detectionState.detections.forEach(d => {
     ctx.strokeStyle = '#00ff88';
     ctx.lineWidth = 3;
@@ -2128,7 +2138,7 @@ function renderResult(aiData) {
     }
   }
 
-  // v5.28.2: 영어 보조 안내 (외국인 거주자) — 카테고리 영어명 + 환경부 다국어 PDF
+  // v5.28.3: 영어 보조 안내 (외국인 거주자) — 카테고리 영어명 + 환경부 다국어 PDF
   if (rule.category && CAT_EN[rule.category]) {
     html += `<details style="margin-top:12px;padding:8px 14px;background:#f8fafc;border-left:3px solid #94a3b8;border-radius:6px;font-size:12px;color:#475569;">`;
     html += `<summary style="cursor:pointer;font-weight:600;">🌐 English / 외국인 거주자 안내</summary>`;
@@ -2490,19 +2500,13 @@ async function handleCapture(imageDataUrl) {
     });
     try {
       renderResult(result);
-      // v5.28.2 (Phase C5-2): 첫 분석 성공 후 1회만 영역 선택 힌트 토스트
-      if (!LS.get('hintAreaShown')) {
-        setTimeout(() => {
-          toast('💡 더 정확하게: 카메라 화면에서 사물을 손가락으로 표시하면 그 영역만 분석돼요', false, 6500);
-          LS.set('hintAreaShown', true);
-        }, 3000);
-      }
+      // v5.28.3: 영역 안내는 startRealtimeDetection로 이동 (카메라 켤 때 = 더 시의적절)
     } catch (rErr) {
-      console.error('[v5.28.2] renderResult 실패:', rErr, 'result:', result);
+      console.error('[v5.28.3] renderResult 실패:', rErr, 'result:', result);
       renderError(`결과 표시 오류: ${rErr.message} (분석 자체는 성공했음 — 데이터 매칭 문제)`);
     }
   } catch (err) {
-    console.error('[v5.28.2] 분석 실패 상세:', err);
+    console.error('[v5.28.3] 분석 실패 상세:', err);
     // Gemini 거부·safety filter 케이스 더 친절히
     const msg = String(err.message || err);
     let friendly = msg;
@@ -2794,7 +2798,7 @@ async function init() {
   $('sheetHandle').onclick = closeSheet;
   $('gpsBtn').onclick = detectLocation;
   $('regionLevel1').onchange = (e) => populateLevel2Select(e.target.value);
-  // v5.28.2: 첫 사용자 onboarding (localStorage로 1회만)
+  // v5.28.3: 첫 사용자 onboarding (localStorage로 1회만)
   if (!LS.get('onboardingDone')) {
     setTimeout(() => showOnboarding(), 1500);
   }
