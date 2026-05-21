@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>여기선 v5.19 - AA OCR 오인 버그 수정 (노트북→폐건전지) + 데이터 1.8MB→1.3MB 슬림화 (28% ↓)</title>
+<title>여기선 v5.21 - 속도 큰 업그레이드 (이미지 50%↓, detect 빈도 ↓, CPU 부담 ↓)</title>
 <meta name="description" content="대한민국 어디서나 분리수거 안내. 환경부 표준 + 지역별 차이까지.">
 
 <link rel="manifest" href="manifest.json">
@@ -281,7 +281,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.19</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.21</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -1221,15 +1221,39 @@ async function startRealtimeDetection() {
   resize();
   window.addEventListener('resize', resize);
 
-  // v5.14: 디자인 옵션 B — 라이브 detect 제거 + 우아한 촬영 가이드만
-  // (사용자 본질 우려 "라이브 박스 첫인상 신뢰성 망가짐" 진짜 해결책)
-  // - COCO-SSD detect 호출 0 → 모바일 배터리 큰 절약
-  // - 정확도 영향 X (분류는 촬영 후 Gemini가 정확히)
-  // - 첫인상 ⭐⭐⭐ → ⭐⭐⭐⭐⭐
-  detectionState.detections = [];  // 빈 배열로 유지 (호환성)
-  const detectLoop = (timestamp) => {
+  // v5.20-21: 라이브 박스 복원 + 속도 큰 개선
+  //   v5.20: detect 다시 켜고 threshold 0.7로 매우 엄격
+  //   v5.21: detect 빈도 600ms → 1500ms (CPU 부담 ↓, 사용자 체감 동일)
+  //          이미지 크기 800 → 640 (Worker 전송 50% ↓)
+  //          큰 객체 최대 2개만 (혼란 줄임)
+  const detectLoop = async (timestamp) => {
     if (!detectionState.active) return;
+    const now = Date.now();
+    if (now - detectionState.lastDetectTime > 1500 && video.videoWidth > 0 && yoloModel) {
+      detectionState.lastDetectTime = now;
+      try {
+        const dets = await yoloModel.detect(video, 3, 0.7);  // 최대 3개, threshold 0.7
+        const sx = canvas.width / video.videoWidth;
+        const sy = canvas.height / video.videoHeight;
+        detectionState.detections = (dets || [])
+          .filter(d => !SKIP_CLASSES.includes(d.class) && d.score >= 0.7)
+          .slice(0, 2)  // 동시에 최대 2개만 (혼란 방지)
+          .map((d, i) => ({
+            id: 'det_' + i,
+            class: d.class,
+            label: COCO_KO[d.class] || d.class,
+            score: d.score,
+            x: d.bbox[0] * sx,
+            y: d.bbox[1] * sy,
+            w: d.bbox[2] * sx,
+            h: d.bbox[3] * sy,
+          }));
+      } catch (e) {
+        console.warn('[v5.20] detect 에러:', e);
+      }
+    }
     drawCameraGuide(canvas, timestamp || 0);
+    drawBoxes(canvas);  // v5.20: 라이브 박스 다시 그림 (신뢰도 0.7+ 만)
     detectionState.rafId = requestAnimationFrame(detectLoop);
   };
   detectLoop(0);
@@ -1298,25 +1322,15 @@ function drawCameraGuide(canvas, timestamp) {
   ctx.lineTo(w - padX, h - padY - armY);
   ctx.stroke();
 
-  // 중앙 십자선 (작은 +, 펄스)
+  // v5.20: 중앙 "+" 제거 (클릭 가능 오해 방지). 4 모서리 brackets만 유지.
   const cx = w / 2;
   const cy = h / 2;
-  const crossLen = 12;
-  ctx.shadowBlur = 8;
-  ctx.lineWidth = 2;
-  ctx.beginPath();
-  ctx.moveTo(cx - crossLen, cy);
-  ctx.lineTo(cx + crossLen, cy);
-  ctx.moveTo(cx, cy - crossLen);
-  ctx.lineTo(cx, cy + crossLen);
-  ctx.stroke();
-
-  // 하단 안내 텍스트
+  // 하단 안내 텍스트만 유지
   ctx.shadowBlur = 0;
   ctx.fillStyle = `rgba(255, 255, 255, ${0.7 * pulse})`;
   ctx.font = '14px -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText('가이드 안에 사물을 두고 촬영하세요', cx, h - padY * 0.5);
+  ctx.fillText('사물을 가이드 안에 두고 촬영 버튼을 누르세요', cx, h - padY * 0.5);
 }
 
 function drawBoxes(canvas) {
@@ -1456,10 +1470,11 @@ async function capturePhoto() {
   if (!video.srcObject || video.videoWidth === 0) { const ok = await startCamera(); if (!ok) return null; await new Promise(r => setTimeout(r, 500)); }
   const canvas = document.createElement('canvas');
   const ratio = video.videoWidth / video.videoHeight;
-  canvas.width = Math.min(video.videoWidth, 800);
+  // v5.21: 800 → 640, quality 0.85 → 0.78 → Worker 전송 데이터 ~50% ↓, Gemini 응답 빠름
+  canvas.width = Math.min(video.videoWidth, 640);
   canvas.height = canvas.width / ratio;
   canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-  return canvas.toDataURL('image/jpeg', 0.85);
+  return canvas.toDataURL('image/jpeg', 0.78);
 }
 
 async function pickFromGallery() {
@@ -1474,10 +1489,11 @@ async function pickFromGallery() {
         img.onload = () => {
           const canvas = document.createElement('canvas');
           const ratio = img.width / img.height;
-          canvas.width = Math.min(img.width, 800);
+          // v5.21: 800 → 640, quality 0.78 (Worker 전송 50% ↓)
+          canvas.width = Math.min(img.width, 640);
           canvas.height = canvas.width / ratio;
           canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
-          resolve(canvas.toDataURL('image/jpeg', 0.85));
+          resolve(canvas.toDataURL('image/jpeg', 0.78));
         };
         img.src = e.target.result;
       };
