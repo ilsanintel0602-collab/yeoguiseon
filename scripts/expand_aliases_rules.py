@@ -121,21 +121,31 @@ KOREAN_VARIATIONS = {
     "기": ["기기", "기계"],  # ~기 → ~기기
 }
 
-# 띄어쓰기 패턴: 띄어쓰기 있으면 → 합친 형태 추가
+# 띄어쓰기 패턴: 단순 띄어쓰기만 합침. 슬래시/괄호 있으면 스킵 (의미 깨질 위험)
 def gen_spacing_variants(name):
     out = []
+    if "/" in name or "(" in name:  # "코팅 종이컵/종이용기" 같은 복합 이름은 위험
+        return out
     if " " in name:
-        out.append(name.replace(" ", ""))
+        joined = name.replace(" ", "")
+        if 2 <= len(joined) <= 25:
+            out.append(joined)
     return out
 
 
-# 끝 글자 변형: ~기 → ~ (예: "토스터기" → "토스터")
-SUFFIX_TRIM = ["기", "함", "통", "박스"]
+# 끝 글자 변형: 매우 보수적 — 의미 안 깨지는 경우만
+# "~기" 깎기는 명백한 가전류만 (토스터기→토스터). 일반 명사 적용 X
+SAFE_SUFFIX_TRIM_KEYWORDS = ["토스터", "믹서", "프린터", "냉장", "세탁", "건조", "청소"]
 def gen_suffix_trim(name):
     out = []
-    for sfx in SUFFIX_TRIM:
-        if name.endswith(sfx) and len(name) > len(sfx) + 1:
-            out.append(name[:-len(sfx)])
+    n = name.strip()
+    # "~기"가 붙은 가전류만 — 안전 사전 매칭
+    if n.endswith("기") and len(n) >= 4:
+        stem = n[:-1]
+        # 사전 키워드에 매칭되거나 5자 이상의 합성어만
+        if any(kw in stem for kw in SAFE_SUFFIX_TRIM_KEYWORDS):
+            out.append(stem)
+    # "박스/통/함" 깎기는 위험 — 적용 안 함 (의미 깨짐)
     return out
 
 

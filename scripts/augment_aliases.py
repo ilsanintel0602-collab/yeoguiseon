@@ -87,14 +87,24 @@ def call_worker(name, category, existing_aliases, count=12):
         headers={
             "Content-Type": "application/json",
             "Origin": "https://ilsanintel0602-collab.github.io",
+            # Cloudflare Bot Fight Mode 우회 — 일반 브라우저 형태로 식별
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) yeoguiseon-augment-script/1.0",
+            "Accept": "application/json",
         },
     )
     try:
         with urllib.request.urlopen(req, timeout=30) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
+            raw = resp.read().decode("utf-8")
+            data = json.loads(raw)
         if data.get("ok") and isinstance(data.get("aliases"), list):
-            return data["aliases"]
-        print(f"  [Worker err] {name}: {data.get('error', 'unknown')}")
+            aliases = data["aliases"]
+            if not aliases:
+                # 빈 응답 — Worker v1.7.1+면 raw_preview, parseHow 포함
+                preview = data.get("raw_preview", "?")
+                how = data.get("parseHow", "?")
+                print(f"  [빈 응답] {name}: parseHow={how}, preview={preview[:120]}")
+            return aliases
+        print(f"  [Worker err] {name}: error={data.get('error', 'unknown')}, raw={raw[:200]}")
         return []
     except Exception as e:
         print(f"  [Worker err] {name}: {e}")

@@ -1,8 +1,24 @@
 /**
- * 여기선 PWA - Gemini API Proxy Worker (v1.4 — maxOutputTokens 2048 안전 확대)
+ * 여기선 PWA - Gemini API Proxy Worker (v1.7.1 — /augment 유연한 파서)
  * ------------------------------------------------
  * 목적: 클라이언트에 API 키 노출 없이 Gemini 호출
  * 배포: Cloudflare Workers (ES Module, fetch handler)
+ *
+ * v1.7.1 (2026-05-21):
+ *   - Gemini가 {aliases:[...]} 객체로 응답해도 잡아냄 (이전엔 빈 배열로 떨어짐)
+ *   - 코드펜스(```json) 감싸도 정규식으로 배열 추출
+ *   - parseHow + raw_preview 디버그 필드 추가
+ *
+ * v1.7 (2026-05-21):
+ *   - /augment 엔드포인트가 Python 스크립트 등 비-브라우저에서도 호출 가능
+ *   - Origin 검증 우회 (서버간 호출), 대신 IP rate limit 강화 (분당 60회, 일당 2000회)
+ *   - 키는 여전히 env.GEMINI_API_KEY (Cloudflare Secret) 안에만 존재
+ *
+ * v1.6 (2026-05-21):
+ *   - /augment 엔드포인트 신설 (텍스트 alias 데이터 증강용)
+ *
+ * v1.5 (2026-05-21):
+ *   - /feedback 엔드포인트 신설 (사용자 피드백 자동 수집)
  *
  * v1.4 (2026-05-20 모바일 추가 검증 후):
  *   - 1024로도 일부 사물 잘림 잔존 (한글 응답 토큰 더 많음).
@@ -61,19 +77,38 @@ export default {
     const allowList = buildAllowList(env);
     const corsOrigin = allowList.includes(origin) ? origin : "";
 
+    const reqUrl = new URL(request.url);
+    const path = reqUrl.pathname;
+
     // 1) CORS preflight
     if (request.method === "OPTIONS") {
-      return new Response(null, { status: 204, headers: corsHeaders(corsOrigin) });
+      return new Response(null, { status: 204, headers: corsHeaders(corsOrigin || "*") });
     }
 
-    // 2) Origin 검증
+    // v1.7: /augment 는 비-브라우저 서버간 호출 허용 (Python 스크립트용)
+    // 보안: IP rate limit 강화 (분당 60회, 일당 2000회)
+    // 키는 여전히 Cloudflare 안에 안전 (env.GEMINI_API_KEY)
+    if (path === "/augment") {
+      if (request.method !== "POST") {
+        return json({ error: "Method not allowed" }, 405, corsHeaders("*"));
+      }
+      const ip = request.headers.get("CF-Connecting-IP") || "0.0.0.0";
+      const ipHash = await sha256(ip);
+      const augMin = await incr(env, `rl:aug:m:${ipHash}:${Math.floor(Date.now()/60_000)}`, 60);
+      const augDay = await incr(env, `rl:aug:d:${ipHash}:${new Date().toISOString().slice(0,10)}`, 86400);
+      if (augMin > 60) {
+        return json({ error: "augment rate limit (60/min)" }, 429, corsHeaders("*"));
+      }
+      if (augDay > 2000) {
+        return json({ error: "augment daily limit (2000/day)" }, 429, corsHeaders("*"));
+      }
+      return await handleAugment(request, env, "*");
+    }
+
+    // 2) 그 외 엔드포인트는 Origin 검증 (브라우저 호출 전용)
     if (!corsOrigin) {
       return json({ error: "Origin not allowed" }, 403, corsHeaders(""));
     }
-
-    // v1.5: path 분기 — /feedback 엔드포인트 추가 (Phase 8 자동 시스템)
-    const url = new URL(request.url);
-    const path = url.pathname;
 
     // 3) Method / Content-Type 검증
     if (request.method !== "POST") {
@@ -85,10 +120,7 @@ export default {
       return await handleFeedback(request, env, corsOrigin);
     }
 
-    // v1.6: /augment 엔드포인트 (텍스트 데이터 증강 — alias 자동 확장)
-    if (path === "/augment") {
-      return await handleAugment(request, env, corsOrigin);
-    }
+    // (/augment는 위 비-브라우저 분기에서 이미 처리됨)
     if (!(request.headers.get("Content-Type") || "").includes("application/json")) {
       return json({ error: "Content-Type must be application/json" }, 415, corsHeaders(corsOrigin));
     }
@@ -416,11 +448,38 @@ JSON 응답만:`;
     }
     const data = await r.json();
     const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    // v1.7.1: 유연한 파싱 — Gemini는 배열/객체/코드펜스 다양하게 응답
     let aliases = [];
-    try { aliases = JSON.parse(text); } catch { aliases = []; }
+    let parseHow = "none";
+    try {
+      const parsed = JSON.parse(text);
+      if (Array.isArray(parsed)) {
+        aliases = parsed;
+        parseHow = "direct_array";
+      } else if (parsed && typeof parsed === "object") {
+        // 객체 응답 — 자주 쓰이는 키 찾기
+        if (Array.isArray(parsed.aliases)) { aliases = parsed.aliases; parseHow = "obj.aliases"; }
+        else if (Array.isArray(parsed.items)) { aliases = parsed.items; parseHow = "obj.items"; }
+        else if (Array.isArray(parsed.result)) { aliases = parsed.result; parseHow = "obj.result"; }
+        else if (Array.isArray(parsed.data)) { aliases = parsed.data; parseHow = "obj.data"; }
+        else {
+          // 처음 발견되는 배열 값
+          const firstArr = Object.values(parsed).find(v => Array.isArray(v));
+          if (firstArr) { aliases = firstArr; parseHow = "obj.firstArr"; }
+        }
+      }
+    } catch {
+      // JSON 파싱 실패 — 정규식으로 배열 추출
+      const m = text.match(/\[[\s\S]*?\]/);
+      if (m) {
+        try { aliases = JSON.parse(m[0]); parseHow = "regex_array"; } catch {}
+      }
+    }
     if (!Array.isArray(aliases)) aliases = [];
-    log("augment_ok", { item_name, count: aliases.length });
-    return json({ ok: true, item_name, category, aliases }, 200, corsHeaders(corsOrigin));
+    // 각 요소 문자열로 정제
+    aliases = aliases.filter(a => typeof a === "string").map(a => a.trim()).filter(a => a.length > 0);
+    log("augment_ok", { item_name, count: aliases.length, parseHow });
+    return json({ ok: true, item_name, category, aliases, parseHow, raw_preview: text.slice(0, 200) }, 200, corsHeaders(corsOrigin));
   } catch (e) {
     return json({ error: `Worker fetch failed: ${String(e)}` }, 500, corsHeaders(corsOrigin));
   }
