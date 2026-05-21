@@ -1,0 +1,279 @@
+{
+  "$schema": "여기선 v6 - 시군구 공식 URL DB (분리수거 안내·대형폐기물 신고)",
+  "version": "1.0.0",
+  "lastUpdated": "2026-05-21",
+  "phase": "Phase 2 단계 1 (32개 시범)",
+  "sourceNote": "각 시군구 공식 도메인은 행안부 표준 + 위키백과 + 공공기관 확인 기반",
+  "regions": {
+    "11680": {
+      "name": "서울특별시 강남구",
+      "shortName": "강남구",
+      "sido": "11",
+      "officialUrl": "https://www.gangnam.go.kr/",
+      "cleanUrl": "https://clean.gangnam.go.kr/",
+      "bulkWasteUrl": "https://www.gangnam.go.kr/board/list.do?mid=ID03_040301",
+      "phone": "02-3423-5000",
+      "confidence": "high"
+    },
+    "11740": {
+      "name": "서울특별시 강동구",
+      "shortName": "강동구",
+      "sido": "11",
+      "officialUrl": "https://www.gangdong.go.kr/",
+      "bulkWasteUrl": "https://www.gangdong.go.kr/web/contents.do?cid=00148",
+      "phone": "02-3425-5114",
+      "confidence": "high"
+    },
+    "11305": {
+      "name": "서울특별시 강북구",
+      "shortName": "강북구",
+      "sido": "11",
+      "officialUrl": "https://www.gangbuk.go.kr/",
+      "phone": "02-901-6114",
+      "confidence": "high"
+    },
+    "11500": {
+      "name": "서울특별시 강서구",
+      "shortName": "강서구",
+      "sido": "11",
+      "officialUrl": "https://www.gangseo.seoul.kr/",
+      "phone": "02-2600-6114",
+      "confidence": "high"
+    },
+    "11620": {
+      "name": "서울특별시 관악구",
+      "shortName": "관악구",
+      "sido": "11",
+      "officialUrl": "https://www.gwanak.go.kr/",
+      "phone": "02-879-5000",
+      "confidence": "high"
+    },
+    "11215": {
+      "name": "서울특별시 광진구",
+      "shortName": "광진구",
+      "sido": "11",
+      "officialUrl": "https://www.gwangjin.go.kr/",
+      "phone": "02-450-1114",
+      "confidence": "high"
+    },
+    "11530": {
+      "name": "서울특별시 구로구",
+      "shortName": "구로구",
+      "sido": "11",
+      "officialUrl": "https://www.guro.go.kr/",
+      "phone": "02-860-2114",
+      "confidence": "high"
+    },
+    "11545": {
+      "name": "서울특별시 금천구",
+      "shortName": "금천구",
+      "sido": "11",
+      "officialUrl": "https://www.geumcheon.go.kr/",
+      "phone": "02-2627-1114",
+      "confidence": "high"
+    },
+    "11350": {
+      "name": "서울특별시 노원구",
+      "shortName": "노원구",
+      "sido": "11",
+      "officialUrl": "https://www.nowon.kr/",
+      "phone": "02-2116-3114",
+      "confidence": "high"
+    },
+    "11320": {
+      "name": "서울특별시 도봉구",
+      "shortName": "도봉구",
+      "sido": "11",
+      "officialUrl": "https://www.dobong.go.kr/",
+      "phone": "02-2091-2114",
+      "confidence": "high"
+    },
+    "11230": {
+      "name": "서울특별시 동대문구",
+      "shortName": "동대문구",
+      "sido": "11",
+      "officialUrl": "https://www.ddm.go.kr/",
+      "phone": "02-2127-4114",
+      "confidence": "high"
+    },
+    "11590": {
+      "name": "서울특별시 동작구",
+      "shortName": "동작구",
+      "sido": "11",
+      "officialUrl": "https://www.dongjak.go.kr/",
+      "phone": "02-820-9114",
+      "confidence": "high"
+    },
+    "11440": {
+      "name": "서울특별시 마포구",
+      "shortName": "마포구",
+      "sido": "11",
+      "officialUrl": "https://www.mapo.go.kr/",
+      "phone": "02-3153-8114",
+      "confidence": "high"
+    },
+    "11410": {
+      "name": "서울특별시 서대문구",
+      "shortName": "서대문구",
+      "sido": "11",
+      "officialUrl": "https://www.sdm.go.kr/",
+      "phone": "02-330-1114",
+      "confidence": "high"
+    },
+    "11650": {
+      "name": "서울특별시 서초구",
+      "shortName": "서초구",
+      "sido": "11",
+      "officialUrl": "https://www.seocho.go.kr/",
+      "cleanUrl": "https://clean.seocho.go.kr/",
+      "phone": "02-2155-6000",
+      "confidence": "high"
+    },
+    "11200": {
+      "name": "서울특별시 성동구",
+      "shortName": "성동구",
+      "sido": "11",
+      "officialUrl": "https://www.sd.go.kr/",
+      "phone": "02-2286-5000",
+      "confidence": "high"
+    },
+    "11290": {
+      "name": "서울특별시 성북구",
+      "shortName": "성북구",
+      "sido": "11",
+      "officialUrl": "https://www.sb.go.kr/",
+      "phone": "02-2241-2114",
+      "confidence": "high"
+    },
+    "11710": {
+      "name": "서울특별시 송파구",
+      "shortName": "송파구",
+      "sido": "11",
+      "officialUrl": "https://www.songpa.go.kr/",
+      "phone": "02-2147-2000",
+      "confidence": "high"
+    },
+    "11470": {
+      "name": "서울특별시 양천구",
+      "shortName": "양천구",
+      "sido": "11",
+      "officialUrl": "https://www.yangcheon.go.kr/",
+      "phone": "02-2620-3114",
+      "confidence": "high"
+    },
+    "11560": {
+      "name": "서울특별시 영등포구",
+      "shortName": "영등포구",
+      "sido": "11",
+      "officialUrl": "https://www.ydp.go.kr/",
+      "phone": "02-2670-3114",
+      "confidence": "high"
+    },
+    "11170": {
+      "name": "서울특별시 용산구",
+      "shortName": "용산구",
+      "sido": "11",
+      "officialUrl": "https://www.yongsan.go.kr/",
+      "phone": "02-2199-6114",
+      "confidence": "high"
+    },
+    "11380": {
+      "name": "서울특별시 은평구",
+      "shortName": "은평구",
+      "sido": "11",
+      "officialUrl": "https://www.ep.go.kr/",
+      "phone": "02-351-6114",
+      "confidence": "high"
+    },
+    "11110": {
+      "name": "서울특별시 종로구",
+      "shortName": "종로구",
+      "sido": "11",
+      "officialUrl": "https://www.jongno.go.kr/",
+      "phone": "02-2148-1114",
+      "confidence": "high"
+    },
+    "11140": {
+      "name": "서울특별시 중구",
+      "shortName": "중구",
+      "sido": "11",
+      "officialUrl": "https://www.junggu.seoul.kr/",
+      "phone": "02-3396-4114",
+      "confidence": "high"
+    },
+    "11260": {
+      "name": "서울특별시 중랑구",
+      "shortName": "중랑구",
+      "sido": "11",
+      "officialUrl": "https://www.jungnang.go.kr/",
+      "phone": "02-2094-0114",
+      "confidence": "high"
+    },
+    "26000": {
+      "name": "부산광역시 (본청)",
+      "shortName": "부산",
+      "sido": "26",
+      "officialUrl": "https://www.busan.go.kr/",
+      "bulkWasteUrl": "https://www.busan.go.kr/depart/bdcompostBulk",
+      "phone": "120",
+      "confidence": "high"
+    },
+    "27000": {
+      "name": "대구광역시 (본청)",
+      "shortName": "대구",
+      "sido": "27",
+      "officialUrl": "https://www.daegu.go.kr/",
+      "phone": "120",
+      "confidence": "high"
+    },
+    "28000": {
+      "name": "인천광역시 (본청)",
+      "shortName": "인천",
+      "sido": "28",
+      "officialUrl": "https://www.incheon.go.kr/",
+      "phone": "120",
+      "confidence": "high"
+    },
+    "29000": {
+      "name": "광주광역시 (본청)",
+      "shortName": "광주",
+      "sido": "29",
+      "officialUrl": "https://www.gwangju.go.kr/",
+      "phone": "062-120",
+      "confidence": "high"
+    },
+    "30000": {
+      "name": "대전광역시 (본청)",
+      "shortName": "대전",
+      "sido": "30",
+      "officialUrl": "https://www.daejeon.go.kr/",
+      "phone": "042-120",
+      "confidence": "high"
+    },
+    "31000": {
+      "name": "울산광역시 (본청)",
+      "shortName": "울산",
+      "sido": "31",
+      "officialUrl": "https://www.ulsan.go.kr/",
+      "phone": "052-120",
+      "confidence": "high"
+    },
+    "36110": {
+      "name": "세종특별자치시",
+      "shortName": "세종",
+      "sido": "36",
+      "officialUrl": "https://www.sejong.go.kr/",
+      "phone": "044-300-3114",
+      "confidence": "high"
+    }
+  },
+  "coverage": {
+    "totalRegionsInKorea": 226,
+    "coveredInThisFile": 32,
+    "coveragePct": 14.2,
+    "nextSteps": [
+      "단계 2: 경기 31개 + 광역시 산하 자치구 ~70개",
+      "단계 3: 전국 226 시군구 완성 (자동 크롤링)"
+    ]
+  }
+}
