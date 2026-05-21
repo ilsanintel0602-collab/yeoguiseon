@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>여기선 v5.10 - 라이브 박스 정직화 + 압력솥/프라이팬 일관성 + 출처 이름</title>
+<title>여기선 v5.11 - Gemini JSON 복구 + detect 신뢰도 강화</title>
 <meta name="description" content="대한민국 어디서나 분리수거 안내. 환경부 표준 + 지역별 차이까지.">
 
 <link rel="manifest" href="manifest.json">
@@ -270,7 +270,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.10</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.11</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -562,7 +562,8 @@ const SKIP_CLASSES = ['person', 'car', 'bicycle', 'motorcycle', 'airplane', 'bus
 async function detectWithYolo(imageDataUrl) {
   if (!yoloModel) await loadYoloModel();
   const img = await new Promise(res => { const i = new Image(); i.onload = () => res(i); i.src = imageDataUrl; });
-  const detections = await yoloModel.detect(img, 5, 0.3);
+  // v5.11: threshold 0.3 → 0.5 (라이브 박스 신뢰도 강화, 모호한 라벨 차단)
+  const detections = await yoloModel.detect(img, 5, 0.5);
   if (!detections || detections.length === 0) return { success: true, item_id: null, item_label_ko: '인식 안 됨', confidence: 0 };
   detections.sort((a, b) => b.score - a.score);
   for (const det of detections) {
@@ -826,7 +827,43 @@ async function analyzeWithLLM(imageDataUrl, isRetry = false) {
           ? ` (finishReason=${data.finishReason})`
           : '';
       if (data.ok && data.result) {
-        const parsed = typeof data.result === 'string' ? JSON.parse(data.result) : data.result;
+        // v5.11: JSON 파싱 복구 — "Unterminated string" 에러 대응
+        let parsed = null;
+        try {
+          parsed = typeof data.result === 'string' ? JSON.parse(data.result) : data.result;
+        } catch (parseErr) {
+          // 잘린 JSON 복구 시도
+          if (typeof data.result === 'string') {
+            console.warn('[v5.11] JSON 파싱 실패, 복구 시도:', parseErr.message);
+            let recovered = data.result.trim();
+            // 1) 잘린 마지막 string 보강 (Unterminated string)
+            const openQuotes = (recovered.match(/"/g) || []).length;
+            if (openQuotes % 2 === 1) {
+              // 마지막 따옴표 미닫힘 → 닫음
+              recovered += '"';
+            }
+            // 2) 미닫힌 brace/bracket 보강
+            const openBraces = (recovered.match(/\{/g) || []).length;
+            const closeBraces = (recovered.match(/\}/g) || []).length;
+            const openBrackets = (recovered.match(/\[/g) || []).length;
+            const closeBrackets = (recovered.match(/\]/g) || []).length;
+            for (let i = 0; i < openBrackets - closeBrackets; i++) recovered += ']';
+            for (let i = 0; i < openBraces - closeBraces; i++) recovered += '}';
+            try {
+              parsed = JSON.parse(recovered);
+              console.log('[v5.11] JSON 복구 성공');
+            } catch (e2) {
+              // 복구 실패 — 재시도 또는 throw
+              if (!isRetry) {
+                console.warn('[v5.11] JSON 복구도 실패 — 1회 재시도', reasonInfo);
+                return await analyzeWithLLM(imageDataUrl, true);
+              }
+              throw new Error(`JSON 손상 (복구 실패)${reasonInfo}`);
+            }
+          } else {
+            throw parseErr;
+          }
+        }
         // v5.8.1: item_id 누락도 빈 응답으로 간주 (기존: 빈 객체만 검사 → item_id 누락 새는 케이스 잡음)
         const isEmpty = !parsed || (typeof parsed === 'object' && !parsed.item_id);
         if (isEmpty) {
