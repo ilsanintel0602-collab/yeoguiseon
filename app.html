@@ -295,7 +295,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.21</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.22</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -1246,12 +1246,14 @@ async function startRealtimeDetection() {
     if (now - detectionState.lastDetectTime > 1500 && video.videoWidth > 0 && yoloModel) {
       detectionState.lastDetectTime = now;
       try {
-        const dets = await yoloModel.detect(video, 3, 0.7);  // 최대 3개, threshold 0.7
+        // v5.22: threshold 0.5 (박스 자주 보이게) + SKIP_CLASSES 유지 (모호한 cup/bowl/vase 차단)
+        // 박스 표시 = 사용자 안내. 탭 → cropped → Gemini 정확 분류 (이미 구현됨)
+        const dets = await yoloModel.detect(video, 3, 0.5);
         const sx = canvas.width / video.videoWidth;
         const sy = canvas.height / video.videoHeight;
         detectionState.detections = (dets || [])
-          .filter(d => !SKIP_CLASSES.includes(d.class) && d.score >= 0.7)
-          .slice(0, 2)  // 동시에 최대 2개만 (혼란 방지)
+          .filter(d => !SKIP_CLASSES.includes(d.class) && d.score >= 0.5)
+          .slice(0, 2)
           .map((d, i) => ({
             id: 'det_' + i,
             class: d.class,
@@ -1348,11 +1350,14 @@ function drawCameraGuide(canvas, timestamp) {
 }
 
 function drawBoxes(canvas) {
-  // v5.14: 더 이상 호출 안 됨 (drawCameraGuide로 대체). 호환성 위해 함수만 유지.
+  // v5.22: 라이브 박스 + 탭하면 자동 분석 (setupBoxInteraction에 핸들러)
+  //   - 신뢰도 0.75+: 정상 라벨 표시 (정확)
+  //   - 신뢰도 0.5~0.75: "탭하세요" 안내만 (잘못된 라벨 노출 방지)
+  // drawCameraGuide와 별개 — 둘 다 호출됨
   const ctx = canvas.getContext('2d');
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  // AI 자동 검출 박스 (녹색 네온)
+  // 가이드와 중복 그리기 방지: clearRect 안 함 (drawCameraGuide가 이미 함)
   detectionState.detections.forEach(d => {
+    const isConfident = d.score >= 0.75;
     ctx.strokeStyle = '#00ff88';
     ctx.lineWidth = 3;
     ctx.shadowBlur = 12;
@@ -1360,13 +1365,15 @@ function drawBoxes(canvas) {
     ctx.strokeRect(d.x, d.y, d.w, d.h);
     // 라벨
     ctx.shadowBlur = 0;
-    ctx.fillStyle = 'rgba(0,255,136,0.85)';
-    const lbl = `${d.label} ${(d.score*100).toFixed(0)}%`;
+    ctx.fillStyle = 'rgba(0,255,136,0.90)';
+    const lbl = isConfident
+      ? `${d.label} ${(d.score*100).toFixed(0)}%  ▸ 탭`
+      : '👆 탭해서 분석';
     ctx.font = 'bold 14px system-ui';
-    const tw = ctx.measureText(lbl).width + 12;
-    ctx.fillRect(d.x, d.y - 22, tw, 22);
+    const tw = ctx.measureText(lbl).width + 14;
+    ctx.fillRect(d.x, d.y - 24, tw, 24);
     ctx.fillStyle = '#000';
-    ctx.fillText(lbl, d.x + 6, d.y - 6);
+    ctx.fillText(lbl, d.x + 7, d.y - 7);
   });
   // 사용자 드래그 박스 (주황 네온)
   if (detectionState.customBox) {

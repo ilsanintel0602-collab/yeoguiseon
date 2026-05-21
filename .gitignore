@@ -32,3 +32,18 @@ node_modules/
 .git_pat
 git_pat.txt
 *_pat.txt
+
+# API 키 (절대 GitHub에 노출 X — 과거 GCP 3개 유출 사고 방지)
+.api_key.txt
+.gemini_key.txt
+*_api_key.txt
+*_key.txt
+*.key
+gemini_*.txt
+GEMINI_*.txt
+secrets.json
+.secrets/
+
+# Cloudflare wrangler local config (혹시 사용 시)
+.wrangler/
+.dev.vars

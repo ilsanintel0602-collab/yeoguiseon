@@ -84,6 +84,11 @@ export default {
     if (path === "/feedback") {
       return await handleFeedback(request, env, corsOrigin);
     }
+
+    // v1.6: /augment 엔드포인트 (텍스트 데이터 증강 — alias 자동 확장)
+    if (path === "/augment") {
+      return await handleAugment(request, env, corsOrigin);
+    }
     if (!(request.headers.get("Content-Type") || "").includes("application/json")) {
       return json({ error: "Content-Type must be application/json" }, 415, corsHeaders(corsOrigin));
     }
@@ -134,7 +139,7 @@ export default {
 
     // 6) Gemini 호출
     const model = env.GEMINI_MODEL || "gemini-2.0-flash";
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${env.GEMINI_API_KEY}`;
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${env.GEMINI_API_KEY}`;
     const payload = {
       contents: [{
         parts: [
@@ -162,7 +167,7 @@ export default {
     const startedAt = Date.now();
     let upstream;
     try {
-      upstream = await fetchWithTimeout(url, {
+      upstream = await fetchWithTimeout(geminiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -334,4 +339,89 @@ async function handleFeedback(request, env, corsOrigin) {
   memStore.set(`fb:${id}`, record);
   log("feedback_saved_mem", { vote, item_id, region });
   return json({ ok: true, id, note: "stored in memory (no KV)" }, 200, corsHeaders(corsOrigin));
+}
+
+// ============================================================================
+// v1.6: /augment 텍스트 데이터 증강 — alias 자동 확장
+// ============================================================================
+// 사용자 API 키 노출 0 — Cloudflare Worker 환경변수의 GEMINI_API_KEY만 사용.
+// POST /augment
+// Body: { item_name, category, existing_aliases?: [], count?: 12 }
+// Response: { ok: true, aliases: ["변형1", "변형2", ...] }
+//
+async function handleAugment(request, env, corsOrigin) {
+  if (!(request.headers.get("Content-Type") || "").includes("application/json")) {
+    return json({ error: "Content-Type must be application/json" }, 415, corsHeaders(corsOrigin));
+  }
+
+  let body;
+  try { body = await request.json(); }
+  catch { return json({ error: "Invalid JSON body" }, 400, corsHeaders(corsOrigin)); }
+
+  const item_name = String(body.item_name || "").slice(0, 60);
+  const category = String(body.category || "").slice(0, 30);
+  const existing = Array.isArray(body.existing_aliases) ? body.existing_aliases.slice(0, 10) : [];
+  const count = Math.min(20, Math.max(5, Number(body.count) || 12));
+
+  if (!item_name || !category) {
+    return json({ error: "item_name + category required" }, 400, corsHeaders(corsOrigin));
+  }
+
+  const prompt = `한국 분리수거 앱의 데이터 증강 작업입니다.
+
+물건: "${item_name}"
+카테고리: ${category}
+기존 별칭: ${existing.length ? existing.join(", ") : "없음"}
+
+이 물건의 다양한 한국어 표현을 ${count}개 생성해주세요. 다음 종류를 골고루:
+1. 한국어 변형/동의어 (예: 노트북 → 랩탑)
+2. 영어/외래어 (예: 프린터 → printer)
+3. 구어체/줄임말 (예: 냉장고 → 냉장이)
+4. 브랜드명·일반명 (예: 신라면, 삼다수)
+5. 유아어·방언
+
+규칙:
+- 기존 별칭과 중복 안 됨
+- 다른 카테고리와 혼동 안 됨
+- 2자 이하 너무 짧은 단어 피하기
+- JSON 배열만 응답: ["단어1", "단어2", ...]
+
+JSON 응답만:`;
+
+  const model = env.GEMINI_MODEL || "gemini-2.0-flash";
+  const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${env.GEMINI_API_KEY}`;
+  const payload = {
+    contents: [{ parts: [{ text: prompt }] }],
+    generationConfig: {
+      responseMimeType: "application/json",
+      maxOutputTokens: 512,
+      temperature: 0.7,
+    },
+    safetySettings: [
+      { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
+      { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" },
+      { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
+      { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
+    ],
+  };
+
+  try {
+    const r = await fetch(geminiUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    if (!r.ok) {
+      return json({ error: `Gemini API error ${r.status}` }, 502, corsHeaders(corsOrigin));
+    }
+    const data = await r.json();
+    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    let aliases = [];
+    try { aliases = JSON.parse(text); } catch { aliases = []; }
+    if (!Array.isArray(aliases)) aliases = [];
+    log("augment_ok", { item_name, count: aliases.length });
+    return json({ ok: true, item_name, category, aliases }, 200, corsHeaders(corsOrigin));
+  } catch (e) {
+    return json({ error: `Worker fetch failed: ${String(e)}` }, 500, corsHeaders(corsOrigin));
+  }
 }
