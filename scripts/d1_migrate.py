@@ -41,7 +41,7 @@ def main():
     out = [
         "-- 여기선 v7.0 D1 initial migration",
         "-- 정적 JSON → D1 (auto-generated)",
-        "BEGIN TRANSACTION;",
+        "-- 주의: D1은 SQL BEGIN/COMMIT 거부 (JS API만 허용) → 트랜잭션 문 제외",
         "",
     ]
 
@@ -102,12 +102,17 @@ def main():
             f"{sql_str(inherits)}, {sql_json(city_guide)});"
         )
 
-    # 3. region_exceptions
+    # 3. region_exceptions (FK 보장: item_id가 items에 있는 것만)
+    valid_item_ids = set(items.keys())
     exc_count = 0
+    exc_skipped = 0
     for code, ex_info in exceptions.items():
         if not (code.isdigit() and len(code) == 5): continue
         for item_id, rule in (ex_info.get("exceptions") or {}).items():
             if not isinstance(rule, dict): continue
+            if item_id not in valid_item_ids:
+                exc_skipped += 1
+                continue  # FK 위반 방지
             exc_count += 1
             out.append(
                 f"INSERT OR REPLACE INTO region_exceptions (region_code, item_id, category, note, steps, confidence, source_url, source_grade) "
@@ -115,6 +120,8 @@ def main():
                 f"{sql_str(rule.get('note'))}, {sql_json(rule.get('steps', []))}, "
                 f"{sql_str(rule.get('confidence'))}, {sql_str(rule.get('source'))}, {sql_str(rule.get('sourceGrade'))});"
             )
+    if exc_skipped:
+        out.append(f"-- [경고] FK 위반으로 skip된 region_exceptions: {exc_skipped}건 (item_id가 items 테이블에 없음)")
 
     out.append("")
     out.append(f"-- Version record")
@@ -124,7 +131,6 @@ def main():
         f"'D1 initial migration from JSON');"
     )
     out.append("")
-    out.append("COMMIT;")
 
     output_path = os.path.join(ROOT, "data", "migrations")
     os.makedirs(output_path, exist_ok=True)

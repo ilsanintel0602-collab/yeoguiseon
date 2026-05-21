@@ -160,7 +160,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .gallery-btn { padding: 8px 18px; background: rgba(255,255,255,0.15); border-radius: 999px; color: #fff; font-size: 14px; cursor: pointer; border: none; }
 .alt-actions { display: flex; gap: 10px; margin-top: 10px; justify-content: center; flex-wrap: wrap; }
 
-/* v5.27: 첫 사용자 onboarding 모달 */
+/* v5.28: 첫 사용자 onboarding 모달 */
 .onboard-modal { position: fixed; inset: 0; z-index: 90; display: flex; align-items: center; justify-content: center; padding: 24px; }
 .onboard-modal[aria-hidden="true"] { display: none; }
 .onboard-bg { position: absolute; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); }
@@ -325,7 +325,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.27</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.28</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -360,7 +360,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   </div>
 </footer>
 
-<!-- v5.27: 첫 사용자 onboarding 모달 (3 step) -->
+<!-- v5.28: 첫 사용자 onboarding 모달 (3 step) -->
 <div class="onboard-modal" id="onboardModal" aria-hidden="true">
   <div class="onboard-bg"></div>
   <div class="onboard-content">
@@ -450,7 +450,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     </div>
     <button class="btn btn-primary" id="saveSettingsBtn">저장</button>
     <button class="btn btn-secondary" id="clearDataBtn" style="margin-top:12px">모든 데이터 삭제</button>
-    <p style="text-align:center; margin-top:24px; font-size:13px; color:#999;">여기선 v5.27 · 한국어 + English guide · 캐싱 · Claude 앙상블 · 텍스트 검색</p>
+    <p style="text-align:center; margin-top:24px; font-size:13px; color:#999;">여기선 v5.28 · 한국어 + English guide · 캐싱 · Claude 앙상블 · 텍스트 검색</p>
   </div>
 </aside>
 
@@ -470,11 +470,38 @@ let BAG_PRICES = null;   // v5: 행안부 시군구별 종량제봉투 가격
 let RECYCLE_CENTERS = null; // v5: 행안부 전국 재활용센터
 let REGION_URLS = null;  // v5.9: 시군구 공식 URL DB (250개 — 분리수거·대형폐기물)
 
+// v5.28: items만 D1 우선 + 정적 폴백 (점진적 전환)
+//   - 매주 cron이 D1 갱신 → 사용자 자동으로 최신 데이터 받음
+//   - Worker/D1 장애 시 정적 JSON으로 즉시 폴백 (앱 다운 0)
+//   - regions_meta, region_exceptions는 좌표·cityGuide 정보 풍부해 정적 유지
+const WORKER_BASE = 'https://yeoguiseon-proxy.ilsanintel0602.workers.dev';
+const D1_TIMEOUT_MS = 4000;  // 4초 내 응답 없으면 정적 폴백
+
+async function fetchItemsD1WithFallback() {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), D1_TIMEOUT_MS);
+  try {
+    const res = await fetch(`${WORKER_BASE}/data/all`, { signal: controller.signal });
+    clearTimeout(timer);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    if (!data.ok || !data.items) throw new Error('invalid D1 response');
+    console.log('[여기선 v5.28] D1 /data/all 로드 성공:', data.count, '물건');
+    return { items: data.items, _source: 'd1' };
+  } catch (err) {
+    clearTimeout(timer);
+    console.warn('[여기선 v5.28] D1 로드 실패 → 정적 폴백:', err.message);
+    const r = await fetch('./data/national_rules.json');
+    const j = await r.json();
+    return { ...j, _source: 'static' };
+  }
+}
+
 // 데이터 로드
 async function loadAllData() {
   try {
     const [n, r, e, o, b, bp, rc, ru] = await Promise.all([
-      fetch('./data/national_rules.json').then(r => r.json()),
+      fetchItemsD1WithFallback(),
       fetch('./data/regions_meta.json').then(r => r.json()),
       fetch('./data/region_exceptions.json').then(r => r.json()),
       fetch('./data/ocr_keywords.json').then(r => r.json()).catch(err => {
@@ -506,7 +533,8 @@ async function loadAllData() {
     BAG_PRICES = bp;
     RECYCLE_CENTERS = rc;
     REGION_URLS = ru;  // v5.9: 시군구 URL DB
-    console.log('[여기선 v4] 데이터 로드:',
+    console.log('[여기선 v5.28] 데이터 로드 (items source:',
+      NATIONAL._source || '?', '):',
       Object.keys(NATIONAL.items).length, '물건,',
       Object.keys(REGIONS.level2).length, '시군구,',
       OCR_KEYWORDS ? OCR_KEYWORDS.keywords.length + ' OCR 키워드' : 'OCR 없음,',
@@ -541,7 +569,7 @@ function toast(msg, isError) {
   setTimeout(() => t.className = 'toast', 3000);
 }
 
-// ===== v5.27: 첫 사용자 onboarding =====
+// ===== v5.28: 첫 사용자 onboarding =====
 function showOnboarding() {
   const modal = $('onboardModal');
   if (!modal) return;
@@ -583,7 +611,7 @@ function _escGlobal(s) {
   return String(s || '').replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
 }
 
-// v5.27: 카테고리 영어 보조 (외국인 거주자) — 환경부 다국어 PDF 링크와 함께
+// v5.28: 카테고리 영어 보조 (외국인 거주자) — 환경부 다국어 PDF 링크와 함께
 const CAT_EN = {
   plastic: 'Plastic', paper: 'Paper', paper_pack: 'Paper Pack',
   vinyl: 'Vinyl/Film', can: 'Can/Metal', glass: 'Glass', styrofoam: 'Styrofoam',
@@ -2043,7 +2071,7 @@ function renderResult(aiData) {
     }
   }
 
-  // v5.27: 영어 보조 안내 (외국인 거주자) — 카테고리 영어명 + 환경부 다국어 PDF
+  // v5.28: 영어 보조 안내 (외국인 거주자) — 카테고리 영어명 + 환경부 다국어 PDF
   if (rule.category && CAT_EN[rule.category]) {
     html += `<details style="margin-top:12px;padding:8px 14px;background:#f8fafc;border-left:3px solid #94a3b8;border-radius:6px;font-size:12px;color:#475569;">`;
     html += `<summary style="cursor:pointer;font-weight:600;">🌐 English / 외국인 거주자 안내</summary>`;
@@ -2684,7 +2712,7 @@ async function init() {
   $('sheetHandle').onclick = closeSheet;
   $('gpsBtn').onclick = detectLocation;
   $('regionLevel1').onchange = (e) => populateLevel2Select(e.target.value);
-  // v5.27: 첫 사용자 onboarding (localStorage로 1회만)
+  // v5.28: 첫 사용자 onboarding (localStorage로 1회만)
   if (!LS.get('onboardingDone')) {
     setTimeout(() => showOnboarding(), 1500);
   }

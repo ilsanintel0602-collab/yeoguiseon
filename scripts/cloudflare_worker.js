@@ -1,8 +1,15 @@
 /**
- * 여기선 PWA - Gemini API Proxy Worker (v1.9 — D1 직접 읽기 + 캐싱 + 앙상블)
+ * 여기선 PWA - Gemini API Proxy Worker (v1.9.2 — /data/all 추가 + GET 라우팅)
  * ------------------------------------------------
  * 목적: 클라이언트에 API 키 노출 없이 Gemini 호출 + D1 DB 직접 서비스
  * 배포: Cloudflare Workers (ES Module, fetch handler)
+ *
+ * v1.9.2 (2026-05-22):
+ *   - /data/all 추가: 정적 national_rules.json과 동일 구조로 응답 (점진적 D1 전환)
+ *   - 클라이언트는 /data/all 우선 → 실패 시 정적 JSON 폴백
+ *
+ * v1.9.1 (2026-05-22):
+ *   - 핫픽스: /data/* GET 라우팅을 POST 검사보다 먼저 처리 (GET 차단 버그 해결)
  *
  * v1.9 (2026-05-21):
  *   - /data/* 엔드포인트: D1 직접 읽기 (정적 JSON 폐기)
@@ -124,7 +131,15 @@ export default {
       return json({ error: "Origin not allowed" }, 403, corsHeaders(""));
     }
 
-    // 3) Method / Content-Type 검증
+    // v1.9.1: /data/* 는 GET 전용 (D1 읽기) — POST 검사보다 먼저!
+    if (path.startsWith("/data/")) {
+      if (request.method !== "GET") {
+        return json({ error: "GET only for /data/*" }, 405, corsHeaders(corsOrigin));
+      }
+      return await handleData(request, env, corsOrigin, path);
+    }
+
+    // 3) Method / Content-Type 검증 (이후 분기는 POST 전용)
     if (request.method !== "POST") {
       return json({ error: "Method not allowed" }, 405, corsHeaders(corsOrigin));
     }
@@ -132,11 +147,6 @@ export default {
     // v1.5: /feedback 엔드포인트 (사용자 피드백 자동 수집)
     if (path === "/feedback") {
       return await handleFeedback(request, env, corsOrigin);
-    }
-
-    // v1.9: /data 엔드포인트 (D1 직접 읽기 — 정적 JSON 폐기)
-    if (path.startsWith("/data/")) {
-      return await handleData(request, env, corsOrigin, path);
     }
 
     // (/augment는 위 비-브라우저 분기에서 이미 처리됨)
@@ -480,6 +490,37 @@ async function handleData(request, env, corsOrigin, path) {
   const resource = parts[1];
 
   try {
+    // v1.9.2: /data/all → 정적 national_rules.json과 동일 구조 (items: {id: {..., aliases:[]}})
+    //   클라이언트(app.html)는 이걸 받으면 정적 JSON 대체 가능. cron 갱신 데이터 자동 반영.
+    if (resource === "all") {
+      const itemsRes = await env.DB.prepare("SELECT * FROM items").all();
+      const aliasesRes = await env.DB.prepare("SELECT item_id, alias FROM aliases").all();
+      const itemsMap = {};
+      for (const it of (itemsRes.results || [])) {
+        // JSON 필드 파싱 (steps, official_classification은 D1에 문자열로 저장됨)
+        try { if (typeof it.steps === "string") it.steps = JSON.parse(it.steps); } catch {}
+        try { if (typeof it.official_classification === "string") it.official_classification = JSON.parse(it.official_classification); } catch {}
+        it.aliases = [];
+        // 정적 JSON 호환: sourceUrl/sourceName 카멜케이스 alias 보강
+        if (it.source_url && !it.sourceUrl) it.sourceUrl = it.source_url;
+        if (it.source_name && !it.sourceName) it.sourceName = it.source_name;
+        if (it.source_grade && !it.sourceGrade) it.sourceGrade = it.source_grade;
+        if (it.last_verified && !it.lastVerified) it.lastVerified = it.last_verified;
+        if (it.region_variation !== undefined && it.regionVariation === undefined) it.regionVariation = !!it.region_variation;
+        itemsMap[it.id] = it;
+      }
+      for (const a of (aliasesRes.results || [])) {
+        if (itemsMap[a.item_id]) itemsMap[a.item_id].aliases.push(a.alias);
+      }
+      return json({
+        ok: true,
+        source: "d1",
+        version: "v7.0",
+        items: itemsMap,
+        count: Object.keys(itemsMap).length,
+      }, 200, corsHeaders(corsOrigin || "*", 3600));
+    }
+
     // /data/items, /data/items/:id
     if (resource === "items") {
       if (parts[2]) {

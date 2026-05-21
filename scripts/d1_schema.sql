@@ -1,5 +1,7 @@
 -- Cloudflare D1 schema for 여기선 v7.0
 -- 정적 JSON → 진짜 DB 마이그레이션
+-- v7.0.1: D1 호환 — FOREIGN KEY 제거 (D1은 self-ref/forward-ref FK 거부)
+-- 데이터 정합성은 quick_check.py로 push 전 검증
 
 -- 1. 분리수거 룰 (765 items)
 CREATE TABLE IF NOT EXISTS items (
@@ -26,11 +28,10 @@ CREATE INDEX IF NOT EXISTS idx_items_category ON items(category);
 -- 2. Alias (검색·매칭용)
 CREATE TABLE IF NOT EXISTS aliases (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  item_id TEXT NOT NULL,
+  item_id TEXT NOT NULL,                -- 앱 레벨에서 items.id 참조 (FK 제거: D1 import 호환)
   alias TEXT NOT NULL,
   alias_lower TEXT NOT NULL,            -- 검색 최적화
-  source TEXT DEFAULT 'manual',         -- manual / gemini / rule / user
-  FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE CASCADE
+  source TEXT DEFAULT 'manual'          -- manual / gemini / rule / user
 );
 
 CREATE INDEX IF NOT EXISTS idx_aliases_lower ON aliases(alias_lower);
@@ -47,30 +48,29 @@ CREATE TABLE IF NOT EXISTS regions (
   lng_min REAL, lng_max REAL,
   phone TEXT,
   official_url TEXT,
-  inherits_from TEXT,                   -- 부모 코드 (덕양구 → 일산동구)
-  city_guide TEXT,                      -- JSON (전체 cityGuide 객체)
-  FOREIGN KEY (inherits_from) REFERENCES regions(code)
+  inherits_from TEXT,                   -- 부모 코드 (덕양구 → 일산동구). FK 없음 (D1 forward-ref 거부)
+  city_guide TEXT                       -- JSON (전체 cityGuide 객체)
 );
 
 CREATE INDEX IF NOT EXISTS idx_regions_parent ON regions(parent_code);
+CREATE INDEX IF NOT EXISTS idx_regions_inherits ON regions(inherits_from);
 
 -- 4. 지역 예외 룰 (region_exceptions)
 CREATE TABLE IF NOT EXISTS region_exceptions (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  region_code TEXT NOT NULL,
-  item_id TEXT NOT NULL,
+  region_code TEXT NOT NULL,            -- 앱 레벨에서 regions.code 참조
+  item_id TEXT NOT NULL,                -- 앱 레벨에서 items.id 참조
   category TEXT,
   note TEXT,
   steps TEXT,                           -- JSON array
   confidence TEXT,
   source_url TEXT,
   source_grade TEXT,
-  FOREIGN KEY (region_code) REFERENCES regions(code),
-  FOREIGN KEY (item_id) REFERENCES items(id),
   UNIQUE(region_code, item_id)
 );
 
 CREATE INDEX IF NOT EXISTS idx_region_exc_region ON region_exceptions(region_code);
+CREATE INDEX IF NOT EXISTS idx_region_exc_item ON region_exceptions(item_id);
 
 -- 5. 종량제봉투 가격 (bag_prices)
 CREATE TABLE IF NOT EXISTS bag_prices (
