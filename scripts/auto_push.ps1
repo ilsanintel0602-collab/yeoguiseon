@@ -56,8 +56,8 @@ if ($h) { foreach ($f in $h) { $Tracked = $Tracked + $f.Name } }
 $d = Get-ChildItem -Path "$REPO_ROOT\data" -Filter "*.json" -File -ErrorAction SilentlyContinue
 if ($d) { foreach ($f in $d) { if ($f.Name -notlike "*.backup_*") { $Tracked = $Tracked + ("data/" + $f.Name) } } }
 
-# scripts (확장자 여러개)
-foreach ($ext in @("*.py", "*.bat", "*.js", "*.ps1", "*.md", "*.ipynb")) {
+# scripts (확장자 여러개 — v1.9 D1 인프라용 sql/toml/template 포함)
+foreach ($ext in @("*.py", "*.bat", "*.js", "*.ps1", "*.md", "*.ipynb", "*.sql", "*.toml", "*.template")) {
     $s = Get-ChildItem -Path "$REPO_ROOT\scripts" -Filter $ext -File -ErrorAction SilentlyContinue
     if ($s) { foreach ($f in $s) { $Tracked = $Tracked + ("scripts/" + $f.Name) } }
 }
@@ -69,6 +69,16 @@ if ($ic) { foreach ($f in $ic) { $Tracked = $Tracked + ("icons/" + $f.Name) } }
 # docs/*.md
 $dc = Get-ChildItem -Path "$REPO_ROOT\docs" -Filter "*.md" -File -ErrorAction SilentlyContinue
 if ($dc) { foreach ($f in $dc) { $Tracked = $Tracked + ("docs/" + $f.Name) } }
+
+# .github/workflows/*.yml — PAT에 'workflow' scope 있을 때만 push (없으면 GitHub가 404)
+# 권한 추가: github.com/settings/tokens → 토큰 편집 → workflow 체크
+# 일단 자동 push에서 제외. 필요 시 GitHub 웹 UI(Add file → Create new file)로 수동 업로드.
+# $gh = Get-ChildItem -Path "$REPO_ROOT\.github\workflows" -Filter "*.yml" -File -ErrorAction SilentlyContinue
+# if ($gh) { foreach ($f in $gh) { $Tracked = $Tracked + (".github/workflows/" + $f.Name) } }
+
+# data/migrations/*.sql (D1 initial migration)
+$mg = Get-ChildItem -Path "$REPO_ROOT\data\migrations" -Filter "*.sql" -File -ErrorAction SilentlyContinue
+if ($mg) { foreach ($f in $mg) { $Tracked = $Tracked + ("data/migrations/" + $f.Name) } }
 
 # skills/**/SKILL.md
 $sk = Get-ChildItem -Path "$REPO_ROOT\skills" -Filter "SKILL.md" -File -Recurse -ErrorAction SilentlyContinue

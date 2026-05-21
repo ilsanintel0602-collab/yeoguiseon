@@ -160,6 +160,19 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .gallery-btn { padding: 8px 18px; background: rgba(255,255,255,0.15); border-radius: 999px; color: #fff; font-size: 14px; cursor: pointer; border: none; }
 .alt-actions { display: flex; gap: 10px; margin-top: 10px; justify-content: center; flex-wrap: wrap; }
 
+/* v5.27: 첫 사용자 onboarding 모달 */
+.onboard-modal { position: fixed; inset: 0; z-index: 90; display: flex; align-items: center; justify-content: center; padding: 24px; }
+.onboard-modal[aria-hidden="true"] { display: none; }
+.onboard-bg { position: absolute; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); }
+.onboard-content { position: relative; background: var(--card); color: var(--text); border-radius: 20px; padding: 32px 24px 24px; width: 100%; max-width: 380px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+.onboard-skip { position: absolute; top: 12px; right: 12px; background: transparent; border: none; font-size: 20px; color: var(--text-secondary); cursor: pointer; padding: 8px; }
+.onboard-slide { min-height: 200px; padding: 16px 0; }
+.onboard-dots { display: flex; gap: 8px; justify-content: center; margin: 16px 0; }
+.onboard-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--divider); transition: all 0.2s; }
+.onboard-dot.active { background: var(--primary); width: 24px; border-radius: 4px; }
+.onboard-next { width: 100%; padding: 14px; background: var(--primary); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 8px; }
+.onboard-next:active { transform: scale(0.98); }
+
 /* v5.25: 텍스트 검색 모달 */
 .search-modal { position: fixed; inset: 0; z-index: 80; display: flex; align-items: center; justify-content: center; padding: 16px; }
 .search-modal[aria-hidden="true"] { display: none; }
@@ -347,6 +360,27 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   </div>
 </footer>
 
+<!-- v5.27: 첫 사용자 onboarding 모달 (3 step) -->
+<div class="onboard-modal" id="onboardModal" aria-hidden="true">
+  <div class="onboard-bg"></div>
+  <div class="onboard-content">
+    <button class="onboard-skip" id="onboardSkip" aria-label="건너뛰기">✕</button>
+    <div class="onboard-slide" id="onboardSlide">
+      <div class="onboard-step-1">
+        <div style="font-size:48px;text-align:center;margin-bottom:12px;">📷🔍</div>
+        <h2 style="text-align:center;margin:0 0 8px;font-size:20px;">사진 찍거나 검색하세요</h2>
+        <p style="text-align:center;opacity:0.85;font-size:14px;line-height:1.6;">분리수거 헷갈리는 물건을<br>📷 사진 찍거나 🔍 이름으로 검색.<br>AI가 즉시 분류해드려요.</p>
+      </div>
+    </div>
+    <div class="onboard-dots">
+      <span class="onboard-dot active" data-step="0"></span>
+      <span class="onboard-dot" data-step="1"></span>
+      <span class="onboard-dot" data-step="2"></span>
+    </div>
+    <button class="onboard-next" id="onboardNext">다음 →</button>
+  </div>
+</div>
+
 <!-- v5.25: 텍스트 검색 모달 -->
 <div class="search-modal" id="searchModal" aria-hidden="true">
   <div class="search-modal-bg" id="searchBgClose"></div>
@@ -505,6 +539,42 @@ function toast(msg, isError) {
   t.textContent = msg;
   t.className = 'toast show' + (isError ? ' error' : '');
   setTimeout(() => t.className = 'toast', 3000);
+}
+
+// ===== v5.27: 첫 사용자 onboarding =====
+function showOnboarding() {
+  const modal = $('onboardModal');
+  if (!modal) return;
+  modal.setAttribute('aria-hidden', 'false');
+  let step = 0;
+  const slides = [
+    { icon: '📷🔍', title: '사진 찍거나 검색하세요', desc: '분리수거 헷갈리는 물건을<br>📷 사진 찍거나 🔍 이름으로 검색.<br>AI가 즉시 분류해드려요.' },
+    { icon: '📍', title: '우리 동네 정확한 안내', desc: '전국 200+개 시군구<br>각 지역 룰 + 폐가전 수거 연락처까지<br>일산동구·강남구·전국 광역시 등.' },
+    { icon: '👍🌐', title: '피드백 + English guide', desc: '👍/👎로 알려주세요.<br>약점 자동 보강돼요.<br>🌐 English: 환경부 12개 언어 PDF.' }
+  ];
+  const slideEl = $('onboardSlide');
+  const dots = document.querySelectorAll('.onboard-dot');
+  const nextBtn = $('onboardNext');
+  const renderSlide = () => {
+    const s = slides[step];
+    slideEl.innerHTML = `<div style="text-align:center;"><div style="font-size:56px;line-height:1;margin-bottom:16px;">${s.icon}</div><h2 style="margin:0 0 12px;font-size:20px;">${s.title}</h2><p style="opacity:0.85;font-size:14px;line-height:1.6;">${s.desc}</p></div>`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === step));
+    nextBtn.textContent = step < slides.length - 1 ? '다음 →' : '시작하기 ✨';
+  };
+  renderSlide();
+  const closeOnb = () => {
+    modal.setAttribute('aria-hidden', 'true');
+    LS.set('onboardingDone', true);
+  };
+  nextBtn.onclick = () => {
+    if (step < slides.length - 1) {
+      step++;
+      renderSlide();
+    } else {
+      closeOnb();
+    }
+  };
+  $('onboardSkip').onclick = closeOnb;
 }
 
 // ===== v5.25: 텍스트 검색 (사진 없이 사용) =====
@@ -2614,6 +2684,11 @@ async function init() {
   $('sheetHandle').onclick = closeSheet;
   $('gpsBtn').onclick = detectLocation;
   $('regionLevel1').onchange = (e) => populateLevel2Select(e.target.value);
+  // v5.27: 첫 사용자 onboarding (localStorage로 1회만)
+  if (!LS.get('onboardingDone')) {
+    setTimeout(() => showOnboarding(), 1500);
+  }
+
   // v5.25: 텍스트 검색
   $('searchBtn').onclick = openSearch;
   $('searchClose').onclick = closeSearch;

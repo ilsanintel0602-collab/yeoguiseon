@@ -1,0 +1,22 @@
+# Cloudflare Worker 설정 (wrangler.toml)
+# 사용: 이 파일을 wrangler.toml로 복사 후 wrangler 배포 시 자동 인식
+
+name = "yeoguiseon-proxy"
+main = "cloudflare_worker.js"
+compatibility_date = "2024-09-01"
+
+# D1 데이터베이스 binding (v1.9 — 정적 JSON 폐기)
+[[d1_databases]]
+binding = "DB"                          # env.DB로 접근
+database_name = "yeoguiseon-db"
+database_id = "YOUR_DATABASE_ID_HERE"   # wrangler d1 create 후 받는 UUID
+
+# KV 네임스페이스 (기존 rate limit + 캐싱)
+[[kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "YOUR_KV_NAMESPACE_ID_HERE"
+
+# 환경 변수 (Cloudflare 대시보드 Secrets에 설정 권장)
+# - GEMINI_API_KEY (이미 등록)
+# - ANTHROPIC_API_KEY (선택, Claude 폴백)
+# - DATA_GO_KR_API_KEY (GitHub Actions cron용)

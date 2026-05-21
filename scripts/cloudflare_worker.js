@@ -1,8 +1,14 @@
 /**
- * 여기선 PWA - Gemini API Proxy Worker (v1.8 — 캐싱 + Claude 앙상블)
+ * 여기선 PWA - Gemini API Proxy Worker (v1.9 — D1 직접 읽기 + 캐싱 + 앙상블)
  * ------------------------------------------------
- * 목적: 클라이언트에 API 키 노출 없이 Gemini 호출
+ * 목적: 클라이언트에 API 키 노출 없이 Gemini 호출 + D1 DB 직접 서비스
  * 배포: Cloudflare Workers (ES Module, fetch handler)
+ *
+ * v1.9 (2026-05-21):
+ *   - /data/* 엔드포인트: D1 직접 읽기 (정적 JSON 폐기)
+ *   - /data/items, /data/search, /data/regions, /data/region/:code/exceptions
+ *   - 캐시 헤더 1h (items·regions), 5min (search)
+ *   - env.DB binding 필요 (wrangler.toml d1_databases 설정)
  *
  * v1.8 (2026-05-21):
  *   - 결과 캐싱 (KV): 같은 이미지 = 즉시 응답 (Gemini 호출 0, 비용 0)
@@ -126,6 +132,11 @@ export default {
     // v1.5: /feedback 엔드포인트 (사용자 피드백 자동 수집)
     if (path === "/feedback") {
       return await handleFeedback(request, env, corsOrigin);
+    }
+
+    // v1.9: /data 엔드포인트 (D1 직접 읽기 — 정적 JSON 폐기)
+    if (path.startsWith("/data/")) {
+      return await handleData(request, env, corsOrigin, path);
     }
 
     // (/augment는 위 비-브라우저 분기에서 이미 처리됨)
@@ -310,14 +321,14 @@ function buildAllowList(env) {
   return [...new Set([...DEFAULT_ORIGINS, ...extra])];
 }
 
-function corsHeaders(origin) {
+function corsHeaders(origin, cacheSec) {
   return {
     "Access-Control-Allow-Origin": origin || "null",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Max-Age": "86400",
     "Vary": "Origin",
-    "Cache-Control": "no-store",
+    "Cache-Control": cacheSec ? `public, max-age=${cacheSec}` : "no-store",
     "X-Content-Type-Options": "nosniff",
     "Referrer-Policy": "no-referrer",
   };
@@ -445,6 +456,88 @@ async function handleFeedback(request, env, corsOrigin) {
 // Body: { item_name, category, existing_aliases?: [], count?: 12 }
 // Response: { ok: true, aliases: ["변형1", "변형2", ...] }
 //
+// ============================================================================
+// v1.9: /data/* 엔드포인트 — D1 직접 읽기 (정적 JSON 폐기)
+// ============================================================================
+// 사용 가능 경로:
+//   GET /data/items                       → 모든 items (캐시 1h)
+//   GET /data/items/:id                   → 특정 item
+//   GET /data/search?q=노트북&limit=10    → alias 매칭 검색
+//   GET /data/regions                     → 모든 시군구
+//   GET /data/regions/:code               → 특정 시군구 (cityGuide 포함)
+//   GET /data/region/:code/exceptions     → 지역 예외 룰
+//
+async function handleData(request, env, corsOrigin, path) {
+  if (request.method !== "GET") {
+    return json({ error: "GET only" }, 405, corsHeaders(corsOrigin || "*"));
+  }
+  if (!env.DB) {
+    return json({ error: "D1 not configured (env.DB binding missing)" }, 503, corsHeaders(corsOrigin || "*"));
+  }
+
+  const url = new URL(request.url);
+  const parts = path.split("/").filter(Boolean);  // ['data', 'items', ...]
+  const resource = parts[1];
+
+  try {
+    // /data/items, /data/items/:id
+    if (resource === "items") {
+      if (parts[2]) {
+        const res = await env.DB.prepare("SELECT * FROM items WHERE id = ?").bind(parts[2]).first();
+        if (!res) return json({ error: "item not found" }, 404, corsHeaders(corsOrigin || "*"));
+        const aliases = await env.DB.prepare("SELECT alias FROM aliases WHERE item_id = ?").bind(parts[2]).all();
+        res.aliases = (aliases.results || []).map(r => r.alias);
+        return json({ ok: true, item: res }, 200, corsHeaders(corsOrigin || "*", 3600));
+      }
+      const res = await env.DB.prepare("SELECT * FROM items LIMIT 1000").all();
+      return json({ ok: true, items: res.results || [] }, 200, corsHeaders(corsOrigin || "*", 3600));
+    }
+
+    // /data/search?q=...
+    if (resource === "search") {
+      const q = (url.searchParams.get("q") || "").trim().toLowerCase();
+      const limit = Math.min(50, Number(url.searchParams.get("limit") || 10));
+      if (!q || q.length < 1) return json({ ok: true, results: [] }, 200, corsHeaders(corsOrigin || "*"));
+      const res = await env.DB.prepare(
+        `SELECT a.alias, a.item_id, i.name, i.category
+         FROM aliases a JOIN items i ON a.item_id = i.id
+         WHERE a.alias_lower LIKE ?
+         ORDER BY length(a.alias) ASC LIMIT ?`
+      ).bind(`%${q}%`, limit).all();
+      return json({ ok: true, results: res.results || [] }, 200, corsHeaders(corsOrigin || "*", 300));
+    }
+
+    // /data/regions, /data/regions/:code
+    if (resource === "regions") {
+      if (parts[2]) {
+        const res = await env.DB.prepare("SELECT * FROM regions WHERE code = ?").bind(parts[2]).first();
+        if (!res) return json({ error: "region not found" }, 404, corsHeaders(corsOrigin || "*"));
+        // _inherits 체인 따라가서 cityGuide 보강
+        let current = res;
+        while (!current.city_guide && current.inherits_from) {
+          current = await env.DB.prepare("SELECT * FROM regions WHERE code = ?").bind(current.inherits_from).first();
+          if (!current) break;
+        }
+        if (current && current.city_guide) res.city_guide = current.city_guide;
+        return json({ ok: true, region: res }, 200, corsHeaders(corsOrigin || "*", 3600));
+      }
+      const res = await env.DB.prepare("SELECT code, name, short_name, parent_code, type FROM regions").all();
+      return json({ ok: true, regions: res.results || [] }, 200, corsHeaders(corsOrigin || "*", 3600));
+    }
+
+    // /data/region/:code/exceptions
+    if (resource === "region" && parts[3] === "exceptions") {
+      const res = await env.DB.prepare("SELECT * FROM region_exceptions WHERE region_code = ?").bind(parts[2]).all();
+      return json({ ok: true, exceptions: res.results || [] }, 200, corsHeaders(corsOrigin || "*", 3600));
+    }
+
+    return json({ error: "unknown /data/* path" }, 404, corsHeaders(corsOrigin || "*"));
+  } catch (e) {
+    log("data_err", { path, error: String(e).slice(0, 80) });
+    return json({ error: `DB query failed: ${String(e).slice(0, 80)}` }, 500, corsHeaders(corsOrigin || "*"));
+  }
+}
+
 async function handleAugment(request, env, corsOrigin) {
   if (!(request.headers.get("Content-Type") || "").includes("application/json")) {
     return json({ error: "Content-Type must be application/json" }, 415, corsHeaders(corsOrigin));
