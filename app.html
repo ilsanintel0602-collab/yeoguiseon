@@ -295,7 +295,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.22</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.23</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -380,7 +380,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     </div>
     <button class="btn btn-primary" id="saveSettingsBtn">저장</button>
     <button class="btn btn-secondary" id="clearDataBtn" style="margin-top:12px">모든 데이터 삭제</button>
-    <p style="text-align:center; margin-top:24px; font-size:13px; color:#999;">여기선 v5.5 · 전국 226개 시군구 + Gemini AI + 행안부 데이터</p>
+    <p style="text-align:center; margin-top:24px; font-size:13px; color:#999;">여기선 v5.23 · 전국 226개 시군구 + Gemini AI + 행안부 데이터</p>
   </div>
 </aside>
 
@@ -449,8 +449,10 @@ async function loadAllData() {
 }
 
 // ===== 상태 =====
+// v5.23: apiKey 기본값을 'WORKER'로 설정 — 본인 키 없으면 자동으로 Cloudflare Worker 사용
+// (COCO-SSD는 분리수거 카테고리에 맞지 않아 폴백 안 함)
 const state = {
-  apiKey: null, provider: 'google',
+  apiKey: 'WORKER', provider: 'google',
   regionLevel1: null, regionLevel2: null,
   stream: null, lastImageDataUrl: null
 };
@@ -1042,20 +1044,23 @@ async function analyzeHybrid(imageDataUrl, onOcrProgress) {
   // v5.6: 진단 toast — Worker 사용 표시
   const keyDisplay = state.apiKey === 'WORKER' ? 'Worker(보안)' : (state.apiKey ? '...' + state.apiKey.slice(-6) : '없음');
   toast(`🔍 분석 시작 (${keyDisplay}, ${state.provider})`, false);
-  // v5: API 키 있으면 Gemini 우선 (0.01초 캐시 + 1~2초 신규)
-  if (state.apiKey && state.provider === 'google') {
+  // v5.23: 분리수거는 Gemini가 메인. provider만 맞으면 무조건 호출
+  // (state.apiKey='WORKER' 기본값이라 본인 키 없어도 Worker 경유로 호출됨)
+  if (state.provider === 'google') {
     try {
       const r = await analyzeGeminiPrimary(imageDataUrl);
-      console.log('[v5] Gemini 메인 성공:', r);
-      toast(`✨ Gemini 분석 성공: ${r.item_label_ko || r.item_id}`, false);
+      console.log('[v5.23] Gemini 분석 성공:', r);
+      toast(`✨ ${r.item_label_ko || r.item_id}`, false);
       return r;
     } catch (e) {
-      console.warn('[v5] Gemini 실패, 폴백 사용:', e);
-      toast(`⚠️ Gemini 실패: ${e.message} → COCO-SSD 폴백`, true);
-      // 폴백: 아래 기존 로직
+      console.warn('[v5.23] Gemini 실패:', e);
+      toast(`⚠️ AI 분석 실패: ${e.message}. 잠시 후 재시도해주세요.`, true);
+      // 분석 실패 — COCO-SSD는 분리수거 카테고리에 맞지 않아 폴백 안 함
+      throw e;
     }
   } else {
-    toast('⚠️ API 키 없음 → COCO-SSD만 사용', true);
+    // Anthropic Claude 모드 (드물게)
+    toast('⚠️ Claude 모드 — Gemini 추천', true);
   }
   // YOLO + OCR 병렬 실행 (시간 절약)
   const yoloPromise = detectWithYolo(imageDataUrl).catch(err => {
@@ -2111,7 +2116,9 @@ function openSettings() {
     populateLevel2Select(state.regionLevel1);
     if (state.regionLevel2) $('regionLevel2').value = state.regionLevel2;
   }
-  if (state.apiKey) $('apiKeyInput').value = state.apiKey;
+  // v5.23: 'WORKER'는 내부 플래그라 빈 칸으로 표시 (사용자에게 키처럼 안 보이게)
+  if (state.apiKey && state.apiKey !== 'WORKER') $('apiKeyInput').value = state.apiKey;
+  else $('apiKeyInput').value = '';
   document.querySelectorAll('input[name="provider"]').forEach(r => r.checked = r.value === state.provider);
   const theme = LS.get('theme') || 'auto';
   document.querySelectorAll('input[name="theme"]').forEach(r => r.checked = r.value === theme);
@@ -2136,7 +2143,7 @@ function saveSettings() {
     updateLocationChip();
   }
   if (apiKey) { state.apiKey = apiKey; state.provider = provider; LS.set('apiKey', apiKey); LS.set('provider', provider); }
-  else { state.apiKey = null; LS.remove('apiKey'); }
+  else { state.apiKey = 'WORKER'; state.provider = 'google'; LS.remove('apiKey'); }  // v5.23: 본인 키 비우면 Worker 모드
   toast('저장됐어요');
   closeSettings();
 }
@@ -2165,7 +2172,9 @@ function clearAllData() {
     }
     keys.forEach(k => localStorage.removeItem(k));
   } catch (e) {}
-  state.apiKey = null; state.regionLevel1 = null; state.regionLevel2 = null;
+  // v5.23: 전체 삭제 후에도 Worker 모드 유지 (분석 기본 동작)
+  state.apiKey = 'WORKER'; state.provider = 'google';
+  state.regionLevel1 = null; state.regionLevel2 = null;
   updateLocationChip();
   toast('전체 삭제됐어요');
 }
