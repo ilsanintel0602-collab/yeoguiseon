@@ -312,7 +312,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.25</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.27</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -416,7 +416,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     </div>
     <button class="btn btn-primary" id="saveSettingsBtn">저장</button>
     <button class="btn btn-secondary" id="clearDataBtn" style="margin-top:12px">모든 데이터 삭제</button>
-    <p style="text-align:center; margin-top:24px; font-size:13px; color:#999;">여기선 v5.25 · 텍스트 검색 + 전국 226개 시군구 + Gemini AI</p>
+    <p style="text-align:center; margin-top:24px; font-size:13px; color:#999;">여기선 v5.27 · 한국어 + English guide · 캐싱 · Claude 앙상블 · 텍스트 검색</p>
   </div>
 </aside>
 
@@ -512,6 +512,17 @@ function toast(msg, isError) {
 function _escGlobal(s) {
   return String(s || '').replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
 }
+
+// v5.27: 카테고리 영어 보조 (외국인 거주자) — 환경부 다국어 PDF 링크와 함께
+const CAT_EN = {
+  plastic: 'Plastic', paper: 'Paper', paper_pack: 'Paper Pack',
+  vinyl: 'Vinyl/Film', can: 'Can/Metal', glass: 'Glass', styrofoam: 'Styrofoam',
+  food: 'Food Waste', general: 'General Waste (paid bag)',
+  battery: 'Battery', lamp: 'Fluorescent Lamp', clothes: 'Clothing',
+  electronics: 'Small Electronics', furniture: 'Bulky Waste',
+  hazardous: 'Hazardous', medicine: 'Expired Medicine', reusable: 'Reusable'
+};
+const ME_MULTILINGUAL_PDF = 'https://www.me.go.kr/home/web/index.do?menuId=10184';
 
 function searchByText(query) {
   if (!NATIONAL?.items || !query) return [];
@@ -995,6 +1006,10 @@ async function analyzeWithLLM(imageDataUrl, isRetry = false) {
         : (data.finishReason && data.finishReason !== 'STOP' && data.finishReason !== 'unknown')
           ? ` (finishReason=${data.finishReason})`
           : '';
+      // v5.26: Worker 캐시 hit 시 즉시 알림 (사용자 체감 속도)
+      if (data.cached === true) {
+        toast('⚡ 캐시 응답 — 같은 사진 즉시 인식 (0초)', false);
+      }
       if (data.ok && data.result) {
         // v5.11: JSON 파싱 복구 — "Unterminated string" 에러 대응
         let parsed = null;
@@ -1958,13 +1973,49 @@ function renderResult(aiData) {
     }
   }
 
-  // v5.15 Phase 8 seed: 가벼운 피드백 버튼 (localStorage 누적, 향후 자동 보강 데이터)
+  // v5.27: 영어 보조 안내 (외국인 거주자) — 카테고리 영어명 + 환경부 다국어 PDF
+  if (rule.category && CAT_EN[rule.category]) {
+    html += `<details style="margin-top:12px;padding:8px 14px;background:#f8fafc;border-left:3px solid #94a3b8;border-radius:6px;font-size:12px;color:#475569;">`;
+    html += `<summary style="cursor:pointer;font-weight:600;">🌐 English / 외국인 거주자 안내</summary>`;
+    html += `<div style="margin-top:8px;line-height:1.7;">`;
+    html += `<b>Category:</b> ${CAT_EN[rule.category]} (${rule.category})<br>`;
+    html += `<b>Multilingual guide (12 languages):</b><br>`;
+    html += `<a href="${ME_MULTILINGUAL_PDF}" target="_blank" style="color:var(--primary);">📄 Ministry of Environment Official Multilingual Recycling Guide</a><br>`;
+    html += `<span style="opacity:0.8;">EN · 中文 · Tiếng Việt · ภาษาไทย · 日本語 etc.</span>`;
+    html += `</div></details>`;
+  }
+
+  // v5.15 Phase 8 seed: 가벼운 피드백 버튼 + v5.26 공유 버튼
   html += `<div style="margin-top:16px;padding:14px 16px;background:var(--note-bg);border-radius:10px;text-align:center;">`;
   html += `<div style="font-size:14px;margin-bottom:10px;opacity:0.85;">이 안내, 도움 됐어요?</div>`;
-  html += `<div style="display:flex;gap:12px;justify-content:center;">`;
-  html += `<button id="fbGood" style="padding:8px 18px;border:1px solid var(--divider);background:white;border-radius:20px;font-size:14px;cursor:pointer;">👍 도움 됐어요</button>`;
-  html += `<button id="fbBad" style="padding:8px 18px;border:1px solid var(--divider);background:white;border-radius:20px;font-size:14px;cursor:pointer;">👎 다른 거에요</button>`;
+  html += `<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">`;
+  html += `<button id="fbGood" style="padding:8px 16px;border:1px solid var(--divider);background:white;border-radius:20px;font-size:14px;cursor:pointer;">👍 도움 됐어요</button>`;
+  html += `<button id="fbBad" style="padding:8px 16px;border:1px solid var(--divider);background:white;border-radius:20px;font-size:14px;cursor:pointer;">👎 다른 거에요</button>`;
+  html += `<button id="fbShare" style="padding:8px 16px;border:1px solid var(--primary);background:var(--primary);color:white;border-radius:20px;font-size:14px;cursor:pointer;font-weight:600;">📤 친구에게 공유</button>`;
   html += `</div></div>`;
+
+  // v5.26: 공유 버튼 핸들러 — 카톡·문자 자연 공유
+  setTimeout(() => {
+    const shareBtn = document.getElementById('fbShare');
+    if (shareBtn) shareBtn.onclick = async () => {
+      const itemName = aiData.item_label_ko || aiData.item_id || '물건';
+      const catNameMap = { plastic: '플라스틱', paper: '종이', paper_pack: '종이팩', vinyl: '비닐', can: '캔', glass: '유리', styrofoam: '스티로폼', food: '음식물', general: '일반쓰레기', battery: '폐건전지', lamp: '폐형광등', clothes: '의류', electronics: '소형가전', furniture: '대형폐기물', hazardous: '위험물', medicine: '폐의약품', reusable: '재사용' };
+      const catName = catNameMap[rule.category] || rule.category;
+      const stepsText = (rule.steps || []).slice(0, 3).map((s, i) => `${i+1}. ${s}`).join('\n');
+      const shareText = `🌱 [여기선] "${itemName}" 분리수거 안내\n\n📦 ${catName}\n\n${stepsText}\n\n🔗 더 자세히: https://ilsanintel0602-collab.github.io/yeoguiseon/app.html?v=26`;
+      try {
+        if (navigator.share) {
+          await navigator.share({ title: `여기선 - ${itemName}`, text: shareText, url: 'https://ilsanintel0602-collab.github.io/yeoguiseon/app.html?v=26' });
+          toast('✨ 공유 완료');
+        } else {
+          await navigator.clipboard.writeText(shareText);
+          toast('📋 클립보드에 복사됨 — 카톡에 붙여넣기');
+        }
+      } catch (e) {
+        if (e.name !== 'AbortError') toast('공유 실패: ' + e.message, true);
+      }
+    };
+  }, 100);
 
   // v4 A3: 후보 선택 UI ("혹시 이것인가요?")
   // 표시 조건: 모호한 경우 (yolo-low / ocr-low / brand-low) 또는 confidence < 0.8

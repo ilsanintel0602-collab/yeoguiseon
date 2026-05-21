@@ -1,8 +1,13 @@
 /**
- * 여기선 PWA - Gemini API Proxy Worker (v1.7.2 — /augment maxTokens 2048)
+ * 여기선 PWA - Gemini API Proxy Worker (v1.8 — 캐싱 + Claude 앙상블)
  * ------------------------------------------------
  * 목적: 클라이언트에 API 키 노출 없이 Gemini 호출
  * 배포: Cloudflare Workers (ES Module, fetch handler)
+ *
+ * v1.8 (2026-05-21):
+ *   - 결과 캐싱 (KV): 같은 이미지 = 즉시 응답 (Gemini 호출 0, 비용 0)
+ *   - Claude Haiku 폴백 (앙상블): Gemini 빈 응답 시 자동 Claude 호출
+ *   - 추가 env: ANTHROPIC_API_KEY (선택, 있으면 폴백 활성)
  *
  * v1.7.2 (2026-05-21):
  *   - /augment maxOutputTokens 512 → 2048 (한국어 alias 응답 잘림 해결)
@@ -172,7 +177,21 @@ export default {
       return json({ error: "Image too large (max 5MB)" }, 413, corsHeaders(corsOrigin));
     }
 
-    // 6) Gemini 호출
+    // v1.8: 결과 캐싱 — 같은 이미지 = 즉시 응답 (Gemini 호출 0, 비용 0)
+    const imageHash = await sha256(pureB64.slice(0, 5000));  // 빠른 hash (첫 5KB)
+    const cacheKey = `cache:img:${imageHash}`;
+    if (env.RATE_LIMIT_KV) {
+      try {
+        const cached = await env.RATE_LIMIT_KV.get(cacheKey);
+        if (cached) {
+          log("cache_hit", { ipHash, imageHash });
+          const parsed = JSON.parse(cached);
+          return json({ ok: true, result: parsed, finishReason: "cached", blockReason: null, cached: true }, 200, corsHeaders(corsOrigin));
+        }
+      } catch (e) { /* 캐시 실패 → 정상 흐름 */ }
+    }
+
+    // 6) Gemini 호출 (캐시 miss)
     const model = env.GEMINI_MODEL || "gemini-2.0-flash";
     const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${env.GEMINI_API_KEY}`;
     const payload = {
@@ -229,14 +248,56 @@ export default {
     const candidate = geminiData?.candidates?.[0];
     const text = candidate?.content?.parts?.[0]?.text ?? "";
     const finishReason = candidate?.finishReason || "unknown";
-    // promptFeedback.blockReason (요청 자체가 차단된 경우)도 함께 노출
     const blockReason = geminiData?.promptFeedback?.blockReason || null;
     let parsed = null;
     try { parsed = JSON.parse(text); } catch { /* 텍스트 그대로 반환 */ }
 
+    // v1.8: Gemini 빈 응답 시 Claude 폴백 (앙상블)
+    if (!parsed && !text && env.ANTHROPIC_API_KEY) {
+      log("gemini_empty_claude_fallback", { ipHash, finishReason, blockReason });
+      try {
+        const claudeRes = await fetchWithTimeout("https://api.anthropic.com/v1/messages", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": env.ANTHROPIC_API_KEY,
+            "anthropic-version": "2023-06-01",
+          },
+          body: JSON.stringify({
+            model: "claude-haiku-4-5-20251001",
+            max_tokens: 2048,
+            messages: [{
+              role: "user",
+              content: [
+                { type: "image", source: { type: "base64", media_type: mimeType, data: pureB64 } },
+                { type: "text", text: prompt },
+              ],
+            }],
+          }),
+        }, FETCH_TIMEOUT_MS);
+        if (claudeRes.ok) {
+          const claudeData = await claudeRes.json();
+          const claudeText = claudeData.content?.[0]?.text || "";
+          try { parsed = JSON.parse(claudeText); } catch {}
+          log("claude_fallback_ok", { ipHash, hasJson: !!parsed });
+        }
+      } catch (e) {
+        log("claude_fallback_err", { ipHash, err: String(e).slice(0, 80) });
+      }
+    }
+
+    // v1.8: 캐시 저장 (24시간) - 같은 이미지 즉시 응답
+    if (env.RATE_LIMIT_KV && parsed) {
+      try {
+        await env.RATE_LIMIT_KV.put(cacheKey, JSON.stringify(parsed), {
+          expirationTtl: 24 * 60 * 60,  // 24시간
+        });
+      } catch (e) { /* 캐시 실패 무시 */ }
+    }
+
     log("ok", { ipHash, ms: Date.now() - startedAt, hasJson: !!parsed, finishReason, blockReason });
     return json(
-      { ok: true, result: parsed ?? text, finishReason, blockReason },
+      { ok: true, result: parsed ?? text, finishReason, blockReason, cached: false },
       200,
       corsHeaders(corsOrigin)
     );
