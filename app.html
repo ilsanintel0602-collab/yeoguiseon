@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>여기선 v5.12 - 미활용 데이터 통합 (환경부 분류 트리 + 시군구 전화)</title>
+<title>여기선 v5.13 - 카테고리별 봉투 매칭 (음식물용·재활용) + 아이콘 cache-bust</title>
 <meta name="description" content="대한민국 어디서나 분리수거 안내. 환경부 표준 + 지역별 차이까지.">
 
 <link rel="manifest" href="manifest.json">
@@ -270,7 +270,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.12</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.13</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -1546,21 +1546,39 @@ function renderResult(aiData) {
   }
 
   // v5: 행안부 시군구별 봉투 가격
+  // v5.12: 카테고리별 봉투 자동 선택 (음식물 → 음식물용, 일반/위험물/의류 → 가정용 생활쓰레기)
   if (BAG_PRICES?.data && regionCode && BAG_PRICES.data[regionCode]) {
     const bag = BAG_PRICES.data[regionCode];
-    html += `<div style="margin-top:16px;padding:12px 16px;background:#eff6ff;border-radius:8px;">`;
-    html += `<h4 style="margin:0 0 8px;font-size:15px;">🛍️ 우리 동네 종량제봉투 가격</h4>`;
-    // 가정용·생활쓰레기 봉투 우선 표시
-    const homeBag = (bag.bags || []).find(b =>
-      (b['사용대상'] || '').includes('가정') && (b['용도'] || '').includes('생활')
-    ) || bag.bags?.[0];
-    if (homeBag && homeBag.prices) {
-      const sizes = ['5ℓ', '10ℓ', '20ℓ', '50ℓ'];
-      const priceStr = sizes.filter(s => homeBag.prices[s]).map(s => `${s} ${homeBag.prices[s]}원`).join(' · ');
-      if (priceStr) html += `<div style="font-size:14px;">${priceStr}</div>`;
+    const bags = bag.bags || [];
+    // 카테고리별 적절한 봉투 선택
+    const __cat = rule.category || aiData.category_hint || 'general';
+    let selectedBag = null;
+    let bagLabel = '🛍️ 우리 동네 종량제봉투 가격';
+    if (__cat === 'food') {
+      // 음식물 카테고리: 음식물 전용 봉투 우선
+      selectedBag = bags.find(b => (b['용도'] || '').includes('음식물')) ||
+                    bags.find(b => (b['사용대상'] || '').includes('가정') && (b['용도'] || '').includes('생활'));
+      bagLabel = '🍱 우리 동네 음식물 봉투 가격';
+    } else if (__cat === 'general' || __cat === 'hazardous' || __cat === 'clothes' || __cat === 'medicine') {
+      // 일반쓰레기·위험물·의류·의약품: 가정용 생활쓰레기
+      selectedBag = bags.find(b =>
+        (b['사용대상'] || '').includes('가정') && (b['용도'] || '').includes('생활')
+      ) || bags[0];
+      bagLabel = '🛍️ 우리 동네 종량제봉투 가격';
+    } else {
+      // 재활용 카테고리 (plastic/paper/can 등): 가격 표시 안 함 (재활용은 봉투 불필요)
+      selectedBag = null;
     }
-    if (bag.phone) html += `<div style="font-size:12px;opacity:0.7;margin-top:4px;">📞 ${bag.dept || '자원순환과'}: ${bag.phone}</div>`;
-    html += `</div>`;
+
+    if (selectedBag && selectedBag.prices) {
+      html += `<div style="margin-top:16px;padding:12px 16px;background:#eff6ff;border-radius:8px;">`;
+      html += `<h4 style="margin:0 0 8px;font-size:15px;">${bagLabel}</h4>`;
+      const sizes = ['3ℓ', '5ℓ', '10ℓ', '20ℓ', '30ℓ', '50ℓ'];
+      const priceStr = sizes.filter(s => selectedBag.prices[s]).map(s => `${s} ${selectedBag.prices[s]}원`).join(' · ');
+      if (priceStr) html += `<div style="font-size:14px;">${priceStr}</div>`;
+      if (bag.phone) html += `<div style="font-size:12px;opacity:0.7;margin-top:4px;">📞 ${bag.dept || '자원순환과'}: ${bag.phone}</div>`;
+      html += `</div>`;
+    }
   }
 
   // v5.9: 대형폐기물 카테고리 시 시군구별 신고 URL (REGION_URLS.json 활용)
