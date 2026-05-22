@@ -353,7 +353,13 @@
         "플라스틱 박스",
         "플라스틱 케이스",
         "플라스틱 통",
-        "플라스틱용기"
+        "플라스틱용기",
+        "요거트통",
+        "요거트 용기",
+        "플레인 요거트 통",
+        "컵라면 용기",
+        "즉석식품 용기",
+        "도시락 용기"
       ]
     },
     "instant_rice_bowl": {
@@ -678,7 +684,10 @@
         "초콜릿우유팩",
         "카톤팩",
         "팩우유",
-        "흰우유팩"
+        "흰우유팩",
+        "주스팩",
+        "음료팩",
+        "두유팩"
       ],
       "sourceUrl": "https://www.xn--oy2b29bd3a601b.kr/front/dischargeMethod/dictionaryView.do?niIdx=16",
       "official_classification": [
@@ -733,7 +742,10 @@
         "라면 박스",
         "보냉가방",
         "소주팩",
-        "주스팩"
+        "주스팩",
+        "종이컵",
+        "일회용 컵",
+        "커피컵 종이"
       ],
       "_bunribaechulSeq": 528,
       "lastVerified": "2026-05-18",
@@ -1024,7 +1036,10 @@
         "유리병",
         "잼 병",
         "잼병",
-        "향수병(유리)"
+        "향수병(유리)",
+        "맥주병",
+        "와인병",
+        "소주병"
       ],
       "_bunribaechulSeq": 534,
       "lastVerified": "2026-05-18",
@@ -1614,7 +1629,7 @@
     },
     "light_bulb": {
       "name": "백열전구/LED 전구",
-      "category": "general",
+      "category": "lamp",
       "note": "형광등과 다름 - 수은 없어 일반쓰레기",
       "steps": [
         "깨지지 않게 포장",
@@ -1632,7 +1647,9 @@
         "전구알",
         "전등",
         "조명등",
-        "필립스 전구"
+        "필립스 전구",
+        "LED 조명",
+        "LED등"
       ]
     },
     "aluminum_foil": {
@@ -1907,7 +1924,9 @@
         "의류, 원단",
         "재킷",
         "캐리어",
-        "화장품 파우치"
+        "화장품 파우치",
+        "지갑",
+        "넥타이"
       ],
       "_bunribaechulSeq": 536,
       "lastVerified": "2026-05-18",
@@ -7781,7 +7800,6 @@
       "name": "실링팬",
       "category": "furniture",
       "aliases": [
-        "LED",
         "ceiling fan",
         "공기순환기",
         "루씨에어",
@@ -8031,7 +8049,6 @@
       "category": "furniture",
       "aliases": [
         "뚝배기",
-        "머그컵",
         "수석",
         "타일",
         "화분"
@@ -17128,7 +17145,7 @@
     },
     "머그잔": {
       "name": "머그잔",
-      "category": "general",
+      "category": "reusable",
       "aliases": [
         "mug",
         "머그",
@@ -20234,7 +20251,6 @@
         "다용도 따개",
         "따는 도구",
         "뚜껑 따개",
-        "맥주병",
         "병 따는 기구",
         "병따개",
         "병마개 따개",
@@ -24347,7 +24363,12 @@
         "유리 컵",
         "재사용 컵",
         "재사용컵",
-        "환경컵"
+        "환경컵",
+        "머그",
+        "머그컵",
+        "머그잔",
+        "커피잔",
+        "도자기컵"
       ]
     },
     "reusable_tumbler": {
@@ -25548,7 +25569,7 @@
     },
     "led_bulb": {
       "name": "LED 전구",
-      "category": "general",
+      "category": "lamp",
       "note": "LED 전구는 형광등과 달리 수은이 없어 일반쓰레기. 깨지지 않게 종량제봉투에.",
       "steps": [
         "깨지지 않게 신문지로 감싸기",
@@ -25562,7 +25583,9 @@
         "LED 전구",
         "LED전구",
         "에너지절약 전구",
-        "엘이디 전구"
+        "엘이디 전구",
+        "LED 조명",
+        "LED등"
       ],
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do",
       "sourceName": "분리배출.kr (한국폐기물협회·환경부)",
@@ -26514,7 +26537,6 @@
       "aliases": [
         "RC 배터리",
         "hazardousbattery",
-        "드론 배터리",
         "리튬 배터리",
         "리튬 폴리머 배터리",
         "부풀은 배터리",
@@ -26698,6 +26720,155 @@
         "여행가방",
         "캐리어",
         "에코백"
+      ]
+    },
+    "soy_milk_carton": {
+      "name": "두유팩 (멸균팩)",
+      "category": "paper_pack",
+      "note": "내용물 비우고 헹궈서 잘 펴서 묶어 배출. 빨대·뚜껑 제거.",
+      "steps": [
+        "내용물 비우기",
+        "물로 헹구기",
+        "펴서 압착",
+        "뚜껑·빨대 분리",
+        "종이팩 수거함 (없으면 종이류)"
+      ],
+      "confidence": "high",
+      "sourceUrl": "https://xn--oy2b29bd3a601b.kr/",
+      "sourceName": "분리배출.kr (환경부)",
+      "sourceGrade": "A",
+      "aliases": [
+        "두유팩",
+        "두유 종이팩",
+        "멸균팩",
+        "베지밀 팩",
+        "삼육두유 팩",
+        "아몬드 우유팩",
+        "아몬드 브리즈 팩"
+      ]
+    },
+    "lithium_ion_battery": {
+      "name": "리튬이온 배터리 (보조배터리·기기 내장)",
+      "category": "battery",
+      "note": "⚠️ 발화 위험. 분리배출함 또는 행안부 폐전지 수거.",
+      "steps": [
+        "절연 테이프로 단자 감싸기",
+        "폐건전지 수거함",
+        "⚠️ 절대 일반쓰레기 X (발화)"
+      ],
+      "confidence": "high",
+      "sourceUrl": "https://xn--oy2b29bd3a601b.kr/",
+      "sourceName": "분리배출.kr (환경부)",
+      "sourceGrade": "A",
+      "caution": "⚠️ 발화·폭발 위험. 짧합 방지 절연 테이프 필수.",
+      "aliases": [
+        "리튬이온",
+        "리튬배터리",
+        "보조배터리",
+        "파워뱅크",
+        "드론 배터리",
+        "이어폰 배터리",
+        "노트북 배터리",
+        "휴대폰 배터리",
+        "드론배터리",
+        "카메라 배터리",
+        "전동공구 배터리",
+        "폴리머 배터리"
+      ]
+    },
+    "coin_battery": {
+      "name": "코인 배터리 (수은·시계·열쇠)",
+      "category": "battery",
+      "note": "시계·자동차 스마트키·체중계 등 사용. 폐건전지 수거함.",
+      "steps": [
+        "절연 테이프로 단자 감싸기",
+        "폐건전지 수거함"
+      ],
+      "confidence": "high",
+      "sourceUrl": "https://xn--oy2b29bd3a601b.kr/",
+      "sourceName": "분리배출.kr (환경부)",
+      "sourceGrade": "A",
+      "aliases": [
+        "코인 배터리",
+        "코인 셀",
+        "단추 배터리",
+        "시계 배터리",
+        "CR2032",
+        "CR2025",
+        "LR44",
+        "체중계 배터리",
+        "키 배터리"
+      ]
+    },
+    "incandescent_bulb": {
+      "name": "백열전구",
+      "category": "lamp",
+      "note": "형광등 수거함. 깨진 경우 신문지 감싸서.",
+      "steps": [
+        "깨지지 않게 운반",
+        "형광등 수거함"
+      ],
+      "confidence": "high",
+      "sourceUrl": "https://xn--oy2b29bd3a601b.kr/",
+      "sourceName": "분리배출.kr (환경부)",
+      "sourceGrade": "A",
+      "aliases": [
+        "백열전구",
+        "백열등",
+        "필라멘트 전구",
+        "에디슨 전구",
+        "구식 전구",
+        "할로겐 전구"
+      ]
+    },
+    "shoes": {
+      "name": "신발 (운동화·구두)",
+      "category": "clothes",
+      "note": "깨끗한 상태: 의류수거함. 낡거나 한짝뿐: 종량제봉투.",
+      "steps": [
+        "깨끗하면 의류수거함으로",
+        "낡거나 한짝뿐이면 종량제봉투"
+      ],
+      "confidence": "high",
+      "sourceUrl": "https://xn--oy2b29bd3a601b.kr/",
+      "sourceName": "분리배출.kr (환경부)",
+      "sourceGrade": "A",
+      "aliases": [
+        "신발",
+        "운동화",
+        "구두",
+        "스니커즈",
+        "샌들",
+        "슬리퍼",
+        "부츠",
+        "워커",
+        "하이힐",
+        "플랫슈즈",
+        "로퍼",
+        "컨버스"
+      ]
+    },
+    "hat": {
+      "name": "모자·캡",
+      "category": "clothes",
+      "note": "의류수거함 또는 종량제봉투 (오염 시).",
+      "steps": [
+        "깨끗하면 의류수거함",
+        "오염되면 종량제봉투"
+      ],
+      "confidence": "high",
+      "sourceUrl": "https://xn--oy2b29bd3a601b.kr/",
+      "sourceName": "분리배출.kr (환경부)",
+      "sourceGrade": "A",
+      "aliases": [
+        "모자",
+        "캡",
+        "비니",
+        "벙거지",
+        "버킷햇",
+        "야구모자",
+        "베레모",
+        "챙모자"
       ]
     }
   },
