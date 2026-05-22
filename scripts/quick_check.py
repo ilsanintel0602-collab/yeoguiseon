@@ -27,6 +27,47 @@ try:
              "battery", "lamp", "clothes", "electronics", "furniture", "hazardous", "medicine", "reusable"}
     bad_cats = cats - VALID
     all_ok &= check("카테고리 enum", not bad_cats, f"이상 enum: {bad_cats}" if bad_cats else "17개 정합")
+
+    # ⭐ v5.28.3: 가짜 item 자동 탐지 (2026-05-23 오염 사건 학습)
+    # 패턴 1: ID에 동사·문장체 (환경부 크롤링 파싱 오류 흔적)
+    SENTENCE_MARKERS = ['수거함으', '배출합', '이용하', '서비스(', '입니', '해야', '주시고', '바랍니']
+    fake_by_id = [k for k in items.keys() if any(m in k for m in SENTENCE_MARKERS)]
+    # 패턴 2: ID가 너무 길고 punctuation 포함
+    fake_by_id += [k for k in items.keys() if len(k) > 25 and any(c in k for c in '(){}[],')]
+    fake_by_id = list(set(fake_by_id))
+    all_ok &= check("가짜 item ID (문장체) 차단",
+                    not fake_by_id,
+                    f"가짜 item: {fake_by_id[:3]}" if fake_by_id else "0건")
+
+    # 패턴 3: 라벨형 item (general 카테고리 + alias 100+ — catch-all 의심)
+    suspect_labels = []
+    for k, v in items.items():
+        n_aliases = len(v.get("aliases", []))
+        if v.get("category") == "general" and n_aliases > 200:
+            # general 자체는 OK (의도된 catchall) — 단 비정상적으로 큰 통은 경고
+            suspect_labels.append((k, n_aliases))
+    # 정상 catchall은 1~2개. 그 이상이면 경고
+    all_ok &= check("일반 catchall item 수",
+                    len([s for s in suspect_labels if s[0] not in ('general', '기타_일반')]) == 0,
+                    f"새 라벨형 의심: {[s[0] for s in suspect_labels if s[0] not in ('general', '기타_일반')]}" if suspect_labels else f"{len(suspect_labels)}개 (의도된 catchall)")
+
+    # 패턴 4: 1글자 alias 노이즈 (보존 화이트리스트 외)
+    PRESERVE_1CHAR = {'책', '옷', '약'}
+    noisy_1char = []
+    for k, v in items.items():
+        for a in v.get("aliases", []):
+            s = str(a).strip()
+            if len(s) == 1 and s not in PRESERVE_1CHAR:
+                noisy_1char.append((k, s))
+    all_ok &= check("1글자 alias 노이즈",
+                    len(noisy_1char) == 0,
+                    f"노이즈 {len(noisy_1char)}건: {noisy_1char[:3]}" if noisy_1char else "0건 (옷·약·책만 보존)")
+
+    # 패턴 5: JSON 끝 null 바이트 (region_exceptions에서 발견했던 폭탄)
+    with open(os.path.join(ROOT, "data", "national_rules.json"), "rb") as f:
+        raw = f.read()
+    has_null = b'\x00' in raw
+    all_ok &= check("끝 null 바이트", not has_null, "발견됨" if has_null else "없음")
 except Exception as e:
     all_ok &= check("national_rules.json", False, str(e))
 

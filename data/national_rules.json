@@ -1299,7 +1299,10 @@
         "포도 씨",
         "포도 줄기",
         "호두껍질",
-        "호박 속"
+        "호박 속",
+        "밥",
+        "쌀밥",
+        "잡곡밥"
       ],
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do",
       "sourceName": "분리배출.kr (한국폐기물협회·환경부)",
@@ -1713,7 +1716,12 @@
         "캠코더 배터리(추가)",
         "폐배터리",
         "폐전지",
-        "휴대폰 배터리"
+        "휴대폰 배터리",
+        "니켈배터리",
+        "니켈수소",
+        "리튬이온",
+        "코인배터리",
+        "수은건전지"
       ],
       "_bunribaechulSeq": 635,
       "lastVerified": "2026-05-18",
@@ -1771,7 +1779,10 @@
         "형광등과 LED",
         "환형 형광등",
         "형광등",
-        "폐형광등"
+        "폐형광등",
+        "LED",
+        "LED 전구",
+        "엘이디"
       ],
       "_bunribaechulSeq": 538,
       "lastVerified": "2026-05-18",
@@ -1912,7 +1923,7 @@
     },
     "electronics": {
       "name": "소형가전",
-      "category": "general",
+      "category": "electronics",
       "note": "1m 미만 소형가전은 무상 방문수거 신청 가능 (E-순환거버넌스 15990903)",
       "steps": [
         "E-순환거버넌스(15990903) 또는 주민센터 신청",
@@ -13487,7 +13498,7 @@
     },
     "속옷": {
       "name": "속옷",
-      "category": "general",
+      "category": "clothes",
       "classification": [
         "일반폐기물",
         "일반종량제폐기물"
