@@ -1,5 +1,5 @@
 /**
- * 여기선 PWA - Gemini API Proxy Worker (v1.9.3 — gemini-2.5-flash 핫픽스)
+ * 여기선 PWA - Gemini API Proxy Worker (v1.9.4 — 빈 응답 KV 캐시 차단)
  * ------------------------------------------------
  * 목적: 클라이언트에 API 키 노출 없이 Gemini 호출 + D1 DB 직접 서비스
  * 배포: Cloudflare Workers (ES Module, fetch handler)
@@ -311,13 +311,23 @@ export default {
       }
     }
 
-    // v1.8: 캐시 저장 (24시간) - 같은 이미지 즉시 응답
-    if (env.RATE_LIMIT_KV && parsed) {
+    // v1.9.4 (2026-05-22): 빈 응답·실패 응답은 캐시 X (사용자 finishReason=cached 빈 응답 버그 해결)
+    //   - parsed가 있고 item_id가 비어있지 않을 때만 캐시
+    //   - 빈 응답 캐시 시 사용자가 같은 이미지 재시도해도 빈 응답 계속 받음
+    const cacheable = parsed
+      && typeof parsed === 'object'
+      && parsed.item_id
+      && String(parsed.item_id).trim().length > 0
+      && parsed.item_id !== 'unknown';
+    if (env.RATE_LIMIT_KV && cacheable) {
       try {
         await env.RATE_LIMIT_KV.put(cacheKey, JSON.stringify(parsed), {
           expirationTtl: 24 * 60 * 60,  // 24시간
         });
       } catch (e) { /* 캐시 실패 무시 */ }
+    } else if (env.RATE_LIMIT_KV && !cacheable) {
+      // 캐시된 빈 응답이 있으면 삭제 (다음 분석은 fresh)
+      try { await env.RATE_LIMIT_KV.delete(cacheKey); } catch (e) {}
     }
 
     log("ok", { ipHash, ms: Date.now() - startedAt, hasJson: !!parsed, finishReason, blockReason });
