@@ -241,7 +241,8 @@
         "페트병",
         "플라스틱 물병",
         "플라스틱 보틀",
-        "플라스틱병(투명)"
+        "플라스틱병(투명)",
+        "투명 페트병"
       ],
       "_bunribaechulSeq": 123,
       "lastVerified": "2026-05-18",
@@ -359,7 +360,15 @@
         "플레인 요거트 통",
         "컵라면 용기",
         "즉석식품 용기",
-        "도시락 용기"
+        "도시락 용기",
+        "소스병",
+        "소스 통",
+        "플라스틱 뚜껑",
+        "일회용 컵 (플라스틱)",
+        "일회용 컵 플라스틱",
+        "빨대",
+        "플라스틱 빨대",
+        "플라스틱 스트로"
       ]
     },
     "instant_rice_bowl": {
@@ -464,7 +473,8 @@
         "편의점 봉투",
         "폴리백",
         "플라스틱 백",
-        "플라스틱 봉투"
+        "플라스틱 봉투",
+        "뽁뽁이"
       ],
       "_bunribaechulSeq": 101,
       "lastVerified": "2026-05-18",
@@ -510,7 +520,14 @@
         "비닐쪼가리",
         "비닐팩",
         "연질 플라스틱",
-        "플라스틱 포장재"
+        "플라스틱 포장재",
+        "비닐 포장지",
+        "OPP 봉투",
+        "OPP 비닐",
+        "포장 비닐",
+        "필름류",
+        "필름 비닐",
+        "합성수지 필름"
       ]
     },
     "snack_bag": {
@@ -586,7 +603,8 @@
         "조선일보",
         "종이신문",
         "중앙일보",
-        "한겨레"
+        "한겨레",
+        "신문"
       ],
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do",
       "sourceName": "분리배출.kr (한국폐기물협회·환경부)",
@@ -687,7 +705,9 @@
         "흰우유팩",
         "주스팩",
         "음료팩",
-        "두유팩"
+        "두유팩",
+        "아몬드 우유팩",
+        "두유 종이팩"
       ],
       "sourceUrl": "https://www.xn--oy2b29bd3a601b.kr/front/dischargeMethod/dictionaryView.do?niIdx=16",
       "official_classification": [
@@ -1039,7 +1059,12 @@
         "향수병(유리)",
         "맥주병",
         "와인병",
-        "소주병"
+        "소주병",
+        "소스병 유리",
+        "빈 병",
+        "재활용 유리",
+        "유리 음료병",
+        "빈병 반환"
       ],
       "_bunribaechulSeq": 534,
       "lastVerified": "2026-05-18",
@@ -1317,7 +1342,13 @@
         "호박 속",
         "밥",
         "쌀밥",
-        "잡곡밥"
+        "잡곡밥",
+        "국",
+        "국물",
+        "찌꺼기",
+        "음식물 찌꺼기",
+        "밥찌꺼기",
+        "남은밥"
       ],
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do",
       "sourceName": "분리배출.kr (한국폐기물협회·환경부)",
@@ -1654,7 +1685,7 @@
     },
     "aluminum_foil": {
       "name": "알루미늄 호일",
-      "category": "general",
+      "category": "can",
       "note": "오염된 알루미늄 호일은 일반쓰레기",
       "steps": [
         "종량제봉투에 배출"
@@ -2074,7 +2105,10 @@
         "튀김기",
         "팬히터",
         "화장품 냉장고",
-        "히터"
+        "히터",
+        "오디오",
+        "전자레인지",
+        "세탁기"
       ],
       "sourceUrl": "https://www.xn--oy2b29bd3a601b.kr/front/dischargeMethod/dictionaryView.do?niIdx=231",
       "official_classification": [
@@ -2136,7 +2170,11 @@
         "현관 신발장",
         "협탁",
         "회의용 의자",
-        "회의용 책상"
+        "회의용 책상",
+        "식탁",
+        "서랍장",
+        "책장",
+        "화장대"
       ],
       "sourceUrl": "https://www.xn--oy2b29bd3a601b.kr/front/dischargeMethod/dictionaryView.do?niIdx=183",
       "official_classification": [
@@ -2149,7 +2187,7 @@
     },
     "medicine": {
       "name": "폐의약품",
-      "category": "general",
+      "category": "medicine",
       "note": "약국/보건소에 비치된 폐의약품 수거함에 배출 (절대 변기/하수구 금지)",
       "steps": [
         "포장재(종이박스, 설명서) 제거",
@@ -2220,7 +2258,12 @@
         "한약 봉지",
         "한약 즙",
         "항우울제",
-        "혈압약"
+        "혈압약",
+        "처방약",
+        "남은약",
+        "시럽약",
+        "안약",
+        "연고"
       ],
       "sourceUrl": "https://www.xn--oy2b29bd3a601b.kr/front/dischargeMethod/dictionaryView.do?niIdx=146",
       "official_classification": [
@@ -8749,7 +8792,7 @@
     },
     "전자레인지": {
       "name": "전자레인지",
-      "category": "furniture",
+      "category": "electronics",
       "aliases": [
         "microwave",
         "마이크로웨이브",
@@ -13258,7 +13301,7 @@
     },
     "빨대": {
       "name": "빨대",
-      "category": "can",
+      "category": "plastic",
       "aliases": [
         "대롱",
         "드링킹스트로",
@@ -23225,7 +23268,7 @@
     },
     "슬리퍼": {
       "name": "슬리퍼",
-      "category": "general",
+      "category": "clothes",
       "aliases": [
         "mules",
         "slides",
@@ -25427,7 +25470,11 @@
         "콩 통조림",
         "탄산음료 캔",
         "헤어스프레이 캔(빈)",
-        "환타 캔"
+        "환타 캔",
+        "호일",
+        "알루미늄 호일",
+        "알루미늄포일",
+        "쿠킹포일"
       ],
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do",
       "sourceName": "분리배출.kr (한국폐기물협회·환경부)",
@@ -26110,7 +26157,14 @@
         "프린트물",
         "학습지",
         "회의록 (낡은)",
-        "휴지 박스 (다 쓴)"
+        "휴지 박스 (다 쓴)",
+        "공책",
+        "노트",
+        "포장지",
+        "전단지",
+        "두꺼운 종이",
+        "갈색 종이",
+        "크라프트 종이"
       ],
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do"
     },
@@ -26272,7 +26326,17 @@
         "형광펜",
         "호두 (단단한 껍질)",
         "홍차 티백 거름망",
-        "회의록"
+        "회의록",
+        "볼펜",
+        "연필",
+        "일회용 면도기",
+        "일회용 젓가락",
+        "성냥",
+        "이쑤시개",
+        "껌",
+        "헝겊",
+        "걸레",
+        "나무젓가락"
       ],
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do"
     },
@@ -26869,6 +26933,28 @@
         "야구모자",
         "베레모",
         "챙모자"
+      ]
+    },
+    "iron_can": {
+      "name": "철 조각·금속 캡",
+      "category": "can",
+      "note": "깨끗이 씻어 캔류 수거함. 큰 금속은 고철상.",
+      "steps": [
+        "이물질 제거",
+        "캔류 수거함 또는 고철상"
+      ],
+      "confidence": "high",
+      "sourceUrl": "https://xn--oy2b29bd3a601b.kr/",
+      "sourceName": "분리배출.kr (환경부)",
+      "sourceGrade": "A",
+      "aliases": [
+        "철 조각",
+        "쇳조각",
+        "금속 캡",
+        "병뚜껑 금속",
+        "캔 뚜껑",
+        "철사",
+        "금속 조각"
       ]
     }
   },
