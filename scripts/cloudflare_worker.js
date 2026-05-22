@@ -1,8 +1,16 @@
 /**
- * 여기선 PWA - Gemini API Proxy Worker (v1.9.5 — /feedback/dump 추가)
+ * 여기선 PWA - Gemini API Proxy Worker (v1.9.6 — Phase A2 cron 활성 + /admin/health + dump 버그 픽스)
  * ------------------------------------------------
- * 목적: 클라이언트에 API 키 노출 없이 Gemini 호출 + D1 DB 직접 서비스
- * 배포: Cloudflare Workers (ES Module, fetch handler)
+ * 목적: 클라이언트에 API 키 노출 없이 Gemini 호출 + D1 DB 직접 서비스 + 무인 운영
+ * 배포: Cloudflare Workers (ES Module, fetch + scheduled handler)
+ *
+ * v1.9.6 (2026-05-22 — Phase A2 cron 활성):
+ *   - scheduled() 핸들러 추가 → Cloudflare cron trigger로 무인 운영 진입
+ *   - 매일 00:05 KST: D1 items/aliases 카운트 + KV 캐시 통계를 metrics:daily:YYYY-MM-DD 기록 (90일 보존)
+ *   - 6시간마다: 빈/이상 응답 캐시(item_id=unknown) 정리 안전망
+ *   - /admin/health 엔드포인트: 최근 metrics + 직전 cron 실행 시간 + 데이터 헬스 (모니터링용)
+ *   - /feedback/dump 핫픽스: `url.searchParams` → `reqUrl.searchParams` (변수명 오타로 500 떨어지던 버그)
+ *   - cron trigger는 wrangler.toml [triggers] crons 등록 필요 (wrangler deploy 시 자동 활성)
  *
  * v1.9.3 (2026-05-22):
  *   - 핫픽스: 코드 기본 모델 gemini-2.0-flash → gemini-2.5-flash (2.0 deprecated, 2.5는 2025년 stable)
@@ -145,11 +153,12 @@ export default {
 
     // v1.9.5 (Phase B4): /feedback/dump — KV에 누적된 피드백 전체 dump (자동 학습 사이클용)
     //   GET 전용. Origin 무관 (서버 스크립트용). 키 보호: ?key=DUMP_KEY 필수.
+    //   v1.9.6 핫픽스: 변수명 url 미정의 → reqUrl (이 함수 위에 const reqUrl = new URL(request.url) 이미 있음)
     if (path === "/feedback/dump") {
       if (request.method !== "GET") {
         return json({ error: "GET only" }, 405, corsHeaders("*"));
       }
-      const dumpKey = url.searchParams.get("key");
+      const dumpKey = reqUrl.searchParams.get("key");
       if (!env.FEEDBACK_DUMP_KEY || dumpKey !== env.FEEDBACK_DUMP_KEY) {
         return json({ error: "invalid dump key" }, 403, corsHeaders("*"));
       }
@@ -169,6 +178,44 @@ export default {
         return json({ ok: true, count: items.length, items }, 200, corsHeaders("*", 60));
       } catch (e) {
         return json({ error: `dump failed: ${String(e).slice(0, 80)}` }, 500, corsHeaders("*"));
+      }
+    }
+
+    // v1.9.6 (Phase A2): /admin/health — cron 동작 + 데이터 헬스 확인용 (Origin 무관)
+    //   GET 전용. 모니터링용이라 키 없음. 민감정보 없음 (카운트만).
+    //   클라이언트 헬스 알림 + cron 동작 검증에 활용.
+    if (path === "/admin/health") {
+      if (request.method !== "GET") {
+        return json({ error: "GET only" }, 405, corsHeaders("*"));
+      }
+      try {
+        const today = new Date().toISOString().slice(0, 10);
+        const yest = new Date(Date.now() - 86400_000).toISOString().slice(0, 10);
+        const out = {
+          ok: true,
+          worker_version: "v1.9.6",
+          now: new Date().toISOString(),
+          d1_bound: !!env.DB,
+          kv_bound: !!env.RATE_LIMIT_KV,
+        };
+        if (env.RATE_LIMIT_KV) {
+          out.metrics_today = await readMetricSafe(env, `metrics:daily:${today}`);
+          out.metrics_yesterday = await readMetricSafe(env, `metrics:daily:${yest}`);
+          out.last_cron = await readMetricSafe(env, "cron:last_run");
+        }
+        if (env.DB) {
+          try {
+            const items = await env.DB.prepare("SELECT COUNT(*) AS c FROM items").first();
+            const aliases = await env.DB.prepare("SELECT COUNT(*) AS c FROM aliases").first();
+            out.d1_items_now = items?.c ?? null;
+            out.d1_aliases_now = aliases?.c ?? null;
+          } catch (e) {
+            out.d1_error = String(e).slice(0, 80);
+          }
+        }
+        return json(out, 200, corsHeaders("*", 60));
+      } catch (e) {
+        return json({ error: `health failed: ${String(e).slice(0, 80)}` }, 500, corsHeaders("*"));
       }
     }
 
@@ -366,7 +413,166 @@ export default {
       corsHeaders(corsOrigin)
     );
   },
+
+  // ============================================================================
+  // v1.9.6 — Phase A2 cron 활성: scheduled() 핸들러
+  // ============================================================================
+  // wrangler.toml [triggers] crons 항목과 1:1 매핑
+  //   - "5 15 * * *"   UTC 15:05 = KST 00:05  매일 자정 KST → 일일 metrics 기록
+  //   - "0 */6 * * *"  6시간마다 → 캐시 안전망 청소
+  // event.cron 에 등록한 cron 문자열이 그대로 들어오므로 분기 가능.
+  // ctx.waitUntil로 비동기 작업 보장.
+  async scheduled(event, env, ctx) {
+    const cron = event.cron || "";
+    const startedAt = Date.now();
+    log("cron_start", { cron, scheduledTime: event.scheduledTime });
+
+    try {
+      if (cron === "5 15 * * *") {
+        ctx.waitUntil(runDailyMetrics(env, startedAt, cron));
+      } else if (cron === "0 */6 * * *") {
+        ctx.waitUntil(runCacheSweep(env, startedAt, cron));
+      } else {
+        // 미등록 cron → 안전하게 양쪽 다 시도하지 말고 metrics만 (안전 기본값)
+        log("cron_unknown", { cron });
+        ctx.waitUntil(runDailyMetrics(env, startedAt, cron));
+      }
+    } catch (e) {
+      log("cron_error", { cron, error: String(e).slice(0, 120) });
+    }
+  },
 };
+
+// ============================================================================
+// v1.9.6 cron 작업 본체
+// ============================================================================
+
+async function runDailyMetrics(env, startedAt, cron) {
+  const today = new Date().toISOString().slice(0, 10);
+  const metric = {
+    date: today,
+    cron,
+    started_at: new Date(startedAt).toISOString(),
+    d1_items: null,
+    d1_aliases: null,
+    d1_regions: null,
+    kv_fb_count: null,
+    kv_cache_img_count: null,
+    duration_ms: null,
+    errors: [],
+  };
+
+  // D1 카운트
+  if (env.DB) {
+    try {
+      const items = await env.DB.prepare("SELECT COUNT(*) AS c FROM items").first();
+      metric.d1_items = items?.c ?? null;
+    } catch (e) { metric.errors.push(`d1_items: ${String(e).slice(0, 60)}`); }
+    try {
+      const aliases = await env.DB.prepare("SELECT COUNT(*) AS c FROM aliases").first();
+      metric.d1_aliases = aliases?.c ?? null;
+    } catch (e) { metric.errors.push(`d1_aliases: ${String(e).slice(0, 60)}`); }
+    try {
+      const regions = await env.DB.prepare("SELECT COUNT(*) AS c FROM regions").first();
+      metric.d1_regions = regions?.c ?? null;
+    } catch (e) { metric.errors.push(`d1_regions: ${String(e).slice(0, 60)}`); }
+  }
+
+  // KV 카운트 (피드백 / 이미지 캐시)
+  if (env.RATE_LIMIT_KV) {
+    try {
+      const fbList = await env.RATE_LIMIT_KV.list({ prefix: "fb:", limit: 1000 });
+      metric.kv_fb_count = fbList.keys.length + (fbList.list_complete === false ? 1000 : 0);
+    } catch (e) { metric.errors.push(`kv_fb: ${String(e).slice(0, 60)}`); }
+    try {
+      const cacheList = await env.RATE_LIMIT_KV.list({ prefix: "cache:img:", limit: 1000 });
+      metric.kv_cache_img_count = cacheList.keys.length + (cacheList.list_complete === false ? 1000 : 0);
+    } catch (e) { metric.errors.push(`kv_cache_img: ${String(e).slice(0, 60)}`); }
+  }
+
+  metric.duration_ms = Date.now() - startedAt;
+
+  // 저장: metrics:daily:YYYY-MM-DD (90일 보존) + cron:last_run (최신 덮어쓰기, TTL 없음)
+  if (env.RATE_LIMIT_KV) {
+    try {
+      await env.RATE_LIMIT_KV.put(`metrics:daily:${today}`, JSON.stringify(metric), {
+        expirationTtl: 90 * 24 * 60 * 60,
+      });
+      await env.RATE_LIMIT_KV.put("cron:last_run", JSON.stringify({
+        cron, kind: "daily_metrics", ts: Date.now(), iso: new Date().toISOString(),
+        duration_ms: metric.duration_ms, errors: metric.errors.length,
+      }));
+    } catch (e) {
+      log("cron_metric_save_err", { error: String(e).slice(0, 80) });
+    }
+  }
+  log("cron_daily_done", { date: today, items: metric.d1_items, aliases: metric.d1_aliases, ms: metric.duration_ms, errs: metric.errors.length });
+}
+
+async function runCacheSweep(env, startedAt, cron) {
+  if (!env.RATE_LIMIT_KV) {
+    log("cron_sweep_skipped", { reason: "no_kv" });
+    return;
+  }
+
+  // 빈/이상 응답 캐시 (item_id=unknown 또는 빈 객체) 정리. 사용자가 같은 사진 다시 찍었을 때 fresh 보장.
+  // 안전: 100개까지만 스캔 (Worker CPU time 제약 회피)
+  let scanned = 0, removed = 0;
+  let cursor = undefined;
+  const maxScan = 200;
+  const errors = [];
+
+  try {
+    while (scanned < maxScan) {
+      const page = await env.RATE_LIMIT_KV.list({ prefix: "cache:img:", limit: 50, cursor });
+      for (const k of page.keys) {
+        scanned++;
+        try {
+          const v = await env.RATE_LIMIT_KV.get(k.name);
+          if (!v) continue;
+          let bad = false;
+          try {
+            const p = JSON.parse(v);
+            const id = p?.item_id ? String(p.item_id).trim() : "";
+            if (!id || id === "unknown") bad = true;
+          } catch {
+            bad = true; // JSON 깨졌으면 정리
+          }
+          if (bad) {
+            await env.RATE_LIMIT_KV.delete(k.name);
+            removed++;
+          }
+        } catch (e) {
+          errors.push(String(e).slice(0, 40));
+        }
+        if (scanned >= maxScan) break;
+      }
+      if (page.list_complete || !page.cursor) break;
+      cursor = page.cursor;
+    }
+  } catch (e) {
+    errors.push(`scan: ${String(e).slice(0, 60)}`);
+  }
+
+  const duration_ms = Date.now() - startedAt;
+  try {
+    await env.RATE_LIMIT_KV.put("cron:last_run", JSON.stringify({
+      cron, kind: "cache_sweep", ts: Date.now(), iso: new Date().toISOString(),
+      scanned, removed, duration_ms, errors: errors.length,
+    }));
+  } catch {}
+  log("cron_sweep_done", { scanned, removed, ms: duration_ms, errs: errors.length });
+}
+
+async function readMetricSafe(env, key) {
+  try {
+    const v = await env.RATE_LIMIT_KV.get(key);
+    if (!v) return null;
+    try { return JSON.parse(v); } catch { return v; }
+  } catch (e) {
+    return { error: String(e).slice(0, 60) };
+  }
+}
 
 /* ---------- 유틸 ---------- */
 function buildAllowList(env) {

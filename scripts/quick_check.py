@@ -52,7 +52,9 @@ try:
                     f"새 라벨형 의심: {[s[0] for s in suspect_labels if s[0] not in ('general', '기타_일반')]}" if suspect_labels else f"{len(suspect_labels)}개 (의도된 catchall)")
 
     # 패턴 4: 1글자 alias 노이즈 (보존 화이트리스트 외)
-    PRESERVE_1CHAR = {'책', '옷', '약'}
+    # 2026-05-22 v5.32 이후: 직관적 1글자 검색어는 의도 보존
+    #   밥·국 → food_waste, 껌 → general, 백 → bag, 캡 → hat (영어 줄임말)
+    PRESERVE_1CHAR = {'책', '옷', '약', '밥', '국', '껌', '백', '캡'}
     noisy_1char = []
     for k, v in items.items():
         for a in v.get("aliases", []):
@@ -117,11 +119,27 @@ try:
 except Exception as e:
     all_ok &= check("region_exceptions.json", False, str(e))
 
-# 3. app.html
+# 3. app.html + sw.js -- dynamic version match (v5.32+: hardcoded stale check 폐기)
+import re as _re
+sw_ver, html_ver = None, None
+try:
+    with open(os.path.join(ROOT, "sw.js"), encoding="utf-8") as f:
+        sw = f.read()
+    m = _re.search(r"const\s+VERSION\s*=\s*['\"](v\d+\.\d+(?:\.\d+)?)['\"]", sw)
+    sw_ver = m.group(1) if m else None
+    all_ok &= check("sw.js VERSION 추출", bool(sw_ver), sw_ver or "추출 실패")
+except Exception as e:
+    all_ok &= check("sw.js", False, str(e))
+
 try:
     with open(os.path.join(ROOT, "app.html"), encoding="utf-8") as f:
         html = f.read()
-    all_ok &= check("v5.30 버전", "v5.30" in html, "")
+    m = _re.search(r"class=['\"]version['\"][^>]*>(v\d+\.\d+(?:\.\d+)?)<", html)
+    html_ver = m.group(1) if m else None
+    all_ok &= check("app.html 버전 추출", bool(html_ver), html_ver or "추출 실패")
+    all_ok &= check("app.html ↔ sw.js 버전 일치",
+                    bool(sw_ver) and sw_ver == html_ver,
+                    f"sw={sw_ver} html={html_ver}")
     all_ok &= check("_escGlobal 정의", "_escGlobal" in html, "검색 함수 안전")
     all_ok &= check("searchByText 정의", "function searchByText" in html, "")
     all_ok &= check("_inherits 처리", "_inherits" in html and "safetyCounter" in html, "")
@@ -129,18 +147,25 @@ try:
 except Exception as e:
     all_ok &= check("app.html", False, str(e))
 
-# 4. sw.js
+# 4. Cloudflare Worker -- JS 문법 자체검사 (Phase A2 cron 활성 이후 회귀 방지)
 try:
-    with open(os.path.join(ROOT, "sw.js"), encoding="utf-8") as f:
-        sw = f.read()
-    all_ok &= check("sw.js VERSION v5.30", "v5.30" in sw, "")
+    import subprocess
+    worker_path = os.path.join(ROOT, "scripts", "cloudflare_worker.js")
+    if os.path.exists(worker_path):
+        r = subprocess.run(["node", "-c", worker_path], capture_output=True, text=True)
+        all_ok &= check("cloudflare_worker.js 문법", r.returncode == 0,
+                        (r.stderr.strip()[:80] if r.returncode != 0 else "OK"))
+    else:
+        all_ok &= check("cloudflare_worker.js 문법", False, "파일 없음")
+except FileNotFoundError:
+    check("cloudflare_worker.js 문법", True, "node 미설치 - skip")
 except Exception as e:
-    all_ok &= check("sw.js", False, str(e))
+    all_ok &= check("cloudflare_worker.js 문법", False, str(e)[:80])
 
 print("\n" + ("=" * 40))
 if all_ok:
-    print("🎉 모든 검사 통과! push 안전.")
+    print("[OK] 모든 검사 통과! push 안전.")
 else:
-    print("⚠️  실패 항목 있음. 위 ❌ 확인 후 수정.")
+    print("[FAIL] 실패 항목 있음. 위 X 확인 후 수정.")
 print("=" * 40 + "\n")
 sys.exit(0 if all_ok else 1)
