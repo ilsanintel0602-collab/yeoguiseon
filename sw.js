@@ -4,7 +4,7 @@
    - 외부 API/모델 CDN: 캐시 안 함
 */
 
-const VERSION = 'v5.28.3';
+const VERSION = 'v5.29';
 const APP_SHELL_CACHE = `yeoguiseon-shell-${VERSION}`;
 const DATA_CACHE = `yeoguiseon-data-${VERSION}`;
 
