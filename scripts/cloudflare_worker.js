@@ -1,5 +1,5 @@
 /**
- * 여기선 PWA - Gemini API Proxy Worker (v1.9.4 — 빈 응답 KV 캐시 차단)
+ * 여기선 PWA - Gemini API Proxy Worker (v1.9.5 — /feedback/dump 추가)
  * ------------------------------------------------
  * 목적: 클라이언트에 API 키 노출 없이 Gemini 호출 + D1 DB 직접 서비스
  * 배포: Cloudflare Workers (ES Module, fetch handler)
@@ -141,6 +141,35 @@ export default {
         return json({ error: "GET only for /data/*" }, 405, corsHeaders(corsOrigin));
       }
       return await handleData(request, env, corsOrigin, path);
+    }
+
+    // v1.9.5 (Phase B4): /feedback/dump — KV에 누적된 피드백 전체 dump (자동 학습 사이클용)
+    //   GET 전용. Origin 무관 (서버 스크립트용). 키 보호: ?key=DUMP_KEY 필수.
+    if (path === "/feedback/dump") {
+      if (request.method !== "GET") {
+        return json({ error: "GET only" }, 405, corsHeaders("*"));
+      }
+      const dumpKey = url.searchParams.get("key");
+      if (!env.FEEDBACK_DUMP_KEY || dumpKey !== env.FEEDBACK_DUMP_KEY) {
+        return json({ error: "invalid dump key" }, 403, corsHeaders("*"));
+      }
+      if (!env.RATE_LIMIT_KV) {
+        return json({ error: "KV not configured" }, 503, corsHeaders("*"));
+      }
+      try {
+        const list = await env.RATE_LIMIT_KV.list({ prefix: "fb:" });
+        const items = [];
+        for (const k of list.keys.slice(0, 1000)) {
+          const v = await env.RATE_LIMIT_KV.get(k.name);
+          if (v) {
+            try { items.push({ key: k.name, ...JSON.parse(v) }); }
+            catch { items.push({ key: k.name, raw: v }); }
+          }
+        }
+        return json({ ok: true, count: items.length, items }, 200, corsHeaders("*", 60));
+      } catch (e) {
+        return json({ error: `dump failed: ${String(e).slice(0, 80)}` }, 500, corsHeaders("*"));
+      }
     }
 
     // 3) Method / Content-Type 검증 (이후 분기는 POST 전용)
