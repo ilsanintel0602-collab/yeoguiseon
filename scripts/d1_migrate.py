@@ -43,6 +43,12 @@ def main():
         "-- 정적 JSON → D1 (auto-generated)",
         "-- 주의: D1은 SQL BEGIN/COMMIT 거부 (JS API만 허용) → 트랜잭션 문 제외",
         "",
+        "-- v5.29.1: 기존 데이터 정리 (가짜 item 제거 보장). FK 없으므로 순서 무관.",
+        "DELETE FROM region_exceptions;",
+        "DELETE FROM aliases;",
+        "DELETE FROM regions;",
+        "DELETE FROM items;",
+        "",
     ]
 
     # 1. items + aliases

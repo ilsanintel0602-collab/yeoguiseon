@@ -121,7 +121,7 @@ except Exception as e:
 try:
     with open(os.path.join(ROOT, "app.html"), encoding="utf-8") as f:
         html = f.read()
-    all_ok &= check("v5.29 버전", "v5.29" in html, "")
+    all_ok &= check("v5.29.2 버전", "v5.29.2" in html, "")
     all_ok &= check("_escGlobal 정의", "_escGlobal" in html, "검색 함수 안전")
     all_ok &= check("searchByText 정의", "function searchByText" in html, "")
     all_ok &= check("_inherits 처리", "_inherits" in html and "safetyCounter" in html, "")
@@ -133,7 +133,7 @@ except Exception as e:
 try:
     with open(os.path.join(ROOT, "sw.js"), encoding="utf-8") as f:
         sw = f.read()
-    all_ok &= check("sw.js VERSION v5.29", "v5.29" in sw, "")
+    all_ok &= check("sw.js VERSION v5.29.2", "v5.29.2" in sw, "")
 except Exception as e:
     all_ok &= check("sw.js", False, str(e))
 
