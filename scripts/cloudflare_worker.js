@@ -4,6 +4,9 @@
  * 목적: 클라이언트에 API 키 노출 없이 Gemini 호출 + D1 DB 직접 서비스 + 무인 운영
  * 배포: Cloudflare Workers (ES Module, fetch + scheduled handler)
  *
+ * v1.9.6.1 (2026-05-22 핫픽스):
+ *   - /admin/health + /feedback/dump를 Origin 검증 이전으로 이동 (브라우저/서버 호출 둘 다 통과)
+ *
  * v1.9.6 (2026-05-22 — Phase A2 cron 활성):
  *   - scheduled() 핸들러 추가 → Cloudflare cron trigger로 무인 운영 진입
  *   - 매일 00:05 KST: D1 items/aliases 카운트 + KV 캐시 통계를 metrics:daily:YYYY-MM-DD 기록 (90일 보존)
@@ -138,19 +141,6 @@ export default {
       return await handleAugment(request, env, "*");
     }
 
-    // 2) 그 외 엔드포인트는 Origin 검증 (브라우저 호출 전용)
-    if (!corsOrigin) {
-      return json({ error: "Origin not allowed" }, 403, corsHeaders(""));
-    }
-
-    // v1.9.1: /data/* 는 GET 전용 (D1 읽기) — POST 검사보다 먼저!
-    if (path.startsWith("/data/")) {
-      if (request.method !== "GET") {
-        return json({ error: "GET only for /data/*" }, 405, corsHeaders(corsOrigin));
-      }
-      return await handleData(request, env, corsOrigin, path);
-    }
-
     // v1.9.5 (Phase B4): /feedback/dump — KV에 누적된 피드백 전체 dump (자동 학습 사이클용)
     //   GET 전용. Origin 무관 (서버 스크립트용). 키 보호: ?key=DUMP_KEY 필수.
     //   v1.9.6 핫픽스: 변수명 url 미정의 → reqUrl (이 함수 위에 const reqUrl = new URL(request.url) 이미 있음)
@@ -193,7 +183,7 @@ export default {
         const yest = new Date(Date.now() - 86400_000).toISOString().slice(0, 10);
         const out = {
           ok: true,
-          worker_version: "v1.9.6",
+          worker_version: "v1.9.6.1",
           now: new Date().toISOString(),
           d1_bound: !!env.DB,
           kv_bound: !!env.RATE_LIMIT_KV,
@@ -217,6 +207,19 @@ export default {
       } catch (e) {
         return json({ error: `health failed: ${String(e).slice(0, 80)}` }, 500, corsHeaders("*"));
       }
+    }
+
+    // 2) 그 외 엔드포인트는 Origin 검증 (브라우저 호출 전용)
+    if (!corsOrigin) {
+      return json({ error: "Origin not allowed" }, 403, corsHeaders(""));
+    }
+
+    // v1.9.1: /data/* 는 GET 전용 (D1 읽기) — POST 검사보다 먼저!
+    if (path.startsWith("/data/")) {
+      if (request.method !== "GET") {
+        return json({ error: "GET only for /data/*" }, 405, corsHeaders(corsOrigin));
+      }
+      return await handleData(request, env, corsOrigin, path);
     }
 
     // 3) Method / Content-Type 검증 (이후 분기는 POST 전용)
