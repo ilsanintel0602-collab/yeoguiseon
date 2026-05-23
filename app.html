@@ -259,8 +259,10 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .category-pill.battery { background: #c0392b; }
 .category-pill.lamp { background: #d35400; }
 .category-pill.clothes { background: #8e44ad; }
-.item-name { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
-.confidence { font-size: 14px; color: var(--text-soft); margin-bottom: 16px; }
+/* v5.33: 결과 카드 시선 순서 — 품목명 큰 글씨 먼저, 분류 라벨은 보조로 */
+.item-name { font-size: 32px; font-weight: 800; margin: 4px 0 8px; line-height: 1.2; }
+.category-pill { display: inline-block; padding: 4px 12px; border-radius: 999px; color: #fff; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+.confidence { font-size: 13px; color: var(--text-soft); margin-bottom: 16px; }
 
 .diff-warning { display: flex; align-items: flex-start; gap: 10px; padding: 14px 16px; margin: 16px 0; background: #fff3cd; border-left: 5px solid #ffc107; border-radius: 8px; color: #856404; font-size: 16px; font-weight: 500; line-height: 1.5; }
 
@@ -332,7 +334,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.32</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.33</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -1973,9 +1975,10 @@ function renderResult(aiData) {
                     rule.source_type === 'national_default' ? '<span class="data-source national">🇰🇷 환경부 표준</span>' :
                     '<span class="data-source fallback">⚠️ 일반 가이드</span>';
 
+  // v5.33: 품목명 큰 글씨를 먼저 (사용자가 본 사물의 정체를 즉시 인지), 카테고리는 보조 라벨로
   let html = aiBadge;
-  html += `<div class="category-pill ${rule.category}">${cat?.name || '일반'}</div>`;
   html += `<div class="item-name">${itemName}</div>`;
+  html += `<div class="category-pill ${rule.category}">${cat?.name || '일반'}</div>`;
   html += `<div class="confidence">신뢰도: ${confText} (${(aiData.confidence * 100).toFixed(0)}%) · ${regionMeta?.shortName || ''} 기준 ${dataBadge}</div>`;
 
   if (rule.source_type === 'region_exception') {
