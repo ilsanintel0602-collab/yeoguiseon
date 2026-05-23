@@ -334,7 +334,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.33</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.34</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -1165,51 +1165,25 @@ function analyzeWithBrand(ocrRawText) {
   };
 }
 
-const SYSTEM_PROMPT = `당신은 한국 분리수거 이미지 분석 전문가. JSON만 응답.
+const SYSTEM_PROMPT = `한국 분리수거 사진 분류. JSON만.
 
-⚠️ 위험물(danger=true):
-- 가스통/부탄캔/스프레이=hazardous_gas
-- 부풀은 리튬배터리=hazardous_battery
-- 주사기/환자명 약통=hazardous_medical
-- 깨진 유리·칼날=sharp_glass
+응답: {"item_id":"snake_case_또는_한국어","category_hint":"plastic|paper|paper_pack|vinyl|can|glass|styrofoam|food|general|battery|lamp|clothes|electronics|furniture|hazardous|medicine|reusable","danger":false}
 
-🔄 재사용품(category_hint="reusable"):
-- 텀블러/머그컵/물병=reusable_tumbler
-- 스테인리스·유리컵=reusable_cup
-- 도시락통·반찬통=reusable_container
+⚠️ 위험물(danger:true): 가스통·부탄캔·스프레이=hazardous_gas, 부풀은 배터리=hazardous_battery, 주사기·약통=hazardous_medical, 깨진유리·칼날=sharp_glass
 
-📋 원칙:
-1. 재질+형태 (브랜드 무시)
-2. 일회용 vs 재사용 (재사용은 reusable_ 접두사)
-3. 투명 페트병=pet_bottle (라벨/뚜껑 보여도 무조건)
-4. 색깔 페트병=plastic_bottle
-5. 모르면 confidence 낮추기
-6. **책·노트북·문서·종이박스 등 표면에 글자/그림 많은 물건: 본문/화면 내용 무시하고 외형/재질만으로 분류** (책=book/paper, 노트북=electronics, 종이박스=paper_box). 절대 OCR하지 말고 짧게 JSON 응답.
-7. **분류 우선순위 ★**: 재활용 우선, general 최후. 종이박스·신문·책·잡지→paper(찢어진 정도 무시). 페트·플라스틱 용기→plastic(reusable은 텀블러·도시락통·머그컵·유리컵만). 캔→can(찌그러져도). 유리병·소주병→glass(컵 모양 음료병도 glass). 비닐봉지·과자봉지→vinyl. 스티로폼→styrofoam. general은 영수증·휴지·기저귀·도자기·깨진유리·복합소재만.
+🔄 재사용품(category_hint:reusable): 텀블러·머그·물병=reusable_tumbler, 스테인리스·유리컵=reusable_cup, 도시락·반찬통=reusable_container
 
-🇰🇷 한국 어려운 케이스(필수):
+📋 핵심 원칙:
+1. 재질+형태로 분류. 브랜드·표면 글자 무시 (OCR 금지). 책·노트북·종이박스도 외형만으로 paper/electronics 분류
+2. 재활용 우선, general 최후 (영수증·감열지·휴지·기저귀·도자기·깨진유리·복합소재만 general)
+3. 투명 페트=pet_bottle, 색깔 페트=plastic_bottle
+4. 모르면 confidence 낮추기
 
-[종이컵 3종]
-- 코팅없는 일반 종이컵=paper_cup, paper
-- PE코팅 테이크아웃컵=paper_cup_coated, general
-- 우유팩·주스팩·멸균팩=milk_carton, paper_pack
-
-[플라스틱]
-- 빨대·칫솔·숟가락·립밤(5cm 미만)=general
-- 색깔 음료병=plastic_bottle
-
-[오염·혼합=general]: 음식·기름 묻은 것, 영수증·감열지, 휴지·기저귀, 도자기·깨진유리, 머리카락·담배꽁초
-
-[캔]
-- 알루미늄 음료캔=beverage_can, can
-- 철 통조림캔=food_can, can
-- 다쓴 부탄(구멍O)=butane_can, can
-- 미사용 부탄·스프레이=danger=true
-
-응답 형식:
-{"item_id":"snake_case","item_label_ko":"한국어","confidence":0~1,"danger":false,"category_hint":"plastic|paper|paper_pack|vinyl|can|glass|styrofoam|food|general|battery|lamp|clothes|electronics|furniture|hazardous|medicine|reusable"}
-
-item_id 예시(한글 OK): pet_bottle/투명페트병, plastic_bottle, milk_carton/우유팩, paper_box/택배상자, newspaper, vinyl_bag/비닐봉지, snack_bag/과자봉지, beverage_can, food_can, glass_bottle/유리병, soju_bottle/소주병, styrofoam_box, food_waste/음식물, battery/건전지, lamp/형광등, clothes/의류, electronics, furniture, reusable_tumbler, reusable_cup`;
+🇰🇷 자주 헷갈리는 케이스:
+- 종이컵: 일반=paper_cup(paper), 코팅 테이크아웃=paper_cup_coated(general), 우유팩=milk_carton(paper_pack)
+- 빨대·칫솔·립밤·5cm 미만 플라스틱=general
+- 캔: 알루미늄 음료=beverage_can, 철 통조림=food_can, 다쓴 부탄(구멍O)=butane_can
+- 비닐봉지·과자봉지=vinyl_bag, 스티로폼 박스=styrofoam_box, 유리병·소주병=glass_bottle`;
 
 // v5.6: Cloudflare Worker 프록시 (키 GitHub 노출 X)
 const WORKER_URL = 'https://yeoguiseon-proxy.ilsanintel0602.workers.dev/';
@@ -1954,8 +1928,14 @@ function renderResult(aiData) {
   // v5.5: Gemini의 category_hint 전달 → DB 미스 시 카테고리 폴백
   const rule = matchRule(aiData.item_id, regionCode, aiData.category_hint);
   const cat = NATIONAL.categories[rule.category] || { name: rule.category === 'reusable' ? '재사용품' : '일반' };
-  const confText = aiData.confidence >= 0.8 ? '높음' : aiData.confidence >= 0.5 ? '보통' : '낮음';
-  const itemName = NATIONAL.items[aiData.item_id]?.name || aiData.item_label_ko || '알 수 없음';
+  // v5.34: Gemini 응답 필드 5→3 축소(item_label_ko·confidence 제거). 우리 DB가 더 정확하므로 자동 계산
+  //   - itemName: DB의 item.name 우선. 없으면 Gemini가 보낸 item_label_ko(구버전 호환), 그것도 없으면 item_id 그대로
+  //   - 신뢰도: DB 매칭 성공=95%, 카테고리만 매칭=60%, 완전 미스=30% (Gemini가 confidence 보내면 그 값 우선)
+  const dbItem = NATIONAL.items[aiData.item_id];
+  const itemName = dbItem?.name || aiData.item_label_ko || aiData.item_id || '알 수 없음';
+  const autoConfidence = dbItem ? 0.95 : (rule.source_type === 'national_default' ? 0.6 : 0.3);
+  const confValue = (typeof aiData.confidence === 'number') ? aiData.confidence : autoConfidence;
+  const confText = confValue >= 0.8 ? '높음' : confValue >= 0.5 ? '보통' : '낮음';
 
   // 분석 출처 배지 (v4: OCR + 브랜드 + 학습 추가)
   const aiBadge =
@@ -1979,7 +1959,7 @@ function renderResult(aiData) {
   let html = aiBadge;
   html += `<div class="item-name">${itemName}</div>`;
   html += `<div class="category-pill ${rule.category}">${cat?.name || '일반'}</div>`;
-  html += `<div class="confidence">신뢰도: ${confText} (${(aiData.confidence * 100).toFixed(0)}%) · ${regionMeta?.shortName || ''} 기준 ${dataBadge}</div>`;
+  html += `<div class="confidence">신뢰도: ${confText} (${(confValue * 100).toFixed(0)}%) · ${regionMeta?.shortName || ''} 기준 ${dataBadge}</div>`;
 
   if (rule.source_type === 'region_exception') {
     html += `<div class="diff-warning">⚠️ <b>${regionMeta.shortName}만의 특별 규칙</b>이에요. 다른 지역과 다를 수 있어요.</div>`;
@@ -2930,20 +2910,4 @@ async function init() {
       } catch (err) {
         // 권한 거부 / 타임아웃 / 위치 못 잡음
         const msg = err.code === 1
-          ? '📍 위치 권한 거부됨. 주소창 자물쇠🔒에서 권한 허용 후 재시도'
-          : '📍 위치 찾기 실패. 설정에서 직접 선택해주세요';
-        toast(msg);
-      }
-    }, 1200);
-  }
-
-  console.log('[여기선 v4.1] 초기화 완료 — 전국 ' + Object.keys(REGIONS.level2).length + ' 시군구 지원');
-}
-
-document.addEventListener('DOMContentLoaded', init);
-if (document.readyState !== 'loading') init();
-
-})();
-</script>
-</body>
-</html>
+          ? '📍 위치 권한 거부됨. 주소창 자물쇠🔒에서 권한 허용 후

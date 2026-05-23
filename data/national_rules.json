@@ -26044,7 +26044,7 @@
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do"
     },
     "paper": {
-      "name": "paper",
+      "name": "종이류",
       "category": "paper",
       "note": "사용자 일상 어휘 보강 항목",
       "steps": [
@@ -26163,7 +26163,7 @@
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do"
     },
     "general": {
-      "name": "general",
+      "name": "기타 일반쓰레기",
       "category": "general",
       "note": "사용자 일상 어휘 보강 항목",
       "steps": [
@@ -26335,7 +26335,7 @@
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do"
     },
     "vinyl": {
-      "name": "vinyl",
+      "name": "비닐류",
       "category": "vinyl",
       "note": "사용자 일상 어휘 보강 항목",
       "steps": [
@@ -26487,7 +26487,7 @@
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do"
     },
     "styrofoam": {
-      "name": "styrofoam",
+      "name": "스티로폼",
       "category": "styrofoam",
       "note": "사용자 일상 어휘 보강",
       "steps": [
@@ -26542,7 +26542,7 @@
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do"
     },
     "hazardous_gas": {
-      "name": "hazardous gas",
+      "name": "가스통·부탄·스프레이 (위험물)",
       "category": "hazardous",
       "note": "약한 카테고리 보강",
       "steps": [
@@ -26584,7 +26584,7 @@
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do"
     },
     "hazardous_battery": {
-      "name": "hazardous battery",
+      "name": "부풀은 배터리 (위험물)",
       "category": "hazardous",
       "note": "약한 카테고리 보강",
       "steps": [
@@ -26603,7 +26603,7 @@
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do"
     },
     "hazardous_chemical": {
-      "name": "hazardous chemical",
+      "name": "폐화학물질 (위험물)",
       "category": "hazardous",
       "note": "약한 카테고리 보강",
       "steps": [
@@ -26634,7 +26634,7 @@
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do"
     },
     "sharp_glass": {
-      "name": "sharp glass",
+      "name": "깨진 유리·칼날 (위험물)",
       "category": "hazardous",
       "note": "약한 카테고리 보강",
       "steps": [
@@ -26655,7 +26655,7 @@
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do"
     },
     "paper_pack_general": {
-      "name": "paper pack general",
+      "name": "종이팩 (일반)",
       "category": "paper_pack",
       "note": "약한 카테고리 보강",
       "steps": [
@@ -26678,7 +26678,7 @@
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do"
     },
     "styrofoam_packaging": {
-      "name": "styrofoam packaging",
+      "name": "스티로폼 포장재",
       "category": "styrofoam",
       "note": "약한 카테고리 보강",
       "steps": [
