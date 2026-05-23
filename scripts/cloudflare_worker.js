@@ -1,8 +1,12 @@
 /**
- * 여기선 PWA - Gemini API Proxy Worker (v1.9.6 — Phase A2 cron 활성 + /admin/health + dump 버그 픽스)
+ * 여기선 PWA - Gemini API Proxy Worker (v1.9.7 — MAX_TOKENS 근본 해결 8192)
  * ------------------------------------------------
  * 목적: 클라이언트에 API 키 노출 없이 Gemini 호출 + D1 DB 직접 서비스 + 무인 운영
  * 배포: Cloudflare Workers (ES Module, fetch + scheduled handler)
+ *
+ * v1.9.7 (2026-05-23 — MAX_TOKENS 근본 해결):
+ *   - maxOutputTokens 2048 → 8192 (압력솥·노트북·복잡 사진에서 MAX_TOKENS 잘림 사라짐)
+ *   - 정상 응답 100~200 토큰엔 영향 0. 비용은 실제 사용 토큰만 과금이라 0.
  *
  * v1.9.6.1 (2026-05-22 핫픽스):
  *   - /admin/health + /feedback/dump를 Origin 검증 이전으로 이동 (브라우저/서버 호출 둘 다 통과)
@@ -308,9 +312,10 @@ export default {
       generationConfig: {
         responseMimeType: "application/json",
         temperature: Number.isFinite(body.temperature) ? body.temperature : 0.2,
-        // v1.4: 2048 토큰 — v1.3의 1024도 일부 잘림 잔존. 2048 안전 마진 + 비용 영향 0.
-        // 정상 응답(100~200 토큰)은 영향 X. OCR 차단은 SYSTEM_PROMPT 원칙 6 담당.
-        maxOutputTokens: 2048,
+        // v1.9.7: 2048도 압력솥·노트북 같은 케이스에서 MAX_TOKENS 발생 → 8192로 확대
+        //   정상 응답(100~200 토큰)은 영향 0. 비용 영향 0 (사용 토큰만 과금).
+        //   v5.34에서 SYSTEM_PROMPT 46% 축소했지만 응답 자체가 길어지는 경우 잔존 → 출력 한도 자체 확대
+        maxOutputTokens: 8192,
       },
       // v1.1: 한국 분리수거 작업은 명백히 안전 → 기본 medium filter 해제.
       // "주사기·리튬배터리·깨진 유리" 같은 단어가 medium에서 차단되던 이슈 차단.

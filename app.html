@@ -334,7 +334,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.34</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.35</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -1167,7 +1167,7 @@ function analyzeWithBrand(ocrRawText) {
 
 const SYSTEM_PROMPT = `한국 분리수거 사진 분류. JSON만.
 
-응답: {"item_id":"snake_case_또는_한국어","category_hint":"plastic|paper|paper_pack|vinyl|can|glass|styrofoam|food|general|battery|lamp|clothes|electronics|furniture|hazardous|medicine|reusable","danger":false}
+응답: {"item_id":"한국어_우선(예:노트북·텀블러·코트), 없으면 snake_case","category_hint":"plastic|paper|paper_pack|vinyl|can|glass|styrofoam|food|general|battery|lamp|clothes|electronics|furniture|hazardous|medicine|reusable","danger":false}
 
 ⚠️ 위험물(danger:true): 가스통·부탄캔·스프레이=hazardous_gas, 부풀은 배터리=hazardous_battery, 주사기·약통=hazardous_medical, 깨진유리·칼날=sharp_glass
 
@@ -1928,11 +1928,43 @@ function renderResult(aiData) {
   // v5.5: Gemini의 category_hint 전달 → DB 미스 시 카테고리 폴백
   const rule = matchRule(aiData.item_id, regionCode, aiData.category_hint);
   const cat = NATIONAL.categories[rule.category] || { name: rule.category === 'reusable' ? '재사용품' : '일반' };
-  // v5.34: Gemini 응답 필드 5→3 축소(item_label_ko·confidence 제거). 우리 DB가 더 정확하므로 자동 계산
-  //   - itemName: DB의 item.name 우선. 없으면 Gemini가 보낸 item_label_ko(구버전 호환), 그것도 없으면 item_id 그대로
-  //   - 신뢰도: DB 매칭 성공=95%, 카테고리만 매칭=60%, 완전 미스=30% (Gemini가 confidence 보내면 그 값 우선)
+  // v5.35: Gemini가 우리 DB에 없는 영문 item_id (coat·hat·shoes 등) 보낼 때 친절한 한국어 이름 폴백
+  //   1순위: 우리 DB의 item.name (가장 정확)
+  //   2순위: 영문 → 한국어 매핑 (자주 나오는 케이스)
+  //   3순위: 한국어 item_id 그대로 (Gemini가 한국어로 보낸 경우)
+  //   4순위: 카테고리 라벨 (예: "의류", "소형가전")
   const dbItem = NATIONAL.items[aiData.item_id];
-  const itemName = dbItem?.name || aiData.item_label_ko || aiData.item_id || '알 수 없음';
+  const EN_KO_FALLBACK = {
+    'coat': '코트', 'jacket': '재킷', 'shirt': '셔츠', 'pants': '바지', 'dress': '원피스',
+    'sweater': '스웨터', 'skirt': '치마', 'underwear': '속옷', 'sock': '양말',
+    'hat': '모자·캡', 'cap': '캡 모자', 'shoes': '신발', 'sneakers': '운동화',
+    'bag': '가방', 'backpack': '백팩', 'wallet': '지갑',
+    'phone': '핸드폰', 'laptop': '노트북', 'tablet': '태블릿', 'monitor': '모니터',
+    'tv': 'TV', 'speaker': '스피커', 'camera': '카메라', 'headphone': '헤드폰',
+    'mouse': '마우스', 'keyboard': '키보드', 'cable': '케이블',
+    'book': '책', 'newspaper': '신문지', 'magazine': '잡지', 'paper': '종이류',
+    'box': '종이박스', 'envelope': '봉투',
+    'bottle': '병', 'can': '캔', 'jar': '유리병',
+    'cup': '컵', 'plate': '접시', 'bowl': '그릇',
+    'chair': '의자', 'table': '책상·테이블', 'sofa': '소파',
+    'general': '기타 일반쓰레기',
+  };
+  let itemName;
+  if (dbItem?.name) {
+    itemName = dbItem.name;
+  } else if (aiData.item_label_ko) {
+    itemName = aiData.item_label_ko;
+  } else if (aiData.item_id && /[가-힣]/.test(aiData.item_id)) {
+    // 한국어 item_id 그대로
+    itemName = aiData.item_id;
+  } else if (aiData.item_id && EN_KO_FALLBACK[aiData.item_id.toLowerCase()]) {
+    itemName = EN_KO_FALLBACK[aiData.item_id.toLowerCase()];
+  } else if (rule.category && NATIONAL.categories[rule.category]?.name) {
+    // 마지막: 카테고리 라벨 (예: 의류, 소형가전)
+    itemName = NATIONAL.categories[rule.category].name;
+  } else {
+    itemName = aiData.item_id || '알 수 없음';
+  }
   const autoConfidence = dbItem ? 0.95 : (rule.source_type === 'national_default' ? 0.6 : 0.3);
   const confValue = (typeof aiData.confidence === 'number') ? aiData.confidence : autoConfidence;
   const confText = confValue >= 0.8 ? '높음' : confValue >= 0.5 ? '보통' : '낮음';
@@ -2876,8 +2908,7 @@ async function init() {
     toast('AI 모델 로드 실패. API 키로 LLM만 사용 가능', true);
   }
 
-  // v4.1 보강: 위치 미설정이면 첫 진입 시 자동으로 GPS 시도
-  // 한 번 거부된 적 있으면 즉시 실패 → toast로 수동 안내
+  // v4.1: 위치 미설정이면 첫 진입 시 자동으로 GPS 시도
   if (!state.regionLevel2) {
     setTimeout(async () => {
       if (!navigator.geolocation) {
@@ -2889,7 +2920,7 @@ async function init() {
           navigator.geolocation.getCurrentPosition(res, rej, {
             enableHighAccuracy: false,
             timeout: 7000,
-            maximumAge: 5 * 60 * 1000  // 5분 캐시 OK
+            maximumAge: 5 * 60 * 1000
           })
         );
         const { latitude: lat, longitude: lng } = pos.coords;
@@ -2897,6 +2928,7 @@ async function init() {
         if (level2) {
           state.regionLevel1 = level1;
           state.regionLevel2 = level2;
+          LS.set('regionLevel1', level1);
           LS.set('regionLevel2', level2);
           updateLocationChip();
           toast('📍 ' + level2 + '로 자동 설정', false);
