@@ -265,6 +265,36 @@
       "officialUrl": "https://www.sejong.go.kr/",
       "phone": "044-300-3114",
       "confidence": "high"
+    },
+    "41281": {
+      "name": "경기도 고양시 덕양구",
+      "shortName": "덕양구",
+      "sido": "41",
+      "officialUrl": "https://www.goyang.go.kr/dy/dy04/dy04_1/dy04_1_1.jsp",
+      "bulkWasteUrl": "https://www.goyang.go.kr/main/contents.do?key=389",
+      "phone": "031-8075-4000",
+      "confidence": "medium",
+      "note": "고양시 통합 안내. 덕양구청 전화: 031-8075-4000"
+    },
+    "41285": {
+      "name": "경기도 고양시 일산동구",
+      "shortName": "일산동구",
+      "sido": "41",
+      "officialUrl": "https://www.goyang.go.kr/main/contents.do?key=389",
+      "bulkWasteUrl": "https://www.goyang.go.kr/main/contents.do?key=389",
+      "phone": "031-8075-3114",
+      "confidence": "medium",
+      "note": "고양시 생활폐기물 분리배출 통합 안내. 일산동구청 전화: 031-8075-3114"
+    },
+    "41287": {
+      "name": "경기도 고양시 일산서구",
+      "shortName": "일산서구",
+      "sido": "41",
+      "officialUrl": "https://www.goyang.go.kr/main/contents.do?key=389",
+      "bulkWasteUrl": "https://www.goyang.go.kr/main/contents.do?key=389",
+      "phone": "031-8075-5000",
+      "confidence": "medium",
+      "note": "고양시 통합 안내. 일산서구청 전화: 031-8075-5000"
     }
   },
   "coverage": {
