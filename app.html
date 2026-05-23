@@ -2897,17 +2897,19 @@ async function init() {
         if (level2) {
           state.regionLevel1 = level1;
           state.regionLevel2 = level2;
-          LS.set('regionLevel1', level1);
           LS.set('regionLevel2', level2);
           updateLocationChip();
-          const r = REGIONS.level2[level2];
-          toast(`📍 ${r.name}으로 자동 설정됐어요`);
-        } else if (level1) {
-          toast(`📍 ${REGIONS.level1[level1].name} 근처. 설정에서 시군구 선택해주세요`);
-        } else {
-          toast('📍 지역 매칭 안 됨. 설정에서 직접 선택해주세요');
+          toast('📍 ' + level2 + '로 자동 설정', false);
         }
       } catch (err) {
-        // 권한 거부 / 타임아웃 / 위치 못 잡음
-        const msg = err.code === 1
-          ? '📍 위치 권한 거부됨. 주소창 자물쇠🔒에서 권한 허용 후
+        console.warn('[geo] auto detect failed', err);
+      }
+    }, 800);
+  }
+}
+
+init();
+})();
+</script>
+</body>
+</html>
