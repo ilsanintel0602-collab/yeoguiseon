@@ -334,7 +334,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.37</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.38</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -871,26 +871,47 @@ function matchRule(itemId, regionCode, categoryHint) {
     currentRegion = EXCEPTIONS[currentRegion]._inherits || null;
   }
   // 2. 환경부 표준 — cityGuide도 함께 (지역 안내 정보 결합)
-  const item = NATIONAL?.items?.[itemId];
+  let item = NATIONAL?.items?.[itemId];
+  let matchedKey = itemId;
+  // v5.38: alias fallback — Gemini가 비정확 ID 반환 시 (예: "압력솥", "spray_can") name/alias 매칭
+  if (!item && NATIONAL?.items && itemId) {
+    const _n = String(itemId).trim().toLowerCase().replace(/\s+/g, '');
+    for (const [k, v] of Object.entries(NATIONAL.items)) {
+      const kn = String(k).trim().toLowerCase().replace(/\s+/g, '');
+      if (kn === _n) { item = v; matchedKey = k; break; }
+      const vn = String(v.name || '').trim().toLowerCase().replace(/\s+/g, '');
+      if (vn && vn === _n) { item = v; matchedKey = k; break; }
+      const aliases = (v.aliases || []).map(a => String(a).trim().toLowerCase().replace(/\s+/g, ''));
+      if (aliases.includes(_n)) { item = v; matchedKey = k; break; }
+    }
+  }
   if (item) {
     return {
       category: item.category,
+      name: item.name,  // v5.38: 영문 id 대신 한글 name 사용
       note: item.note || '',
       steps: item.steps,
       confidence: item.confidence || 'medium',
       source_type: 'national_default',
-      source_url: NATIONAL.officialUrl,
+      source_url: item.sourceUrl || NATIONAL.officialUrl,
+      matchedKey,  // 매칭된 키 (디버그용)
       knownVariations: item.knownVariations,
       cityGuide  // 지역 안내 정보도 결합 (위에서 수집됨)
     };
   }
   // 3. v5.5 — 카테고리 힌트 폴백 (item_id 매칭 실패해도 카테고리는 알려줌)
+  // v5.38: reusable 카테고리 폐기 — 사용자 의도 "어떻게 버려요" 우선
   if (categoryHint === 'reusable') {
     return {
-      category: 'reusable',
-      note: '🔄 재사용 가능한 물건이에요. 분리수거 X — 본인이 계속 사용하시면 됩니다.',
+      category: 'general_noncombustible',
+      note: '재사용 가능한 물건이지만, 버려야 한다면: 깨진 유리·도자기·머그 = 불연성종량제봉투 또는 신문지로 안전하게 감싸 종량제봉투. 금속(스테인리스·압력솥 등) = 금속류 수거함 (날카로운 부분은 종이·테이프로 안전 처리). 멀쩡하면 재사용 권장.',
       source_type: 'category_hint',
-      steps: ['세척 후 다시 사용', '분리배출 대상 아님', '버릴 때만 폐기 절차 (대형은 대형폐기물 신고)']
+      steps: [
+        '깨진 머그·유리 = 불연성종량제봉투 또는 신문지로 감싸 종량제봉투',
+        '금속(스테인리스·압력솥·냄비) = 금속류 수거함 — 날카로운 부분 종이·테이프 안전 처리',
+        '플라스틱(텀블러·도시락통) = 플라스틱 수거함',
+        '멀쩡하면 본인이 재사용 권장'
+      ]
     };
   }
   // v5.6.2: paper_pack(종이팩)·general(일반쓰레기) 추가 — 한국 분리수거 핵심 카테고리
@@ -1958,7 +1979,8 @@ function renderResult(aiData) {
   //   2순위: 영문 → 한국어 매핑 (자주 나오는 케이스)
   //   3순위: 한국어 item_id 그대로 (Gemini가 한국어로 보낸 경우)
   //   4순위: 카테고리 라벨 (예: "의류", "소형가전")
-  const dbItem = NATIONAL.items[aiData.item_id];
+  // v5.38: matchRule이 alias로 찾은 키 우선 사용 (영문→한글 매칭 후 dbItem 정확 lookup)
+  const dbItem = NATIONAL.items[rule.matchedKey || aiData.item_id] || rule.name && {name: rule.name};
   const EN_KO_FALLBACK = {
     'coat': '코트', 'jacket': '재킷', 'shirt': '셔츠', 'pants': '바지', 'dress': '원피스',
     'sweater': '스웨터', 'skirt': '치마', 'underwear': '속옷', 'sock': '양말',
@@ -1973,6 +1995,16 @@ function renderResult(aiData) {
     'cup': '컵', 'plate': '접시', 'bowl': '그릇',
     'chair': '의자', 'table': '책상·테이블', 'sofa': '소파',
     'general': '기타 일반쓰레기',
+    // v5.38: Gemini 환각 영문 ID 한글 매핑
+    'spray_can': '에어로졸 캔 (스프레이)',
+    'electronic_device': '소형가전',
+    'electronics': '전기전자제품',
+    'pressure_cooker': '압력솥/압력밥솥',
+    'hand_blender': '핸드블렌더',
+    'coffee_maker': '커피메이커',
+    'mug': '머그잔',
+    'reusable_cup': '재사용 컵',
+    'tumbler': '텀블러',
   };
   let itemName;
   if (dbItem?.name) {
