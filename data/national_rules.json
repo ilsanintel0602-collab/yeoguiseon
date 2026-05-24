@@ -238,7 +238,10 @@
         "페트병",
         "플라스틱 물병",
         "플라스틱병(투명)",
-        "투명 페트병"
+        "투명 페트병",
+        "water_bottle",
+        "soda_bottle",
+        "beverage_bottle"
       ],
       "_bunribaechulSeq": 123,
       "lastVerified": "2026-05-24",
@@ -352,7 +355,9 @@
         "일회용 컵 (플라스틱)",
         "일회용 컵 플라스틱",
         "플라스틱 스트로",
-        "플라컵"
+        "플라컵",
+        "plastic_box",
+        "container"
       ],
       "lastVerified": "2026-05-24"
     },
@@ -434,7 +439,9 @@
         "편의점 봉투",
         "폴리백",
         "플라스틱 봉투",
-        "뽁뽁이"
+        "뽁뽁이",
+        "plastic_bag",
+        "shopping_bag"
       ],
       "_bunribaechulSeq": 101,
       "lastVerified": "2026-05-24",
@@ -558,7 +565,9 @@
         "종이신문",
         "중앙일보",
         "한겨레",
-        "신문"
+        "신문",
+        "paper",
+        "newsprint"
       ],
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do",
       "sourceName": "분리배출.kr (한국폐기물협회·환경부)",
@@ -652,7 +661,9 @@
         "카톤팩",
         "팩우유",
         "흰우유팩",
-        "음료팩"
+        "음료팩",
+        "carton",
+        "paper_carton"
       ],
       "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110102",
       "official_classification": [
@@ -967,7 +978,9 @@
         "칙칙이",
         "칙칙이 깡통",
         "탈취제 캔",
-        "헤어스프레이 캔"
+        "헤어스프레이 캔",
+        "spray_can",
+        "aerosol_can"
       ]
     },
     "glass_bottle": {
@@ -1004,7 +1017,9 @@
         "빈 병",
         "재활용 유리",
         "유리 음료병",
-        "빈병 반환"
+        "빈병 반환",
+        "wine_bottle",
+        "liquor_bottle"
       ],
       "_bunribaechulSeq": 534,
       "lastVerified": "2026-05-24",
@@ -1297,7 +1312,9 @@
         "찌꺼기",
         "음식물 찌꺼기",
         "밥찌꺼기",
-        "남은밥"
+        "남은밥",
+        "food_scrap",
+        "kitchen_waste"
       ],
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do",
       "sourceName": "분리배출.kr (한국폐기물협회·환경부)",
@@ -1987,7 +2004,11 @@
         "전기다리미",
         "전기전자제품",
         "팬히터",
-        "히터"
+        "히터",
+        "electronic_device",
+        "small_appliance",
+        "home_appliance",
+        "appliance"
       ],
       "sourceUrl": "https://www.xn--oy2b29bd3a601b.kr/front/dischargeMethod/dictionaryView.do?niIdx=231",
       "official_classification": [
@@ -8813,7 +8834,9 @@
         "윙윙이",
         "음식분쇄기",
         "푸드블렌더",
-        "핸드블렌더"
+        "핸드블렌더",
+        "hand_blender",
+        "handblender"
       ],
       "note": "· 믹서기는 전기전자제품 환경성보장제도 품목에 해당됩니다. * 환경성보장제도는 전기전자제품의 재활용을 촉진하기 위하여 유해물질의 사용을 억제하고 재활용이 쉽도록 제조하며 그 폐기물을 적정하게 재활용하도록 하여 자원을 효율적으로 이용하는 자원순환체계를 구축하여 환경보전과 국민 경제의 건전한 발전에 이바지함을 목적으로 하는 제도를 말합니다. ** 환경성보장제도",
       "steps": [
@@ -25885,7 +25908,9 @@
         "포장 스티로폼",
         "포장용 스티로폼 충진재",
         "하얀 스티로폼",
-        "흰색 스티로폼 박스"
+        "흰색 스티로폼 박스",
+        "foam",
+        "foam_box"
       ],
       "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110106",
       "sourceName": "환경부 분리배출.kr — 발포합성수지(스티로폼) 카테고리",
@@ -26319,6 +26344,53 @@
         "파우치 필통",
         "학용품 통"
       ]
+    },
+    "커피머신": {
+      "name": "커피머신",
+      "category": "electronics",
+      "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110112",
+      "sourceName": "환경부 분리배출.kr — 전기전자제품 카테고리",
+      "sourceGrade": "A_official",
+      "confidence": "high",
+      "steps": [
+        "소형은 소형전기전자제품 전용수거함",
+        "폐가전 무상수거 1599-0903 (5개 이상)",
+        "대형(냉장고·세탁기·에어컨·TV)은 무상수거 1개부터"
+      ],
+      "note": "환경부 표준 — 전기전자제품 (지자체에 따라 소형 전용수거함 위치 다름)",
+      "aliases": [
+        "커피머신",
+        "커피메이커",
+        "coffee_maker",
+        "coffeemaker",
+        "coffee_machine",
+        "espresso_machine"
+      ],
+      "lastVerified": "2026-05-24"
+    },
+    "핸드블렌더": {
+      "name": "핸드블렌더",
+      "category": "electronics",
+      "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110112",
+      "sourceName": "환경부 분리배출.kr — 전기전자제품 카테고리",
+      "sourceGrade": "A_official",
+      "confidence": "high",
+      "steps": [
+        "소형전기전자제품 전용수거함",
+        "폐가전 무상수거 1599-0903 (5개 이상)",
+        "날 부분 안전 처리 후 배출"
+      ],
+      "note": "환경부 표준 — 전기전자제품 (지자체에 따라 소형 전용수거함 위치 다름)",
+      "aliases": [
+        "핸드블렌더",
+        "핸드 블렌더",
+        "hand_blender",
+        "handblender",
+        "hand_mixer",
+        "핸드믹서",
+        "도깨비방망이"
+      ],
+      "lastVerified": "2026-05-24"
     }
   },
   "regionVariationItems": [

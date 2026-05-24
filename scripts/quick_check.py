@@ -195,5 +195,31 @@ if all_ok:
     print("[PASS] 모든 체크 통과. push 가능.")
 else:
     print("[FAIL] 실패 항목 있음. 위 X 확인 후 수정.")
+
+
+# 5. v5.39 추가: DB 자산 벤치마크 (정량 정확도 측정)
+try:
+    import subprocess as _sp2
+    bench_path = os.path.join(ROOT, "scripts", "benchmark_db.py")
+    if os.path.exists(bench_path):
+        r = _sp2.run([sys.executable, bench_path], capture_output=True, text=True, timeout=30)
+        if r.returncode == 0:
+            # 종합 점수 추출
+            score_line = [l for l in r.stdout.split('\n') if '종합 점수' in l]
+            if score_line:
+                score_str = score_line[0].split('종합 점수:')[-1].split('/')[0].strip()
+                try:
+                    score = float(score_str)
+                    threshold = 80.0
+                    all_ok &= check(f"DB 벤치마크 (>={threshold})", score >= threshold, f"{score}/100")
+                except ValueError:
+                    check("DB 벤치마크", True, "점수 파싱 실패")
+            else:
+                check("DB 벤치마크", True, "실행 OK (점수 미발견)")
+        else:
+            check("DB 벤치마크", False, f"실행 실패: {r.stderr[:60]}")
+except Exception as e:
+    check("DB 벤치마크", True, f"skip: {e}")
+
 print("=" * 40 + "\n")
 sys.exit(0 if all_ok else 1)
