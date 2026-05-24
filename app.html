@@ -334,7 +334,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.38</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.39</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -899,21 +899,7 @@ function matchRule(itemId, regionCode, categoryHint) {
       cityGuide  // 지역 안내 정보도 결합 (위에서 수집됨)
     };
   }
-  // 3. v5.5 — 카테고리 힌트 폴백 (item_id 매칭 실패해도 카테고리는 알려줌)
-  // v5.38: reusable 카테고리 폐기 — 사용자 의도 "어떻게 버려요" 우선
-  if (categoryHint === 'reusable') {
-    return {
-      category: 'general_noncombustible',
-      note: '재사용 가능한 물건이지만, 버려야 한다면: 깨진 유리·도자기·머그 = 불연성종량제봉투 또는 신문지로 안전하게 감싸 종량제봉투. 금속(스테인리스·압력솥 등) = 금속류 수거함 (날카로운 부분은 종이·테이프로 안전 처리). 멀쩡하면 재사용 권장.',
-      source_type: 'category_hint',
-      steps: [
-        '깨진 머그·유리 = 불연성종량제봉투 또는 신문지로 감싸 종량제봉투',
-        '금속(스테인리스·압력솥·냄비) = 금속류 수거함 — 날카로운 부분 종이·테이프 안전 처리',
-        '플라스틱(텀블러·도시락통) = 플라스틱 수거함',
-        '멀쩡하면 본인이 재사용 권장'
-      ]
-    };
-  }
+  // v5.39: 임의 카테고리(reusable·기타_*) 폐기 — 환경부 표준에 없는 분류는 unknown 처리
   // v5.6.2: paper_pack(종이팩)·general(일반쓰레기) 추가 — 한국 분리수거 핵심 카테고리
   if (categoryHint && ['pet_clear', 'plastic', 'paper', 'paper_pack', 'vinyl', 'can', 'glass', 'styrofoam', 'food', 'general', 'general_noncombustible', 'general_or_bulky', 'bulky', 'battery', 'lamp', 'clothes', 'electronics', 'furniture', 'hazardous', 'medicine'].includes(categoryHint)) {
     const catLabels = {
@@ -957,11 +943,20 @@ function matchRule(itemId, regionCode, categoryHint) {
       steps: catSteps[categoryHint] || [`${collectorName[categoryHint] || '해당 분리수거함'}에 배출`, '오염 시 깨끗이 씻기']
     };
   }
-  // 4. 폴백 (완전히 모르는 물건)
+  // 4. v5.39: 완전 모름 — 정직하게 "분류 못함" + 지자체 안내로 (임의 fallback 폐기)
   return {
-    category: 'general',
-    note: '정확한 분류 룰을 찾지 못했어요. 종량제 봉투에 배출 권장.',
-    source_type: 'fallback'
+    category: 'unknown',
+    note: '⚠️ 우리 DB에 정확 매칭되는 항목이 없어요. 임의 분류를 피하기 위해 시·구청 안내를 참고하세요.',
+    source_type: 'unknown',
+    source_url: cityGuide?.officialUrl || null,
+    confidence: 'none',
+    cityGuide,
+    steps: [
+      '🔍 우리 DB에 이 항목 정보가 없습니다',
+      '☎ 우리 동네 자원순환과·환경녹지과에 문의',
+      '📋 시·구청 공식 분리수거 안내 페이지 확인',
+      '⚠️ 추측으로 배출하면 벌금(10만원~) 위험 — 확인 권장'
+    ]
   };
 }
 
@@ -1209,27 +1204,31 @@ function analyzeWithBrand(ocrRawText) {
   };
 }
 
-const SYSTEM_PROMPT = `한국 분리수거 사진 분류. JSON만.
+const SYSTEM_PROMPT = `한국 분리수거 사진 분류. JSON만 응답.
 
-응답: {"item_id":"한국어_우선(예:노트북·텀블러·코트), 없으면 snake_case","category_hint":"plastic|paper|paper_pack|vinyl|can|glass|styrofoam|food|general|battery|lamp|clothes|electronics|furniture|hazardous|medicine|reusable","danger":false}
+응답 형식: {"item_id":"한국어 명사 1개 (예: 노트북, 페트병, 압력솥, 우유팩)","category_hint":"아래 enum 중 하나","danger":false}
 
-⚠️ 위험물(danger:true): 가스통·부탄캔·스프레이=hazardous_gas, 부풀은 배터리=hazardous_battery, 주사기·약통=hazardous_medical, 깨진유리·칼날=sharp_glass
+⛔ 절대 룰:
+1. item_id는 반드시 한국어 명사 (영문 금지). 예: spray_can ❌ → 에어로졸 캔 ✓
+2. category_hint는 아래 환경부 표준 12+8개 enum 중에서만 선택. 임의 카테고리 금지.
+3. 모르면 item_id="unknown", category_hint="unknown" 반환 — 추측 금지
 
-🔄 재사용품(category_hint:reusable): 텀블러·머그·물병=reusable_tumbler, 스테인리스·유리컵=reusable_cup, 도시락·반찬통=reusable_container
-   ※ 일회용 그림컵·캐릭터컵·printed 플라스틱컵은 plastic (reusable 아님)
-   ※ 일회용 그림·로고·캐릭터·printed 플라스틱컵은 reusable 아님 → plastic으로 분류 (예: 어린이 그림컵, 카페 일회용컵)
+📋 카테고리 enum (환경부 분리배출.kr 표준):
+재활용 12: paper, paper_pack, pet_clear, plastic, vinyl, styrofoam, glass, can, clothes, battery, lamp, electronics
+비재활용 8: food, general, general_noncombustible, general_or_bulky, bulky, furniture, hazardous, medicine
+모름: unknown
 
-📋 핵심 원칙:
-1. 재질+형태로 분류. 브랜드·표면 글자 무시 (OCR 금지). 책·노트북·종이박스도 외형만으로 paper/electronics 분류
-2. 재활용 우선, general 최후 (영수증·감열지·휴지·기저귀·도자기·깨진유리·복합소재만 general)
-3. 투명 페트=pet_bottle, 색깔 페트=plastic_bottle
-4. 모르면 confidence 낮추기
+⚠️ 위험물(danger:true): 가스통·부탄캔·스프레이→hazardous, 부풀은 배터리→hazardous, 주사기·약통→hazardous, 깨진유리·칼날→general_noncombustible
 
-🇰🇷 자주 헷갈리는 케이스:
-- 종이컵: 일반=paper_cup(paper), 코팅 테이크아웃=paper_cup_coated(general), 우유팩=milk_carton(paper_pack)
-- 빨대·칫솔·립밤·5cm 미만 플라스틱=general
-- 캔: 알루미늄 음료=beverage_can, 철 통조림=food_can, 다쓴 부탄(구멍O)=butane_can
-- 비닐봉지·과자봉지=vinyl_bag, 스티로폼 박스=styrofoam_box, 유리병·소주병=glass_bottle`;
+📋 한국 분리수거 핵심 원칙:
+1. 재질+형태로 분류. 브랜드·표면 글자 무시 (OCR 금지)
+2. 무색 페트병(먹는샘물·음료)=pet_clear / 유색·기타 플라스틱=plastic
+3. 우유팩·두유팩·주스팩=paper_pack (종이류 X)
+4. 압력솥·냄비(금속)=can / 가전류=electronics
+5. 깨진 유리·도자기·거울=general_noncombustible (불연성종량제)
+6. 영수증·감열지·코팅전단지·종이호일·휴지·기저귀=general
+7. 재사용 가능 컵·텀블러·도시락통은 재질대로 (glass/plastic/can). reusable 카테고리 X
+8. 확신 없으면 unknown — 임의 분류 금지`;
 
 // v5.6: Cloudflare Worker 프록시 (키 GitHub 노출 X)
 const WORKER_URL = 'https://yeoguiseon-proxy.ilsanintel0602.workers.dev/';
@@ -2237,12 +2236,32 @@ function renderResult(aiData) {
 
   html += `<div class="disclaimer">`;
   html += `⚠️ 참고용 안내입니다. 최종 책임은 지자체 공지 기준을 따라주세요.<br>`;
-  if (rule.source_type === 'national_default') {
+  // v5.39: 출처 라벨 강제 (정직성)
+  const __srcUrl = rule.source_url || dbItem?.sourceUrl;
+  const __isOfficial = String(__srcUrl || '').includes('xn--oy2b29bd3a601b') || String(__srcUrl || '').includes('분리배출');
+  const __isCity = String(__srcUrl || '').includes('goyang.go.kr') || String(__srcUrl || '').includes('go.kr');
+  if (rule.source_type === 'unknown') {
+    html += `<b style="color:#dc2626;">❓ 출처: Claude는 이 항목의 정확 룰을 찾지 못함</b> — 시·구청 안내 필수`;
+  } else if (rule.source_type === 'region_exception') {
+    html += `📍 출처: <b>${rule.region_name || regionMeta?.name} 지자체 특별 룰</b>`;
+  } else if (__isOfficial) {
+    html += `✅ 출처: <b>환경부 분리배출.kr</b> 표준 가이드`;
+  } else if (__isCity) {
+    html += `✅ 출처: <b>${regionMeta?.shortName || '시·구청'} 공식 안내</b>`;
+  } else if (rule.source_type === 'national_default') {
     html += `이 정보는 <b>환경부 표준 가이드</b>입니다. ${regionMeta?.shortName} 특별 규칙은 추후 추가 예정.`;
+  } else if (rule.source_type === 'category_hint') {
+    html += `⚠️ 출처: 카테고리만 추정 — 정확한 품목 룰 X. 시·구청 안내 권장`;
+  } else {
+    html += `⚠️ 출처: 검증 부족 — 시·구청 안내 권장`;
   }
-  if (regionMeta?.officialUrl) {
-    html += `<br>📞 ${regionMeta.name}: <a href="${regionMeta.officialUrl}" target="_blank" style="color:var(--primary)">공식 안내</a>`;
-    if (regionMeta.phone) html += ` <span style="opacity:0.75;font-size:12px;">(${regionMeta.phone})</span>`;
+  // v5.39: "공식 안내" 링크 = 분리수거 전용 페이지 우선 (시청 메인 X)
+  const __cityWasteUrl = rule.cityGuide?.officialUrl
+    || (typeof REGION_URLS !== 'undefined' && REGION_URLS?.regions?.[regionCode]?.wasteUrl)
+    || regionMeta?.officialUrl;
+  if (__cityWasteUrl) {
+    html += `<br>📞 ${regionMeta?.name || regionCode}: <a href="${__cityWasteUrl}" target="_blank" style="color:var(--primary)">공식 분리수거 안내</a>`;
+    if (regionMeta?.phone) html += ` <span style="opacity:0.75;font-size:12px;">(${regionMeta.phone})</span>`;
   }
   // v5.9: 출처 + 신뢰도 표시 (RecycleAI 차별점) — source / sourceUrl 둘 다 폴백
   const __srcLink = rule.source || rule.sourceUrl;
@@ -2971,10 +2990,8 @@ async function init() {
   try {
     await loadYOLO();
   } catch (e) {
-    console.warn('[init] YOLO 모델 로드 실패 (계속 진행):', e);
+    console.warn('[init] YOLO 모델 로드 실패:', e);
   }
-
-  // 초기 로딩 화면 숨김
   const loadingEl = document.getElementById('modelLoading');
   if (loadingEl) loadingEl.style.display = 'none';
 }
