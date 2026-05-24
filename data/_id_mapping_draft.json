@@ -1,0 +1,1039 @@
+{
+  "mappings": [
+    {
+      "eng_id": "pet_bottle",
+      "eng_name": "페트병 (투명)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "plastic",
+      "conf": "none"
+    },
+    {
+      "eng_id": "plastic_bottle",
+      "eng_name": "플라스틱 병 (유색/기타)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "plastic",
+      "conf": "none"
+    },
+    {
+      "eng_id": "plastic_container",
+      "eng_name": "플라스틱 용기",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "plastic",
+      "conf": "none"
+    },
+    {
+      "eng_id": "instant_rice_bowl",
+      "eng_name": "즉석밥 용기",
+      "kor_id": "즉석밥용기",
+      "kor_name": "즉석밥용기",
+      "method": "name_exact",
+      "category": "plastic",
+      "conf": "high"
+    },
+    {
+      "eng_id": "plastic_cap",
+      "eng_name": "플라스틱 뚜껑",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "plastic",
+      "conf": "none"
+    },
+    {
+      "eng_id": "vinyl_bag",
+      "eng_name": "비닐봉지",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "vinyl",
+      "conf": "none"
+    },
+    {
+      "eng_id": "vinyl_packaging",
+      "eng_name": "비닐 포장재",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "vinyl",
+      "conf": "none"
+    },
+    {
+      "eng_id": "snack_bag",
+      "eng_name": "과자 봉지",
+      "kor_id": "과자봉지",
+      "kor_name": "과자봉지",
+      "method": "name_exact",
+      "category": "vinyl",
+      "conf": "high"
+    },
+    {
+      "eng_id": "food_contaminated_vinyl",
+      "eng_name": "음식물 묻은 비닐",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "newspaper",
+      "eng_name": "신문지",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "paper",
+      "conf": "none"
+    },
+    {
+      "eng_id": "magazine",
+      "eng_name": "잡지/책자",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "paper",
+      "conf": "none"
+    },
+    {
+      "eng_id": "paper_box",
+      "eng_name": "종이박스",
+      "kor_id": "라면 박스",
+      "kor_name": "라면 박스",
+      "method": "alias_match",
+      "category": "paper",
+      "conf": "medium"
+    },
+    {
+      "eng_id": "milk_carton",
+      "eng_name": "우유팩",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "paper_pack",
+      "conf": "none"
+    },
+    {
+      "eng_id": "juice_carton",
+      "eng_name": "주스팩 (멸균팩)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "paper",
+      "conf": "none"
+    },
+    {
+      "eng_id": "paper_cup",
+      "eng_name": "종이컵 (일반)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "paper",
+      "conf": "none"
+    },
+    {
+      "eng_id": "paper_cup_coated",
+      "eng_name": "코팅 종이컵/종이용기",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "receipt",
+      "eng_name": "영수증",
+      "kor_id": "로또용지",
+      "kor_name": "로또용지",
+      "method": "alias_match",
+      "category": "general",
+      "conf": "medium"
+    },
+    {
+      "eng_id": "book",
+      "eng_name": "책",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "paper",
+      "conf": "none"
+    },
+    {
+      "eng_id": "note",
+      "eng_name": "노트",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "paper",
+      "conf": "none"
+    },
+    {
+      "eng_id": "can",
+      "eng_name": "캔 (일반)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "can",
+      "conf": "none"
+    },
+    {
+      "eng_id": "beverage_can",
+      "eng_name": "음료수 캔",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "can",
+      "conf": "none"
+    },
+    {
+      "eng_id": "food_can",
+      "eng_name": "통조림 캔",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "can",
+      "conf": "none"
+    },
+    {
+      "eng_id": "tin_can",
+      "eng_name": "양철캔",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "can",
+      "conf": "none"
+    },
+    {
+      "eng_id": "aerosol_can",
+      "eng_name": "에어로졸 캔 (스프레이)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "can",
+      "conf": "none"
+    },
+    {
+      "eng_id": "glass_bottle",
+      "eng_name": "유리병",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "glass",
+      "conf": "none"
+    },
+    {
+      "eng_id": "broken_glass_bottle",
+      "eng_name": "깨진 유리병",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "broken_ceramic",
+      "eng_name": "깨진 도자기/사기그릇",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "cosmetics_bottle",
+      "eng_name": "화장품 유리병",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "glass",
+      "conf": "none"
+    },
+    {
+      "eng_id": "styrofoam_box",
+      "eng_name": "스티로폼 박스",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "styrofoam",
+      "conf": "none"
+    },
+    {
+      "eng_id": "styrofoam_white",
+      "eng_name": "흰색 스티로폼 (완충재)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "styrofoam",
+      "conf": "none"
+    },
+    {
+      "eng_id": "styrofoam_colored",
+      "eng_name": "색깔 있는 스티로폼/오염 스티로폼",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "food_waste",
+      "eng_name": "음식물 쓰레기 (일반)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "food",
+      "conf": "none"
+    },
+    {
+      "eng_id": "fruit_peel",
+      "eng_name": "과일 껍질",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "food",
+      "conf": "none"
+    },
+    {
+      "eng_id": "vegetable_scraps",
+      "eng_name": "채소 자투리",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "food",
+      "conf": "none"
+    },
+    {
+      "eng_id": "meat_bone",
+      "eng_name": "고기 뼈 (육류 뼈)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "fish_bone",
+      "eng_name": "생선 뼈/큰 가시",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "tea_bag",
+      "eng_name": "티백/커피 찌꺼기",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "rubber_glove",
+      "eng_name": "고무장갑",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "toothbrush",
+      "eng_name": "칫솔",
+      "kor_id": "치실",
+      "kor_name": "치실",
+      "method": "alias_match",
+      "category": "general",
+      "conf": "medium"
+    },
+    {
+      "eng_id": "hanger",
+      "eng_name": "옷걸이",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "cosmetic_pump",
+      "eng_name": "화장품 펌프",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "ceramic_dish",
+      "eng_name": "도자기/사기 그릇",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "mirror",
+      "eng_name": "거울",
+      "kor_id": "기타_생활용품",
+      "kor_name": "기타 생활용품",
+      "method": "alias_match",
+      "category": "general",
+      "conf": "medium"
+    },
+    {
+      "eng_id": "light_bulb",
+      "eng_name": "백열전구/LED 전구",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "lamp",
+      "conf": "none"
+    },
+    {
+      "eng_id": "aluminum_foil",
+      "eng_name": "알루미늄 호일",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "can",
+      "conf": "none"
+    },
+    {
+      "eng_id": "battery",
+      "eng_name": "폐건전지",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "battery",
+      "conf": "none"
+    },
+    {
+      "eng_id": "lithium_battery",
+      "eng_name": "리튬이온 배터리 (보조배터리 등)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "battery",
+      "conf": "none"
+    },
+    {
+      "eng_id": "lamp",
+      "eng_name": "폐형광등",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "lamp",
+      "conf": "none"
+    },
+    {
+      "eng_id": "clothes",
+      "eng_name": "헌 옷/의류",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "clothes",
+      "conf": "none"
+    },
+    {
+      "eng_id": "electronics",
+      "eng_name": "소형가전",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "electronics",
+      "conf": "none"
+    },
+    {
+      "eng_id": "furniture",
+      "eng_name": "대형폐기물 (가구)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "furniture",
+      "conf": "none"
+    },
+    {
+      "eng_id": "medicine",
+      "eng_name": "폐의약품",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "medicine",
+      "conf": "none"
+    },
+    {
+      "eng_id": "CD",
+      "eng_name": "CD",
+      "kor_id": "재활용가능한 것",
+      "kor_name": "재활용가능한 것",
+      "method": "alias_match",
+      "category": "general",
+      "conf": "medium"
+    },
+    {
+      "eng_id": "MP3",
+      "eng_name": "MP3",
+      "kor_id": "디지털 카메라",
+      "kor_name": "디지털 카메라",
+      "method": "alias_match",
+      "category": "electronics",
+      "conf": "medium"
+    },
+    {
+      "eng_id": "PMP",
+      "eng_name": "PMP",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "electronics",
+      "conf": "none"
+    },
+    {
+      "eng_id": "reusable_cup",
+      "eng_name": "재사용 컵 (유리·머그·스테인리스)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "reusable",
+      "conf": "none"
+    },
+    {
+      "eng_id": "reusable_tumbler",
+      "eng_name": "텀블러",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "reusable",
+      "conf": "none"
+    },
+    {
+      "eng_id": "soju_bottle",
+      "eng_name": "소주병/맥주병",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "glass",
+      "conf": "none"
+    },
+    {
+      "eng_id": "tissue_diaper",
+      "eng_name": "휴지/기저귀/생리대",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "ceramic_broken_glass",
+      "eng_name": "도자기/깨진 유리/거울",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "mask_glove",
+      "eng_name": "마스크/일회용 장갑",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "cigarette_butt",
+      "eng_name": "담배꽁초/담배갑",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "toy_general",
+      "eng_name": "장난감/인형/공",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "cosmetic_container",
+      "eng_name": "화장품 용기",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "plastic",
+      "conf": "none"
+    },
+    {
+      "eng_id": "small_metal_utensil",
+      "eng_name": "수저/젓가락/포크 (금속)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "can",
+      "conf": "none"
+    },
+    {
+      "eng_id": "plant_flower",
+      "eng_name": "꽃/화분/식물",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "glasses_lens",
+      "eng_name": "안경/콘택트렌즈",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "lunchbox_container",
+      "eng_name": "도시락통/반찬통 (재사용)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "reusable",
+      "conf": "none"
+    },
+    {
+      "eng_id": "reusable_kitchenware",
+      "eng_name": "재사용 주방기구 (압력솥·냄비 등)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "reusable",
+      "conf": "none"
+    },
+    {
+      "eng_id": "exercise_equipment",
+      "eng_name": "운동기구",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "bag_backpack",
+      "eng_name": "가방/배낭/지갑",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "clothes",
+      "conf": "none"
+    },
+    {
+      "eng_id": "packaging_general",
+      "eng_name": "포장재 (일반)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "plastic",
+      "conf": "none"
+    },
+    {
+      "eng_id": "packaging_styrofoam",
+      "eng_name": "포장재 스티로폼",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "styrofoam",
+      "conf": "none"
+    },
+    {
+      "eng_id": "aluminum_can",
+      "eng_name": "알루미늄캔",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "can",
+      "conf": "none"
+    },
+    {
+      "eng_id": "old_clothes",
+      "eng_name": "헌 옷/의류",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "clothes",
+      "conf": "none"
+    },
+    {
+      "eng_id": "disposable_paper_cup",
+      "eng_name": "종이컵 (일회용)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "dumbbell",
+      "eng_name": "덤벨/아령",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "vase",
+      "eng_name": "꽃병/화병",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "toothpick",
+      "eng_name": "이쑤시개",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "led_bulb",
+      "eng_name": "LED 전구",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "lamp",
+      "conf": "none"
+    },
+    {
+      "eng_id": "face_mask",
+      "eng_name": "마스크",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "thermometer",
+      "eng_name": "체온계",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "hazardous",
+      "conf": "none"
+    },
+    {
+      "eng_id": "diaper",
+      "eng_name": "기저귀",
+      "kor_id": "기저귀",
+      "kor_name": "기저귀",
+      "method": "name_exact",
+      "category": "general",
+      "conf": "high"
+    },
+    {
+      "eng_id": "gum",
+      "eng_name": "껌",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "takeout_cup",
+      "eng_name": "테이크아웃 컵",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "treadmill",
+      "eng_name": "런닝머신",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "furniture",
+      "conf": "none"
+    },
+    {
+      "eng_id": "ceramic_vase",
+      "eng_name": "도자기 꽃병",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "glass_vase",
+      "eng_name": "유리 꽃병",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "glass",
+      "conf": "none"
+    },
+    {
+      "eng_id": "cotton_swab",
+      "eng_name": "면봉",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "wet_tissue",
+      "eng_name": "물티슈",
+      "kor_id": "물티슈",
+      "kor_name": "물티슈",
+      "method": "name_exact",
+      "category": "general",
+      "conf": "high"
+    },
+    {
+      "eng_id": "tetra_pack",
+      "eng_name": "테트라팩 (멸균팩)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "paper_pack",
+      "conf": "none"
+    },
+    {
+      "eng_id": "pressure_cooker",
+      "eng_name": "압력솥/압력밥솥",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "can",
+      "conf": "none"
+    },
+    {
+      "eng_id": "frying_pan",
+      "eng_name": "프라이팬/후라이팬",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "wok",
+      "eng_name": "웍/중식 팬",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "paper",
+      "eng_name": "종이류",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "paper",
+      "conf": "none"
+    },
+    {
+      "eng_id": "general",
+      "eng_name": "기타 일반쓰레기",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "vinyl",
+      "eng_name": "비닐류",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "vinyl",
+      "conf": "none"
+    },
+    {
+      "eng_id": "styrofoam",
+      "eng_name": "스티로폼",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "styrofoam",
+      "conf": "none"
+    },
+    {
+      "eng_id": "hazardous_gas",
+      "eng_name": "가스통·부탄·스프레이 (위험물)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "hazardous",
+      "conf": "none"
+    },
+    {
+      "eng_id": "hazardous_battery",
+      "eng_name": "부풀은 배터리 (위험물)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "hazardous",
+      "conf": "none"
+    },
+    {
+      "eng_id": "hazardous_chemical",
+      "eng_name": "폐화학물질 (위험물)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "hazardous",
+      "conf": "none"
+    },
+    {
+      "eng_id": "sharp_glass",
+      "eng_name": "깨진 유리·칼날 (위험물)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "hazardous",
+      "conf": "none"
+    },
+    {
+      "eng_id": "paper_pack_general",
+      "eng_name": "종이팩 (일반)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "paper_pack",
+      "conf": "none"
+    },
+    {
+      "eng_id": "styrofoam_packaging",
+      "eng_name": "스티로폼 포장재",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "styrofoam",
+      "conf": "none"
+    },
+    {
+      "eng_id": "dehumidifier",
+      "eng_name": "제습제·습기제거제",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "plastic",
+      "conf": "none"
+    },
+    {
+      "eng_id": "glass_cup",
+      "eng_name": "유리컵",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    },
+    {
+      "eng_id": "bag",
+      "eng_name": "가방",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "clothes",
+      "conf": "none"
+    },
+    {
+      "eng_id": "soy_milk_carton",
+      "eng_name": "두유팩 (멸균팩)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "paper_pack",
+      "conf": "none"
+    },
+    {
+      "eng_id": "lithium_ion_battery",
+      "eng_name": "리튬이온 배터리 (보조배터리·기기 내장)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "battery",
+      "conf": "none"
+    },
+    {
+      "eng_id": "coin_battery",
+      "eng_name": "코인 배터리 (수은·시계·열쇠)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "battery",
+      "conf": "none"
+    },
+    {
+      "eng_id": "incandescent_bulb",
+      "eng_name": "백열전구",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "lamp",
+      "conf": "none"
+    },
+    {
+      "eng_id": "shoes",
+      "eng_name": "신발 (운동화·구두)",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "clothes",
+      "conf": "none"
+    },
+    {
+      "eng_id": "hat",
+      "eng_name": "모자·캡",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "clothes",
+      "conf": "none"
+    },
+    {
+      "eng_id": "iron_can",
+      "eng_name": "철 조각·금속 캡",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "can",
+      "conf": "none"
+    },
+    {
+      "eng_id": "pencil_case",
+      "eng_name": "필통",
+      "kor_id": null,
+      "kor_name": null,
+      "method": "no_kor_match",
+      "category": "general",
+      "conf": "none"
+    }
+  ]
+}

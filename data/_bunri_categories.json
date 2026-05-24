@@ -1,0 +1,174 @@
+{
+  "$schema": "환경부 분리배출.kr — 재활용폐기물 12개 카테고리 가이드 (2026-05-24 자동 수집)",
+  "source": "https://분리배출.kr/front/dischargeMethod/typeItem.do",
+  "collectedAt": "2026-05-24",
+  "verifiedBy": "Claude in Chrome (사용자 캡처 1차 검증 + 자동 수집 11개)",
+  "sourceGrade": "A_official",
+  "categories": {
+    "paper": {
+      "name": "종이",
+      "ourCategory": "paper",
+      "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110101",
+      "targets": "골판지·신문지·과자상자(백판지)·책자·백상지·종이컵",
+      "excludes": ["택배 송장", "영수증(감열지)", "색지", "종이호일", "코팅전단지"],
+      "excludeDestination": "일반종량제폐기물",
+      "steps": [
+        "종이는 골판지, 기타 종이로 구분하여 배출",
+        "물에 젖거나 이물질이 묻지 않도록 끈으로 묶거나 마대 등에 담아 배출",
+        "골판지: 테이프·송장·철핀·알루미늄박 제거하고 접어서 배출 (테이프 제거 곤란 시 칼·가위로 잘라 배출)",
+        "기타 종이류: 비닐·플라스틱·코팅된 전단지·노트·달력 스프링 등 제거",
+        "종이컵: 압착하여 봉투에 넣거나 묶어서 기타종이로 배출",
+        "1회용 종이컵 자원순환보증금제 대상 = 해당 매장·무인회수기 반환",
+        "양면 코팅되어 찢어지지 않으면 일반종량제로 배출"
+      ]
+    },
+    "paper_pack": {
+      "name": "종이팩",
+      "ourCategory": "paper_pack",
+      "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110102",
+      "targets": "일반팩(우유팩) + 멸균팩(두유팩·소주팩·주스팩)",
+      "note": "일반팩 = PE 필름 첩합. 멸균팩 = 알루미늄 호일·PE 첩합.",
+      "steps": [
+        "내용물·빨대·비닐 제거하고 물로 헹군 후 배출",
+        "일반팩·멸균팩 구분 없이 배출 (재활용업체에서 선별)",
+        "종이팩 수거함으로 배출",
+        "종이팩 수거함 없으면 다른 종이류와 구분되게 끈으로 묶어 종이류 수거함으로"
+      ]
+    },
+    "plastic_pet_clear": {
+      "name": "무색페트병",
+      "ourCategory": "(신규 — 우리 plastic에서 분리 필요)",
+      "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110103",
+      "targets": "먹는샘물·음료를 담은 무색페트병 (PET)",
+      "excludes": ["유색 페트병", "페트재질 용기 (먹는샘물·음료 외)", "식품용기", "워셔액 용기", "컵"],
+      "excludeDestination": "플라스틱류",
+      "steps": [
+        "라벨·내용물 제거하고 물로 헹군 후 압착하여 뚜껑을 닫아 배출"
+      ]
+    },
+    "plastic_general": {
+      "name": "플라스틱류",
+      "ourCategory": "plastic",
+      "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110104",
+      "targets": "PET·PP·PE·PS·OTHER 합성수지 용기·트레이",
+      "excludes": ["펌프(펌핑용기)", "멜라민 그릇", "일회용 면도기", "파일철", "CD·DVD", "혼합재질 플라스틱", "열경화성수지"],
+      "excludeDestination": "일반종량제폐기물",
+      "specialNote": "생분해성수지(PLA)는 별도 배출 (플라스틱류에 X)",
+      "steps": [
+        "내용물·이물질·부속품 제거하고 물로 헹군 후 배출",
+        "PET·PP·PE·PS 등 재질 구분 없이 배출 (선별업체에서 선별)",
+        "치약용기 등 물로 헹굴 수 없는 것 = 내용물만 비우고 배출",
+        "유색페트병은 플라스틱 수거함으로 배출"
+      ]
+    },
+    "vinyl": {
+      "name": "비닐류",
+      "ourCategory": "vinyl",
+      "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110105",
+      "targets": "합성수지 비닐포장재·1회용 비닐봉투·필름류",
+      "excludes": ["오염된 비닐", "돗자리", "천막", "식탁매트(PVC)", "고무장갑"],
+      "excludeDestination": "일반종량제폐기물",
+      "steps": [
+        "이물질·내용물 제거하고 흩날리지 않도록 투명비닐봉투에 모아서 배출",
+        "PP·PE·PS 등 재질 구분 없이 배출",
+        "양파 등 농산물 그물망은 비닐로 함께 배출"
+      ]
+    },
+    "styrofoam": {
+      "name": "발포합성수지(스티로폼)",
+      "ourCategory": "styrofoam",
+      "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110106",
+      "targets": "식품·과일·전자제품 포장용기·단열재 (EPS·EPP·EPE)",
+      "steps": [
+        "부착상표·테이프 등 스티로폼과 다른 재질 제거 후 배출",
+        "EPP·EPS·EPE 등 재질·색상 구분 없이 배출",
+        "유색은 지자체에 따라 수거 안 할 수 있음",
+        "TV·컴퓨터 등 전자제품 포장 스티로폼 = 가급적 구입처로 반납"
+      ]
+    },
+    "glass": {
+      "name": "유리병",
+      "ourCategory": "glass",
+      "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110107",
+      "targets": "3색 유리병(투명·녹색·갈색)·이색 유리병",
+      "deposit": "빈용기보증금 대상: 소주병·맥주병·청량음료병",
+      "excludes": ["거울", "내열 유리제품", "크리스털 제품", "도자기"],
+      "excludeDestination": "불연성종량제봉투",
+      "steps": [
+        "유리병 수거함에 배출 (없으면 재활용폐기물로 통합배출)",
+        "3색은 구분 없이 배출 (재활용업체에서 선별)",
+        "빈용기보증금 대상: 빈용기반환 수집소·무인회수기에 반환하여 보증금 환급",
+        "빈용기는 깨끗하고 깨지지 않도록 배출 (재사용)",
+        "깨진 유리병 = 불연성종량제봉투 또는 신문지에 싸서 종량제봉투로"
+      ]
+    },
+    "metal": {
+      "name": "금속류",
+      "ourCategory": "can",
+      "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110108",
+      "targets": "금속캔(철캔·알루미늄캔) + 기타캔류(부탄가스·살충제 용기) + 고철(철·알루미늄·스테인리스)",
+      "excludesFromCans": ["농약", "락카", "광택제"],
+      "excludesDestination_hazardous": "생활계 유해폐기물",
+      "steps": [
+        "음료·주류·식료품·기타캔류는 금속캔 수거함에 배출",
+        "공기구·철사·생활철 등 고철은 고철 수거함에 배출",
+        "금속캔: 내용물 비우고 물로 헹군 후 배출",
+        "기타캔류: 폭발·화재 예방 — 노즐 눌러 가스 제거 후 배출",
+        "고철: 가위·칼·송곳 등 날카로운 금속은 종이·테이프로 안전하게 감싼 후 일반종량제로",
+        "우산·철삽·스테이플러 등 나무·플라스틱 재질 섞인 경우 일반종량제로"
+      ]
+    },
+    "clothes": {
+      "name": "의류 및 원단",
+      "ourCategory": "clothes",
+      "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110109",
+      "targets": "의류(재킷·티셔츠·바지)·잡화(신발·가방·벨트)·원단(동·식물성 섬유·합성섬유)",
+      "excludes": ["이불", "베개", "메모리폼", "라텍스", "쿠션", "방석", "인형", "인라인스케이트", "바퀴 달린 신발", "가죽부츠", "장화", "전기장판", "아이스박스", "비닐백", "부직포 가방", "골프가방", "바퀴 달린 가방"],
+      "excludeDestination": "일반종량제폐기물 또는 대형폐기물",
+      "steps": [
+        "의류는 재사용을 위해 깨끗한 상태로 의류수거함에 배출",
+        "양말·신발 등 세트는 묶어서 배출",
+        "의류수거함 배출 품목은 지자체에 따라 상이",
+        "의류수거함이 없는 문전수거 지역 = 마대 등에 담거나 묶어서 배출"
+      ]
+    },
+    "battery": {
+      "name": "전지",
+      "ourCategory": "battery",
+      "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110110",
+      "targets": "1차전지(수은·리튬1차·망간) + 2차전지(니켈·카드뮴·리튬이온·납축)",
+      "warning": "리튬전지는 화재사고 원인 — 재활용폐기물·일반종량제로 절대 배출 X. 반드시 전용 수거함",
+      "steps": [
+        "전지는 전용수거함에 배출하거나 전자제품 대리점 등 역회수루트로 배출",
+        "배터리가 내장된 전기전자제품은 전기전자제품 배출 방법에 따라",
+        "리튬전지는 화재 위험 — 반드시 전용 수거함으로"
+      ]
+    },
+    "lamp": {
+      "name": "조명제품",
+      "ourCategory": "lamp",
+      "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110111",
+      "targets": "형광등(직관형·환형·안정기내장형·콤팩트형) + LED(전구형·직관형, 2023.1.1. EPR 포함)",
+      "exception_dest": "평판형·십자형·원반형 LED (모듈+컨버터 일체형) = 불연성종량제 또는 대형폐기물",
+      "steps": [
+        "형광등·LED를 깨지지 않도록 분리하여 형광등수거함에 배출",
+        "평판형·십자형·원반형 LED (일체형) = 불연성종량제 또는 대형폐기물",
+        "조명이 깨진 경우 = 신문지·테이프로 싸서 불연성종량제로 배출"
+      ]
+    },
+    "electronics": {
+      "name": "전기전자제품",
+      "ourCategory": "electronics",
+      "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110112",
+      "targets": "온도교환기기(냉장고·정수기·에어컨) + 디스플레이기기(TV·컴퓨터) + 통신·사무기기(휴대폰·프린터·복사기) + 일반전기전자(세탁기·전기밥솥·선풍기·오디오)",
+      "freeService": "폐가전제품 무상방문수거 서비스 1599-0903 (15990903.or.kr)",
+      "steps": [
+        "재사용가능한 제품 = 지역 재활용센터에 판매 또는 무상수거 요청",
+        "신규 구입 시 대리점 통해 역회수 요청",
+        "폐가전 무상방문수거 서비스 1599-0903 이용",
+        "소형전기전자제품 = 전용수거함에 배출 (지자체 방법에 따라)",
+        "5개 이상 일괄 배출 시 무상수거서비스 이용 가능"
+      ]
+    }
+  }
+}

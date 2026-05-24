@@ -1,0 +1,1586 @@
+{
+  "matched": [
+    {
+      "iid": "pet_bottle",
+      "name": "페트병 (투명)",
+      "category": "plastic",
+      "status": "index_only",
+      "matched_seq": 122,
+      "matched_name": "먹",
+      "all_candidates": [
+        122,
+        123,
+        530,
+        633
+      ]
+    },
+    {
+      "iid": "plastic_container",
+      "name": "플라스틱 용기",
+      "category": "plastic",
+      "status": "index_only",
+      "matched_seq": 69,
+      "matched_name": "간장용기",
+      "all_candidates": [
+        69,
+        73,
+        74,
+        77,
+        82,
+        98,
+        111,
+        112,
+        115,
+        129,
+        130,
+        131,
+        133,
+        134,
+        367,
+        384,
+        416,
+        417,
+        510,
+        531,
+        534,
+        639
+      ]
+    },
+    {
+      "iid": "instant_rice_bowl",
+      "name": "즉석밥 용기",
+      "category": "plastic",
+      "status": "index_only",
+      "matched_seq": 35,
+      "matched_name": "계란판의 재질",
+      "all_candidates": [
+        35,
+        69,
+        73,
+        74,
+        98,
+        111,
+        112,
+        114,
+        115,
+        475,
+        521,
+        598,
+        632,
+        755
+      ]
+    },
+    {
+      "iid": "vinyl_packaging",
+      "name": "비닐 포장재",
+      "category": "vinyl",
+      "status": "index_only",
+      "matched_seq": 22,
+      "matched_name": "합성수지 필름",
+      "all_candidates": [
+        22,
+        28,
+        33,
+        43,
+        551,
+        559
+      ]
+    },
+    {
+      "iid": "paper_box",
+      "name": "종이박스",
+      "category": "paper",
+      "status": "index_only",
+      "matched_seq": 19,
+      "matched_name": "택배 상자",
+      "all_candidates": [
+        19,
+        30,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        42,
+        381,
+        528,
+        547,
+        562
+      ]
+    },
+    {
+      "iid": "food_waste",
+      "name": "음식물 쓰레기 (일반)",
+      "category": "food",
+      "status": "index_only",
+      "matched_seq": 343,
+      "matched_name": "계란껍질(달걀껍질)",
+      "all_candidates": [
+        343,
+        385,
+        420,
+        422,
+        425,
+        426,
+        455,
+        456,
+        468,
+        542,
+        736,
+        747,
+        753
+      ]
+    },
+    {
+      "iid": "fish_bone",
+      "name": "생선 뼈/큰 가시",
+      "category": "general",
+      "status": "no_src",
+      "matched_seq": 420,
+      "matched_name": "녹차잎",
+      "all_candidates": [
+        420,
+        456,
+        468,
+        542
+      ]
+    },
+    {
+      "iid": "lithium_battery",
+      "name": "리튬이온 배터리 (보조배터리 등)",
+      "category": "battery",
+      "status": "index_only",
+      "matched_seq": 124,
+      "matched_name": "AA건전지",
+      "all_candidates": [
+        124,
+        125,
+        537,
+        634,
+        635
+      ]
+    },
+    {
+      "iid": "reusable_cup",
+      "name": "재사용 컵 (유리·머그·스테인리스)",
+      "category": "reusable",
+      "status": "no_src",
+      "matched_seq": 121,
+      "matched_name": "반찬통의 재질",
+      "all_candidates": [
+        121,
+        227,
+        405,
+        435,
+        479,
+        496,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        504,
+        506,
+        508,
+        509,
+        510,
+        513,
+        514,
+        515,
+        543,
+        756,
+        757,
+        758,
+        759,
+        760
+      ]
+    },
+    {
+      "iid": "reusable_tumbler",
+      "name": "텀블러",
+      "category": "reusable",
+      "status": "no_src",
+      "matched_seq": 77,
+      "matched_name": "텀블러",
+      "all_candidates": [
+        77,
+        121,
+        603
+      ]
+    },
+    {
+      "iid": "cosmetic_container",
+      "name": "화장품 용기",
+      "category": "plastic",
+      "status": "index_only",
+      "matched_seq": 412,
+      "matched_name": "잉크나 토너",
+      "all_candidates": [
+        412,
+        542,
+        742
+      ]
+    },
+    {
+      "iid": "aluminum_can",
+      "name": "알루미늄캔",
+      "category": "can",
+      "status": "index_only",
+      "matched_seq": 59,
+      "matched_name": "맥주케그",
+      "all_candidates": [
+        59,
+        77,
+        84,
+        85,
+        86,
+        88,
+        89,
+        92,
+        339,
+        409,
+        410,
+        442,
+        493,
+        535,
+        542,
+        616,
+        617,
+        741
+      ]
+    },
+    {
+      "iid": "toothpick",
+      "name": "이쑤시개",
+      "category": "general",
+      "status": "index_only",
+      "matched_seq": 441,
+      "matched_name": "녹말이쑤시개",
+      "all_candidates": [
+        441,
+        479,
+        506,
+        542
+      ]
+    },
+    {
+      "iid": "diaper",
+      "name": "기저귀",
+      "category": "general",
+      "status": "index_only",
+      "matched_seq": 29,
+      "matched_name": "휴지심",
+      "all_candidates": [
+        29,
+        351,
+        454,
+        542
+      ]
+    },
+    {
+      "iid": "treadmill",
+      "name": "런닝머신",
+      "category": "furniture",
+      "status": "index_only",
+      "matched_seq": 239,
+      "matched_name": "내비게이션",
+      "all_candidates": [
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        293,
+        294,
+        298,
+        299
+      ]
+    },
+    {
+      "iid": "wet_tissue",
+      "name": "물티슈",
+      "category": "general",
+      "status": "index_only",
+      "matched_seq": 29,
+      "matched_name": "휴지심",
+      "all_candidates": [
+        29,
+        120,
+        342,
+        350,
+        351,
+        369,
+        375,
+        380,
+        389,
+        454,
+        485,
+        542,
+        728,
+        733
+      ]
+    },
+    {
+      "iid": "frying_pan",
+      "name": "프라이팬/후라이팬",
+      "category": "general",
+      "status": "index_only",
+      "matched_seq": 45,
+      "matched_name": "냄비",
+      "all_candidates": [
+        45,
+        46,
+        55,
+        56,
+        81,
+        82,
+        95,
+        121,
+        565,
+        566,
+        567,
+        578,
+        613
+      ]
+    },
+    {
+      "iid": "기타_생활용품",
+      "name": "기타 생활용품",
+      "category": "general",
+      "status": "index_only",
+      "matched_seq": 201,
+      "matched_name": "그늘 천막",
+      "all_candidates": [
+        201,
+        203,
+        204,
+        303,
+        352,
+        372,
+        398,
+        427,
+        428,
+        488,
+        524,
+        539,
+        542,
+        695,
+        713
+      ]
+    },
+    {
+      "iid": "paper",
+      "name": "종이류",
+      "category": "paper",
+      "status": "index_only",
+      "matched_seq": 20,
+      "matched_name": "공책",
+      "all_candidates": [
+        20,
+        21,
+        24,
+        26,
+        28,
+        32,
+        33,
+        40,
+        43,
+        44,
+        323,
+        350,
+        406,
+        410,
+        463,
+        464,
+        483,
+        522,
+        528,
+        548,
+        549,
+        550,
+        551,
+        554,
+        555,
+        557,
+        559
+      ]
+    },
+    {
+      "iid": "general",
+      "name": "기타 일반쓰레기",
+      "category": "general",
+      "status": "index_only",
+      "matched_seq": 29,
+      "matched_name": "휴지심",
+      "all_candidates": [
+        29,
+        31,
+        40,
+        58,
+        70,
+        71,
+        82,
+        94,
+        99,
+        111,
+        120,
+        121,
+        200,
+        203,
+        206,
+        306,
+        308,
+        309,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317,
+        318,
+        320,
+        321,
+        325,
+        328,
+        329,
+        331,
+        342,
+        343,
+        351,
+        352,
+        369,
+        373,
+        375,
+        380,
+        383,
+        385,
+        389,
+        394,
+        419,
+        420,
+        422,
+        425,
+        426,
+        433,
+        442,
+        445,
+        454,
+        455,
+        456,
+        464,
+        468,
+        489,
+        490,
+        494,
+        496,
+        503,
+        504,
+        506,
+        509,
+        515,
+        517,
+        518,
+        524,
+        542,
+        543,
+        594,
+        595,
+        596,
+        711,
+        714,
+        715,
+        716,
+        718,
+        720,
+        728,
+        733,
+        736,
+        738,
+        744,
+        745,
+        747,
+        753,
+        756,
+        757
+      ]
+    },
+    {
+      "iid": "vinyl",
+      "name": "비닐류",
+      "category": "vinyl",
+      "status": "index_only",
+      "matched_seq": 339,
+      "matched_name": "PVC 비닐",
+      "all_candidates": [
+        339,
+        397,
+        446,
+        542
+      ]
+    },
+    {
+      "iid": "기타_일반",
+      "name": "기타_일반",
+      "category": "general",
+      "status": "index_only",
+      "matched_seq": 25,
+      "matched_name": "지관통",
+      "all_candidates": [
+        25,
+        29,
+        38,
+        42,
+        322,
+        354,
+        406,
+        492,
+        542,
+        556,
+        560
+      ]
+    },
+    {
+      "iid": "hazardous_gas",
+      "name": "가스통·부탄·스프레이 (위험물)",
+      "category": "hazardous",
+      "status": "index_only",
+      "matched_seq": 78,
+      "matched_name": "부탄가스",
+      "all_candidates": [
+        78,
+        298,
+        370,
+        382,
+        403,
+        429,
+        545,
+        604,
+        605,
+        606,
+        707
+      ]
+    },
+    {
+      "iid": "glass_cup",
+      "name": "유리컵",
+      "category": "general",
+      "status": "index_only",
+      "matched_seq": 405,
+      "matched_name": "규조토 발매트",
+      "all_candidates": [
+        405,
+        435,
+        479,
+        496,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        504,
+        506,
+        508,
+        509,
+        510,
+        513,
+        514,
+        515,
+        543,
+        756,
+        757,
+        758,
+        759,
+        760
+      ]
+    },
+    {
+      "iid": "bag",
+      "name": "가방",
+      "category": "clothes",
+      "status": "index_only",
+      "matched_seq": 199,
+      "matched_name": "골프가방",
+      "all_candidates": [
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        199,
+        206,
+        311,
+        390,
+        391,
+        393,
+        536,
+        539,
+        652,
+        653,
+        654,
+        655,
+        656,
+        693
+      ]
+    },
+    {
+      "iid": "lithium_ion_battery",
+      "name": "리튬이온 배터리 (보조배터리·기기 내장)",
+      "category": "battery",
+      "status": "index_only",
+      "matched_seq": 124,
+      "matched_name": "AA건전지",
+      "all_candidates": [
+        124,
+        125
+      ]
+    },
+    {
+      "iid": "shoes",
+      "name": "신발 (운동화·구두)",
+      "category": "clothes",
+      "status": "index_only",
+      "matched_seq": 150,
+      "matched_name": "상태",
+      "all_candidates": [
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        330,
+        333,
+        344,
+        413,
+        436,
+        437,
+        461,
+        527,
+        536,
+        542,
+        655,
+        656,
+        657,
+        658,
+        659,
+        660,
+        723,
+        743
+      ]
+    },
+    {
+      "iid": "iron_can",
+      "name": "철 조각·금속 캡",
+      "category": "can",
+      "status": "index_only",
+      "matched_seq": 47,
+      "matched_name": "철사",
+      "all_candidates": [
+        47,
+        76,
+        79,
+        80,
+        94
+      ]
+    },
+    {
+      "iid": "pencil_case",
+      "name": "필통",
+      "category": "general",
+      "status": "index_only",
+      "matched_seq": 312,
+      "matched_name": "분필",
+      "all_candidates": [
+        312,
+        316,
+        317,
+        325,
+        445,
+        720
+      ]
+    }
+  ],
+  "unmatched": [
+    {
+      "iid": "plastic_bottle",
+      "name": "플라스틱 병 (유색/기타)",
+      "category": "plastic",
+      "status": "index_only",
+      "aliases_sample": [
+        "플라스틱병",
+        "유색페트병",
+        "샴푸통",
+        "세제통",
+        "린스통"
+      ]
+    },
+    {
+      "iid": "plastic_cap",
+      "name": "플라스틱 뚜껑",
+      "category": "plastic",
+      "status": "index_only",
+      "aliases_sample": [
+        "리드",
+        "삼다수 뚜껑",
+        "생수병 뚜껑",
+        "요구르트 뚜껑",
+        "음료수 뚜껑"
+      ]
+    },
+    {
+      "iid": "food_contaminated_vinyl",
+      "name": "음식물 묻은 비닐",
+      "category": "general",
+      "status": "no_src",
+      "aliases_sample": [
+        "음식물묻은비닐"
+      ]
+    },
+    {
+      "iid": "newspaper",
+      "name": "신문지",
+      "category": "paper",
+      "status": "index_only",
+      "aliases_sample": [
+        "뉴스페이퍼",
+        "동아일보",
+        "무가지",
+        "스포츠신문",
+        "신문 조각"
+      ]
+    },
+    {
+      "iid": "magazine",
+      "name": "잡지/책자",
+      "category": "paper",
+      "status": "index_only",
+      "aliases_sample": [
+        "간행물",
+        "도서",
+        "만화책",
+        "매거진",
+        "브로슈어"
+      ]
+    },
+    {
+      "iid": "juice_carton",
+      "name": "주스팩 (멸균팩)",
+      "category": "paper",
+      "status": "index_only",
+      "aliases_sample": [
+        "Carton",
+        "Juice pack",
+        "드링크팩",
+        "멸균 종이팩",
+        "멸균 주스팩"
+      ]
+    },
+    {
+      "iid": "paper_cup_coated",
+      "name": "코팅 종이컵/종이용기",
+      "category": "general",
+      "status": "no_src",
+      "aliases_sample": [
+        "방수 종이컵",
+        "일회용 종이용기",
+        "종이그릇",
+        "컵라면 용기",
+        "코팅된 종이컵"
+      ]
+    },
+    {
+      "iid": "note",
+      "name": "노트",
+      "category": "paper",
+      "status": "index_only",
+      "aliases_sample": [
+        "기록장",
+        "스프링노트",
+        "일기장",
+        "종이노트",
+        "줄노트"
+      ]
+    },
+    {
+      "iid": "food_can",
+      "name": "통조림 캔",
+      "category": "can",
+      "status": "index_only",
+      "aliases_sample": [
+        "골뱅이캔",
+        "과일캔",
+        "꽁치캔",
+        "먹는 캔",
+        "식캔"
+      ]
+    },
+    {
+      "iid": "tin_can",
+      "name": "양철캔",
+      "category": "can",
+      "status": "index_only",
+      "aliases_sample": []
+    },
+    {
+      "iid": "aerosol_can",
+      "name": "에어로졸 캔 (스프레이)",
+      "category": "can",
+      "status": "index_only",
+      "aliases_sample": [
+        "aerosol can",
+        "spray can",
+        "분사형 캔",
+        "스프레이",
+        "스프레이통"
+      ]
+    },
+    {
+      "iid": "broken_glass_bottle",
+      "name": "깨진 유리병",
+      "category": "general",
+      "status": "no_src",
+      "aliases_sample": [
+        "broken glass",
+        "shattered glass",
+        "깨진 병",
+        "깨진유리병",
+        "맥주병 조각"
+      ]
+    },
+    {
+      "iid": "broken_ceramic",
+      "name": "깨진 도자기/사기그릇",
+      "category": "general",
+      "status": "no_src",
+      "aliases_sample": [
+        "ceramic shards",
+        "cracked dish",
+        "깨진 접시",
+        "깨진 컵",
+        "도자기 조각"
+      ]
+    },
+    {
+      "iid": "cosmetics_bottle",
+      "name": "화장품 유리병",
+      "category": "glass",
+      "status": "index_only",
+      "aliases_sample": [
+        "글라스 보틀",
+        "스킨 유리병",
+        "앰플병",
+        "에센스병",
+        "유리 화장품용기"
+      ]
+    },
+    {
+      "iid": "styrofoam_box",
+      "name": "스티로폼 박스",
+      "category": "styrofoam",
+      "status": "index_only",
+      "aliases_sample": [
+        "스티로폼",
+        "스티로폼박스",
+        "발포플라스틱",
+        "포장스티로폼"
+      ]
+    },
+    {
+      "iid": "styrofoam_white",
+      "name": "흰색 스티로폼 (완충재)",
+      "category": "styrofoam",
+      "status": "index_only",
+      "aliases_sample": [
+        "가전제품 포장 스티로폼",
+        "깨끗한 흰색 스티로폼",
+        "박스 안 흰 스티로폼",
+        "백색 스티로폼",
+        "스티로폼 완충재 (흰색)"
+      ]
+    },
+    {
+      "iid": "styrofoam_colored",
+      "name": "색깔 있는 스티로폼/오염 스티로폼",
+      "category": "general",
+      "status": "no_src",
+      "aliases_sample": [
+        "더러운 스티로폼",
+        "더티 스티로폼",
+        "버리는 스티로폼",
+        "색깔 스티로폼",
+        "색상 스티로폼"
+      ]
+    },
+    {
+      "iid": "fruit_peel",
+      "name": "과일 껍질",
+      "category": "food",
+      "status": "index_only",
+      "aliases_sample": [
+        "fruit peel",
+        "peel",
+        "rind",
+        "과껍",
+        "과일 꺼풀"
+      ]
+    },
+    {
+      "iid": "vegetable_scraps",
+      "name": "채소 자투리",
+      "category": "food",
+      "status": "index_only",
+      "aliases_sample": [
+        "베지터블 스크랩",
+        "야채 껍질",
+        "야채 버리는 거",
+        "야채 스크랩",
+        "야채 쪼가리"
+      ]
+    },
+    {
+      "iid": "meat_bone",
+      "name": "고기 뼈 (육류 뼈)",
+      "category": "general",
+      "status": "no_src",
+      "aliases_sample": [
+        "bone",
+        "meat bone",
+        "갈비뼈",
+        "감자탕뼈",
+        "동물 뼈"
+      ]
+    },
+    {
+      "iid": "tea_bag",
+      "name": "티백/커피 찌꺼기",
+      "category": "general",
+      "status": "no_src",
+      "aliases_sample": [
+        "남은 차 잎",
+        "드립백 찌꺼기",
+        "마시고 남은 차",
+        "마시고 남은 커피",
+        "원두 찌꺼기"
+      ]
+    },
+    {
+      "iid": "hanger",
+      "name": "옷걸이",
+      "category": "general",
+      "status": "no_src",
+      "aliases_sample": []
+    },
+    {
+      "iid": "cosmetic_pump",
+      "name": "화장품 펌프",
+      "category": "general",
+      "status": "no_src",
+      "aliases_sample": [
+        "로션 펌프",
+        "에센스 펌프",
+        "코스메틱 펌프",
+        "펌프 꼭지",
+        "펌프 헤드"
+      ]
+    },
+    {
+      "iid": "mirror",
+      "name": "거울",
+      "category": "general",
+      "status": "no_src",
+      "aliases_sample": [
+        "거울이",
+        "게울",
+        "경대",
+        "돋보기거울",
+        "미러"
+      ]
+    },
+    {
+      "iid": "light_bulb",
+      "name": "백열전구/LED 전구",
+      "category": "lamp",
+      "status": "no_src",
+      "aliases_sample": [
+        "bulb",
+        "light bulb",
+        "갈아끼우는 전구",
+        "램프",
+        "에디슨 전구"
+      ]
+    },
+    {
+      "iid": "침대",
+      "name": "침대",
+      "category": "furniture",
+      "status": "no_src",
+      "aliases_sample": [
+        "돌침대",
+        "벙커베드",
+        "베드",
+        "싱글침대",
+        "안방침대"
+      ]
+    },
+    {
+      "iid": "soju_bottle",
+      "name": "소주병/맥주병",
+      "category": "glass",
+      "status": "index_only",
+      "aliases_sample": [
+        "갈색병",
+        "공병",
+        "막걸리병",
+        "맥병",
+        "바틀"
+      ]
+    },
+    {
+      "iid": "tissue_diaper",
+      "name": "휴지/기저귀/생리대",
+      "category": "general",
+      "status": "no_src",
+      "aliases_sample": [
+        "두루마리 휴지",
+        "위생용품"
+      ]
+    },
+    {
+      "iid": "ceramic_broken_glass",
+      "name": "도자기/깨진 유리/거울",
+      "category": "general",
+      "status": "no_src",
+      "aliases_sample": [
+        "거울파편",
+        "깨진 글라스",
+        "깨진 미러",
+        "깨진그릇",
+        "도자기"
+      ]
+    },
+    {
+      "iid": "mask_glove",
+      "name": "마스크/일회용 장갑",
+      "category": "general",
+      "status": "no_src",
+      "aliases_sample": [
+        "KF94 마스크",
+        "disposable mask",
+        "덴탈마",
+        "수술용 마스크",
+        "위생 장갑"
+      ]
+    },
+    {
+      "iid": "cigarette_butt",
+      "name": "담배꽁초/담배갑",
+      "category": "general",
+      "status": "index_only",
+      "aliases_sample": [
+        "꽁초",
+        "담배 케이스",
+        "담배갑",
+        "담배꽁초",
+        "담뱃재"
+      ]
+    },
+    {
+      "iid": "toy_general",
+      "name": "장난감/인형/공",
+      "category": "general",
+      "status": "no_src",
+      "aliases_sample": [
+        "고무공",
+        "놀잇감",
+        "덤벨(작은)",
+        "레고",
+        "마사지볼"
+      ]
+    },
+    {
+      "iid": "small_metal_utensil",
+      "name": "수저/젓가락/포크 (금속)",
+      "category": "can",
+      "status": "index_only",
+      "aliases_sample": [
+        "젓가락(금속)",
+        "스푼",
+        "스테인리스 수저",
+        "양푼",
+        "찜기"
+      ]
+    },
+    {
+      "iid": "plant_flower",
+      "name": "꽃/화분/식물",
+      "category": "general",
+      "status": "no_src",
+      "aliases_sample": [
+        "꽃다발",
+        "다육이",
+        "몬스테라",
+        "부케",
+        "분재"
+      ]
+    },
+    {
+      "iid": "glasses_lens",
+      "name": "안경/콘택트렌즈",
+      "category": "general",
+      "status": "no_src",
+      "aliases_sample": [
+        "콘택트렌즈",
+        "렌즈",
+        "안경테"
+      ]
+    },
+    {
+      "iid": "lunchbox_container",
+      "name": "도시락통/반찬통 (재사용)",
+      "category": "reusable",
+      "status": "no_src",
+      "aliases_sample": [
+        "food container",
+        "lunch box",
+        "storage container",
+        "글라스락",
+        "도시락 용기"
+      ]
+    },
+    {
+      "iid": "reusable_kitchenware",
+      "name": "재사용 주방기구 (압력솥·냄비 등)",
+      "category": "reusable",
+      "status": "no_src",
+      "aliases_sample": [
+        "공예 도구 (안 쓰는)",
+        "기부 가능 가구",
+        "기부 가능 가전",
+        "깨끗한 도서",
+        "깨끗한 신발"
+      ]
+    },
+    {
+      "iid": "exercise_equipment",
+      "name": "운동기구",
+      "category": "general",
+      "status": "no_src",
+      "aliases_sample": [
+        "런닝머신(소형)",
+        "사이클(소형)",
+        "스텝퍼",
+        "악력기",
+        "엑서사이즈 머신"
+      ]
+    },
+    {
+      "iid": "bag_backpack",
+      "name": "가방/배낭/지갑",
+      "category": "clothes",
+      "status": "index_only",
+      "aliases_sample": [
+        "배낭",
+        "백팩",
+        "핸드백",
+        "크로스백",
+        "지갑"
+      ]
+    },
+    {
+      "iid": "packaging_general",
+      "name": "포장재 (일반)",
+      "category": "plastic",
+      "status": "index_only",
+      "aliases_sample": [
+        "포장재",
+        "포장 재료",
+        "포장지",
+        "포장 용기",
+        "택배 포장재"
+      ]
+    },
+    {
+      "iid": "packaging_styrofoam",
+      "name": "포장재 스티로폼",
+      "category": "styrofoam",
+      "status": "index_only",
+      "aliases_sample": [
+        "EPS",
+        "Packaging Styrofoam",
+        "물건 포장 스티로폼",
+        "박스 스티로폼",
+        "발포 스티로폼"
+      ]
+    },
+    {
+      "iid": "old_clothes",
+      "name": "헌 옷/의류",
+      "category": "clothes",
+      "status": "index_only",
+      "aliases_sample": [
+        "낡은 옷",
+        "못 입는 옷",
+        "버릴 옷",
+        "세컨드핸드 옷",
+        "수거 옷"
+      ]
+    },
+    {
+      "iid": "disposable_paper_cup",
+      "name": "종이컵 (일회용)",
+      "category": "general",
+      "status": "index_only",
+      "aliases_sample": [
+        "PE코팅 종이컵",
+        "disposable cup",
+        "paper cup",
+        "스타벅스컵",
+        "일회용 종이잔"
+      ]
+    },
+    {
+      "iid": "dumbbell",
+      "name": "덤벨/아령",
+      "category": "general",
+      "status": "index_only",
+      "aliases_sample": [
+        "덤벨",
+        "아령",
+        "무게추",
+        "케틀벨"
+      ]
+    },
+    {
+      "iid": "vase",
+      "name": "꽃병/화병",
+      "category": "general",
+      "status": "index_only",
+      "aliases_sample": [
+        "꽃 그릇",
+        "꽃 담는 병",
+        "꽃꽂이 용기",
+        "꽃병",
+        "꽃병이"
+      ]
+    },
+    {
+      "iid": "led_bulb",
+      "name": "LED 전구",
+      "category": "lamp",
+      "status": "index_only",
+      "aliases_sample": [
+        "LED 램프",
+        "LED 전구",
+        "LED전구",
+        "에너지절약 전구",
+        "엘이디 전구"
+      ]
+    },
+    {
+      "iid": "face_mask",
+      "name": "마스크",
+      "category": "general",
+      "status": "index_only",
+      "aliases_sample": [
+        "KF80",
+        "KF94",
+        "N95 마스크",
+        "mask",
+        "덴탈 마스크"
+      ]
+    },
+    {
+      "iid": "thermometer",
+      "name": "체온계",
+      "category": "hazardous",
+      "status": "index_only",
+      "aliases_sample": [
+        "귀 체온계",
+        "디지털 체온계",
+        "발열 측정기",
+        "브라운 체온계",
+        "비접촉 체온계"
+      ]
+    },
+    {
+      "iid": "gum",
+      "name": "껌",
+      "category": "general",
+      "status": "index_only",
+      "aliases_sample": [
+        "chewing gum",
+        "껌덩이",
+        "롯데껌",
+        "막대껌",
+        "씹는 껌"
+      ]
+    },
+    {
+      "iid": "takeout_cup",
+      "name": "테이크아웃 컵",
+      "category": "general",
+      "status": "index_only",
+      "aliases_sample": [
+        "PE컵",
+        "스타벅스 컵",
+        "음료컵",
+        "테이크아웃 컵",
+        "테이크아웃컵"
+      ]
+    },
+    {
+      "iid": "ceramic_vase",
+      "name": "도자기 꽃병",
+      "category": "general",
+      "status": "index_only",
+      "aliases_sample": [
+        "거실 꽃병",
+        "꽃 담는 통",
+        "꽃그릇",
+        "도예 꽃병",
+        "도자 화병"
+      ]
+    },
+    {
+      "iid": "glass_vase",
+      "name": "유리 꽃병",
+      "category": "glass",
+      "status": "index_only",
+      "aliases_sample": [
+        "글래스 꽃병",
+        "유리 꽃병",
+        "유리꽃병",
+        "크리스탈 꽃병"
+      ]
+    },
+    {
+      "iid": "cotton_swab",
+      "name": "면봉",
+      "category": "general",
+      "status": "index_only",
+      "aliases_sample": [
+        "귀닦개",
+        "귀지제거봉",
+        "귀청소봉",
+        "면 스틱",
+        "면봉"
+      ]
+    },
+    {
+      "iid": "tetra_pack",
+      "name": "테트라팩 (멸균팩)",
+      "category": "paper_pack",
+      "status": "index_only",
+      "aliases_sample": [
+        "두유팩(멸균)",
+        "멸균팩",
+        "주스팩(멸균)",
+        "테트라팩"
+      ]
+    },
+    {
+      "iid": "pressure_cooker",
+      "name": "압력솥/압력밥솥",
+      "category": "can",
+      "status": "index_only",
+      "aliases_sample": [
+        "압력솥",
+        "압력밥솥",
+        "압력 밥솥",
+        "압력 솥",
+        "프레셔쿠커"
+      ]
+    },
+    {
+      "iid": "wok",
+      "name": "웍/중식 팬",
+      "category": "general",
+      "status": "index_only",
+      "aliases_sample": [
+        "stir-fry pan",
+        "wok pan",
+        "궁중 팬",
+        "궁중이",
+        "궁중팬"
+      ]
+    },
+    {
+      "iid": "styrofoam",
+      "name": "스티로폼",
+      "category": "styrofoam",
+      "status": "index_only",
+      "aliases_sample": [
+        "EPS 폼",
+        "TV 포장 스티로폼",
+        "가구 스티로폼 (서랍/책장)",
+        "가전제품 스티로폼",
+        "건어물 박스 (스티로폼)"
+      ]
+    },
+    {
+      "iid": "hazardous_battery",
+      "name": "부풀은 배터리 (위험물)",
+      "category": "hazardous",
+      "status": "index_only",
+      "aliases_sample": [
+        "RC 배터리",
+        "hazardousbattery",
+        "리튬 배터리",
+        "리튬 폴리머 배터리",
+        "부풀은 배터리"
+      ]
+    },
+    {
+      "iid": "hazardous_chemical",
+      "name": "폐화학물질 (위험물)",
+      "category": "hazardous",
+      "status": "index_only",
+      "aliases_sample": [
+        "hazardouschemical",
+        "농약",
+        "독성물질",
+        "래커",
+        "본드(대량)"
+      ]
+    },
+    {
+      "iid": "sharp_glass",
+      "name": "깨진 유리·칼날 (위험물)",
+      "category": "hazardous",
+      "status": "index_only",
+      "aliases_sample": [
+        "sharpglass",
+        "깨진 그릇",
+        "깨진 도자기",
+        "나사못(녹슨)",
+        "면도날"
+      ]
+    },
+    {
+      "iid": "paper_pack_general",
+      "name": "종이팩 (일반)",
+      "category": "paper_pack",
+      "status": "index_only",
+      "aliases_sample": [
+        "paperpackgeneral",
+        "두유팩",
+        "맥주팩",
+        "아동 음료팩",
+        "아이스크림 팩"
+      ]
+    },
+    {
+      "iid": "styrofoam_packaging",
+      "name": "스티로폼 포장재",
+      "category": "styrofoam",
+      "status": "index_only",
+      "aliases_sample": [
+        "styrofoampackaging",
+        "계란판(스티로폼)",
+        "과일 상자(스티로폼)",
+        "냉장 보냉박스",
+        "농수산물 스티로폼"
+      ]
+    },
+    {
+      "iid": "soy_milk_carton",
+      "name": "두유팩 (멸균팩)",
+      "category": "paper_pack",
+      "status": "index_only",
+      "aliases_sample": [
+        "두유팩",
+        "두유 종이팩",
+        "멸균팩",
+        "베지밀 팩",
+        "삼육두유 팩"
+      ]
+    },
+    {
+      "iid": "coin_battery",
+      "name": "코인 배터리 (수은·시계·열쇠)",
+      "category": "battery",
+      "status": "index_only",
+      "aliases_sample": [
+        "코인 배터리",
+        "코인 셀",
+        "단추 배터리",
+        "시계 배터리",
+        "CR2032"
+      ]
+    },
+    {
+      "iid": "incandescent_bulb",
+      "name": "백열전구",
+      "category": "lamp",
+      "status": "index_only",
+      "aliases_sample": [
+        "백열전구",
+        "백열등",
+        "필라멘트 전구",
+        "에디슨 전구",
+        "구식 전구"
+      ]
+    },
+    {
+      "iid": "hat",
+      "name": "모자·캡",
+      "category": "clothes",
+      "status": "index_only",
+      "aliases_sample": [
+        "모자",
+        "캡",
+        "비니",
+        "벙거지",
+        "버킷햇"
+      ]
+    }
+  ]
+}

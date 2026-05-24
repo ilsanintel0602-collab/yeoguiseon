@@ -1,8 +1,16 @@
 /**
- * 여기선 PWA - Gemini API Proxy Worker (v1.9.7 — MAX_TOKENS 근본 해결 8192)
+ * 여기선 PWA - Gemini API Proxy Worker (v1.9.12 — /data/bins GPS 가까운 수거함 + v1.9.11 필드명 정정 + UA 헤더 / v1.9.10 /admin/crawl-bins (시군구 데이터 자동 수집) + DAILY_LIMIT 100→1000)
  * ------------------------------------------------
  * 목적: 클라이언트에 API 키 노출 없이 Gemini 호출 + D1 DB 직접 서비스 + 무인 운영
  * 배포: Cloudflare Workers (ES Module, fetch + scheduled handler)
+ *
+ * v1.9.9 (2026-05-24 — DAILY_LIMIT 풀기):
+ *   - 기본 DAILY_LIMIT 100 → 1000 (시연·일반 사용 안 걸림, 폭주만 차단)
+ *   - 100은 초기 Claude가 임의로 박은 보수적 값. 시연·개발에 너무 작음.
+ *
+ * v1.9.8 (2026-05-24 — Rate limit 완화):
+ *   - 기본 MINUTE_LIMIT 10 → 30 (시연·테스트 시 일반 사용자도 분당 30회까지 가능)
+ *   - DAILY_LIMIT은 100 그대로 (일일 폭주 방지)
  *
  * v1.9.7 (2026-05-23 — MAX_TOKENS 근본 해결):
  *   - maxOutputTokens 2048 → 8192 (압력솥·노트북·복잡 사진에서 MAX_TOKENS 잘림 사라짐)
@@ -211,6 +219,141 @@ export default {
       } catch (e) {
         return json({ error: `health failed: ${String(e).slice(0, 80)}` }, 500, corsHeaders("*"));
       }
+    }
+
+    // v1.9.10 (Phase A1-2): /admin/crawl-bins — data.go.kr 행안부 4개 표준데이터 자동 크롤 + D1 입력
+    //   GET 전용. ?key=<DATA_GO_KR_API_KEY>로 인증 (기존 secret 재사용, 사용자 추가 작업 0).
+    //   ?area=medicine|clothes|lamp_battery 선택 (위치 데이터 3개).
+    //   ?dryrun=true 옵션 → 1페이지만, sample 3개 반환, D1 입력 X (구조 확인용).
+    //   기본 호출: 전체 페이지네이션 + D1 batch INSERT.
+    //   결과 → KV 'bins:last_crawl:<area>'에 90일 기록.
+    if (path === "/admin/crawl-bins") {
+      if (request.method !== "GET") {
+        return json({ error: "GET only" }, 405, corsHeaders("*"));
+      }
+      const apiKey = env.DATA_GO_KR_API_KEY;
+      if (!apiKey) {
+        return json({ error: "DATA_GO_KR_API_KEY secret not configured" }, 503, corsHeaders("*"));
+      }
+      const adminKey = reqUrl.searchParams.get("key");
+      if (adminKey !== apiKey) {
+        return json({ error: "invalid admin key (use DATA_GO_KR_API_KEY value as ?key=)" }, 403, corsHeaders("*"));
+      }
+      if (!env.DB) {
+        return json({ error: "D1 not configured" }, 503, corsHeaders("*"));
+      }
+
+      const area = reqUrl.searchParams.get("area") || "medicine";
+      const dryrun = reqUrl.searchParams.get("dryrun") === "true";
+
+      const ENDPOINTS = {
+        medicine: "https://api.data.go.kr/openapi/tn_pubr_public_lung_medicine_api",
+        clothes: "https://api.data.go.kr/openapi/tn_pubr_public_clothing_collect_bins_api",
+        lamp_battery: "https://api.data.go.kr/openapi/tn_pubr_public_waste_lamp_battery_collection_box_api"
+      };
+      const endpoint = ENDPOINTS[area];
+      if (!endpoint) {
+        return json({ error: `unknown area: ${area}`, supported: Object.keys(ENDPOINTS) }, 400, corsHeaders("*"));
+      }
+
+      const startedAt = Date.now();
+      let allItems = [];
+      let totalCount = 0;
+      let page = 1;
+      const maxPages = dryrun ? 1 : 30;
+      const errors = [];
+
+      while (page <= maxPages) {
+        const apiUrl = `${endpoint}?serviceKey=${encodeURIComponent(apiKey)}&pageNo=${page}&numOfRows=1000&type=json`;
+        try {
+          const resp = await fetch(apiUrl, {
+            headers: {
+              "Accept": "application/json",
+              "User-Agent": "Mozilla/5.0 (compatible; YeoguiseonBot/1.0; +https://ilsanintel0602-collab.github.io/yeoguiseon/)"
+            }
+          });
+          if (!resp.ok) {
+            errors.push(`page ${page}: HTTP ${resp.status}`);
+            break;
+          }
+          const data = await resp.json();
+          const body = (data && (data.response?.body || data.body)) || {};
+          totalCount = Number(body.totalCount || 0);
+          let itemsRaw = body.items;
+          if (itemsRaw && itemsRaw.item) itemsRaw = itemsRaw.item;
+          if (!Array.isArray(itemsRaw)) itemsRaw = itemsRaw ? [itemsRaw] : [];
+          if (itemsRaw.length === 0) break;
+          allItems.push(...itemsRaw);
+          if (allItems.length >= totalCount) break;
+          page++;
+        } catch (e) {
+          errors.push(`page ${page}: ${String(e).slice(0, 60)}`);
+          break;
+        }
+      }
+
+      // v1.9.11: 정규화 — data.go.kr 실제 응답 필드명 (검증 완료)
+      //   위도: lat / 경도: lot (longitude 아님!)
+      //   시설명: instlPlcNm / 도로명주소: lctnRoadNm / 지번주소: lctnLotnoAddr
+      //   시군구코드: insttCode / 시군구명: insttNm / 관리기관 전화: mngInstTelno
+      const normalized = allItems.map(raw => {
+        const lat = parseFloat(raw.lat || raw.latitude || raw.LAT || 0);
+        const lng = parseFloat(raw.lot || raw.longitude || raw.LON || raw.LNG || raw.lng || 0);
+        return {
+          area_type: area,
+          region_code: raw.insttCode || raw.sigunguCode || raw.SIGUN_CD || raw.signguCode || null,
+          name: raw.instlPlcNm || raw.instlPlace || raw.fcltyNm || raw.NAME || raw.placeName || null,
+          address: raw.lctnRoadNm || raw.lctnLotnoAddr || raw.rdnmadr || raw.lnmadr || raw.ADDR || null,
+          lat: (isFinite(lat) && lat !== 0) ? lat : null,
+          lng: (isFinite(lng) && lng !== 0) ? lng : null,
+          phone: raw.mngInstTelno || raw.phoneNumber || raw.TEL || raw.phone || null
+        };
+      }).filter(it => it.name && it.address);
+
+      if (dryrun) {
+        return json({
+          ok: true, area, endpoint, dryrun: true,
+          fetched: allItems.length, totalCount, normalized: normalized.length,
+          sample: normalized.slice(0, 3),
+          raw_sample: allItems.slice(0, 1),
+          errors,
+          duration_ms: Date.now() - startedAt
+        }, 200, corsHeaders("*"));
+      }
+
+      // D1 batch INSERT (200개 청크)
+      let inserted = 0;
+      try {
+        await env.DB.prepare("DELETE FROM bins WHERE area_type = ?").bind(area).run();
+        const CHUNK = 200;
+        for (let i = 0; i < normalized.length; i += CHUNK) {
+          const chunk = normalized.slice(i, i + CHUNK);
+          const stmts = chunk.map(it =>
+            env.DB.prepare("INSERT INTO bins (area_type, region_code, name, address, lat, lng, phone) VALUES (?,?,?,?,?,?,?)")
+              .bind(it.area_type, it.region_code, it.name, it.address, it.lat, it.lng, it.phone)
+          );
+          await env.DB.batch(stmts);
+          inserted += chunk.length;
+        }
+      } catch (e) {
+        errors.push(`d1: ${String(e).slice(0, 80)}`);
+      }
+
+      // KV에 결과 기록
+      const result = {
+        area, endpoint, fetched: allItems.length, totalCount,
+        normalized: normalized.length, inserted, errors,
+        ts: Date.now(), iso: new Date().toISOString(),
+        duration_ms: Date.now() - startedAt
+      };
+      if (env.RATE_LIMIT_KV) {
+        try {
+          await env.RATE_LIMIT_KV.put(`bins:last_crawl:${area}`, JSON.stringify(result), {
+            expirationTtl: 90 * 24 * 60 * 60
+          });
+        } catch (e) {}
+      }
+      return json({ ok: errors.length === 0, ...result }, 200, corsHeaders("*"));
     }
 
     // 2) 그 외 엔드포인트는 Origin 검증 (브라우저 호출 전용)
@@ -626,8 +769,8 @@ function extractMime(b64) {
 }
 
 async function checkRateLimit(env, ipHash) {
-  const minuteLimit = Number(env.MINUTE_LIMIT || 10);
-  const dailyLimit = Number(env.DAILY_LIMIT || 100);
+  const minuteLimit = Number(env.MINUTE_LIMIT || 30);  // v1.9.8: 10 → 30 (시연·테스트 시 차단 해소)
+  const dailyLimit = Number(env.DAILY_LIMIT || 1000);  // v1.9.9: 100 → 1000 (시연·일반 사용 충분, 폭주만 차단)
   const now = Date.now();
   const minuteKey = `rl:m:${ipHash}:${Math.floor(now / 60_000)}`;
   const dayKey = `rl:d:${ipHash}:${new Date().toISOString().slice(0, 10)}`;
@@ -747,6 +890,47 @@ async function handleData(request, env, corsOrigin, path) {
   const resource = parts[1];
 
   try {
+    // v1.9.12: /data/bins?lat=&lng=&area=medicine&limit=5 — 사용자 GPS 기반 가까운 수거함
+    //   D1 bins 테이블에서 위경도 박스 1차 필터 (50km) → Haversine 정확 거리 → 가까운 N개 정렬
+    //   응답: { ok, area, user_location, bins: [{name, address, lat, lng, phone, distance_m, region_code}] }
+    if (resource === "bins") {
+      const userLat = parseFloat(url.searchParams.get("lat"));
+      const userLng = parseFloat(url.searchParams.get("lng"));
+      const area = url.searchParams.get("area") || "medicine";
+      const limit = Math.min(20, Math.max(1, parseInt(url.searchParams.get("limit") || "5")));
+      if (!isFinite(userLat) || !isFinite(userLng)) {
+        return json({ error: "lat/lng query params required" }, 400, corsHeaders(corsOrigin || "*"));
+      }
+      // 50km 박스 1차 필터 (위도 1도 ≈ 111km, 경도 1도 ≈ 88km 한국)
+      const latRange = 0.5, lngRange = 0.6;
+      const sql = `SELECT area_type, region_code, name, address, lat, lng, phone
+                   FROM bins
+                   WHERE area_type = ?
+                     AND lat BETWEEN ? AND ?
+                     AND lng BETWEEN ? AND ?
+                     AND lat IS NOT NULL AND lng IS NOT NULL
+                   LIMIT 200`;
+      const dbRes = await env.DB.prepare(sql)
+        .bind(area, userLat - latRange, userLat + latRange, userLng - lngRange, userLng + lngRange)
+        .all();
+      const candidates = dbRes.results || [];
+      // Haversine 거리 (m)
+      const R = 6371000;
+      const toRad = d => d * Math.PI / 180;
+      const hav = (a, b, c, d) => {
+        const dLat = toRad(c - a), dLng = toRad(d - b);
+        const x = Math.sin(dLat/2)**2 + Math.cos(toRad(a)) * Math.cos(toRad(c)) * Math.sin(dLng/2)**2;
+        return Math.round(2 * R * Math.asin(Math.sqrt(x)));
+      };
+      const bins = candidates.map(b => ({ ...b, distance_m: hav(userLat, userLng, b.lat, b.lng) }))
+        .sort((a, b) => a.distance_m - b.distance_m)
+        .slice(0, limit);
+      return json({
+        ok: true, area, user_location: { lat: userLat, lng: userLng },
+        candidates_in_box: candidates.length, count: bins.length, bins
+      }, 200, corsHeaders(corsOrigin || "*", 60));
+    }
+
     // v1.9.2: /data/all → 정적 national_rules.json과 동일 구조 (items: {id: {..., aliases:[]}})
     //   클라이언트(app.html)는 이걸 받으면 정적 JSON 대체 가능. cron 갱신 데이터 자동 반영.
     if (resource === "all") {
@@ -928,7 +1112,7 @@ JSON 응답만:`;
       // JSON 파싱 실패 — 정규식으로 배열 추출
       const m = text.match(/\[[\s\S]*?\]/);
       if (m) {
-        try { aliases = JSON.parse(m[0]); parseHow = "regex_array"; } catch {}
+        try { aliases  = JSON.parse(m[0]); parseHow = "regex_array"; } catch {}
       }
     }
     if (!Array.isArray(aliases)) aliases = [];

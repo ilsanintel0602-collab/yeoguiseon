@@ -1,0 +1,99 @@
+{
+  "$schema": "여기선 v6 - 시군구별 분리배출 룰 (시정책 단위 — what/where만)",
+  "version": "0.2.0-draft",
+  "lastUpdated": "2026-05-24",
+  "phase": "Phase 2 단계 2 (E2 — 고양시 일산동구)",
+  "sourceNote": "고양특례시 공식 페이지. 시정책 단위 룰만 수집. 요일·시간·장소는 아파트/관리사무소 단위라 의도적 제외.",
+  "modelingPrinciple": {
+    "what": "어떤 봉투·어떻게 분리 — 시 조례·정책. 시군구 단위로 유의미.",
+    "where": "어디에 가져가나 (수거함·약국·회수로봇) — 시 정책 + 좌표. 시군구 단위로 유의미.",
+    "when": "❌ 요일·시간은 시군구 단위로 묶지 않음. 아파트·단독주택·관리사무소별 다름. 사용자는 단지 게시판 참조."
+  },
+  "schemaFields": {
+    "general_waste": "일반 가연성 — 종량제봉투 종류",
+    "food_waste": "음식물 — 종량제봉투 / RFID 종량기 사용 여부 / 전처리 룰",
+    "non_combustible": "불연성 마대",
+    "pet_bottle": "투명페트병 전처리 + 회수로봇 위치",
+    "special": "특수 거점 — 의약품·형광등·건전지 거점 좌표·대형폐기물 신고"
+  },
+  "confidenceLegend": {
+    "draft_unverified": "Claude가 1차 작성. 시 공식 페이지 출처. 사용자 미검증.",
+    "user_verified": "사용자가 거주지에서 직접 확인.",
+    "official_verified": "지자체 공식 답변 확보."
+  },
+  "regions": {
+    "4128510800": {
+      "name": "경기도 고양시 일산동구",
+      "shortName": "일산동구",
+      "sigunguName": "고양시",
+      "officialUrl": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
+      "phone": "031-8075-2300",
+      "rules": {
+        "general_waste": {
+          "container": "흰색 종량제 규격 봉투 (가연성)",
+          "source_url": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
+          "confidence": "draft_unverified",
+          "notes": "타는 쓰레기 = 흰색 종량제봉투. 배출 시간·장소는 아파트별 안내 따름."
+        },
+        "non_combustible": {
+          "container": "불연성 마대",
+          "examples": ["유리", "사기"],
+          "source_url": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
+          "confidence": "draft_unverified",
+          "notes": "타지 않는 쓰레기"
+        },
+        "food_waste": {
+          "container": "음식물 종량제 봉투 (3L / 5L / 20L)",
+          "rfid": "단지별 (단독·다세대 = 봉투, 일부 아파트 = RFID 종량기). 시군구 단위 일괄 규정 아님.",
+          "preparation": [
+            "물기 충분히 제거 후 배출",
+            "비닐·병뚜껑·이쑤시개·젓가락 등 이물질 제외",
+            "된장·고추장·간장 별도 배출",
+            "김치 등은 씻어서 배출"
+          ],
+          "source_url": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab3.jsp",
+          "confidence": "draft_unverified",
+          "notes": "배출 시간·장소·요일은 아파트별 안내 따름."
+        },
+        "pet_bottle": {
+          "preparation": [
+            "내용물 비우기",
+            "라벨 제거",
+            "일반 플라스틱과 구분"
+          ],
+          "machine": {
+            "name": "순환자원 회수로봇",
+            "reward": "투명페트병·캔 1개당 10원 적립",
+            "source_url": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_2/www03_3_2_tab5.jsp"
+          },
+          "source_url": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
+          "confidence": "draft_unverified",
+          "notes": "회수로봇 일산동구 설치 위치 — 별도 수집 필요"
+        },
+        "special": {
+          "medicine": {
+            "place": ["동네 약국", "보건소"],
+            "source_url": "https://www.recycling-info.or.kr/",
+            "confidence": "draft_unverified",
+            "notes": "환경부 권장. 일산동구 보건소 위치는 별도 데이터."
+          },
+          "lamp_battery": {
+            "place": "동행정복지센터 수거함",
+            "source_url": null,
+            "confidence": "missing",
+            "notes": "⚠️ 일산동구 수거함 위치 미수집"
+          },
+          "bulky_waste": {
+            "service": "대형폐기물 수거신청",
+            "url": "http://clean.gys.or.kr/clean/request",
+            "source_url": "https://www.goyang.go.kr/www/www02/www02_6/www02_6_1.jsp",
+            "confidence": "draft_unverified"
+          }
+        }
+      },
+      "lastVerified": null,
+      "verifiedBy": null,
+      "verificationStrategy": "사용자에게 묻지 않음. 시 공식 페이지(JSP·첨부 PDF) + 환경부 분리배출.kr 정독으로 모든 칸 자동 채움. 사용자는 '맞다/틀리다'만."
+    }
+  }
+}

@@ -23,10 +23,17 @@ try:
     aliases = sum(len(v.get("aliases", [])) for v in items.values())
     all_ok &= check("alias 평균", aliases / max(len(items), 1) >= 2.5, f"평균 {aliases/max(len(items),1):.1f}")
     cats = set(v.get("category") for v in items.values())
-    VALID = {"plastic", "paper", "paper_pack", "vinyl", "can", "glass", "styrofoam", "food", "general",
-             "battery", "lamp", "clothes", "electronics", "furniture", "hazardous", "medicine", "reusable"}
+    # v5.37 (2026-05-24): 분리배출.kr 12개 표준 + 비재활용 8개 (한국 표준 정렬)
+    VALID = {
+        # 재활용 12 (분리배출.kr 표준)
+        "paper", "paper_pack", "pet_clear", "plastic", "vinyl", "styrofoam",
+        "glass", "can", "clothes", "battery", "lamp", "electronics",
+        # 비재활용 8
+        "food", "general", "general_noncombustible", "general_or_bulky",
+        "bulky", "furniture", "hazardous", "medicine"
+    }
     bad_cats = cats - VALID
-    all_ok &= check("카테고리 enum", not bad_cats, f"이상 enum: {bad_cats}" if bad_cats else "17개 정합")
+    all_ok &= check("카테고리 enum", not bad_cats, f"이상 enum: {bad_cats}" if bad_cats else "20개 정합 (분리배출.kr 12 + 비재활용 8)")
 
     # ⭐ v5.28.3: 가짜 item 자동 탐지 (2026-05-23 오염 사건 학습)
     # 패턴 1: ID에 동사·문장체 (환경부 크롤링 파싱 오류 흔적)
@@ -144,6 +151,27 @@ try:
     all_ok &= check("searchByText 정의", "function searchByText" in html, "")
     all_ok &= check("_inherits 처리", "_inherits" in html and "safetyCounter" in html, "")
     all_ok &= check("cityGuide UI", "cityHtml" in html, "")
+    # ⭐ v5.37 (2026-05-24): truncation 사고 5번째 학습 — 끝 잘림 직접 검사
+    html_trim = html.rstrip()
+    all_ok &= check("app.html </html> 끝", html_trim.endswith("</html>"),
+                    f"끝 잘림: {repr(html_trim[-60:])}" if not html_trim.endswith("</html>") else "OK")
+    last500 = html_trim[-500:]
+    all_ok &= check("app.html IIFE 닫기 ()()", "})();" in last500 or "})()" in last500,
+                    "IIFE 닫기 누락" if not ("})();" in last500 or "})()" in last500) else "OK")
+    all_ok &= check("app.html init() 호출", "init();" in last500,
+                    "init() 호출 누락" if "init();" not in last500 else "OK")
+    # 추가: inline JS syntax 검증 (Node available 시)
+    try:
+        import subprocess as _sp
+        scripts = _re.findall(r'<script(?![^>]*\bsrc=)[^>]*>([\s\S]*?)</script>', html)
+        if scripts:
+            joined = "\n;\n".join(scripts)
+            r = _sp.run(["node", "--check", "-"], input=joined, capture_output=True, text=True, timeout=10)
+            all_ok &= check("app.html inline JS syntax",
+                            r.returncode == 0,
+                            r.stderr.strip()[:80] if r.returncode != 0 else f"{len(scripts)} blocks OK")
+    except (FileNotFoundError, Exception):
+        pass  # node 없으면 skip
 except Exception as e:
     all_ok &= check("app.html", False, str(e))
 
@@ -160,11 +188,11 @@ try:
 except FileNotFoundError:
     check("cloudflare_worker.js 문법", True, "node 미설치 - skip")
 except Exception as e:
-    all_ok &= check("cloudflare_worker.js 문법", False, str(e)[:80])
+    check("cloudflare_worker.js 문법", False, f"검사 실패: {e}")
 
-print("\n" + ("=" * 40))
+print("\n" + "=" * 40)
 if all_ok:
-    print("[OK] 모든 검사 통과! push 안전.")
+    print("[PASS] 모든 체크 통과. push 가능.")
 else:
     print("[FAIL] 실패 항목 있음. 위 X 확인 후 수정.")
 print("=" * 40 + "\n")

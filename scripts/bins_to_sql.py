@@ -20,11 +20,9 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(SCRIPT_DIR, ".."))
 
 AREA_FILES = {
-    "medicine": "data/medicine_bins.json",
-    "clothes":  "data/clothes_bins.json",
-    "iot":      "data/iot_bins.json",
-    "lamp":     "data/lamp_bins.json",
-    "battery":  "data/battery_bins.json",
+    "medicine":     "data/medicine_bins.json",
+    "clothes":      "data/clothes_bins.json",
+    "lamp_battery": "data/lamp_battery_bins.json",
 }
 
 
@@ -45,11 +43,22 @@ def sql_num(v):
 
 
 def extract_bins(data):
-    """JSON 데이터에서 bin 리스트 추출 (구조 다양성 대응)"""
+    """JSON 데이터에서 bin 리스트 추출 (구조 다양성 대응)
+    crawl_data_go_kr_api.py 구조: {"data": {"<sggCode>": [bins...]}} — dict 평탄화"""
     if isinstance(data, list):
         return data
     if isinstance(data, dict):
-        for key in ("items", "bins", "list", "data", "results"):
+        # crawl_data_go_kr_api.py: data 키가 시군구별 dict
+        d = data.get("data")
+        if isinstance(d, dict):
+            flat = []
+            for sgg, bins_list in d.items():
+                if isinstance(bins_list, list):
+                    flat.extend(bins_list)
+            if flat:
+                return flat
+        # 다른 패턴
+        for key in ("items", "bins", "list", "results"):
             if key in data and isinstance(data[key], list):
                 return data[key]
     return []
@@ -79,7 +88,7 @@ def main():
     out = [
         "-- Phase A1-2: bins (수거함 위치) D1 입력",
         f"-- 생성: {datetime.now().isoformat()}",
-        "-- 5개 영역: medicine·clothes·iot·lamp·battery",
+        "-- 3개 위치 영역: medicine·clothes·lamp_battery",
         "",
         "-- 기존 데이터 정리 (재실행 시 안전)",
         "DELETE FROM bins;",

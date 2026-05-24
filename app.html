@@ -334,7 +334,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.36</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.37</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -778,8 +778,8 @@ function renderSearchResults(query) {
     box.innerHTML = `<p class="search-placeholder">"${_escGlobal(query)}"에 매칭되는 결과 없음.<br>다른 표현(별명·영어 등)으로 시도해보세요.</p>`;
     return;
   }
-  const catIcons = { plastic: '♻️', paper: '📄', paper_pack: '🥛', vinyl: '🛍', can: '🥫', glass: '🍾', styrofoam: '📦', food: '🍎', general: '🗑', battery: '🔋', lamp: '💡', clothes: '👕', electronics: '🔌', furniture: '🛋', hazardous: '⚠️', medicine: '💊', reusable: '🔄' };
-  const catNames = { plastic: '플라스틱', paper: '종이', paper_pack: '종이팩', vinyl: '비닐', can: '캔', glass: '유리', styrofoam: '스티로폼', food: '음식물', general: '일반', battery: '건전지', lamp: '형광등', clothes: '의류', electronics: '전자', furniture: '가구', hazardous: '위험물', medicine: '약품', reusable: '재사용' };
+  const catIcons = { pet_clear: '💧', plastic: '♻️', paper: '📄', paper_pack: '🥛', vinyl: '🛍', can: '🥫', glass: '🍾', styrofoam: '📦', food: '🍎', general: '🗑', general_noncombustible: '🪨', general_or_bulky: '🛋', bulky: '🛋', battery: '🔋', lamp: '💡', clothes: '👕', electronics: '🔌', furniture: '🛋', hazardous: '⚠️', medicine: '💊' };
+  const catNames = { pet_clear: '무색페트병', plastic: '플라스틱류', paper: '종이', paper_pack: '종이팩', vinyl: '비닐류', can: '금속류', glass: '유리병', styrofoam: '발포합성수지', food: '음식물', general: '일반종량제', general_noncombustible: '불연성종량제', general_or_bulky: '일반·대형', bulky: '대형폐기물', battery: '전지', lamp: '조명제품', clothes: '의류', electronics: '전기전자제품', furniture: '대형(가구)', hazardous: '유해폐기물', medicine: '폐의약품' };
 
   // v5.32: 본질 집중 — 1등을 크게 보여주고 즉시 안내. 동점 후보가 있으면 작게 "다른 가능성"
   const top = results[0];
@@ -894,7 +894,7 @@ function matchRule(itemId, regionCode, categoryHint) {
     };
   }
   // v5.6.2: paper_pack(종이팩)·general(일반쓰레기) 추가 — 한국 분리수거 핵심 카테고리
-  if (categoryHint && ['plastic', 'paper', 'paper_pack', 'vinyl', 'can', 'glass', 'styrofoam', 'food', 'general', 'battery', 'lamp', 'clothes', 'electronics', 'furniture', 'hazardous', 'medicine'].includes(categoryHint)) {
+  if (categoryHint && ['pet_clear', 'plastic', 'paper', 'paper_pack', 'vinyl', 'can', 'glass', 'styrofoam', 'food', 'general', 'general_noncombustible', 'general_or_bulky', 'bulky', 'battery', 'lamp', 'clothes', 'electronics', 'furniture', 'hazardous', 'medicine'].includes(categoryHint)) {
     const catLabels = {
       plastic: '플라스틱류', paper: '종이류', paper_pack: '종이팩류 (종이류와 별도)',
       vinyl: '비닐류', can: '캔류', glass: '유리류', styrofoam: '스티로폼류',
@@ -2152,6 +2152,20 @@ function renderResult(aiData) {
   }
 
   // v5.9: 대형폐기물 카테고리 시 시군구별 신고 URL (REGION_URLS.json 활용)
+  // v5.37: 모든 카테고리에 "이 지역 공식 분리수거 안내" 박스 표시
+  // (regionCode 8자리면 시·구 5자리 prefix로 fallback)
+  if (regionCode && typeof REGION_URLS !== 'undefined' && REGION_URLS?.regions) {
+    const __sigunguCode = regionCode.length === 5 ? regionCode : regionCode.substring(0, 5);
+    const __wreg = REGION_URLS.regions[regionCode] || REGION_URLS.regions[__sigunguCode];
+    if (__wreg && __wreg.wasteUrl) {
+      html += `<div style="margin-top:16px;padding:12px 16px;background:#eff6ff;border-radius:8px;border-left:3px solid var(--primary);">`;
+      html += `<h4 style="margin:0 0 8px;font-size:15px;">📋 ${__wreg.shortName || __wreg.name} 공식 분리수거 안내</h4>`;
+      html += `<div style="font-size:13px;"><a href="${__wreg.wasteUrl}" target="_blank" style="color:var(--primary);font-weight:600;">${__wreg.shortName} 페이지에서 정확한 룰 보기 →</a></div>`;
+      html += `<div style="font-size:12px;opacity:0.7;margin-top:4px;">우리 동네 정확한 룰. 요일·시간·배출장소는 아파트별 안내 따름.</div>`;
+      html += `</div>`;
+    }
+  }
+
   const __isBulky = rule.category === 'furniture' || rule.category === 'electronics' || aiData.category_hint === 'furniture' || aiData.category_hint === 'electronics';
   if (__isBulky && regionCode && typeof REGION_URLS !== 'undefined' && REGION_URLS?.regions) {
     const __reg = REGION_URLS.regions[regionCode];
@@ -2923,46 +2937,14 @@ async function init() {
 
   // YOLO 모델 로드
   try {
-    await loadYoloModel((pct, msg) => {
-      $('progressFill').style.width = pct + '%';
-      $('progressText').textContent = msg + ' ' + pct + '%';
-    });
-    setTimeout(() => $('modelLoading').classList.add('hidden'), 400);
-  } catch (err) {
-    $('modelLoading').classList.add('hidden');
-    toast('AI 모델 로드 실패. API 키로 LLM만 사용 가능', true);
+    await loadYOLO();
+  } catch (e) {
+    console.warn('[init] YOLO 모델 로드 실패 (계속 진행):', e);
   }
 
-  // v4.1: 위치 미설정이면 첫 진입 시 자동으로 GPS 시도
-  if (!state.regionLevel2) {
-    setTimeout(async () => {
-      if (!navigator.geolocation) {
-        toast('📍 위치 기능 미지원. 설정에서 지역 선택해주세요');
-        return;
-      }
-      try {
-        const pos = await new Promise((res, rej) =>
-          navigator.geolocation.getCurrentPosition(res, rej, {
-            enableHighAccuracy: false,
-            timeout: 7000,
-            maximumAge: 5 * 60 * 1000
-          })
-        );
-        const { latitude: lat, longitude: lng } = pos.coords;
-        const { level1, level2 } = findRegionByCoords(lat, lng);
-        if (level2) {
-          state.regionLevel1 = level1;
-          state.regionLevel2 = level2;
-          LS.set('regionLevel1', level1);
-          LS.set('regionLevel2', level2);
-          updateLocationChip();
-          toast('📍 ' + level2 + '로 자동 설정', false);
-        }
-      } catch (err) {
-        console.warn('[geo] auto detect failed', err);
-      }
-    }, 800);
-  }
+  // 초기 로딩 화면 숨김
+  const loadingEl = document.getElementById('modelLoading');
+  if (loadingEl) loadingEl.style.display = 'none';
 }
 
 init();

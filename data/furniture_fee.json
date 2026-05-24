@@ -1,0 +1,15 @@
+{
+  "$schema": "여기선 v6 - 대형폐기물 수거 수수료 (data.go.kr API 자동 크롤링)",
+  "version": "auto",
+  "lastUpdated": "2026-05-24T20:51:13.018784",
+  "source": "행정안전부 공공데이터포털 (data.go.kr OpenAPI)",
+  "area_type": "furniture_fee",
+  "label": "대형폐기물 수거 수수료",
+  "icon": "🛋",
+  "show_when_category": [
+    "furniture"
+  ],
+  "totalBins": 0,
+  "sggCount": 0,
+  "data": {}
+}

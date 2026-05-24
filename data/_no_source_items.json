@@ -1,0 +1,264 @@
+{
+  "items": [
+    {
+      "id": "food_contaminated_vinyl",
+      "name": "음식물 묻은 비닐",
+      "category": "general",
+      "confidence": "high",
+      "steps": [
+        "종량제봉투에 배출"
+      ],
+      "aliases_count": 1
+    },
+    {
+      "id": "paper_cup_coated",
+      "name": "코팅 종이컵/종이용기",
+      "category": "general",
+      "confidence": "medium",
+      "steps": [
+        "내용물 비우기",
+        "종량제봉투에 배출"
+      ],
+      "aliases_count": 8
+    },
+    {
+      "id": "broken_glass_bottle",
+      "name": "깨진 유리병",
+      "category": "general",
+      "confidence": "high",
+      "steps": [
+        "신문지로 감싸기",
+        "'유리주의' 표시",
+        "종량제봉투 또는 특수마대"
+      ],
+      "aliases_count": 12
+    },
+    {
+      "id": "broken_ceramic",
+      "name": "깨진 도자기/사기그릇",
+      "category": "general",
+      "confidence": "high",
+      "steps": [
+        "안전하게 포장",
+        "특수마대 또는 종량제봉투"
+      ],
+      "aliases_count": 10
+    },
+    {
+      "id": "styrofoam_colored",
+      "name": "색깔 있는 스티로폼/오염 스티로폼",
+      "category": "general",
+      "confidence": "medium",
+      "steps": [
+        "종량제봉투에 배출"
+      ],
+      "aliases_count": 11
+    },
+    {
+      "id": "meat_bone",
+      "name": "고기 뼈 (육류 뼈)",
+      "category": "general",
+      "confidence": "high",
+      "steps": [
+        "종량제봉투에 배출"
+      ],
+      "aliases_count": 8
+    },
+    {
+      "id": "fish_bone",
+      "name": "생선 뼈/큰 가시",
+      "category": "general",
+      "confidence": "high",
+      "steps": [
+        "종량제봉투에 배출"
+      ],
+      "aliases_count": 8
+    },
+    {
+      "id": "tea_bag",
+      "name": "티백/커피 찌꺼기",
+      "category": "general",
+      "confidence": "medium",
+      "steps": [
+        "종량제봉투에 배출"
+      ],
+      "aliases_count": 11
+    },
+    {
+      "id": "hanger",
+      "name": "옷걸이",
+      "category": "general",
+      "confidence": "medium",
+      "steps": [
+        "재질 확인",
+        "철제: 금속류 / 플라스틱: 종량제봉투"
+      ],
+      "aliases_count": 0
+    },
+    {
+      "id": "cosmetic_pump",
+      "name": "화장품 펌프",
+      "category": "general",
+      "confidence": "high",
+      "steps": [
+        "종량제봉투에 배출"
+      ],
+      "aliases_count": 12
+    },
+    {
+      "id": "mirror",
+      "name": "거울",
+      "category": "general",
+      "confidence": "high",
+      "steps": [
+        "신문지로 감싸기",
+        "특수마대 또는 종량제봉투"
+      ],
+      "aliases_count": 11
+    },
+    {
+      "id": "light_bulb",
+      "name": "백열전구/LED 전구",
+      "category": "lamp",
+      "confidence": "medium",
+      "steps": [
+        "깨지지 않게 포장",
+        "종량제봉투에 배출"
+      ],
+      "aliases_count": 11
+    },
+    {
+      "id": "reusable_cup",
+      "name": "재사용 컵 (유리·머그·스테인리스)",
+      "category": "reusable",
+      "confidence": "high",
+      "steps": [
+        "세척 후 본인이 다시 사용",
+        "버릴 때만 폐기 절차 (깨진 유리/도자기는 불연성 종량제봉투)"
+      ],
+      "aliases_count": 19
+    },
+    {
+      "id": "reusable_tumbler",
+      "name": "텀블러",
+      "category": "reusable",
+      "confidence": "high",
+      "steps": [
+        "세척 후 본인이 다시 사용",
+        "버릴 때만 폐기 절차"
+      ],
+      "aliases_count": 5
+    },
+    {
+      "id": "침대",
+      "name": "침대",
+      "category": "furniture",
+      "confidence": "high",
+      "steps": [
+        "주민센터 또는 지자체 앱에서 대형폐기물 신고",
+        "수수료 결제 후 스티커 발급",
+        "지정 장소에 스티커 부착하여 배출"
+      ],
+      "aliases_count": 10
+    },
+    {
+      "id": "tissue_diaper",
+      "name": "휴지/기저귀/생리대",
+      "category": "general",
+      "confidence": "high",
+      "steps": [
+        "일반쓰레기(종량제봉투)로 배출"
+      ],
+      "aliases_count": 2
+    },
+    {
+      "id": "ceramic_broken_glass",
+      "name": "도자기/깨진 유리/거울",
+      "category": "general",
+      "confidence": "high",
+      "steps": [
+        "깨진 유리는 신문지로 안전하게 감싸기",
+        "'위험' 표시",
+        "불연성 종량제봉투 또는 일반쓰레기"
+      ],
+      "aliases_count": 13
+    },
+    {
+      "id": "mask_glove",
+      "name": "마스크/일회용 장갑",
+      "category": "general",
+      "confidence": "high",
+      "steps": [
+        "마스크 끈 자르기",
+        "일반쓰레기(종량제봉투)로 배출"
+      ],
+      "aliases_count": 6
+    },
+    {
+      "id": "toy_general",
+      "name": "장난감/인형/공",
+      "category": "general",
+      "confidence": "medium",
+      "steps": [
+        "일반쓰레기 또는 대형폐기물 신고 (크기에 따라)"
+      ],
+      "aliases_count": 20
+    },
+    {
+      "id": "plant_flower",
+      "name": "꽃/화분/식물",
+      "category": "general",
+      "confidence": "medium",
+      "steps": [
+        "흙 털어내기",
+        "식물은 음식물 X 일반쓰레기",
+        "화분은 재질별 분리"
+      ],
+      "aliases_count": 9
+    },
+    {
+      "id": "glasses_lens",
+      "name": "안경/콘택트렌즈",
+      "category": "general",
+      "confidence": "high",
+      "steps": [
+        "일반쓰레기 또는 시각장애인 단체에 기부"
+      ],
+      "aliases_count": 3
+    },
+    {
+      "id": "lunchbox_container",
+      "name": "도시락통/반찬통 (재사용)",
+      "category": "reusable",
+      "confidence": "high",
+      "steps": [
+        "세척 후 재사용",
+        "버릴 때만 플라스틱류 또는 캔류"
+      ],
+      "aliases_count": 14
+    },
+    {
+      "id": "reusable_kitchenware",
+      "name": "재사용 주방기구 (압력솥·냄비 등)",
+      "category": "reusable",
+      "confidence": "high",
+      "steps": [
+        "세척 후 본인이 다시 사용",
+        "고장난 경우 금속이면 캔류, 도자기면 일반쓰레기"
+      ],
+      "aliases_count": 33
+    },
+    {
+      "id": "exercise_equipment",
+      "name": "운동기구",
+      "category": "general",
+      "confidence": "high",
+      "steps": [
+        "소형: 일반쓰레기(종량제봉투)",
+        "대형: 대형폐기물 신고 (지자체)"
+      ],
+      "aliases_count": 14
+    }
+  ],
+  "total": 24
+}

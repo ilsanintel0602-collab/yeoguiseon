@@ -1,9 +1,9 @@
 {
-  "$schema": "여기선 v6 - 시군구 공식 URL DB (분리수거 안내·대형폐기물 신고)",
-  "version": "1.0.0",
-  "lastUpdated": "2026-05-21",
-  "phase": "Phase 2 단계 1 (32개 시범)",
-  "sourceNote": "각 시군구 공식 도메인은 행안부 표준 + 위키백과 + 공공기관 확인 기반",
+  "$schema": "여기선 v6 - 시군구 공식 URL DB (분리수거 안내·대형폐기물 신고) + 분리배출.kr wasteUrl",
+  "version": "2.1.0",
+  "lastUpdated": "2026-05-24",
+  "phase": "Phase 2 단계 3 (E1b: 229개 시·구청 분리수거 안내 URL 전국 확장)",
+  "sourceNote": "행안부 표준 + 환경부 분리배출.kr 지역별 안내 인덱스",
   "regions": {
     "11680": {
       "name": "서울특별시 강남구",
@@ -13,7 +13,9 @@
       "cleanUrl": "https://clean.gangnam.go.kr/",
       "bulkWasteUrl": "https://www.gangnam.go.kr/board/list.do?mid=ID03_040301",
       "phone": "02-3423-5000",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://clean.gangnam.go.kr/",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11740": {
       "name": "서울특별시 강동구",
@@ -22,7 +24,9 @@
       "officialUrl": "https://www.gangdong.go.kr/",
       "bulkWasteUrl": "https://www.gangdong.go.kr/web/contents.do?cid=00148",
       "phone": "02-3425-5114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.gangdong.go.kr/web/newportal/contents/gdp_005_004_010_001",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11305": {
       "name": "서울특별시 강북구",
@@ -30,7 +34,9 @@
       "sido": "11",
       "officialUrl": "https://www.gangbuk.go.kr/",
       "phone": "02-901-6114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.gangbuk.go.kr/portal/bbs/B0000089/list.do?menuNo=200294",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11500": {
       "name": "서울특별시 강서구",
@@ -38,7 +44,9 @@
       "sido": "11",
       "officialUrl": "https://www.gangseo.seoul.kr/",
       "phone": "02-2600-6114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.gangseo.seoul.kr/env/env010101",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11620": {
       "name": "서울특별시 관악구",
@@ -46,7 +54,9 @@
       "sido": "11",
       "officialUrl": "https://www.gwanak.go.kr/",
       "phone": "02-879-5000",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.gwanak.go.kr/site/gwanak/07/10703010100002016051206.jsp",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11215": {
       "name": "서울특별시 광진구",
@@ -54,7 +64,9 @@
       "sido": "11",
       "officialUrl": "https://www.gwangjin.go.kr/",
       "phone": "02-450-1114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.gwangjin.go.kr/portal/main/contents.do?menuNo=200838",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11530": {
       "name": "서울특별시 구로구",
@@ -62,7 +74,9 @@
       "sido": "11",
       "officialUrl": "https://www.guro.go.kr/",
       "phone": "02-860-2114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.guro.go.kr/www/contents.do?key=2694&",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11545": {
       "name": "서울특별시 금천구",
@@ -70,7 +84,9 @@
       "sido": "11",
       "officialUrl": "https://www.geumcheon.go.kr/",
       "phone": "02-2627-1114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.geumcheon.go.kr/portal/contents.do?key=812",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11350": {
       "name": "서울특별시 노원구",
@@ -78,7 +94,9 @@
       "sido": "11",
       "officialUrl": "https://www.nowon.kr/",
       "phone": "02-2116-3114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.nowon.kr/www/info/info5/minwon4_03/minwon4_03_04.jsp",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11320": {
       "name": "서울특별시 도봉구",
@@ -86,7 +104,9 @@
       "sido": "11",
       "officialUrl": "https://www.dobong.go.kr/",
       "phone": "02-2091-2114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.dobong.go.kr/subsite/waste/Contents.asp?code=10007358",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11230": {
       "name": "서울특별시 동대문구",
@@ -94,7 +114,9 @@
       "sido": "11",
       "officialUrl": "https://www.ddm.go.kr/",
       "phone": "02-2127-4114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.ddm.go.kr/www/contents.do?key=860",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11590": {
       "name": "서울특별시 동작구",
@@ -102,7 +124,9 @@
       "sido": "11",
       "officialUrl": "https://www.dongjak.go.kr/",
       "phone": "02-820-9114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.dongjak.go.kr/portal/main/contents.do?menuNo=200589",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11440": {
       "name": "서울특별시 마포구",
@@ -110,7 +134,9 @@
       "sido": "11",
       "officialUrl": "https://www.mapo.go.kr/",
       "phone": "02-3153-8114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.mapo.go.kr/site/main/content/mapo05060501",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11410": {
       "name": "서울특별시 서대문구",
@@ -118,7 +144,9 @@
       "sido": "11",
       "officialUrl": "https://www.sdm.go.kr/",
       "phone": "02-330-1114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.sdm.go.kr/civil/type/household.do",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11650": {
       "name": "서울특별시 서초구",
@@ -127,7 +155,9 @@
       "officialUrl": "https://www.seocho.go.kr/",
       "cleanUrl": "https://clean.seocho.go.kr/",
       "phone": "02-2155-6000",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.seocho.go.kr/site/seocho/04/10411010600002018030711.jsp",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11200": {
       "name": "서울특별시 성동구",
@@ -135,7 +165,9 @@
       "sido": "11",
       "officialUrl": "https://www.sd.go.kr/",
       "phone": "02-2286-5000",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.sd.go.kr/main/contents.do?key=1674&",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11290": {
       "name": "서울특별시 성북구",
@@ -143,7 +175,9 @@
       "sido": "11",
       "officialUrl": "https://www.sb.go.kr/",
       "phone": "02-2241-2114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.sb.go.kr/www/selectBbsNttView.do?key=5927&bbsNo=91&nttNo=9502169",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11710": {
       "name": "서울특별시 송파구",
@@ -151,7 +185,9 @@
       "sido": "11",
       "officialUrl": "https://www.songpa.go.kr/",
       "phone": "02-2147-2000",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.songpa.go.kr/www/contents.do?key=3153&",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11470": {
       "name": "서울특별시 양천구",
@@ -159,7 +195,9 @@
       "sido": "11",
       "officialUrl": "https://www.yangcheon.go.kr/",
       "phone": "02-2620-3114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.yangcheon.go.kr/site/yangcheon/ex/bbs/List.do?cbIdx=279",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11560": {
       "name": "서울특별시 영등포구",
@@ -167,7 +205,9 @@
       "sido": "11",
       "officialUrl": "https://www.ydp.go.kr/",
       "phone": "02-2670-3114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.ydp.go.kr/www/contents.do?key=2733&",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11170": {
       "name": "서울특별시 용산구",
@@ -175,7 +215,9 @@
       "sido": "11",
       "officialUrl": "https://www.yongsan.go.kr/",
       "phone": "02-2199-6114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.yongsan.go.kr/portal/main/contents.do?menuNo=200680",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11380": {
       "name": "서울특별시 은평구",
@@ -183,7 +225,9 @@
       "sido": "11",
       "officialUrl": "https://www.ep.go.kr/",
       "phone": "02-351-6114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.ep.go.kr/www/contents.do?key=1239",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11110": {
       "name": "서울특별시 종로구",
@@ -191,7 +235,9 @@
       "sido": "11",
       "officialUrl": "https://www.jongno.go.kr/",
       "phone": "02-2148-1114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.jongno.go.kr/Main.do?menuId=1365&menuNo=1365",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11140": {
       "name": "서울특별시 중구",
@@ -199,7 +245,9 @@
       "sido": "11",
       "officialUrl": "https://www.junggu.seoul.kr/",
       "phone": "02-3396-4114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.junggu.seoul.kr/content.do?cmsid=16513",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "11260": {
       "name": "서울특별시 중랑구",
@@ -207,7 +255,9 @@
       "sido": "11",
       "officialUrl": "https://www.jungnang.go.kr/",
       "phone": "02-2094-0114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.jungnang.go.kr/portal/bbs/list/B0000522.do?menuNo=201471",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "26000": {
       "name": "부산광역시 (본청)",
@@ -264,7 +314,9 @@
       "sido": "36",
       "officialUrl": "https://www.sejong.go.kr/",
       "phone": "044-300-3114",
-      "confidence": "high"
+      "confidence": "high",
+      "wasteUrl": "https://www.sejong.go.kr/recycle/sub03_01_01_01.do",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)"
     },
     "41281": {
       "name": "경기도 고양시 덕양구",
@@ -274,7 +326,9 @@
       "bulkWasteUrl": "https://www.goyang.go.kr/main/contents.do?key=389",
       "phone": "031-8075-4000",
       "confidence": "medium",
-      "note": "고양시 통합 안내. 덕양구청 전화: 031-8075-4000"
+      "note": "고양시 통합 안내. 덕양구청 전화: 031-8075-4000",
+      "wasteUrl": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_2/www03_3_2_tab1.jsp",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (시 단위 상속: 고양시)"
     },
     "41285": {
       "name": "경기도 고양시 일산동구",
@@ -284,7 +338,9 @@
       "bulkWasteUrl": "https://www.goyang.go.kr/main/contents.do?key=389",
       "phone": "031-8075-3114",
       "confidence": "medium",
-      "note": "고양시 생활폐기물 분리배출 통합 안내. 일산동구청 전화: 031-8075-3114"
+      "note": "고양시 생활폐기물 분리배출 통합 안내. 일산동구청 전화: 031-8075-3114",
+      "wasteUrl": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_2/www03_3_2_tab1.jsp",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (시 단위 상속: 고양시)"
     },
     "41287": {
       "name": "경기도 고양시 일산서구",
@@ -294,16 +350,2049 @@
       "bulkWasteUrl": "https://www.goyang.go.kr/main/contents.do?key=389",
       "phone": "031-8075-5000",
       "confidence": "medium",
-      "note": "고양시 통합 안내. 일산서구청 전화: 031-8075-5000"
+      "note": "고양시 통합 안내. 일산서구청 전화: 031-8075-5000",
+      "wasteUrl": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_2/www03_3_2_tab1.jsp",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (시 단위 상속: 고양시)"
+    },
+    "26110": {
+      "name": "부산광역시 중구",
+      "shortName": "중구",
+      "sido": "26",
+      "officialUrl": "https://www.bsjunggu.go.kr/",
+      "phone": "051-600-4000",
+      "wasteUrl": "https://www.bsjunggu.go.kr/index.junggu?menuCd=DOM_000000109001001009",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "26140": {
+      "name": "부산광역시 서구",
+      "shortName": "서구",
+      "sido": "26",
+      "officialUrl": "https://www.bsseogu.go.kr/",
+      "phone": "051-240-4000",
+      "wasteUrl": "https://www.bsseogu.go.kr/index.bsseogu?menuCd=DOM_000000102004002006",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "26170": {
+      "name": "부산광역시 동구",
+      "shortName": "동구",
+      "sido": "26",
+      "officialUrl": "https://www.bsdonggu.go.kr/",
+      "phone": "051-440-4000",
+      "wasteUrl": "https://www.bsdonggu.go.kr/index.donggu?menuCd=DOM_000000104005002000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "26200": {
+      "name": "부산광역시 영도구",
+      "shortName": "영도구",
+      "sido": "26",
+      "officialUrl": "https://www.yeongdo.go.kr/",
+      "phone": "051-419-4000",
+      "wasteUrl": "https://www.yeongdo.go.kr/00672/01898/00863.web",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "26230": {
+      "name": "부산광역시 부산진구",
+      "shortName": "부산진구",
+      "sido": "26",
+      "officialUrl": "https://www.busanjin.go.kr/",
+      "phone": "051-605-4000",
+      "wasteUrl": "https://www.busanjin.go.kr/index.busanjin?menuCd=DOM_000000105006002003",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "26260": {
+      "name": "부산광역시 동래구",
+      "shortName": "동래구",
+      "sido": "26",
+      "officialUrl": "https://www.dongnae.go.kr/",
+      "phone": "051-550-4000",
+      "wasteUrl": "https://www.dongnae.go.kr/index.dongnae?menuCd=DOM_000000105009001004",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "26290": {
+      "name": "부산광역시 남구",
+      "shortName": "남구",
+      "sido": "26",
+      "officialUrl": "https://www.bsnamgu.go.kr/",
+      "phone": "051-607-4000",
+      "wasteUrl": "https://www.bsnamgu.go.kr/index.namgu?menuCd=DOM_000003501001002000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "26320": {
+      "name": "부산광역시 북구",
+      "shortName": "북구",
+      "sido": "26",
+      "officialUrl": "https://www.bsbukgu.go.kr/",
+      "phone": "051-309-4000",
+      "wasteUrl": "https://www.bsbukgu.go.kr/index.bsbukgu?menuCd=DOM_000000103005001003",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "26350": {
+      "name": "부산광역시 해운대구",
+      "shortName": "해운대구",
+      "sido": "26",
+      "officialUrl": "https://www.haeundae.go.kr/",
+      "phone": "051-749-4000",
+      "wasteUrl": "https://www.haeundae.go.kr/index.do?menuCd=DOM_000000102014004000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "26380": {
+      "name": "부산광역시 사하구",
+      "shortName": "사하구",
+      "sido": "26",
+      "officialUrl": "https://www.saha.go.kr/",
+      "phone": "051-220-4000",
+      "wasteUrl": "https://www.saha.go.kr/portal/contents.do?mId=0405050000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "26410": {
+      "name": "부산광역시 금정구",
+      "shortName": "금정구",
+      "sido": "26",
+      "officialUrl": "https://www.geumjeong.go.kr/",
+      "phone": "051-519-4000",
+      "wasteUrl": "https://www.geumjeong.go.kr/index.geumj?menuCd=DOM_000000133007000000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "26440": {
+      "name": "부산광역시 강서구",
+      "shortName": "강서구",
+      "sido": "26",
+      "officialUrl": "https://www.bsgangseo.go.kr/",
+      "phone": "051-970-4000",
+      "wasteUrl": "https://www.bsgangseo.go.kr/portal/contents.do?mid=0304010100",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "26470": {
+      "name": "부산광역시 연제구",
+      "shortName": "연제구",
+      "sido": "26",
+      "officialUrl": "https://www.yeonje.go.kr/",
+      "phone": "051-665-4000",
+      "wasteUrl": "https://www.yeonje.go.kr/portal/contents.do?mId=0602020100",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "26500": {
+      "name": "부산광역시 수영구",
+      "shortName": "수영구",
+      "sido": "26",
+      "officialUrl": "https://www.suyeong.go.kr/",
+      "phone": "051-610-4000",
+      "wasteUrl": "https://www.suyeong.go.kr/index.suyeong?menuCd=DOM_000000205003000000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "26530": {
+      "name": "부산광역시 사상구",
+      "shortName": "사상구",
+      "sido": "26",
+      "officialUrl": "https://www.sasang.go.kr/",
+      "phone": "051-310-4000",
+      "wasteUrl": "https://www.sasang.go.kr/index.sasang?menuCd=DOM_000000110001001000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "26710": {
+      "name": "부산광역시 기장군",
+      "shortName": "기장군",
+      "sido": "26",
+      "officialUrl": "https://www.gijang.go.kr/",
+      "phone": "051-709-4000",
+      "wasteUrl": "https://www.gijang.go.kr/index.gijang?menuCd=DOM_000000104006001000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "27110": {
+      "name": "대구광역시 중구",
+      "shortName": "중구",
+      "sido": "27",
+      "officialUrl": "https://www.jung.daegu.kr/",
+      "phone": "053-661-2114",
+      "wasteUrl": "https://www.jung.daegu.kr/new/pages/information/page.html?mc=2307",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "27140": {
+      "name": "대구광역시 동구",
+      "shortName": "동구",
+      "sido": "27",
+      "officialUrl": "https://www.dong.daegu.kr/",
+      "phone": "053-662-2114",
+      "wasteUrl": "https://dong.daegu.kr/portal/contents.do?mid=0405130000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "27170": {
+      "name": "대구광역시 서구",
+      "shortName": "서구",
+      "sido": "27",
+      "officialUrl": "https://www.dgs.go.kr/",
+      "phone": "053-663-2114",
+      "wasteUrl": "https://www.dgs.go.kr/portal/contents.do?mid=0207090000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "27200": {
+      "name": "대구광역시 남구",
+      "shortName": "남구",
+      "sido": "27",
+      "officialUrl": "https://www.nam.daegu.kr/",
+      "phone": "053-664-2114",
+      "wasteUrl": "https://nam.daegu.kr/index.do?menu_id=00000777",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "27230": {
+      "name": "대구광역시 북구",
+      "shortName": "북구",
+      "sido": "27",
+      "officialUrl": "https://www.buk.daegu.kr/",
+      "phone": "053-665-2114",
+      "wasteUrl": "https://www.buk.daegu.kr/index.do?menu_id=00001791",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "27260": {
+      "name": "대구광역시 수성구",
+      "shortName": "수성구",
+      "sido": "27",
+      "officialUrl": "https://www.suseong.kr/",
+      "phone": "053-666-2114",
+      "wasteUrl": "https://www.suseong.kr/index.do?menu_id=00000359",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "27290": {
+      "name": "대구광역시 달서구",
+      "shortName": "달서구",
+      "sido": "27",
+      "officialUrl": "https://www.dalseo.daegu.kr/",
+      "phone": "053-667-2114",
+      "wasteUrl": "https://www.dalseo.daegu.kr/index.do?menu_id=00001251",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "27710": {
+      "name": "대구광역시 달성군",
+      "shortName": "달성군",
+      "sido": "27",
+      "officialUrl": "https://www.dalseong.daegu.kr/",
+      "phone": "053-668-2114",
+      "wasteUrl": "https://www.dalseong.daegu.kr/index.do?menu_id=00000365",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "28710": {
+      "name": "인천광역시 강화군",
+      "shortName": "강화군",
+      "sido": "28",
+      "officialUrl": "https://www.ganghwa.go.kr/",
+      "phone": "032-930-3114",
+      "wasteUrl": "https://www.ganghwa.go.kr/open_content/main/part/clean/detritus.jsp",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "28720": {
+      "name": "인천광역시 옹진군",
+      "shortName": "옹진군",
+      "sido": "28",
+      "officialUrl": "https://www.ongjin.go.kr/",
+      "phone": "032-899-2114",
+      "wasteUrl": "https://www.ongjin.go.kr/open_content/main/environment/cleaning/excretion.jsp",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "28110": {
+      "name": "인천광역시 중구",
+      "shortName": "중구",
+      "sido": "28",
+      "officialUrl": "https://www.icjg.go.kr/",
+      "phone": "032-760-7114",
+      "wasteUrl": "https://www.icjg.go.kr/krpt0401c",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "28140": {
+      "name": "인천광역시 동구",
+      "shortName": "동구",
+      "sido": "28",
+      "officialUrl": "https://www.icdonggu.go.kr/",
+      "phone": "032-770-6000",
+      "wasteUrl": "https://www.icdonggu.go.kr/main/area/clean/waste_living.jsp",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "28177": {
+      "name": "인천광역시 미추홀구",
+      "shortName": "미추홀구",
+      "sido": "28",
+      "officialUrl": "https://www.michuhol.go.kr/",
+      "phone": "032-880-4000",
+      "wasteUrl": "https://www.michuhol.go.kr/main/content.do?sq=443",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "28185": {
+      "name": "인천광역시 연수구",
+      "shortName": "연수구",
+      "sido": "28",
+      "officialUrl": "https://www.yeonsu.go.kr/",
+      "phone": "032-749-7000",
+      "wasteUrl": "https://www.yeonsu.go.kr/main/part/clean/house.asp",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "28200": {
+      "name": "인천광역시 남동구",
+      "shortName": "남동구",
+      "sido": "28",
+      "officialUrl": "https://www.namdong.go.kr/",
+      "phone": "032-453-2114",
+      "wasteUrl": "https://www.namdong.go.kr/main/area/clean/garbage.jsp",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "28237": {
+      "name": "인천광역시 부평구",
+      "shortName": "부평구",
+      "sido": "28",
+      "officialUrl": "https://www.icbp.go.kr/",
+      "phone": "032-509-6000",
+      "wasteUrl": "https://www.icbp.go.kr/main/life/clean/disposables_workplaces.jsp",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "28245": {
+      "name": "인천광역시 계양구",
+      "shortName": "계양구",
+      "sido": "28",
+      "officialUrl": "https://www.gyeyang.go.kr/",
+      "phone": "032-450-5000",
+      "wasteUrl": "https://www.gyeyang.go.kr/open_content/main/part/clean/detritus.jsp",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "28260": {
+      "name": "인천광역시 서구",
+      "shortName": "서구",
+      "sido": "28",
+      "officialUrl": "https://www.seo.incheon.kr/",
+      "phone": "032-560-5000",
+      "wasteUrl": "https://www.seo.incheon.kr/open_content/main/part/clean/detritus.jsp",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "29110": {
+      "name": "광주광역시 동구",
+      "shortName": "동구",
+      "sido": "29",
+      "officialUrl": "https://donggu.gwangju.kr/",
+      "phone": "062-608-2114",
+      "wasteUrl": "https://www.donggu.kr/menu.es?mid=a10408010100",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "29140": {
+      "name": "광주광역시 서구",
+      "shortName": "서구",
+      "sido": "29",
+      "officialUrl": "https://www.seogu.gwangju.kr/",
+      "phone": "062-360-7114",
+      "wasteUrl": "https://www.seogu.gwangju.kr/menu.es?mid=a10308010100",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "29155": {
+      "name": "광주광역시 남구",
+      "shortName": "남구",
+      "sido": "29",
+      "officialUrl": "https://namgu.gwangju.kr/",
+      "phone": "062-607-2114",
+      "wasteUrl": "https://www.namgu.gwangju.kr/menu.es?mid=a10501050000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "29170": {
+      "name": "광주광역시 북구",
+      "shortName": "북구",
+      "sido": "29",
+      "officialUrl": "https://bukgu.gwangju.kr/",
+      "phone": "062-410-6114",
+      "wasteUrl": "https://bukgu.gwangju.kr/menu.es?mid=a10406020300",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "29200": {
+      "name": "광주광역시 광산구",
+      "shortName": "광산구",
+      "sido": "29",
+      "officialUrl": "https://www.gwangsan.go.kr/",
+      "phone": "062-960-8114",
+      "wasteUrl": "https://www.gwangsan.go.kr/contentsView.do?pageId=www832",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "30110": {
+      "name": "대전광역시 동구",
+      "shortName": "동구",
+      "sido": "30",
+      "officialUrl": "https://www.donggu.go.kr/",
+      "phone": "042-251-4000",
+      "wasteUrl": "https://www.donggu.go.kr/dg/kor/contents/618",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "30140": {
+      "name": "대전광역시 중구",
+      "shortName": "중구",
+      "sido": "30",
+      "officialUrl": "https://www.djjunggu.go.kr/",
+      "phone": "042-606-6114",
+      "wasteUrl": "https://www.djjunggu.go.kr/kr/sub06_05_09_01.do",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "30170": {
+      "name": "대전광역시 서구",
+      "shortName": "서구",
+      "sido": "30",
+      "officialUrl": "https://www.seogu.go.kr/",
+      "phone": "042-288-2114",
+      "wasteUrl": "https://www.seogu.go.kr/kor/sub06_11_01_01.do",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "30200": {
+      "name": "대전광역시 유성구",
+      "shortName": "유성구",
+      "sido": "30",
+      "officialUrl": "https://www.yuseong.go.kr/",
+      "phone": "042-611-2114",
+      "wasteUrl": "https://www.yuseong.go.kr/kor/sub07_11_03_01.do",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "30230": {
+      "name": "대전광역시 대덕구",
+      "shortName": "대덕구",
+      "sido": "30",
+      "officialUrl": "https://www.daedeok.go.kr/",
+      "phone": "042-608-6114",
+      "wasteUrl": "https://www.daedeok.go.kr/was/goContents.do?link=/was/was01/WAS0102&menuId=WAS0102",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "31110": {
+      "name": "울산광역시 중구",
+      "shortName": "중구",
+      "sido": "31",
+      "officialUrl": "https://www.junggu.ulsan.kr/",
+      "phone": "052-290-3114",
+      "wasteUrl": "https://www.junggu.ulsan.kr/index.ulsan?menuCd=DOM_000000105005013001",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "31140": {
+      "name": "울산광역시 남구",
+      "shortName": "남구",
+      "sido": "31",
+      "officialUrl": "https://www.ulsannamgu.go.kr/",
+      "phone": "052-226-5000",
+      "wasteUrl": "https://www.ulsannamgu.go.kr/easyMain/mainPage.do?p=eco",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "31170": {
+      "name": "울산광역시 동구",
+      "shortName": "동구",
+      "sido": "31",
+      "officialUrl": "https://www.donggu.ulsan.kr/",
+      "phone": "052-209-3114",
+      "wasteUrl": "https://www.donggu.ulsan.kr/donggu/contents/contents.do?mId=7050101",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "31200": {
+      "name": "울산광역시 북구",
+      "shortName": "북구",
+      "sido": "31",
+      "officialUrl": "https://www.bukgu.ulsan.kr/",
+      "phone": "052-241-7114",
+      "wasteUrl": "https://www.bukgu.ulsan.kr/lay1/S1T192C208/contents.do",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "31710": {
+      "name": "울산광역시 울주군",
+      "shortName": "울주군",
+      "sido": "31",
+      "officialUrl": "https://www.ulju.ulsan.kr/",
+      "phone": "052-229-7114",
+      "wasteUrl": "https://www.ulju.ulsan.kr/ulju/contents.do?mId=0505010100",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41130": {
+      "name": "경기도 성남시",
+      "shortName": "성남시",
+      "sido": "41",
+      "officialUrl": "",
+      "phone": "",
+      "wasteUrl": "https://recycle.seongnam.go.kr/platforminfo",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41150": {
+      "name": "경기도 의정부시",
+      "shortName": "의정부시",
+      "sido": "41",
+      "officialUrl": "https://www.ui4u.go.kr/",
+      "phone": "031-828-2114",
+      "wasteUrl": "https://www.ui4u.go.kr/depart/contents.do?mId=0602030000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41190": {
+      "name": "경기도 부천시",
+      "shortName": "부천시",
+      "sido": "41",
+      "officialUrl": "https://www.bucheon.go.kr/",
+      "phone": "032-320-3000",
+      "wasteUrl": "https://www.bucheon.go.kr/site/homepage/menu/viewMenu?menuid=148006007006003",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41210": {
+      "name": "경기도 광명시",
+      "shortName": "광명시",
+      "sido": "41",
+      "officialUrl": "https://www.gm.go.kr/",
+      "phone": "02-2680-2114",
+      "wasteUrl": "https://www.gm.go.kr/pt/partInfo/en/cleaning/lfgarbage/PTMN217.jsp",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41220": {
+      "name": "경기도 평택시",
+      "shortName": "평택시",
+      "sido": "41",
+      "officialUrl": "https://www.pyeongtaek.go.kr/",
+      "phone": "031-8024-2000",
+      "wasteUrl": "https://www.pyeongtaek.go.kr/depart/contents.do?mid=0801010000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41250": {
+      "name": "경기도 동두천시",
+      "shortName": "동두천시",
+      "sido": "41",
+      "officialUrl": "https://www.ddc21.net/",
+      "phone": "031-860-2114",
+      "wasteUrl": "https://www.ddc.go.kr/ddc/contents.do?key=489",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41290": {
+      "name": "경기도 과천시",
+      "shortName": "과천시",
+      "sido": "41",
+      "officialUrl": "https://www.gccity.go.kr/",
+      "phone": "02-3677-2114",
+      "wasteUrl": "https://www.gccity.go.kr/dept/contents.do?mId=0604030100",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41310": {
+      "name": "경기도 구리시",
+      "shortName": "구리시",
+      "sido": "41",
+      "officialUrl": "https://www.guri.go.kr/",
+      "phone": "031-550-2000",
+      "wasteUrl": "https://www.guri.go.kr/www/contents.do?key=765",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41360": {
+      "name": "경기도 남양주시",
+      "shortName": "남양주시",
+      "sido": "41",
+      "officialUrl": "https://www.nyj.go.kr/",
+      "phone": "031-590-2114",
+      "wasteUrl": "https://www.nyj.go.kr/www/contents.do?key=3004",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41370": {
+      "name": "경기도 오산시",
+      "shortName": "오산시",
+      "sido": "41",
+      "officialUrl": "https://www.osan.go.kr/",
+      "phone": "031-8036-7000",
+      "wasteUrl": "https://www.osan.go.kr/depart/contents.do?mId=0602030000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41390": {
+      "name": "경기도 시흥시",
+      "shortName": "시흥시",
+      "sido": "41",
+      "officialUrl": "https://www.siheung.go.kr/",
+      "phone": "031-310-2114",
+      "wasteUrl": "https://www.siheung.go.kr/portal/contents.do?mId=0703010100",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41410": {
+      "name": "경기도 군포시",
+      "shortName": "군포시",
+      "sido": "41",
+      "officialUrl": "https://www.gunpo.go.kr/",
+      "phone": "031-390-0114",
+      "wasteUrl": "https://www.gunpo.go.kr/www/contents.do?key=4527",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41430": {
+      "name": "경기도 의왕시",
+      "shortName": "의왕시",
+      "sido": "41",
+      "officialUrl": "https://www.uiwang.go.kr/",
+      "phone": "031-345-2000",
+      "wasteUrl": "http://www.uiwang.go.kr/UWKORENV0312",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41450": {
+      "name": "경기도 하남시",
+      "shortName": "하남시",
+      "sido": "41",
+      "officialUrl": "https://www.hanam.go.kr/",
+      "phone": "031-790-5114",
+      "wasteUrl": "https://www.hanam.go.kr/www/contents.do?key=6421",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41480": {
+      "name": "경기도 파주시",
+      "shortName": "파주시",
+      "sido": "41",
+      "officialUrl": "https://www.paju.go.kr/",
+      "phone": "031-940-4000",
+      "wasteUrl": "https://www.paju.go.kr/www/www_02/environment/environment_05/environment_05_01/environment_05_01_02.jsp",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41500": {
+      "name": "경기도 이천시",
+      "shortName": "이천시",
+      "sido": "41",
+      "officialUrl": "https://www.icheon.go.kr/",
+      "phone": "031-644-2114",
+      "wasteUrl": "https://www.icheon.go.kr/depart/contents.do?mid=0504020000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41550": {
+      "name": "경기도 안성시",
+      "shortName": "안성시",
+      "sido": "41",
+      "officialUrl": "https://www.anseong.go.kr/",
+      "phone": "031-678-2000",
+      "wasteUrl": "https://www.anseong.go.kr/depart/contents.do?mId=0702010000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41570": {
+      "name": "경기도 김포시",
+      "shortName": "김포시",
+      "sido": "41",
+      "officialUrl": "https://www.gimpo.go.kr/",
+      "phone": "031-980-2114",
+      "wasteUrl": "https://www.gimpo.go.kr/portal/contents.do?key=2723",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41590": {
+      "name": "경기도 화성시",
+      "shortName": "화성시",
+      "sido": "41",
+      "officialUrl": "https://www.hscity.go.kr/",
+      "phone": "031-369-2114",
+      "wasteUrl": "https://www.hscity.go.kr/www/partInfo/trnsportEnvrn/trashProcessInfo.jsp",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41610": {
+      "name": "경기도 광주시",
+      "shortName": "광주시",
+      "sido": "41",
+      "officialUrl": "https://www.gjcity.go.kr/",
+      "phone": "031-760-2114",
+      "wasteUrl": "https://www.gjcity.go.kr/depart/contents.do?mId=0901010100",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41630": {
+      "name": "경기도 양주시",
+      "shortName": "양주시",
+      "sido": "41",
+      "officialUrl": "https://www.yangju.go.kr/",
+      "phone": "031-8082-5114",
+      "wasteUrl": "https://www.yangju.go.kr/www/contents.do?key=688",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41650": {
+      "name": "경기도 포천시",
+      "shortName": "포천시",
+      "sido": "41",
+      "officialUrl": "https://www.pocheon.go.kr/",
+      "phone": "031-538-2114",
+      "wasteUrl": "https://www.pocheon.go.kr/www/contents.do?key=4595",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41670": {
+      "name": "경기도 여주시",
+      "shortName": "여주시",
+      "sido": "41",
+      "officialUrl": "https://www.yeoju.go.kr/",
+      "phone": "031-887-2000",
+      "wasteUrl": "https://www.yeoju.go.kr/www/contents.do?key=565",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41800": {
+      "name": "경기도 연천군",
+      "shortName": "연천군",
+      "sido": "41",
+      "officialUrl": "https://www.yeoncheon.go.kr/",
+      "phone": "031-839-2114",
+      "wasteUrl": "https://www.yeoncheon.go.kr/www/contents.do?key=3503",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41820": {
+      "name": "경기도 가평군",
+      "shortName": "가평군",
+      "sido": "41",
+      "officialUrl": "https://www.gp.go.kr/",
+      "phone": "031-580-2114",
+      "wasteUrl": "http://www.gp.go.kr/portal/contents.do?key=676",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41830": {
+      "name": "경기도 양평군",
+      "shortName": "양평군",
+      "sido": "41",
+      "officialUrl": "https://www.yp21.go.kr/",
+      "phone": "031-770-2114",
+      "wasteUrl": "https://www.yp21.go.kr/www/contents.do?key=1458",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "43110": {
+      "name": "충청북도 청주시",
+      "shortName": "청주시",
+      "sido": "43",
+      "officialUrl": "",
+      "phone": "",
+      "wasteUrl": "https://www.cheongju.go.kr/www/contents.do?key=428",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "43130": {
+      "name": "충청북도 충주시",
+      "shortName": "충주시",
+      "sido": "43",
+      "officialUrl": "https://www.chungju.go.kr/",
+      "phone": "043-850-5114",
+      "wasteUrl": "https://www.chungju.go.kr/www/contents.do?key=3069",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "43150": {
+      "name": "충청북도 제천시",
+      "shortName": "제천시",
+      "sido": "43",
+      "officialUrl": "https://www.jecheon.go.kr/",
+      "phone": "043-641-5000",
+      "wasteUrl": "https://www.jecheon.go.kr/www/contents.do?key=497",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "43720": {
+      "name": "충청북도 보은군",
+      "shortName": "보은군",
+      "sido": "43",
+      "officialUrl": "https://www.boeun.go.kr/",
+      "phone": "043-540-3114",
+      "wasteUrl": "https://www.boeun.go.kr/www/contents.do?key=1431",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "43730": {
+      "name": "충청북도 옥천군",
+      "shortName": "옥천군",
+      "sido": "43",
+      "officialUrl": "https://www.oc.go.kr/",
+      "phone": "043-730-3114",
+      "wasteUrl": "https://www.oc.go.kr/www/contents.do?key=337&",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "43740": {
+      "name": "충청북도 영동군",
+      "shortName": "영동군",
+      "sido": "43",
+      "officialUrl": "https://www.yd21.go.kr/",
+      "phone": "043-740-3114",
+      "wasteUrl": "https://www.yd21.go.kr/kr/html/sub05/05060301.html",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "43745": {
+      "name": "충청북도 증평군",
+      "shortName": "증평군",
+      "sido": "43",
+      "officialUrl": "https://www.jp.go.kr/",
+      "phone": "043-835-3114",
+      "wasteUrl": "https://www.jp.go.kr/kor/sub05_07_01.do",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "43750": {
+      "name": "충청북도 진천군",
+      "shortName": "진천군",
+      "sido": "43",
+      "officialUrl": "https://www.jincheon.go.kr/",
+      "phone": "043-539-3114",
+      "wasteUrl": "https://www.jincheon.go.kr/site/environment/sub.do?menukey=1517",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "43760": {
+      "name": "충청북도 괴산군",
+      "shortName": "괴산군",
+      "sido": "43",
+      "officialUrl": "https://www.goesan.go.kr/",
+      "phone": "043-830-3000",
+      "wasteUrl": "https://www.goesan.go.kr/trenv/contents.do?key=421",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "43770": {
+      "name": "충청북도 음성군",
+      "shortName": "음성군",
+      "sido": "43",
+      "officialUrl": "https://www.eumseong.go.kr/",
+      "phone": "043-871-3000",
+      "wasteUrl": "https://www.eumseong.go.kr/www/contents.do?key=72",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "43800": {
+      "name": "충청북도 단양군",
+      "shortName": "단양군",
+      "sido": "43",
+      "officialUrl": "https://www.danyang.go.kr/",
+      "phone": "043-420-2114",
+      "wasteUrl": "https://www.danyang.go.kr/dy21/856",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "44130": {
+      "name": "충청남도 천안시",
+      "shortName": "천안시",
+      "sido": "44",
+      "officialUrl": "",
+      "phone": "",
+      "wasteUrl": "https://www.cheonan.go.kr/kor/sub06_13_06.do",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "44150": {
+      "name": "충청남도 공주시",
+      "shortName": "공주시",
+      "sido": "44",
+      "officialUrl": "https://www.gongju.go.kr/",
+      "phone": "041-840-2114",
+      "wasteUrl": "https://www.gongju.go.kr/kr/sub06_08_06_01.do",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "44270": {
+      "name": "충청남도 당진시",
+      "shortName": "당진시",
+      "sido": "44",
+      "officialUrl": "https://www.dangjin.go.kr/",
+      "phone": "041-360-6114",
+      "wasteUrl": "https://www.dangjin.go.kr/kor/sub05_06_04_01.do",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "44180": {
+      "name": "충청남도 보령시",
+      "shortName": "보령시",
+      "sido": "44",
+      "officialUrl": "https://www.brcn.go.kr/",
+      "phone": "041-930-3114",
+      "wasteUrl": "https://www.brcn.go.kr/kor/sub05_07_08.do",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "44200": {
+      "name": "충청남도 아산시",
+      "shortName": "아산시",
+      "sido": "44",
+      "officialUrl": "https://www.asan.go.kr/",
+      "phone": "041-540-2114",
+      "wasteUrl": "https://www.asan.go.kr/main/cms/?no=293",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "44210": {
+      "name": "충청남도 서산시",
+      "shortName": "서산시",
+      "sido": "44",
+      "officialUrl": "https://www.seosan.go.kr/",
+      "phone": "041-660-2114",
+      "wasteUrl": "https://www.seosan.go.kr/www/contents.do?key=1566",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "44230": {
+      "name": "충청남도 논산시",
+      "shortName": "논산시",
+      "sido": "44",
+      "officialUrl": "https://www.nonsan.go.kr/",
+      "phone": "041-746-5000",
+      "wasteUrl": "https://nonsan.go.kr/kor/html/sub05/05081101.html",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "44250": {
+      "name": "충청남도 계룡시",
+      "shortName": "계룡시",
+      "sido": "44",
+      "officialUrl": "https://www.gyeryong.go.kr/",
+      "phone": "042-840-2114",
+      "wasteUrl": "https://gyeryong.go.kr/kr/html/sub05/05051401.html",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "44710": {
+      "name": "충청남도 금산군",
+      "shortName": "금산군",
+      "sido": "44",
+      "officialUrl": "https://www.geumsan.go.kr/",
+      "phone": "041-750-2114",
+      "wasteUrl": "https://www.geumsan.go.kr/kr/html/sub05/05050601.html",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "44760": {
+      "name": "충청남도 부여군",
+      "shortName": "부여군",
+      "sido": "44",
+      "officialUrl": "https://www.buyeo.go.kr/",
+      "phone": "041-830-2114",
+      "wasteUrl": "https://www.buyeo.go.kr/html/kr/refo/refo_06040401.html",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "44770": {
+      "name": "충청남도 서천군",
+      "shortName": "서천군",
+      "sido": "44",
+      "officialUrl": "https://www.seocheon.go.kr/",
+      "phone": "041-950-4114",
+      "wasteUrl": "https://www.seocheon.go.kr/kor/sub07_04_04_02.do",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "44790": {
+      "name": "충청남도 청양군",
+      "shortName": "청양군",
+      "sido": "44",
+      "officialUrl": "https://www.cheongyang.go.kr/",
+      "phone": "041-940-2114",
+      "wasteUrl": "https://www.cheongyang.go.kr/kor/sub06_04_03.do",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "44800": {
+      "name": "충청남도 홍성군",
+      "shortName": "홍성군",
+      "sido": "44",
+      "officialUrl": "https://www.hongseong.go.kr/",
+      "phone": "041-630-1114",
+      "wasteUrl": "https://www.hongseong.go.kr/kor/sub05_090204.do",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "44810": {
+      "name": "충청남도 예산군",
+      "shortName": "예산군",
+      "sido": "44",
+      "officialUrl": "https://www.yesan.go.kr/",
+      "phone": "041-339-7114",
+      "wasteUrl": "https://www.yesan.go.kr/kor/sub06_10_06.do",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "44825": {
+      "name": "충청남도 태안군",
+      "shortName": "태안군",
+      "sido": "44",
+      "officialUrl": "https://www.taean.go.kr/",
+      "phone": "041-670-2114",
+      "wasteUrl": "https://www.taean.go.kr/life/sub04_08.do",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "52111": {
+      "name": "전북특별자치도 전주시",
+      "shortName": "전주시",
+      "sido": "52",
+      "officialUrl": "",
+      "phone": "",
+      "wasteUrl": "https://www.jeonju.go.kr/index.9is?contentUid=ff8080818990c349018b041acc483bef",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46110": {
+      "name": "전라남도 목포시",
+      "shortName": "목포시",
+      "sido": "46",
+      "officialUrl": "https://www.mokpo.go.kr/",
+      "phone": "061-270-3000",
+      "wasteUrl": "https://www.mokpo.go.kr/www/life_welfare/environmental_info/waste_garbage",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46130": {
+      "name": "전라남도 여수시",
+      "shortName": "여수시",
+      "sido": "46",
+      "officialUrl": "https://www.yeosu.go.kr/",
+      "phone": "061-659-3114",
+      "wasteUrl": "https://www.yeosu.go.kr/www/sphere/environ/waste",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46150": {
+      "name": "전라남도 순천시",
+      "shortName": "순천시",
+      "sido": "46",
+      "officialUrl": "https://www.suncheon.go.kr/",
+      "phone": "061-749-3114",
+      "wasteUrl": "https://www.suncheon.go.kr/kr/life/0002/0001/",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46170": {
+      "name": "전라남도 나주시",
+      "shortName": "나주시",
+      "sido": "46",
+      "officialUrl": "https://www.naju.go.kr/",
+      "phone": "061-339-8114",
+      "wasteUrl": "https://www.naju.go.kr/www/field_info/environment/waste_new",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46230": {
+      "name": "전라남도 광양시",
+      "shortName": "광양시",
+      "sido": "46",
+      "officialUrl": "https://www.gwangyang.go.kr/",
+      "phone": "061-797-2114",
+      "wasteUrl": "https://gwangyang.go.kr/menu.es?mid=a11205090101",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46710": {
+      "name": "전라남도 담양군",
+      "shortName": "담양군",
+      "sido": "46",
+      "officialUrl": "https://www.damyang.go.kr/",
+      "phone": "061-380-3114",
+      "wasteUrl": "https://www.damyang.go.kr/menu/goToContentsPage?domainId=DOM_0000001&menuCd=DOM_000000190004007000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46720": {
+      "name": "전라남도 곡성군",
+      "shortName": "곡성군",
+      "sido": "46",
+      "officialUrl": "https://www.gokseong.go.kr/",
+      "phone": "061-360-8114",
+      "wasteUrl": "https://www.gokseong.go.kr/kr/subPage.do?menuNo=103004002003",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46730": {
+      "name": "전라남도 구례군",
+      "shortName": "구례군",
+      "sido": "46",
+      "officialUrl": "https://www.gurye.go.kr/",
+      "phone": "061-780-2114",
+      "wasteUrl": "https://www.gurye.go.kr/kr/subPage.do?menuNo=117004005001",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46770": {
+      "name": "전라남도 고흥군",
+      "shortName": "고흥군",
+      "sido": "46",
+      "officialUrl": "https://www.goheung.go.kr/",
+      "phone": "061-830-5114",
+      "wasteUrl": "https://www.goheung.go.kr/environmental/contentsView.do?pageId=environmental16",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46780": {
+      "name": "전라남도 보성군",
+      "shortName": "보성군",
+      "sido": "46",
+      "officialUrl": "https://www.boseong.go.kr/",
+      "phone": "061-850-5000",
+      "wasteUrl": "https://www.boseong.go.kr/www/open_data/environment/regular_payment",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46790": {
+      "name": "전라남도 화순군",
+      "shortName": "화순군",
+      "sido": "46",
+      "officialUrl": "https://www.hwasun.go.kr/",
+      "phone": "061-379-3114",
+      "wasteUrl": "https://www.hwasun.go.kr/contents.do?S=S01&M=060804010000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46800": {
+      "name": "전라남도 장흥군",
+      "shortName": "장흥군",
+      "sido": "46",
+      "officialUrl": "https://www.jangheung.go.kr/",
+      "phone": "061-860-0114",
+      "wasteUrl": "https://www.jangheung.go.kr/www/open_data/life_environment/separate_collection",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46810": {
+      "name": "전라남도 강진군",
+      "shortName": "강진군",
+      "sido": "46",
+      "officialUrl": "https://www.gangjin.go.kr/",
+      "phone": "061-430-3114",
+      "wasteUrl": "https://www.gangjin.go.kr/www/part/environment/wastes",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46820": {
+      "name": "전라남도 해남군",
+      "shortName": "해남군",
+      "sido": "46",
+      "officialUrl": "https://www.haenam.go.kr/",
+      "phone": "061-530-5114",
+      "wasteUrl": "https://www.haenam.go.kr/index.9is?contentUid=8ae590de8dcaf22e018dce5a947c2121",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46830": {
+      "name": "전라남도 영암군",
+      "shortName": "영암군",
+      "sido": "46",
+      "officialUrl": "https://www.yeongam.go.kr/",
+      "phone": "061-470-2114",
+      "wasteUrl": "https://www.yeongam.go.kr/home/www/info_area/life_env/life_env_01/life_env_01_05/yeongam.go",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46840": {
+      "name": "전라남도 무안군",
+      "shortName": "무안군",
+      "sido": "46",
+      "officialUrl": "https://www.muan.go.kr/",
+      "phone": "061-450-5114",
+      "wasteUrl": "https://www.muan.go.kr/www/information/environment_facilities/recycling",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46860": {
+      "name": "전라남도 함평군",
+      "shortName": "함평군",
+      "sido": "46",
+      "officialUrl": "https://www.hampyeong.go.kr/",
+      "phone": "061-320-3114",
+      "wasteUrl": "https://www.hampyeong.go.kr/boardList.do?boardId=GARBAGE_DISPOSAL&pageId=www653",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46870": {
+      "name": "전라남도 영광군",
+      "shortName": "영광군",
+      "sido": "46",
+      "officialUrl": "https://www.yeonggwang.go.kr/",
+      "phone": "061-350-5114",
+      "wasteUrl": "https://www.yeonggwang.go.kr/subpage/?site=headquarter_new&mn=9117",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46880": {
+      "name": "전라남도 장성군",
+      "shortName": "장성군",
+      "sido": "46",
+      "officialUrl": "https://www.jangseong.go.kr/",
+      "phone": "061-390-7000",
+      "wasteUrl": "https://www.jangseong.go.kr/home/www/openinfo/environment/environment_21",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46890": {
+      "name": "전라남도 완도군",
+      "shortName": "완도군",
+      "sido": "46",
+      "officialUrl": "https://www.wando.go.kr/",
+      "phone": "061-550-5114",
+      "wasteUrl": "https://www.wando.go.kr/wando/sub.cs?m=548",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46900": {
+      "name": "전라남도 진도군",
+      "shortName": "진도군",
+      "sido": "46",
+      "officialUrl": "https://www.jindo.go.kr/",
+      "phone": "061-540-3114",
+      "wasteUrl": "https://www.jindo.go.kr/home/sub.cs?m=334",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "46910": {
+      "name": "전라남도 신안군",
+      "shortName": "신안군",
+      "sido": "46",
+      "officialUrl": "https://www.shinan.go.kr/",
+      "phone": "061-240-8114",
+      "wasteUrl": "https://www.shinan.go.kr/home/www/dept_info/env/waste/page.wscms",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47110": {
+      "name": "경상북도 포항시",
+      "shortName": "포항시",
+      "sido": "47",
+      "officialUrl": "",
+      "phone": "",
+      "wasteUrl": "https://www.pohang.go.kr/dept/contents.do?mid=0202010000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47130": {
+      "name": "경상북도 경주시",
+      "shortName": "경주시",
+      "sido": "47",
+      "officialUrl": "https://www.gyeongju.go.kr/",
+      "phone": "054-779-6114",
+      "wasteUrl": "https://www.gyeongju.go.kr/area/page.do?mnu_uid=1012&",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47150": {
+      "name": "경상북도 김천시",
+      "shortName": "김천시",
+      "sido": "47",
+      "officialUrl": "https://www.gc.go.kr/",
+      "phone": "054-420-6114",
+      "wasteUrl": "https://www.gc.go.kr/portal/contents.do?mId=1414030000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47170": {
+      "name": "경상북도 안동시",
+      "shortName": "안동시",
+      "sido": "47",
+      "officialUrl": "https://www.andong.go.kr/",
+      "phone": "054-840-6114",
+      "wasteUrl": "https://www.andong.go.kr/portal/contents.do?mId=0607030000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47190": {
+      "name": "경상북도 구미시",
+      "shortName": "구미시",
+      "sido": "47",
+      "officialUrl": "https://www.gumi.go.kr/",
+      "phone": "054-480-6114",
+      "wasteUrl": "https://www.gumi.go.kr/life/contents.do?mid=0401060000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47210": {
+      "name": "경상북도 영주시",
+      "shortName": "영주시",
+      "sido": "47",
+      "officialUrl": "https://www.yeongju.go.kr/",
+      "phone": "054-639-6114",
+      "wasteUrl": "https://www.yeongju.go.kr/open_content/main/page.do?mnu_uid=10513&",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47230": {
+      "name": "경상북도 영천시",
+      "shortName": "영천시",
+      "sido": "47",
+      "officialUrl": "https://www.yc.go.kr/",
+      "phone": "054-330-6114",
+      "wasteUrl": "https://www.yc.go.kr/depart/contents.do?mId=0505010000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47250": {
+      "name": "경상북도 상주시",
+      "shortName": "상주시",
+      "sido": "47",
+      "officialUrl": "https://www.sangju.go.kr/",
+      "phone": "054-537-7114",
+      "wasteUrl": "https://www.sangju.go.kr/civil/page/16450/11064.tc",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47280": {
+      "name": "경상북도 문경시",
+      "shortName": "문경시",
+      "sido": "47",
+      "officialUrl": "https://www.gbmg.go.kr/",
+      "phone": "054-550-6114",
+      "wasteUrl": "https://www.gbmg.go.kr/portal/contents.do?mId=0606040101",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47290": {
+      "name": "경상북도 경산시",
+      "shortName": "경산시",
+      "sido": "47",
+      "officialUrl": "https://www.gbgs.go.kr/",
+      "phone": "053-810-5000",
+      "wasteUrl": "https://www.gbgs.go.kr/open_content/ko/page.do?mnu_uid=2219&",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47730": {
+      "name": "경상북도 의성군",
+      "shortName": "의성군",
+      "sido": "47",
+      "officialUrl": "https://www.usc.go.kr/",
+      "phone": "054-830-6114",
+      "wasteUrl": "https://www.usc.go.kr/ko/page.do?mnu_uid=565&",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47750": {
+      "name": "경상북도 청송군",
+      "shortName": "청송군",
+      "sido": "47",
+      "officialUrl": "https://www.cs.go.kr/",
+      "phone": "054-870-6000",
+      "wasteUrl": "https://www.cs.go.kr/specialty/00003172/00003282.web",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47760": {
+      "name": "경상북도 영양군",
+      "shortName": "영양군",
+      "sido": "47",
+      "officialUrl": "https://www.yyg.go.kr/",
+      "phone": "054-680-6114",
+      "wasteUrl": "https://www.yyg.go.kr/www/welfare/life_info/waste_discharge",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47770": {
+      "name": "경상북도 영덕군",
+      "shortName": "영덕군",
+      "sido": "47",
+      "officialUrl": "https://www.yd.go.kr/",
+      "phone": "054-730-6114",
+      "wasteUrl": "https://www.yd.go.kr/?p=604",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47820": {
+      "name": "경상북도 청도군",
+      "shortName": "청도군",
+      "sido": "47",
+      "officialUrl": "https://www.cheongdo.go.kr/",
+      "phone": "054-370-6114",
+      "wasteUrl": "https://www.cheongdo.go.kr/environmental/contents.do?mid=0201000000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47830": {
+      "name": "경상북도 고령군",
+      "shortName": "고령군",
+      "sido": "47",
+      "officialUrl": "https://www.goryeong.go.kr/",
+      "phone": "054-950-6114",
+      "wasteUrl": "https://www.goryeong.go.kr/kor/contents.do?IDX=266",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47840": {
+      "name": "경상북도 성주군",
+      "shortName": "성주군",
+      "sido": "47",
+      "officialUrl": "https://www.sj.go.kr/",
+      "phone": "054-930-6000",
+      "wasteUrl": "https://www.sj.go.kr/page.do?mnu_uid=3952&",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47850": {
+      "name": "경상북도 칠곡군",
+      "shortName": "칠곡군",
+      "sido": "47",
+      "officialUrl": "https://www.chilgok.go.kr/",
+      "phone": "054-979-6000",
+      "wasteUrl": "https://www.chilgok.go.kr/portal/contents.do?mId=1108010100",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47900": {
+      "name": "경상북도 예천군",
+      "shortName": "예천군",
+      "sido": "47",
+      "officialUrl": "https://www.ycg.kr/",
+      "phone": "054-650-6114",
+      "wasteUrl": "https://www.ycg.kr/open.content/ko/section/environment/environment/",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47920": {
+      "name": "경상북도 봉화군",
+      "shortName": "봉화군",
+      "sido": "47",
+      "officialUrl": "https://www.bonghwa.go.kr/",
+      "phone": "054-679-6114",
+      "wasteUrl": "https://www.bonghwa.go.kr/depart/contents.do?mid=0803000000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47930": {
+      "name": "경상북도 울진군",
+      "shortName": "울진군",
+      "sido": "47",
+      "officialUrl": "https://www.uljin.go.kr/",
+      "phone": "054-789-6114",
+      "wasteUrl": "https://www.uljin.go.kr/index.uljin?menuCd=DOM_000000106003001001",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47940": {
+      "name": "경상북도 울릉군",
+      "shortName": "울릉군",
+      "sido": "47",
+      "officialUrl": "https://www.ulleung.go.kr/",
+      "phone": "054-790-6114",
+      "wasteUrl": "https://www.ulleung.go.kr/ko/page.do?mnu_uid=1580&",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "48120": {
+      "name": "경상남도 창원시",
+      "shortName": "창원시",
+      "sido": "48",
+      "officialUrl": "",
+      "phone": "",
+      "wasteUrl": "https://www.changwon.go.kr/cwportal/depart/11065/11084/13076.web",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "48170": {
+      "name": "경상남도 진주시",
+      "shortName": "진주시",
+      "sido": "48",
+      "officialUrl": "https://www.jinju.go.kr/",
+      "phone": "055-749-2114",
+      "wasteUrl": "https://www.jinju.go.kr/00134/00615/00868.web",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "48220": {
+      "name": "경상남도 통영시",
+      "shortName": "통영시",
+      "sido": "48",
+      "officialUrl": "https://www.utongyeong.go.kr/",
+      "phone": "055-650-3000",
+      "wasteUrl": "https://www.tongyeong.go.kr/00973/01112/01983.web",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "48240": {
+      "name": "경상남도 사천시",
+      "shortName": "사천시",
+      "sido": "48",
+      "officialUrl": "https://www.sacheon.go.kr/",
+      "phone": "055-831-2114",
+      "wasteUrl": "https://www.sacheon.go.kr/life/00330/01776.web",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "48250": {
+      "name": "경상남도 김해시",
+      "shortName": "김해시",
+      "sido": "48",
+      "officialUrl": "https://www.gimhae.go.kr/",
+      "phone": "055-330-3114",
+      "wasteUrl": "https://www.gimhae.go.kr/01544/02643/01736.web",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "48270": {
+      "name": "경상남도 밀양시",
+      "shortName": "밀양시",
+      "sido": "48",
+      "officialUrl": "https://www.miryang.go.kr/",
+      "phone": "055-359-5114",
+      "wasteUrl": "https://www.miryang.go.kr/web/index.do?mnNo=50201010000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "48310": {
+      "name": "경상남도 거제시",
+      "shortName": "거제시",
+      "sido": "48",
+      "officialUrl": "https://www.geoje.go.kr/",
+      "phone": "055-639-3000",
+      "wasteUrl": "https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008906012001011",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "48330": {
+      "name": "경상남도 양산시",
+      "shortName": "양산시",
+      "sido": "48",
+      "officialUrl": "https://www.yangsan.go.kr/",
+      "phone": "055-392-2000",
+      "wasteUrl": "https://www.yangsan.go.kr/portal/contents.do?mid=0608010000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "48720": {
+      "name": "경상남도 의령군",
+      "shortName": "의령군",
+      "sido": "48",
+      "officialUrl": "https://www.uiryeong.go.kr/",
+      "phone": "055-570-2114",
+      "wasteUrl": "https://www.uiryeong.go.kr/index.uiryeong?menuCd=DOM_000000204008002000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "48730": {
+      "name": "경상남도 함안군",
+      "shortName": "함안군",
+      "sido": "48",
+      "officialUrl": "https://www.haman.go.kr/",
+      "phone": "055-580-2114",
+      "wasteUrl": "https://www.haman.go.kr/01651/01653/01709.web",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "48740": {
+      "name": "경상남도 창녕군",
+      "shortName": "창녕군",
+      "sido": "48",
+      "officialUrl": "https://www.cng.go.kr/",
+      "phone": "055-530-1114",
+      "wasteUrl": "https://www.cng.go.kr/00599/01290/01292.web",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "48820": {
+      "name": "경상남도 고성군",
+      "shortName": "고성군",
+      "sido": "48",
+      "officialUrl": "https://www.goseong.go.kr/",
+      "phone": "055-670-2114",
+      "wasteUrl": "https://www.goseong.go.kr/environment/index.goseong?menuCd=DOM_000000903001000000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "48840": {
+      "name": "경상남도 남해군",
+      "shortName": "남해군",
+      "sido": "48",
+      "officialUrl": "https://www.namhae.go.kr/",
+      "phone": "055-860-3114",
+      "wasteUrl": "https://www.namhae.go.kr/depart/Index.do?c=DE0702010000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "48850": {
+      "name": "경상남도 하동군",
+      "shortName": "하동군",
+      "sido": "48",
+      "officialUrl": "https://www.hadong.go.kr/",
+      "phone": "055-880-2114",
+      "wasteUrl": "https://www.hadong.go.kr/specialty/00219/00474.web",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "48860": {
+      "name": "경상남도 산청군",
+      "shortName": "산청군",
+      "sido": "48",
+      "officialUrl": "https://www.sancheong.go.kr/",
+      "phone": "055-970-6000",
+      "wasteUrl": "https://www.sancheong.go.kr/www/contents.do?key=297",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "48870": {
+      "name": "경상남도 함양군",
+      "shortName": "함양군",
+      "sido": "48",
+      "officialUrl": "https://www.hygn.go.kr/",
+      "phone": "055-960-5114",
+      "wasteUrl": "https://www.hygn.go.kr/01666/01933/01965.web",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "48880": {
+      "name": "경상남도 거창군",
+      "shortName": "거창군",
+      "sido": "48",
+      "officialUrl": "https://www.geochang.go.kr/",
+      "phone": "055-940-3000",
+      "wasteUrl": "https://www.geochang.go.kr/00608/00749/00769.web",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "48890": {
+      "name": "경상남도 합천군",
+      "shortName": "합천군",
+      "sido": "48",
+      "officialUrl": "https://www.hc.go.kr/",
+      "phone": "055-930-3114",
+      "wasteUrl": "https://www.hc.go.kr/05754/06019/06039.web",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "50110": {
+      "name": "제주특별자치도 제주시",
+      "shortName": "제주시",
+      "sido": "50",
+      "officialUrl": "https://www.jejusi.go.kr/",
+      "phone": "064-728-2114",
+      "wasteUrl": "https://www.jejusi.go.kr/field/life.do",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "50130": {
+      "name": "제주특별자치도 서귀포시",
+      "shortName": "서귀포시",
+      "sido": "50",
+      "officialUrl": "https://www.seogwipo.go.kr/",
+      "phone": "064-760-2114",
+      "wasteUrl": "https://www.seogwipo.go.kr/recycle/index.htm",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "47720": {
+      "name": "경상북도 군위군",
+      "shortName": "군위군",
+      "sido": "27",
+      "officialUrl": "https://www.gunwi.go.kr/",
+      "phone": "054-380-6000",
+      "wasteUrl": "https://www.gunwi.go.kr/ko/page.do?mnu_uid=223&",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41110": {
+      "name": "경기도 수원시",
+      "shortName": "수원시",
+      "sido": "41",
+      "officialUrl": "",
+      "phone": "",
+      "wasteUrl": "https://www.suwon.go.kr/sw-www/deptHome/dep_env/env_03/env_03_11/env_03_01.jsp",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41170": {
+      "name": "경기도 안양시",
+      "shortName": "안양시",
+      "sido": "41",
+      "officialUrl": "",
+      "phone": "",
+      "wasteUrl": "https://www.anyang.go.kr/main/contents.do?key=806",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41270": {
+      "name": "경기도 안산시",
+      "shortName": "안산시",
+      "sido": "41",
+      "officialUrl": "",
+      "phone": "",
+      "wasteUrl": "https://www.ansan.go.kr/www/common/cntnts/selectContents.do?cntnts_id=C0001357",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41280": {
+      "name": "경기도 고양시",
+      "shortName": "고양시",
+      "sido": "41",
+      "officialUrl": "",
+      "phone": "",
+      "wasteUrl": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_2/www03_3_2_tab1.jsp",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "41460": {
+      "name": "경기도 용인시",
+      "shortName": "용인시",
+      "sido": "41",
+      "officialUrl": "",
+      "phone": "",
+      "wasteUrl": "https://www.yongin.go.kr/home/www/www12/www12_08/www12_08_03/www12_08_03_03.jsp",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "42110": {
+      "name": "강원특별자치도 춘천시",
+      "shortName": "춘천시",
+      "sido": "42",
+      "officialUrl": "https://www.chuncheon.go.kr/",
+      "phone": "033-250-3000",
+      "wasteUrl": "https://www.chuncheon.go.kr/cityhall/living-info/clean-environment/waste-discharge/general/",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "42130": {
+      "name": "강원특별자치도 원주시",
+      "shortName": "원주시",
+      "sido": "42",
+      "officialUrl": "https://www.wonju.go.kr/",
+      "phone": "033-737-2114",
+      "wasteUrl": "https://www.wonju.go.kr/www/contents.do?key=543&",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "42150": {
+      "name": "강원특별자치도 강릉시",
+      "shortName": "강릉시",
+      "sido": "42",
+      "officialUrl": "https://www.gn.go.kr/",
+      "phone": "033-640-5114",
+      "wasteUrl": "https://www.gn.go.kr/www/contents.do?key=466",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "42170": {
+      "name": "강원특별자치도 동해시",
+      "shortName": "동해시",
+      "sido": "42",
+      "officialUrl": "https://www.dh.go.kr/",
+      "phone": "033-530-2114",
+      "wasteUrl": "https://www.dh.go.kr/www/contents.do?key=790",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "42190": {
+      "name": "강원특별자치도 태백시",
+      "shortName": "태백시",
+      "sido": "42",
+      "officialUrl": "https://www.taebaek.go.kr/",
+      "phone": "033-550-2000",
+      "wasteUrl": "https://www.taebaek.go.kr/www/contents.do?key=1615",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "42210": {
+      "name": "강원특별자치도 속초시",
+      "shortName": "속초시",
+      "sido": "42",
+      "officialUrl": "https://www.sokcho.go.kr/",
+      "phone": "033-639-2114",
+      "wasteUrl": "https://www.sokcho.go.kr/sc/fields/environment/waste/disposal",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "42230": {
+      "name": "강원특별자치도 삼척시",
+      "shortName": "삼척시",
+      "sido": "42",
+      "officialUrl": "https://www.samcheok.go.kr/",
+      "phone": "033-570-3114",
+      "wasteUrl": "https://www.samcheok.go.kr/specialty/00469/03294.web",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "42720": {
+      "name": "강원특별자치도 홍천군",
+      "shortName": "홍천군",
+      "sido": "42",
+      "officialUrl": "https://www.hongcheon.go.kr/",
+      "phone": "033-430-2114",
+      "wasteUrl": "https://www.hongcheon.go.kr/www/contents.do?key=627",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "42730": {
+      "name": "강원특별자치도 횡성군",
+      "shortName": "횡성군",
+      "sido": "42",
+      "officialUrl": "https://www.hsg.go.kr/",
+      "phone": "033-340-2000",
+      "wasteUrl": "https://www.hsg.go.kr/www/contents.do?key=1310",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "42750": {
+      "name": "강원특별자치도 영월군",
+      "shortName": "영월군",
+      "sido": "42",
+      "officialUrl": "https://www.yw.go.kr/",
+      "phone": "033-370-2114",
+      "wasteUrl": "https://www.yw.go.kr/www/selectBbsNttList.do?bbsNo=44&key=473",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "42760": {
+      "name": "강원특별자치도 평창군",
+      "shortName": "평창군",
+      "sido": "42",
+      "officialUrl": "https://www.pc.go.kr/",
+      "phone": "033-330-2114",
+      "wasteUrl": "https://www.pc.go.kr/portal/part/environment/waste",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "42770": {
+      "name": "강원특별자치도 정선군",
+      "shortName": "정선군",
+      "sido": "42",
+      "officialUrl": "https://www.jeongseon.go.kr/",
+      "phone": "033-560-2114",
+      "wasteUrl": "https://www.jeongseon.go.kr/portal/partinfo/environment_forest/waste/separationguide",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "42780": {
+      "name": "강원특별자치도 철원군",
+      "shortName": "철원군",
+      "sido": "42",
+      "officialUrl": "https://www.cwg.go.kr/",
+      "phone": "033-450-5000",
+      "wasteUrl": "https://www.cwg.go.kr/www/contents.do?key=426",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "42790": {
+      "name": "강원특별자치도 화천군",
+      "shortName": "화천군",
+      "sido": "42",
+      "officialUrl": "https://www.ihc.go.kr/",
+      "phone": "033-440-2114",
+      "wasteUrl": "https://www.ihc.go.kr/www/contents.do?key=298",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "42800": {
+      "name": "강원특별자치도 양구군",
+      "shortName": "양구군",
+      "sido": "42",
+      "officialUrl": "https://www.yanggu.go.kr/",
+      "phone": "033-480-2114",
+      "wasteUrl": "https://www.yanggu.go.kr/user_sub?gfnc=www&mu_idx=525",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "42810": {
+      "name": "강원특별자치도 인제군",
+      "shortName": "인제군",
+      "sido": "42",
+      "officialUrl": "https://www.inje.go.kr/",
+      "phone": "033-460-2114",
+      "wasteUrl": "https://inje.go.kr/bigclean/bigWeb/main/viewMain.do",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "42820": {
+      "name": "강원특별자치도 고성군",
+      "shortName": "고성군",
+      "sido": "42",
+      "officialUrl": "https://www.gwgs.go.kr/",
+      "phone": "033-680-3000",
+      "wasteUrl": "https://www.gwgs.go.kr/kor/sub02_0804.do",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "42830": {
+      "name": "강원특별자치도 양양군",
+      "shortName": "양양군",
+      "sido": "42",
+      "officialUrl": "https://www.yangyang.go.kr/",
+      "phone": "033-670-2114",
+      "wasteUrl": "https://www.yangyang.go.kr/gw/portal/yyc_partinfo_envi_recy",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "45130": {
+      "name": "전북특별자치도 군산시",
+      "shortName": "군산시",
+      "sido": "45",
+      "officialUrl": "https://www.gunsan.go.kr/",
+      "phone": "063-454-3000",
+      "wasteUrl": "https://www.gunsan.go.kr/main/m250",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "45140": {
+      "name": "전북특별자치도 익산시",
+      "shortName": "익산시",
+      "sido": "45",
+      "officialUrl": "https://www.iksan.go.kr/",
+      "phone": "063-859-5114",
+      "wasteUrl": "https://chatbot.gov.kt-aicc.com/client/GCL-03-C-00000002-0001/chat.html",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "45180": {
+      "name": "전북특별자치도 정읍시",
+      "shortName": "정읍시",
+      "sido": "45",
+      "officialUrl": "https://www.jeongeup.go.kr/",
+      "phone": "063-539-5114",
+      "wasteUrl": "https://www.jeongeup.go.kr/index.jeongeup?menuCd=DOM_000000103010005000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "45190": {
+      "name": "전북특별자치도 남원시",
+      "shortName": "남원시",
+      "sido": "45",
+      "officialUrl": "https://www.namwon.go.kr/",
+      "phone": "063-620-6114",
+      "wasteUrl": "https://www.namwon.go.kr/depart/index.do?menuUid=ff8080818ec227cc018ecb0d1538029f",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "45210": {
+      "name": "전북특별자치도 김제시",
+      "shortName": "김제시",
+      "sido": "45",
+      "officialUrl": "https://www.gimje.go.kr/",
+      "phone": "063-540-3114",
+      "wasteUrl": "https://www.gimje.go.kr/index.gimje?menuCd=DOM_000000106002003000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "45710": {
+      "name": "전북특별자치도 완주군",
+      "shortName": "완주군",
+      "sido": "45",
+      "officialUrl": "https://www.wanju.go.kr/",
+      "phone": "063-290-2114",
+      "wasteUrl": "https://www.wanju.go.kr/index.9is?contentUid=ff8080818b024d8e018b274f728f2ca7",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "45720": {
+      "name": "전북특별자치도 진안군",
+      "shortName": "진안군",
+      "sido": "45",
+      "officialUrl": "https://www.jinan.go.kr/",
+      "phone": "063-430-2114",
+      "wasteUrl": "https://www.jinan.go.kr/index.jinan?menuCd=DOM_000000109003007003",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "45730": {
+      "name": "전북특별자치도 무주군",
+      "shortName": "무주군",
+      "sido": "45",
+      "officialUrl": "https://www.muju.go.kr/",
+      "phone": "063-320-2114",
+      "wasteUrl": "https://www.muju.go.kr/index.9is",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "45740": {
+      "name": "전북특별자치도 장수군",
+      "shortName": "장수군",
+      "sido": "45",
+      "officialUrl": "https://www.jangsu.go.kr/",
+      "phone": "063-350-2114",
+      "wasteUrl": "https://www.jangsu.go.kr/index.jangsu?menuCd=DOM_000000106009000000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "45750": {
+      "name": "전북특별자치도 임실군",
+      "shortName": "임실군",
+      "sido": "45",
+      "officialUrl": "https://www.imsil.go.kr/",
+      "phone": "063-640-2114",
+      "wasteUrl": "https://www.imsil.go.kr/index.imsil",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "45770": {
+      "name": "전북특별자치도 순창군",
+      "shortName": "순창군",
+      "sido": "45",
+      "officialUrl": "https://www.sunchang.go.kr/",
+      "phone": "063-650-1114",
+      "wasteUrl": "https://www.sunchang.go.kr/index.sunchang?menuCd=DOM_000000105004003002",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "45790": {
+      "name": "전북특별자치도 고창군",
+      "shortName": "고창군",
+      "sido": "45",
+      "officialUrl": "https://www.gochang.go.kr/",
+      "phone": "063-560-2114",
+      "wasteUrl": "https://www.gochang.go.kr/index.gochang?menuCd=DOM_000000104004001000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "45800": {
+      "name": "전북특별자치도 부안군",
+      "shortName": "부안군",
+      "sido": "45",
+      "officialUrl": "https://www.buan.go.kr/",
+      "phone": "063-580-4114",
+      "wasteUrl": "https://www.buan.go.kr/index.buan?menuCd=DOM_000000104008009000",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
+    },
+    "45110": {
+      "name": "전북특별자치도 전주시",
+      "shortName": "전주시",
+      "sido": "45",
+      "officialUrl": "",
+      "phone": "",
+      "wasteUrl": "https://www.jeonju.go.kr/index.9is?contentUid=ff8080818990c349018b041acc483bef",
+      "wasteUrlSource": "환경부 분리배출.kr 지역별 안내 (2026-05-24)",
+      "confidence": "high"
     }
-  },
-  "coverage": {
-    "totalRegionsInKorea": 226,
-    "coveredInThisFile": 32,
-    "coveragePct": 14.2,
-    "nextSteps": [
-      "단계 2: 경기 31개 + 광역시 산하 자치구 ~70개",
-      "단계 3: 전국 226 시군구 완성 (자동 크롤링)"
-    ]
   }
 }
