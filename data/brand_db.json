@@ -1,7 +1,7 @@
 {
   "$schema": "여기선 v4 - 한국 제품 브랜드 DB",
   "version": "4.0.1",
-  "lastUpdated": "2026-05-18",
+  "lastUpdated": "2026-05-25",
   "description": "한국 주요 생활용품의 정확한 브랜드/제품명 → 분리수거 분류 매핑. OCR로 추출한 텍스트에서 브랜드명/제품명이 매칭되면 즉시 정답. confidence는 0.92~0.98로 최상위.",
   "matchingNote": "정규화: 공백·특수문자 제거, 소문자 변환 후 부분 매칭. brand_keyword가 텍스트에 포함되면 매칭.",
   "brands": [
@@ -1206,10 +1206,358 @@
       "category": "battery",
       "confidence": 0.94,
       "type": "battery"
+    },
+    {
+      "name": "이디야 테이크아웃 컵",
+      "brand_keyword": [
+        "이디야",
+        "ediya",
+        "이디야커피"
+      ],
+      "item_id": "paper_cup_coated",
+      "category": "paper",
+      "confidence": 0.92,
+      "note": "뚜껑 분리 → 빨대는 일반, 컵은 코팅종이류 (지자체별 차이)",
+      "type": "coffee"
+    },
+    {
+      "name": "투썸플레이스 컵",
+      "brand_keyword": [
+        "투썸플레이스",
+        "twosome",
+        "a twosome place"
+      ],
+      "item_id": "paper_cup_coated",
+      "category": "paper",
+      "confidence": 0.92,
+      "note": "뚜껑·빨대 분리 → 컵은 코팅종이",
+      "type": "coffee"
+    },
+    {
+      "name": "메가커피 컵",
+      "brand_keyword": [
+        "메가커피",
+        "mega coffee",
+        "mega"
+      ],
+      "item_id": "paper_cup_coated",
+      "category": "paper",
+      "confidence": 0.9,
+      "note": "뚜껑·빨대 분리 → 컵 본체만 코팅종이",
+      "type": "coffee"
+    },
+    {
+      "name": "컴포즈커피 컵",
+      "brand_keyword": [
+        "컴포즈커피",
+        "compose coffee"
+      ],
+      "item_id": "paper_cup_coated",
+      "category": "paper",
+      "confidence": 0.9,
+      "note": "뚜껑·빨대 분리 → 컵 본체만 코팅종이",
+      "type": "coffee"
+    },
+    {
+      "name": "백다방 컵",
+      "brand_keyword": [
+        "백다방",
+        "백다방커피",
+        "paik's coffee"
+      ],
+      "item_id": "paper_cup_coated",
+      "category": "paper",
+      "confidence": 0.9,
+      "note": "뚜껑·빨대 분리 → 컵 본체만 코팅종이",
+      "type": "coffee"
+    },
+    {
+      "name": "농심 라면 봉지",
+      "brand_keyword": [
+        "농심",
+        "nongshim",
+        "신컵라면"
+      ],
+      "item_id": "snack_bag",
+      "category": "vinyl",
+      "confidence": 0.93,
+      "note": "비닐봉지 — 비닐류 분리수거 (스프 봉지 포함)",
+      "type": "ramyun"
+    },
+    {
+      "name": "오뚜기 라면 봉지",
+      "brand_keyword": [
+        "오뚜기",
+        "오뚜기라면",
+        "ottogi",
+        "진짬뽕",
+        "진짜장"
+      ],
+      "item_id": "snack_bag",
+      "category": "vinyl",
+      "confidence": 0.93,
+      "note": "비닐봉지 — 비닐류",
+      "type": "ramyun"
+    },
+    {
+      "name": "삼양 라면",
+      "brand_keyword": [
+        "삼양",
+        "삼양식품",
+        "samyang",
+        "불닭볶음면",
+        "삼양라면"
+      ],
+      "item_id": "snack_bag",
+      "category": "vinyl",
+      "confidence": 0.93,
+      "note": "비닐봉지",
+      "type": "ramyun"
+    },
+    {
+      "name": "팔도 라면",
+      "brand_keyword": [
+        "팔도",
+        "왕뚜껑"
+      ],
+      "item_id": "snack_bag",
+      "category": "vinyl",
+      "confidence": 0.92,
+      "note": "비닐봉지",
+      "type": "ramyun"
+    },
+    {
+      "name": "해태 과자",
+      "brand_keyword": [
+        "해태",
+        "해태제과",
+        "haitai",
+        "맛동산",
+        "에이스",
+        "오예스",
+        "홈런볼"
+      ],
+      "item_id": "snack_bag",
+      "category": "vinyl",
+      "confidence": 0.9,
+      "note": "비닐 봉지·플라스틱 트레이 분리",
+      "type": "snack"
+    },
+    {
+      "name": "오리온 과자",
+      "brand_keyword": [
+        "오리온",
+        "orion",
+        "예감",
+        "오감자",
+        "꼬북칩"
+      ],
+      "item_id": "snack_bag",
+      "category": "vinyl",
+      "confidence": 0.92,
+      "note": "비닐봉지 (플라스틱 트레이는 따로)",
+      "type": "snack"
+    },
+    {
+      "name": "롯데제과 과자",
+      "brand_keyword": [
+        "롯데제과",
+        "lotte confectionery",
+        "빈츠",
+        "몽쉘",
+        "카스타드"
+      ],
+      "item_id": "snack_bag",
+      "category": "vinyl",
+      "confidence": 0.9,
+      "note": "비닐봉지",
+      "type": "snack"
+    },
+    {
+      "name": "크라운 과자",
+      "brand_keyword": [
+        "크라운",
+        "crown",
+        "쿠크다스",
+        "카라멜콘",
+        "죠리퐁"
+      ],
+      "item_id": "snack_bag",
+      "category": "vinyl",
+      "confidence": 0.9,
+      "note": "비닐봉지",
+      "type": "snack"
+    },
+    {
+      "name": "서울우유 우유팩",
+      "brand_keyword": [
+        "seoul milk"
+      ],
+      "item_id": "milk_carton",
+      "category": "paper_pack",
+      "confidence": 0.95,
+      "note": "내용물 비우고 헹궈 펼쳐서 종이팩 분리수거",
+      "type": "dairy"
+    },
+    {
+      "name": "매일유업 우유팩",
+      "brand_keyword": [
+        "매일유업",
+        "maeil",
+        "소화가잘되는우유"
+      ],
+      "item_id": "milk_carton",
+      "category": "paper_pack",
+      "confidence": 0.95,
+      "note": "내용물 비우고 헹궈 종이팩 분리",
+      "type": "dairy"
+    },
+    {
+      "name": "남양유업 우유팩",
+      "brand_keyword": [
+        "남양유업",
+        "namyang",
+        "맛있는우유GT"
+      ],
+      "item_id": "milk_carton",
+      "category": "paper_pack",
+      "confidence": 0.95,
+      "note": "내용물 비우고 헹궈 종이팩 분리",
+      "type": "dairy"
+    },
+    {
+      "name": "빙그레 우유",
+      "brand_keyword": [
+        "binggrae",
+        "딸기우유",
+        "메로나"
+      ],
+      "item_id": "milk_carton",
+      "category": "paper_pack",
+      "confidence": 0.92,
+      "note": "바나나우유·딸기우유는 단지형(plastic) 또는 종이팩 구분",
+      "type": "dairy"
+    },
+    {
+      "name": "연세우유",
+      "brand_keyword": [
+        "연세우유",
+        "yonsei milk"
+      ],
+      "item_id": "milk_carton",
+      "category": "paper_pack",
+      "confidence": 0.93,
+      "note": "내용물 비우고 헹궈 종이팩 분리",
+      "type": "dairy"
+    },
+    {
+      "name": "CJ 햇반",
+      "brand_keyword": [
+        "cj",
+        "cj제일제당"
+      ],
+      "item_id": "instant_rice_bowl",
+      "category": "plastic",
+      "confidence": 0.96,
+      "note": "뚜껑(비닐) 분리 + 용기(PP/PS) 깨끗이 헹궈 플라스틱",
+      "type": "rice"
+    },
+    {
+      "name": "오뚜기밥",
+      "brand_keyword": [
+        "오뚜기 즉석밥",
+        "ottogi rice"
+      ],
+      "item_id": "instant_rice_bowl",
+      "category": "plastic",
+      "confidence": 0.95,
+      "note": "뚜껑 분리 + 헹궈 플라스틱",
+      "type": "rice"
+    },
+    {
+      "name": "풀무원 밥",
+      "brand_keyword": [
+        "풀무원",
+        "pulmuone",
+        "풀무원밥"
+      ],
+      "item_id": "instant_rice_bowl",
+      "category": "plastic",
+      "confidence": 0.93,
+      "note": "뚜껑 분리 + 헹궈 플라스틱",
+      "type": "rice"
+    },
+    {
+      "name": "엘지생활건강 세제",
+      "brand_keyword": [
+        "lg생활건강",
+        "lg생활",
+        "lg생건",
+        "테크",
+        "히말라야핑크솔트"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.92,
+      "note": "내용물 비우고 헹궈 + 라벨 제거 후 플라스틱",
+      "type": "detergent"
+    },
+    {
+      "name": "애경 세제",
+      "brand_keyword": [
+        "애경",
+        "aekyung",
+        "리큐"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.92,
+      "note": "내용물 비우고 헹궈 플라스틱",
+      "type": "detergent"
+    },
+    {
+      "name": "피죤 섬유유연제",
+      "brand_keyword": [
+        "pigeon",
+        "리꾸"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "confidence": 0.92,
+      "note": "내용물 비우고 헹궈 플라스틱",
+      "type": "softener"
+    },
+    {
+      "name": "풀무원 식품 포장",
+      "brand_keyword": [
+        "풀무원두부",
+        "풀무원생면",
+        "풀무원만두"
+      ],
+      "item_id": "vinyl_packaging",
+      "category": "vinyl",
+      "confidence": 0.85,
+      "note": "비닐 포장 — 비닐류",
+      "type": "instant"
+    },
+    {
+      "name": "아모레퍼시픽",
+      "brand_keyword": [
+        "아모레퍼시픽",
+        "amorepacific",
+        "아모레",
+        "에뛰드",
+        "마몽드"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "confidence": 0.93,
+      "note": "내용물 비우고 펌프 분리 — 펌프는 일반, 본체는 플라스틱",
+      "type": "cosmetic"
     }
   ],
   "stats": {
-    "totalBrands": 100,
+    "totalBrands": 135,
     "categories": {
       "cosmetic": 25,
       "haircare_oral": 11,

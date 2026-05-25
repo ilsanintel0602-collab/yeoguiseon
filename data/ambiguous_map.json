@@ -1,31 +1,238 @@
 {
   "$schema": "Phase 5: 사용자 선택 UI — 같은 키워드가 재질 다른 물건 가리킴",
-  "version": "1.1.0",
-  "lastUpdated": "2026-05-24",
-  "note": "Gemini 응답 또는 사용자 검색이 아래 키워드일 때 → 사용자에게 후보 보여주고 선택받기",
+  "version": "1.3.0",
+  "lastUpdated": "2026-05-25",
+  "note": "Gemini 응답 또는 사용자 검색이 아래 키워드일 때 → 사용자에게 후보 보여주고 선택받기. 재질·카테고리가 정말 다른 경우만.",
   "ambiguous": {
     "라이스컨테이너": [
       {
         "id": "쌀통",
-        "name": "쌀통",
+        "name": "쌀통 (가구·수납)",
         "cat": "furniture"
       },
       {
-        "id": "즉석밥용기",
-        "name": "즉석밥용기",
+        "id": "instant_rice_bowl",
+        "name": "즉석밥 용기 (햇반)",
         "cat": "plastic"
       }
     ],
     "포장지": [
       {
+        "id": "paper",
+        "name": "종이 포장지 (예: 선물포장지)",
+        "cat": "paper"
+      },
+      {
         "id": "packaging_general",
-        "name": "포장재 (일반)",
+        "name": "비닐·플라스틱 포장재",
+        "cat": "plastic"
+      }
+    ],
+    "컵": [
+      {
+        "id": "paper_cup",
+        "name": "종이컵 (일반)",
+        "cat": "paper"
+      },
+      {
+        "id": "paper_cup_coated",
+        "name": "코팅 종이컵 (테이크아웃)",
+        "cat": "paper"
+      },
+      {
+        "id": "plastic_container",
+        "name": "플라스틱 컵",
         "cat": "plastic"
       },
       {
-        "id": "paper",
-        "name": "종이류",
+        "id": "glass_bottle",
+        "name": "유리컵 (깨지지 않은)",
+        "cat": "glass"
+      }
+    ],
+    "박스": [
+      {
+        "id": "paper_box",
+        "name": "종이 박스 (택배·이사)",
         "cat": "paper"
+      },
+      {
+        "id": "styrofoam_box",
+        "name": "스티로폼 박스 (택배)",
+        "cat": "styrofoam"
+      },
+      {
+        "id": "plastic_container",
+        "name": "플라스틱 박스 (도시락 등)",
+        "cat": "plastic"
+      }
+    ],
+    "봉지": [
+      {
+        "id": "vinyl_bag",
+        "name": "비닐봉지 (일반)",
+        "cat": "vinyl"
+      },
+      {
+        "id": "snack_bag",
+        "name": "과자·간식 봉지",
+        "cat": "vinyl"
+      },
+      {
+        "id": "medicine",
+        "name": "약 봉지 (폐의약품)",
+        "cat": "medicine"
+      }
+    ],
+    "병": [
+      {
+        "id": "pet_bottle",
+        "name": "투명 페트병 (음료수)",
+        "cat": "pet_clear"
+      },
+      {
+        "id": "plastic_bottle",
+        "name": "유색 플라스틱 병",
+        "cat": "plastic"
+      },
+      {
+        "id": "glass_bottle",
+        "name": "유리병",
+        "cat": "glass"
+      },
+      {
+        "id": "cosmetics_bottle",
+        "name": "화장품 유리병",
+        "cat": "glass"
+      }
+    ],
+    "그릇": [
+      {
+        "id": "ceramic_dish",
+        "name": "도자기·사기 그릇 (안 깨진)",
+        "cat": "general"
+      },
+      {
+        "id": "broken_ceramic",
+        "name": "깨진 도자기·유리 그릇",
+        "cat": "general_noncombustible"
+      },
+      {
+        "id": "plastic_container",
+        "name": "플라스틱 그릇",
+        "cat": "plastic"
+      },
+      {
+        "id": "glass_bottle",
+        "name": "유리 그릇",
+        "cat": "glass"
+      }
+    ],
+    "접시": [
+      {
+        "id": "ceramic_dish",
+        "name": "도자기 접시",
+        "cat": "general"
+      },
+      {
+        "id": "broken_ceramic",
+        "name": "깨진 접시",
+        "cat": "general_noncombustible"
+      },
+      {
+        "id": "plastic_container",
+        "name": "플라스틱 접시",
+        "cat": "plastic"
+      },
+      {
+        "id": "glass_bottle",
+        "name": "유리 접시",
+        "cat": "glass"
+      }
+    ],
+    "용기": [
+      {
+        "id": "plastic_container",
+        "name": "플라스틱 용기",
+        "cat": "plastic"
+      },
+      {
+        "id": "paper_cup_coated",
+        "name": "코팅 종이 용기",
+        "cat": "paper"
+      },
+      {
+        "id": "glass_bottle",
+        "name": "유리 용기",
+        "cat": "glass"
+      },
+      {
+        "id": "styrofoam_packaging",
+        "name": "스티로폼 용기",
+        "cat": "styrofoam"
+      }
+    ],
+    "포장재": [
+      {
+        "id": "paper_box",
+        "name": "종이 포장재 (박스)",
+        "cat": "paper"
+      },
+      {
+        "id": "vinyl_packaging",
+        "name": "비닐 포장재",
+        "cat": "vinyl"
+      },
+      {
+        "id": "styrofoam_packaging",
+        "name": "스티로폼 포장재",
+        "cat": "styrofoam"
+      },
+      {
+        "id": "packaging_general",
+        "name": "플라스틱 포장재 (일반)",
+        "cat": "plastic"
+      }
+    ],
+    "도시락": [
+      {
+        "id": "lunchbox_container",
+        "name": "도시락통 (재사용)",
+        "cat": "plastic"
+      },
+      {
+        "id": "plastic_container",
+        "name": "도시락 박스 (일회용 플라스틱)",
+        "cat": "plastic"
+      },
+      {
+        "id": "styrofoam_packaging",
+        "name": "도시락 용기 (스티로폼)",
+        "cat": "styrofoam"
+      }
+    ],
+    "팩": [
+      {
+        "id": "milk_carton",
+        "name": "우유팩 (종이팩)",
+        "cat": "paper_pack"
+      },
+      {
+        "id": "vinyl_packaging",
+        "name": "비닐 팩 (포장재)",
+        "cat": "vinyl"
+      }
+    ],
+    "접착제": [
+      {
+        "id": "풀(접착제)",
+        "name": "풀·딱풀·물풀 (일반 사무용)",
+        "cat": "general"
+      },
+      {
+        "id": "접착제",
+        "name": "화학 접착제·실리콘 (위험물·소량)",
+        "cat": "hazardous"
       }
     ]
   }

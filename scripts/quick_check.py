@@ -95,8 +95,10 @@ try:
     excs = ex.get("exceptions", {})
     real_regions = {k: v for k, v in excs.items() if k.isdigit() and len(k) == 5}
     all_ok &= check("region_exceptions.json 로드", True, f"{len(real_regions)} 시군구")
-    has_city = sum(1 for v in real_regions.values() if v.get("cityGuide"))
-    all_ok &= check("cityGuide 보유", has_city == len(real_regions), f"{has_city}/{len(real_regions)}")
+    # v5.45: _inherits 가진 자치구는 본청에서 cityGuide 받음 → OK로 카운트
+    has_city_or_inherits = sum(1 for v in real_regions.values() if v.get("cityGuide") or v.get("_inherits"))
+    all_ok &= check("cityGuide 보유", has_city_or_inherits == len(real_regions),
+                    f"{has_city_or_inherits}/{len(real_regions)} (직접 보유 또는 _inherits 통한 본청 fallback)")
     inherits = {k: v for k, v in real_regions.items() if v.get("_inherits")}
     bad_inh = [k for k, v in inherits.items() if v["_inherits"] not in real_regions]
     all_ok &= check("_inherits 체인", not bad_inh, f"끊긴 체인: {bad_inh}" if bad_inh else "OK")
@@ -107,7 +109,12 @@ try:
     valid_codes = set(meta.get("level2", {}).keys())
     # ⭐ 통합 시 코드 화이트리스트 — 자치구가 있는 시는 시-level 코드로 통합 운영 (의도적)
     INTEGRATED_CITY_CODES = {
+        "41110",  # 경기 수원시 (장안·권선·팔달·영통구 통합) — v5.45 추가
         "41130",  # 경기 성남시 (분당·수정·중원구 통합)
+        "41170",  # 경기 안양시 (만안·동안구 통합) — v5.45 추가
+        "41270",  # 경기 안산시 (상록·단원구 통합) — v5.45 추가
+        "41280",  # 경기 고양시 (덕양·일산동·일산서구 통합) — v5.45 추가
+        "41460",  # 경기 용인시 (처인·기흥·수지구 통합) — v5.45 추가
         "43110",  # 충북 청주시 (상당·서원·흥덕·청원구 통합)
         "44130",  # 충남 천안시 (동남·서북구 통합)
         "45110",  # 전북 전주시 (완산·덕진구 통합)

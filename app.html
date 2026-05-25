@@ -334,7 +334,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.44</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.45</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -352,10 +352,11 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     <p>버릴 물건을 비춰주세요<br>대한민국 어디서나 안내해요</p>
     <p class="hint">※ 첫 사용 시 카메라 권한 허용</p>
   </div>
-  <div class="guide-box"><span class="tl"></span><span class="tr"></span><span class="bl"></span><span class="br"></span></div>
+  <!-- v5.45: HTML guide-box + canvas 4-모서리 가이드 둘 다 폐기 (사용자 "큰 네모 안에 또 네모" 피드백). cameraTopHint 하나로 통일. -->
   <!-- v5.32: 카메라 영역 안내 영구 배너 (HTML overlay — canvas 잘림 X) -->
-  <div id="cameraTopHint" style="position:absolute;top:60px;left:12px;right:12px;padding:10px 14px;background:rgba(0,0,0,0.82);color:#ffe600;border-radius:12px;font-size:14px;font-weight:600;text-align:center;line-height:1.4;display:none;z-index:6;box-shadow:0 4px 16px rgba(0,0,0,0.4);">
-    👆 찾을 물건의 영역을 손가락으로 표시하면 더 정확해요
+  <!-- v5.45: 항상 표시 (자동 인식 의존 X, 손가락 영역 표시 강조) -->
+  <div id="cameraTopHint" style="position:absolute;top:60px;left:12px;right:12px;padding:12px 14px;background:rgba(0,0,0,0.85);color:#ffe600;border-radius:12px;font-size:15px;font-weight:700;text-align:center;line-height:1.5;display:none;z-index:6;box-shadow:0 4px 16px rgba(0,0,0,0.4);">
+    👆 찾을 물건의 <u>영역을 손가락으로 그려주세요</u><br><span style="font-size:12px;font-weight:500;opacity:0.85;">정확도가 가장 높아요</span>
   </div>
   <!-- v5: 자동 인식 상태 표시 -->
   <div id="detectStatus" style="position:absolute;top:12px;left:50%;transform:translateX(-50%);padding:6px 14px;background:rgba(0,0,0,0.6);color:white;border-radius:20px;font-size:13px;display:none;z-index:5;">
@@ -488,7 +489,8 @@ let BRAND_DB = null;     // v4 A2: 한국 제품 브랜드 DB
 let BAG_PRICES = null;   // v5: 행안부 시군구별 종량제봉투 가격
 let RECYCLE_CENTERS = null; // v5: 행안부 전국 재활용센터
 let REGION_URLS = null;
-let AMBIGUOUS_MAP = null;  // v5.43: 모호 키워드 사용자 선택 데이터  // v5.9: 시군구 공식 URL DB (250개 — 분리수거·대형폐기물)
+let AMBIGUOUS_MAP = null;  // v5.43: 모호 키워드 사용자 선택 데이터
+let RECYCLE_CENTER_FALLBACKS = null;  // v5.45: 센터 0개 시군구 광역도 fallback
 
 // v5.32: D1 의존 제거 — 정적 JSON만 사용 (Phase A2 cron 활성 전까지)
 //   이유: 사용자가 D1 마이그레이션 명령 안 하면 D1이 옛 데이터 (가짜 "상태") → push해도 안 반영
@@ -505,7 +507,7 @@ async function fetchItemsD1WithFallback() {
 // 데이터 로드
 async function loadAllData() {
   try {
-    const [n, r, e, o, b, bp, rc, ru] = await Promise.all([
+    const [n, r, e, o, b, bp, rc, ru, am, rcf] = await Promise.all([
       fetchItemsD1WithFallback(),
       fetch('./data/regions_meta.json').then(r => r.json()),
       fetch('./data/region_exceptions.json').then(r => r.json()),
@@ -528,6 +530,16 @@ async function loadAllData() {
       fetch('./data/region_urls.json').then(r => r.json()).catch(err => {
         console.warn('[여기선 v5.9] 시군구 URL DB 로드 실패:', err);
         return null;
+      }),
+      // v5.45: 모호 키워드 사용자 선택 데이터 (13개 키워드 — 컵·박스·봉지·병 등)
+      fetch('./data/ambiguous_map.json').then(r => r.json()).catch(err => {
+        console.warn('[여기선 v5.45] 모호 키워드 맵 로드 실패:', err);
+        return null;
+      }),
+      // v5.45: 재활용센터 fallback (센터 0개 시군구 118개에 광역도 인근 센터 안내)
+      fetch('./data/recycle_center_fallbacks.json').then(r => r.json()).catch(err => {
+        console.warn('[여기선 v5.45] 센터 fallback 로드 실패:', err);
+        return null;
       })
     ]);
     NATIONAL = n;
@@ -538,6 +550,8 @@ async function loadAllData() {
     BAG_PRICES = bp;
     RECYCLE_CENTERS = rc;
     REGION_URLS = ru;  // v5.9: 시군구 URL DB
+    AMBIGUOUS_MAP = am;  // v5.45: 모호 키워드 (13개)
+    RECYCLE_CENTER_FALLBACKS = rcf;  // v5.45: 센터 0개 시군구 fallback
     console.log('[여기선 v5.32] 데이터 로드 (items source:',
       NATIONAL._source || '?', '):',
       Object.keys(NATIONAL.items).length, '물건,',
@@ -1737,66 +1751,14 @@ function stopRealtimeDetection() {
   if (topHint) topHint.style.display = 'none';
 }
 
-// v5.14: 우아한 촬영 가이드 (4 모서리 brackets + 중앙 십자선 + 펄스)
+// v5.45: 4 모서리 가이드 폐기 (사용자 "큰 네모 안에 또 네모" 피드백).
+//   기존 HTML .guide-box + 이 4 모서리 brackets 둘 다 보여서 박스-in-박스 발생.
+//   해결: drawCameraGuide는 clearRect만 — 사용자 드래그 박스(customBox)만 시각화.
+//   안내는 HTML #cameraTopHint로 통일 ("손가락으로 영역 그려주세요").
 function drawCameraGuide(canvas, timestamp) {
   const ctx = canvas.getContext('2d');
-  const w = canvas.width;
-  const h = canvas.height;
-  ctx.clearRect(0, 0, w, h);
-
-  // 황금비율 영역 (중앙 80%)
-  const padX = w * 0.10;
-  const padY = h * 0.15;
-  const innerW = w - padX * 2;
-  const innerH = h - padY * 2;
-
-  // 4 모서리 brackets (각 모서리에서 안쪽으로 8% 길이)
-  const armX = innerW * 0.08;
-  const armY = innerH * 0.08;
-
-  // 펄스 효과 (1.5초 주기, 0.6~1.0 알파)
-  const pulse = 0.6 + 0.4 * Math.sin(timestamp / 750);
-
-  ctx.strokeStyle = `rgba(0, 255, 136, ${pulse})`;
-  ctx.lineWidth = 4;
-  ctx.lineCap = 'round';
-  ctx.shadowBlur = 16;
-  ctx.shadowColor = '#00ff88';
-
-  // 좌상단
-  ctx.beginPath();
-  ctx.moveTo(padX, padY + armY);
-  ctx.lineTo(padX, padY);
-  ctx.lineTo(padX + armX, padY);
-  ctx.stroke();
-
-  // 우상단
-  ctx.beginPath();
-  ctx.moveTo(w - padX - armX, padY);
-  ctx.lineTo(w - padX, padY);
-  ctx.lineTo(w - padX, padY + armY);
-  ctx.stroke();
-
-  // 좌하단
-  ctx.beginPath();
-  ctx.moveTo(padX, h - padY - armY);
-  ctx.lineTo(padX, h - padY);
-  ctx.lineTo(padX + armX, h - padY);
-  ctx.stroke();
-
-  // 우하단
-  ctx.beginPath();
-  ctx.moveTo(w - padX - armX, h - padY);
-  ctx.lineTo(w - padX, h - padY);
-  ctx.lineTo(w - padX, h - padY - armY);
-  ctx.stroke();
-
-  // v5.20: 중앙 "+" 제거 (클릭 가능 오해 방지). 4 모서리 brackets만 유지.
-  const cx = w / 2;
-  const cy = h / 2;
-  // v5.32: canvas 안내 제거 (HTML overlay로 대체 — #cameraTopHint, #cameraBottomHint)
-  //   이유: canvas 텍스트는 위치 계산 오차로 잘리기 쉬움. HTML이 안정적.
-  ctx.shadowBlur = 0;
+  // 단순 클리어만 — customBox 그리기 직전 단계
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 function drawBoxes(canvas) {
@@ -1926,6 +1888,30 @@ async function capturePhoto() {
   const video = $('cameraVideo');
   if (!video.srcObject || video.videoWidth === 0) { const ok = await startCamera(); if (!ok) return null; await new Promise(r => setTimeout(r, 500)); }
   const canvas = document.createElement('canvas');
+
+  // v5.45: 사용자 드래그 박스(customBox) 있으면 해당 영역만 크롭 → AI 정확도 ↑
+  //   기존: 전체 프레임 → 작은 물체 인식 실패율 ↑
+  //   개선: drag로 표시한 영역만 보냄 → 카메라 정확도 점프
+  const overlay = $('bboxOverlay');
+  const cb = detectionState && detectionState.customBox;
+  if (cb && overlay && cb.w > 30 && cb.h > 30) {
+    // overlay 좌표(클라이언트 px) → video 원본 좌표 변환
+    const sx = video.videoWidth / overlay.clientWidth;
+    const sy = video.videoHeight / overlay.clientHeight;
+    const cropX = Math.max(0, Math.floor(cb.x * sx));
+    const cropY = Math.max(0, Math.floor(cb.y * sy));
+    const cropW = Math.min(video.videoWidth - cropX, Math.floor(cb.w * sx));
+    const cropH = Math.min(video.videoHeight - cropY, Math.floor(cb.h * sy));
+    // 출력 크기는 가로 640 기준 (Worker 전송량 안정)
+    const outW = Math.min(640, cropW);
+    const outH = Math.round(outW * (cropH / cropW));
+    canvas.width = outW;
+    canvas.height = outH;
+    canvas.getContext('2d').drawImage(video, cropX, cropY, cropW, cropH, 0, 0, outW, outH);
+    return canvas.toDataURL('image/jpeg', 0.82);  // 크롭 화질 살짝 ↑
+  }
+
+  // 폴백: 전체 프레임 (drag 박스 없을 때만)
   const ratio = video.videoWidth / video.videoHeight;
   // v5.21: 800 → 640, quality 0.85 → 0.78 → Worker 전송 데이터 ~50% ↓, Gemini 응답 빠름
   canvas.width = Math.min(video.videoWidth, 640);
@@ -2002,7 +1988,7 @@ function renderResult(aiData) {
     'hand_blender': '핸드블렌더',
     'coffee_maker': '커피메이커',
     'mug': '머그잔',
-    'reusable_cup': '재사용 컵',
+    'reusable_cup': '유리·머그·스테인리스 컵',
     'tumbler': '텀블러',
   };
   let itemName;
@@ -2196,43 +2182,40 @@ function renderResult(aiData) {
     }
   }
 
-  // v5.9: 대형폐기물 카테고리 시 시군구별 신고 URL (REGION_URLS.json 활용)
-  // v5.37: 모든 카테고리에 "이 지역 공식 분리수거 안내" 박스 표시
-  // (regionCode 8자리면 시·구 5자리 prefix로 fallback)
+  // v5.45: 공식 분리수거 안내 박스 1개로 통합.
+  //   기존 (v5.37): "📋 공식 분리수거 안내" 박스 + (electronics/furniture 시) "🏗️ 대형폐기물" 박스 → 같은 URL 2번 노출.
+  //   사용자 피드백: "두 곳이 같은곳입니다 맞나요?" — 정확한 지적.
+  //   v5.45: 1개 박스 안에서 카테고리별 추가 안내 (탭 위치) 함께 표시.
   if (regionCode && typeof REGION_URLS !== 'undefined' && REGION_URLS?.regions) {
     const __sigunguCode = regionCode.length === 5 ? regionCode : regionCode.substring(0, 5);
     const __wreg = REGION_URLS.regions[regionCode] || REGION_URLS.regions[__sigunguCode];
     if (__wreg && __wreg.wasteUrl) {
-      html += `<div style="margin-top:16px;padding:12px 16px;background:#eff6ff;border-radius:8px;border-left:3px solid var(--primary);">`;
-      html += `<h4 style="margin:0 0 8px;font-size:15px;">📋 ${__wreg.shortName || __wreg.name} 공식 분리수거 안내</h4>`;
-      html += `<div style="font-size:13px;"><a href="${__wreg.wasteUrl}" target="_blank" style="color:var(--primary);font-weight:600;">${__wreg.shortName} 페이지에서 정확한 룰 보기 →</a></div>`;
-      html += `<div style="font-size:12px;opacity:0.7;margin-top:4px;">우리 동네 정확한 룰. 요일·시간·배출장소는 아파트별 안내 따름.</div>`;
-      html += `</div>`;
-    }
-  }
-
-  const __isBulky = rule.category === 'furniture' || rule.category === 'electronics' || aiData.category_hint === 'furniture' || aiData.category_hint === 'electronics';
-  if (__isBulky && regionCode && typeof REGION_URLS !== 'undefined' && REGION_URLS?.regions) {
-    const __reg = REGION_URLS.regions[regionCode];
-    // v5.42: 대형폐기물 = 생활폐기물 페이지(wasteUrl, 안에 대형 탭) 우선. bulkWasteUrl 폐기 (clean.gys.or.kr 페이지 오류)
-    const __bUrl = __reg?.wasteUrl || rule.cityGuide?.officialUrl;
-    if (__bUrl) {
-      html += `<div style="margin-top:16px;padding:12px 16px;background:#fff7e6;border-radius:8px;border-left:3px solid #f59e0b;">`;
-      html += `<h4 style="margin:0 0 8px;font-size:15px;">🏗️ ${__reg.shortName || __reg.name} 대형폐기물</h4>`;
-      html += `<div style="font-size:13px;"><a href="${__bUrl}" target="_blank" style="color:var(--primary);font-weight:600;">생활폐기물 페이지 → "대형폐기물" 탭 선택</a></div>`;
-      if (__reg.phone) html += `<div style="font-size:12px;opacity:0.75;margin-top:4px;">📞 시청 대표 ${__reg.phone}</div>`;
-      html += `<div style="font-size:12px;opacity:0.7;margin-top:4px;">신고 → 수수료 결제 → 스티커 → 지정 장소 배출</div>`;
+      const __isBulky = rule.category === 'furniture' || rule.category === 'electronics' || aiData.category_hint === 'furniture' || aiData.category_hint === 'electronics';
+      const __borderColor = __isBulky ? '#f59e0b' : 'var(--primary)';
+      const __bgColor = __isBulky ? '#fff7e6' : '#eff6ff';
+      const __icon = __isBulky ? '🏗️' : '📋';
+      const __linkLabel = __isBulky ? `생활폐기물 페이지 → "대형폐기물" 탭 선택 →` : `${__wreg.shortName} 페이지에서 정확한 룰 보기 →`;
+      html += `<div style="margin-top:16px;padding:12px 16px;background:${__bgColor};border-radius:8px;border-left:3px solid ${__borderColor};">`;
+      html += `<h4 style="margin:0 0 8px;font-size:15px;">${__icon} ${__wreg.shortName || __wreg.name} 공식 분리수거 안내</h4>`;
+      html += `<div style="font-size:13px;"><a href="${__wreg.wasteUrl}" target="_blank" style="color:var(--primary);font-weight:600;">${__linkLabel}</a></div>`;
+      if (__isBulky) {
+        if (__wreg.phone) html += `<div style="font-size:12px;opacity:0.8;margin-top:6px;">📞 <b>${__wreg.shortName || __wreg.name} 시청 대표</b>: ${__wreg.phone}</div>`;
+        html += `<div style="font-size:12px;opacity:0.75;margin-top:4px;">신고 → 수수료 결제 → 스티커 → 지정 장소 배출</div>`;
+      } else {
+        html += `<div style="font-size:12px;opacity:0.7;margin-top:4px;">우리 동네 정확한 룰. 요일·시간·배출장소는 아파트별 안내 따름.</div>`;
+      }
       html += `</div>`;
     }
   }
 
   // v5: 근처 재활용센터 (대형폐기물·폐가전 시 강조)
+  // v5.45: 센터 0개 시군구 118개에 광역도 인근 센터 fallback (행안부 표준데이터는 53% 시군구만 커버)
   if (RECYCLE_CENTERS?.data && regionCode) {
     const nearby = RECYCLE_CENTERS.data.filter(c => c.sggCode === regionCode);
+    const __isBulkyCat = rule.category === 'furniture' || rule.category === 'electronics' || aiData.category_hint === 'furniture' || aiData.category_hint === 'electronics';
     if (nearby.length > 0) {
-      const isBulky = rule.category === 'furniture' || rule.category === 'electronics' || aiData.category_hint === 'furniture' || aiData.category_hint === 'electronics';
-      html += `<div style="margin-top:16px;padding:12px 16px;background:${isBulky ? '#fff7e6' : '#f0f9ff'};border-radius:8px;">`;
-      html += `<h4 style="margin:0 0 8px;font-size:15px;">${isBulky ? '🏗️ 대형/폐가전 신고처' : '♻️ 근처 재활용센터'}</h4>`;
+      html += `<div style="margin-top:16px;padding:12px 16px;background:${__isBulkyCat ? '#fff7e6' : '#f0f9ff'};border-radius:8px;">`;
+      html += `<h4 style="margin:0 0 8px;font-size:15px;">${__isBulkyCat ? '🏗️ 대형/폐가전 신고처' : '♻️ 근처 재활용센터'}</h4>`;
       nearby.slice(0, 2).forEach(c => {
         html += `<div style="font-size:13px;margin:6px 0;">`;
         html += `<b>${c.name}</b>`;
@@ -2241,9 +2224,24 @@ function renderResult(aiData) {
         if (c.weekdayOpen && c.weekdayClose) html += `<br><span style="opacity:0.75;">🕐 ${c.weekdayOpen}~${c.weekdayClose} (평일)</span>`;
         html += `</div>`;
       });
-      if (isBulky) {
+      if (__isBulkyCat) {
         html += `<div style="margin-top:8px;font-size:12px;opacity:0.85;">또는 폐가전 무상수거: <b>1599-0903</b> (E-순환거버넌스)</div>`;
       }
+      html += `</div>`;
+    } else if (__isBulkyCat && RECYCLE_CENTER_FALLBACKS?.fallbacks?.[regionCode]) {
+      // v5.45 fallback: 등록 센터 0개. 광역도 인근 센터 + 1599-0903 안내
+      const fb = RECYCLE_CENTER_FALLBACKS.fallbacks[regionCode];
+      html += `<div style="margin-top:16px;padding:12px 16px;background:#fff7e6;border-radius:8px;">`;
+      html += `<h4 style="margin:0 0 8px;font-size:15px;">🏗️ 대형/폐가전 신고처</h4>`;
+      html += `<div style="font-size:12px;opacity:0.85;margin-bottom:6px;">📍 이 시·구에 등록된 센터 없음 — ${fb.sido_name} 인근 센터 참고</div>`;
+      (fb.fallback_centers || []).slice(0, 2).forEach(c => {
+        html += `<div style="font-size:13px;margin:6px 0;">`;
+        html += `<b>${c.name}</b> <span style="opacity:0.6;font-size:11px;">(${c.sggName})</span>`;
+        if (c.address) html += `<br><span style="opacity:0.75;">📍 ${c.address.slice(0, 50)}</span>`;
+        if (c.phone) html += `<br><span style="opacity:0.75;">📞 ${c.phone}</span>`;
+        html += `</div>`;
+      });
+      html += `<div style="margin-top:8px;font-size:12px;opacity:0.85;">또는 폐가전 무상수거: <b>1599-0903</b> (E-순환거버넌스, 전국 공통)</div>`;
       html += `</div>`;
     }
   }
@@ -2269,13 +2267,11 @@ function renderResult(aiData) {
   } else {
     html += `⚠️ 출처: 검증 부족 — 시·구청 안내 권장`;
   }
-  // v5.39: "공식 안내" 링크 = 분리수거 전용 페이지 우선 (시청 메인 X)
-  const __cityWasteUrl = rule.cityGuide?.officialUrl
-    || (typeof REGION_URLS !== 'undefined' && REGION_URLS?.regions?.[regionCode]?.wasteUrl)
-    || regionMeta?.officialUrl;
-  if (__cityWasteUrl) {
-    html += `<br>📞 ${regionMeta?.name || regionCode}: <a href="${__cityWasteUrl}" target="_blank" style="color:var(--primary)">공식 분리수거 안내</a>`;
-    if (regionMeta?.phone) html += ` <span style="opacity:0.75;font-size:12px;">(${regionMeta.phone})</span>`;
+  // v5.45: 공식 분리수거 안내 링크는 위 "📋 ${shortName} 공식 분리수거 안내" 박스(line ~2206) 하나로 통일.
+  //   사용자 피드백: "안내된곳 두곳의 연결이... 두 곳이 같은곳입니다." → 같은 wasteUrl 중복 노출 X.
+  //   disclaimer는 출처·면책만 — 링크는 상단 박스에서만.
+  if (regionMeta?.phone) {
+    html += `<br>📞 <b>${regionMeta?.shortName || regionMeta?.name || regionCode} 시청 대표</b>: <a href="tel:${regionMeta.phone}" style="color:var(--primary)">${regionMeta.phone}</a>`;
   }
   // v5.9: 출처 + 신뢰도 표시 (RecycleAI 차별점) — source / sourceUrl 둘 다 폴백
   const __srcLink = rule.source || rule.sourceUrl;
@@ -2314,14 +2310,15 @@ function renderResult(aiData) {
       const ar = cg.applianceRecycle;
       cityHtml += `<div style="margin:8px 0;padding:10px 12px;background:#eff6ff;border-radius:6px;">`;
       cityHtml += `<div style="font-weight:600;font-size:14px;margin-bottom:6px;">🚛 폐가전 무상 방문수거 (E-순환거버넌스)</div>`;
-      cityHtml += `<div style="font-size:13px;">📞 <a href="tel:${ar.phone}" style="color:var(--primary);font-weight:700;font-size:15px;">${ar.phone}</a>`;
-      if (ar.url) cityHtml += ` · <a href="${ar.url}" target="_blank" style="color:var(--primary);">예약</a>`;
+      // v5.45: 사용자 피드백 "예약 전화번호는 폐가전 전화번호지요?" → 라벨 명확화
+      cityHtml += `<div style="font-size:13px;">📞 <b>전국 폐가전 예약</b>: <a href="tel:${ar.phone}" style="color:var(--primary);font-weight:700;font-size:15px;">${ar.phone}</a>`;
+      if (ar.url) cityHtml += ` · <a href="${ar.url}" target="_blank" style="color:var(--primary);">온라인 예약</a>`;
       cityHtml += `</div>`;
       // v5.41: 단일/다량 수거 분류 표 (RecycleAI 모범)
       cityHtml += `<table style="width:100%;margin-top:8px;font-size:12px;border-collapse:collapse;">`;
-      cityHtml += `<tr style="background:rgba(0,0,0,0.05);"><th style="padding:6px;text-align:left;border:1px solid #d1d5db;">분류</th><th style="padding:6px;text-align:left;border:1px solid #d1d5db;">품목</th><th style="padding:6px;text-align:left;border:1px solid #d1d5db;">조건</th></tr>`;
-      cityHtml += `<tr><td style="padding:6px;border:1px solid #d1d5db;"><b>단일</b></td><td style="padding:6px;border:1px solid #d1d5db;">냉장고·세탁기·TV·에어컨·전자레인지</td><td style="padding:6px;border:1px solid #d1d5db;color:#0369a1;"><b>1개부터 무료</b></td></tr>`;
-      cityHtml += `<tr><td style="padding:6px;border:1px solid #d1d5db;"><b>다량</b></td><td style="padding:6px;border:1px solid #d1d5db;">노트북·모니터·소형가전</td><td style="padding:6px;border:1px solid #d1d5db;color:#0369a1;"><b>5개 이상 모음</b></td></tr>`;
+      cityHtml += `<tr style="background:#dbeafe;"><th style="padding:6px;text-align:left;border:1px solid #93c5fd;color:#1e3a8a;">분류</th><th style="padding:6px;text-align:left;border:1px solid #93c5fd;color:#1e3a8a;">품목</th><th style="padding:6px;text-align:left;border:1px solid #93c5fd;color:#1e3a8a;">조건</th></tr>`;
+      cityHtml += `<tr style="background:#fff;"><td style="padding:6px;border:1px solid #93c5fd;color:#1f2937;"><b>단일</b></td><td style="padding:6px;border:1px solid #93c5fd;color:#1f2937;">냉장고·세탁기·TV·에어컨·전자레인지</td><td style="padding:6px;border:1px solid #93c5fd;color:#0369a1;"><b>1개부터 무료</b></td></tr>`;
+      cityHtml += `<tr style="background:#fff;"><td style="padding:6px;border:1px solid #93c5fd;color:#1f2937;"><b>다량</b></td><td style="padding:6px;border:1px solid #93c5fd;color:#1f2937;">노트북·모니터·소형가전</td><td style="padding:6px;border:1px solid #93c5fd;color:#0369a1;"><b>5개 이상 모음</b></td></tr>`;
       cityHtml += `</table>`;
       cityHtml += `</div>`;
     }
@@ -2345,18 +2342,24 @@ function renderResult(aiData) {
     }
 
     // 공통: 시청/구청 대표 연락처 (있으면)
+    // v5.45: 라벨 명확화 — 각 전화번호가 어디 부서인지 사용자가 한눈에 보이도록.
     if (cg.phones) {
-      const phoneEntries = Object.entries(cg.phones).slice(0, 2);
+      const phoneEntries = Object.entries(cg.phones).slice(0, 3);
       if (phoneEntries.length) {
-        cityHtml += `📞 <b>문의</b>: ` + phoneEntries.map(([k, v]) =>
-          `${k} <a href="tel:${v}" style="color:var(--primary);">${v}</a>`
-        ).join(' · ') + `<br>`;
+        cityHtml += `<div style="margin-top:6px;"><b>📞 시·구청 문의처</b><br>` + phoneEntries.map(([k, v]) =>
+          `<span style="font-size:12px;opacity:0.85;">└ ${k}</span> <a href="tel:${v}" style="color:var(--primary);font-weight:600;">${v}</a>`
+        ).join('<br>') + `</div>`;
       }
     }
 
     // 공식 페이지 (마지막 줄)
+    // v5.45: 위 "📋 공식 분리수거 안내" 박스 wasteUrl과 같으면 중복 제거 (사용자 "두 곳 같은곳" 피드백)
     if (cg.officialUrl) {
-      cityHtml += `🌐 <a href="${cg.officialUrl}" target="_blank" style="color:var(--primary);">${cg.city || '시군구'} 공식 분리수거 안내</a>`;
+      const __wregForCheck = (typeof REGION_URLS !== 'undefined' && REGION_URLS?.regions) ? REGION_URLS.regions[regionCode] : null;
+      const __isDup = __wregForCheck && __wregForCheck.wasteUrl === cg.officialUrl;
+      if (!__isDup) {
+        cityHtml += `🌐 <a href="${cg.officialUrl}" target="_blank" style="color:var(--primary);">${cg.city || '시군구'} 공식 분리수거 안내</a>`;
+      }
     }
 
     if (cityHtml) {

@@ -1,7 +1,7 @@
 {
   "$schema": "여기선 v4 - OCR 키워드 → 카테고리 매핑",
-  "version": "4.0.3",
-  "lastUpdated": "2026-05-18",
+  "version": "4.0.1",
+  "lastUpdated": "2026-05-25",
   "description": "Tesseract.js로 라벨에서 추출한 한국어/영문 텍스트를 분리수거 카테고리로 매핑.",
   "keywords": [
     {
@@ -526,6 +526,208 @@
       ],
       "category": "vinyl",
       "priority": 65
+    },
+    {
+      "match": [
+        "삼양라면",
+        "불닭볶음면",
+        "왕뚜껑"
+      ],
+      "item_id": "snack_bag",
+      "category": "vinyl",
+      "priority": 88
+    },
+    {
+      "match": [
+        "오감자",
+        "빈츠",
+        "초코파이",
+        "쿠크다스",
+        "예감",
+        "카라멜콘"
+      ],
+      "item_id": "snack_bag",
+      "category": "vinyl",
+      "priority": 88
+    },
+    {
+      "match": [
+        "서울우유",
+        "매일우유",
+        "남양우유",
+        "연세우유",
+        "저지방우유",
+        "딸기우유",
+        "초코우유",
+        "바나나우유"
+      ],
+      "item_id": "milk_carton",
+      "category": "paper_pack",
+      "priority": 90
+    },
+    {
+      "match": [
+        "비요뜨",
+        "닥터캡슐"
+      ],
+      "item_id": "plastic_container",
+      "category": "plastic",
+      "priority": 80
+    },
+    {
+      "match": [
+        "풀무원밥",
+        "컵반"
+      ],
+      "item_id": "instant_rice_bowl",
+      "category": "plastic",
+      "priority": 92
+    },
+    {
+      "match": [
+        "액체세제",
+        "주방용세제"
+      ],
+      "item_id": "plastic_bottle",
+      "category": "plastic",
+      "priority": 80
+    },
+    {
+      "match": [
+        "크림",
+        "클렌징",
+        "폼클렌징"
+      ],
+      "item_id": "cosmetic_pump",
+      "category": "plastic",
+      "priority": 75
+    },
+    {
+      "match": [
+        "타이레놀",
+        "게보린",
+        "판콜",
+        "판피린",
+        "아스피린",
+        "소화제",
+        "감기약",
+        "진통제",
+        "항생제",
+        "캡슐",
+        "정제",
+        "시럽약",
+        "연고"
+      ],
+      "item_id": "medicine",
+      "category": "medicine",
+      "priority": 95
+    },
+    {
+      "match": [
+        "스파클링생수",
+        "코카콜라캔",
+        "맥주캔",
+        "음료캔",
+        "햄캔"
+      ],
+      "item_id": "can",
+      "category": "can",
+      "priority": 88
+    },
+    {
+      "match": [
+        "멸균팩",
+        "뺑끼팩",
+        "아침햇살"
+      ],
+      "item_id": "milk_carton",
+      "category": "paper_pack",
+      "priority": 85
+    },
+    {
+      "match": [
+        "스타벅스",
+        "이디야",
+        "투썸플레이스",
+        "메가커피",
+        "컴포즈커피",
+        "백다방",
+        "커피빈",
+        "할리스",
+        "엔젤리너스"
+      ],
+      "item_id": "paper_cup_coated",
+      "category": "paper",
+      "priority": 85
+    },
+    {
+      "match": [
+        "택배상자",
+        "이사박스",
+        "골판지",
+        "코팅종이상자",
+        "아마존박스"
+      ],
+      "item_id": "paper_box",
+      "category": "paper",
+      "priority": 90
+    },
+    {
+      "match": [
+        "도시락용기",
+        "스티로폼박스",
+        "아이스박스용기"
+      ],
+      "item_id": "styrofoam_packaging",
+      "category": "styrofoam",
+      "priority": 85
+    },
+    {
+      "match": [
+        "코튼100",
+        "울",
+        "데님",
+        "청바지라벨"
+      ],
+      "item_id": "clothes",
+      "category": "clothes",
+      "priority": 70
+    },
+    {
+      "match": [
+        "알카라인",
+        "리튬",
+        "망간",
+        "듀라셀",
+        "에너자이저",
+        "AA건전지",
+        "AAA건전지"
+      ],
+      "item_id": "battery",
+      "category": "battery",
+      "priority": 95
+    },
+    {
+      "match": [
+        "LED전구",
+        "삼파장",
+        "백열전구",
+        "필립스전구",
+        "오스람"
+      ],
+      "item_id": "light_bulb",
+      "category": "lamp",
+      "priority": 90
+    },
+    {
+      "match": [
+        "감열지",
+        "영수증",
+        "폴리프로필렌비코팅"
+      ],
+      "item_id": "receipt",
+      "category": "general",
+      "priority": 85
     }
   ],
   "categoryWeight": {

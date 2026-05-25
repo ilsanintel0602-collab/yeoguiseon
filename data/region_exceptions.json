@@ -3580,37 +3580,6 @@
       },
       "exceptions": {}
     },
-    "46130": {
-      "name": "전라남도 여수시",
-      "shortName": "여수",
-      "cityGuide": {
-        "city": "여수시",
-        "officialUrl": "https://www.yeosu.go.kr/",
-        "phones": {
-          "시청대표": "061-690-2114"
-        },
-        "applianceRecycle": {
-          "name": "폐가전 무상수거",
-          "phone": "1599-0903",
-          "url": "https://15990903.or.kr/"
-        },
-        "medicine": {
-          "name": "폐의약품 회수",
-          "place": "동네 약국 또는 보건소",
-          "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
-          "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        },
-        "garbageBag": {
-          "priceNote": "여수시 가정용 종량제: 5ℓ 140원 · 10ℓ 250원 · 20ℓ 500원 · 30ℓ 720원 · 50ℓ 1200원",
-          "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        },
-        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
-        "disposalTimeSource": "B_standard",
-        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
-      },
-      "exceptions": {}
-    },
     "46150": {
       "name": "전라남도 순천시",
       "shortName": "순천",
@@ -7540,6 +7509,356 @@
           "source": "https://15990903.or.kr/",
           "sourceGrade": "A"
         }
+      }
+    },
+    "41131": {
+      "name": "경기도 성남시 수정구",
+      "_inherits": "41130"
+    },
+    "41133": {
+      "name": "경기도 성남시 중원구",
+      "_inherits": "41130"
+    },
+    "41135": {
+      "name": "경기도 성남시 분당구",
+      "_inherits": "41130"
+    },
+    "43111": {
+      "name": "충청북도 청주시 상당구",
+      "_inherits": "43110"
+    },
+    "43112": {
+      "name": "충청북도 청주시 서원구",
+      "_inherits": "43110"
+    },
+    "43113": {
+      "name": "충청북도 청주시 흥덕구",
+      "_inherits": "43110"
+    },
+    "43114": {
+      "name": "충청북도 청주시 청원구",
+      "_inherits": "43110"
+    },
+    "44131": {
+      "name": "충청남도 천안시 동남구",
+      "_inherits": "44130"
+    },
+    "44133": {
+      "name": "충청남도 천안시 서북구",
+      "_inherits": "44130"
+    },
+    "48121": {
+      "name": "경상남도 창원시 의창구",
+      "_inherits": "48120"
+    },
+    "48123": {
+      "name": "경상남도 창원시 성산구",
+      "_inherits": "48120"
+    },
+    "48125": {
+      "name": "경상남도 창원시 마산합포구",
+      "_inherits": "48120"
+    },
+    "48127": {
+      "name": "경상남도 창원시 마산회원구",
+      "_inherits": "48120"
+    },
+    "48129": {
+      "name": "경상남도 창원시 진해구",
+      "_inherits": "48120"
+    },
+    "41110": {
+      "name": "경기도 수원시",
+      "cityGuide": {
+        "city": "경기도 수원시",
+        "officialUrl": "https://www.suwon.go.kr/sw-www/deptHome/dep_env/env_03/env_03_11/env_03_01.jsp",
+        "phones": {},
+        "applianceRecycle": {
+          "name": "폐가전 무상 방문수거 (E-순환거버넌스)",
+          "phone": "1599-0903",
+          "url": "https://15990903.or.kr/"
+        },
+        "medicine": {
+          "name": "폐의약품 회수",
+          "place": "동네 약국 또는 보건소",
+          "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
+          "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.suwon.go.kr/sw-www/deptHome/dep_env/env_03/env_03_11/env_03_01.jsp",
+            "grade": "B",
+            "note": "본청 wasteUrl + 환경부 표준 (세부 룰은 시청 홈페이지 안내 따름)"
+          }
+        ]
+      }
+    },
+    "41270": {
+      "name": "경기도 안산시",
+      "cityGuide": {
+        "city": "경기도 안산시",
+        "officialUrl": "https://www.ansan.go.kr/www/common/cntnts/selectContents.do?cntnts_id=C0001357",
+        "phones": {},
+        "applianceRecycle": {
+          "name": "폐가전 무상 방문수거 (E-순환거버넌스)",
+          "phone": "1599-0903",
+          "url": "https://15990903.or.kr/"
+        },
+        "medicine": {
+          "name": "폐의약품 회수",
+          "place": "동네 약국 또는 보건소",
+          "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
+          "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.ansan.go.kr/www/common/cntnts/selectContents.do?cntnts_id=C0001357",
+            "grade": "B",
+            "note": "본청 wasteUrl + 환경부 표준 (세부 룰은 시청 홈페이지 안내 따름)"
+          }
+        ]
+      }
+    },
+    "41460": {
+      "name": "경기도 용인시",
+      "cityGuide": {
+        "city": "경기도 용인시",
+        "officialUrl": "https://www.yongin.go.kr/home/www/www12/www12_08/www12_08_03/www12_08_03_03.jsp",
+        "phones": {},
+        "applianceRecycle": {
+          "name": "폐가전 무상 방문수거 (E-순환거버넌스)",
+          "phone": "1599-0903",
+          "url": "https://15990903.or.kr/"
+        },
+        "medicine": {
+          "name": "폐의약품 회수",
+          "place": "동네 약국 또는 보건소",
+          "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
+          "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yongin.go.kr/home/www/www12/www12_08/www12_08_03/www12_08_03_03.jsp",
+            "grade": "B",
+            "note": "본청 wasteUrl + 환경부 표준 (세부 룰은 시청 홈페이지 안내 따름)"
+          }
+        ]
+      }
+    },
+    "41280": {
+      "name": "경기도 고양시",
+      "cityGuide": {
+        "city": "경기도 고양시",
+        "officialUrl": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
+        "phones": {},
+        "applianceRecycle": {
+          "name": "폐가전 무상 방문수거 (E-순환거버넌스)",
+          "phone": "1599-0903",
+          "url": "https://15990903.or.kr/"
+        },
+        "medicine": {
+          "name": "폐의약품 회수",
+          "place": "동네 약국 또는 보건소",
+          "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
+          "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
+            "grade": "B",
+            "note": "본청 wasteUrl + 환경부 표준 (세부 룰은 시청 홈페이지 안내 따름)"
+          }
+        ]
+      }
+    },
+    "28140": {
+      "name": "인천광역시 동구",
+      "cityGuide": {
+        "city": "인천광역시 동구",
+        "officialUrl": "https://www.icdonggu.go.kr/main/area/clean/waste_living.jsp",
+        "phones": {
+          "동구 대표": "032-770-6000"
+        },
+        "applianceRecycle": {
+          "name": "폐가전 무상 방문수거 (E-순환거버넌스)",
+          "phone": "1599-0903",
+          "url": "https://15990903.or.kr/"
+        },
+        "medicine": {
+          "name": "폐의약품 회수",
+          "place": "동네 약국 또는 보건소",
+          "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
+          "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.icdonggu.go.kr/main/area/clean/waste_living.jsp",
+            "grade": "B",
+            "note": "본청 wasteUrl + 환경부 표준 (세부 룰은 시청 홈페이지 안내 따름)"
+          }
+        ]
+      }
+    },
+    "28720": {
+      "name": "인천광역시 옹진군",
+      "cityGuide": {
+        "city": "인천광역시 옹진군",
+        "officialUrl": "https://www.ongjin.go.kr/open_content/main/environment/cleaning/excretion.jsp",
+        "phones": {
+          "옹진군 대표": "032-899-2114"
+        },
+        "applianceRecycle": {
+          "name": "폐가전 무상 방문수거 (E-순환거버넌스)",
+          "phone": "1599-0903",
+          "url": "https://15990903.or.kr/"
+        },
+        "medicine": {
+          "name": "폐의약품 회수",
+          "place": "동네 약국 또는 보건소",
+          "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
+          "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.ongjin.go.kr/open_content/main/environment/cleaning/excretion.jsp",
+            "grade": "B",
+            "note": "본청 wasteUrl + 환경부 표준 (세부 룰은 시청 홈페이지 안내 따름)"
+          }
+        ]
+      }
+    },
+    "41170": {
+      "name": "경기도 안양시",
+      "cityGuide": {
+        "city": "경기도 안양시",
+        "officialUrl": "https://www.anyang.go.kr/main/contents.do?key=806",
+        "phones": {},
+        "applianceRecycle": {
+          "name": "폐가전 무상 방문수거 (E-순환거버넌스)",
+          "phone": "1599-0903",
+          "url": "https://15990903.or.kr/"
+        },
+        "medicine": {
+          "name": "폐의약품 회수",
+          "place": "동네 약국 또는 보건소",
+          "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
+          "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.anyang.go.kr/main/contents.do?key=806",
+            "grade": "B",
+            "note": "본청 wasteUrl + 환경부 표준 (세부 룰은 시청 홈페이지 안내 따름)"
+          }
+        ]
+      }
+    },
+    "41111": {
+      "name": "경기도 수원시 장안구",
+      "_inherits": "41110"
+    },
+    "41113": {
+      "name": "경기도 수원시 권선구",
+      "_inherits": "41110"
+    },
+    "41115": {
+      "name": "경기도 수원시 팔달구",
+      "_inherits": "41110"
+    },
+    "41271": {
+      "name": "경기도 안산시 상록구",
+      "_inherits": "41270"
+    },
+    "41273": {
+      "name": "경기도 안산시 단원구",
+      "_inherits": "41270"
+    },
+    "41461": {
+      "name": "경기도 용인시 처인구",
+      "_inherits": "41460"
+    },
+    "41463": {
+      "name": "경기도 용인시 기흥구",
+      "_inherits": "41460"
+    },
+    "41465": {
+      "name": "경기도 용인시 수지구",
+      "_inherits": "41460"
+    },
+    "45111": {
+      "name": "전북특별자치도 전주시 완산구",
+      "_inherits": "45110"
+    },
+    "45113": {
+      "name": "전북특별자치도 전주시 덕진구",
+      "_inherits": "45110"
+    },
+    "47111": {
+      "name": "경상북도 포항시 남구",
+      "_inherits": "47110"
+    },
+    "47113": {
+      "name": "경상북도 포항시 북구",
+      "_inherits": "47110"
+    },
+    "46130": {
+      "name": "전라남도 여수시",
+      "cityGuide": {
+        "city": "전라남도 여수시",
+        "officialUrl": "https://www.yeosu.go.kr/dept/cleaning",
+        "phones": {
+          "여수시청 대표": "061-659-3000"
+        },
+        "applianceRecycle": {
+          "name": "폐가전 무상 방문수거 (E-순환거버넌스)",
+          "phone": "1599-0903",
+          "url": "https://15990903.or.kr/"
+        },
+        "medicine": {
+          "name": "폐의약품 회수",
+          "place": "동네 약국 또는 보건소",
+          "note": "약국·보건소 수거함",
+          "source": "환경부 표준"
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시",
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yeosu.go.kr/dept/cleaning",
+            "grade": "B",
+            "note": "본청 wasteUrl + 환경부 표준"
+          }
+        ]
       }
     }
   }
