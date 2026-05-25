@@ -334,7 +334,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.41</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.43</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -487,7 +487,8 @@ let OCR_KEYWORDS = null; // v4: OCR 키워드 → 카테고리 매핑
 let BRAND_DB = null;     // v4 A2: 한국 제품 브랜드 DB
 let BAG_PRICES = null;   // v5: 행안부 시군구별 종량제봉투 가격
 let RECYCLE_CENTERS = null; // v5: 행안부 전국 재활용센터
-let REGION_URLS = null;  // v5.9: 시군구 공식 URL DB (250개 — 분리수거·대형폐기물)
+let REGION_URLS = null;
+let AMBIGUOUS_MAP = null;  // v5.43: 모호 키워드 사용자 선택 데이터  // v5.9: 시군구 공식 URL DB (250개 — 분리수거·대형폐기물)
 
 // v5.32: D1 의존 제거 — 정적 JSON만 사용 (Phase A2 cron 활성 전까지)
 //   이유: 사용자가 D1 마이그레이션 명령 안 하면 D1이 옛 데이터 (가짜 "상태") → push해도 안 반영
@@ -835,6 +836,15 @@ function renderSearchResults(query) {
 
 // ===== 핵심 매칭 함수 (v3 새 로직) =====
 function matchRule(itemId, regionCode, categoryHint) {
+  // v5.43: 모호 키워드 사전 검사 — '라이스컨테이너', '포장지' 같이 재질 다른 케이스
+  // ambiguous_map.json 데이터에 있으면 사용자 선택 안내 (matchedAmbiguous 플래그)
+  let _ambig = null;
+  if (typeof AMBIGUOUS_MAP !== 'undefined' && AMBIGUOUS_MAP?.ambiguous) {
+    const _n = String(itemId || '').trim().toLowerCase().replace(/\s+/g, '');
+    if (AMBIGUOUS_MAP.ambiguous[_n]) {
+      _ambig = AMBIGUOUS_MAP.ambiguous[_n];
+    }
+  }
   // v5.23+: cityGuide 수집 (시군구 안내 정보) + _inherits 상속 따라가기
   let cityGuide = null;
   let currentRegion = regionCode;
@@ -887,6 +897,7 @@ function matchRule(itemId, regionCode, categoryHint) {
   }
   if (item) {
     return {
+      ambiguous: _ambig,
       category: item.category,
       name: item.name,  // v5.38: 영문 id 대신 한글 name 사용
       note: item.note || '',
@@ -1796,22 +1807,10 @@ function drawBoxes(canvas) {
   const ctx = canvas.getContext('2d');
   // 가이드와 중복 그리기 방지: clearRect 안 함 (drawCameraGuide가 이미 함)
   // v5.32: 라벨 안정화 — 항상 "한글라벨 ▸ 탭" 형식. 신뢰도 숫자 제거 (깜빡임 원인).
-  detectionState.detections.forEach(d => {
-    ctx.strokeStyle = '#00ff88';
-    ctx.lineWidth = 3;
-    ctx.shadowBlur = 12;
-    ctx.shadowColor = '#00ff88';
-    ctx.strokeRect(d.x, d.y, d.w, d.h);
-    // 라벨 (일관성 보장: 항상 같은 형식)
-    ctx.shadowBlur = 0;
-    ctx.fillStyle = 'rgba(0,255,136,0.95)';
-    const lbl = `${d.label}  ▸ 탭해서 분석`;
-    ctx.font = 'bold 14px system-ui';
-    const tw = ctx.measureText(lbl).width + 14;
-    ctx.fillRect(d.x, d.y - 24, tw, 24);
-    ctx.fillStyle = '#000';
-    ctx.fillText(lbl, d.x + 7, d.y - 7);
-  });
+  // v5.42: COCO-SSD 자동 박스 폐기 — 한국 사물에 명칭 false-positive 다수 (살충제→bottle, 박스 겹침)
+  //   대안: 사용자 드래그(주황 박스)만 사용, 또는 버튼 사진 촬영 → Gemini 정확 분류
+  //   유지: detectionState.detections (탭 인터랙션은 살림, 시각 박스만 폐기)
+  // 옛 코드 제거됨
   // 사용자 드래그 박스 (이전 단순 디자인 복원 — 가위·큰 라벨 제거)
   if (detectionState.customBox) {
     const b = detectionState.customBox;
@@ -2204,14 +2203,14 @@ function renderResult(aiData) {
   const __isBulky = rule.category === 'furniture' || rule.category === 'electronics' || aiData.category_hint === 'furniture' || aiData.category_hint === 'electronics';
   if (__isBulky && regionCode && typeof REGION_URLS !== 'undefined' && REGION_URLS?.regions) {
     const __reg = REGION_URLS.regions[regionCode];
-    if (__reg && (__reg.bulkWasteUrl || __reg.cleanUrl || __reg.officialUrl)) {
-      const __url = __reg.bulkWasteUrl || __reg.cleanUrl || __reg.officialUrl;
-      const __urlLabel = __reg.bulkWasteUrl ? '대형폐기물 신고' : (__reg.cleanUrl ? '청소·환경 안내' : '시군구 공식');
+    // v5.42: 대형폐기물 = 생활폐기물 페이지(wasteUrl, 안에 대형 탭) 우선. bulkWasteUrl 폐기 (clean.gys.or.kr 페이지 오류)
+    const __bUrl = __reg?.wasteUrl || rule.cityGuide?.officialUrl;
+    if (__bUrl) {
       html += `<div style="margin-top:16px;padding:12px 16px;background:#fff7e6;border-radius:8px;border-left:3px solid #f59e0b;">`;
-      html += `<h4 style="margin:0 0 8px;font-size:15px;">🏗️ ${__reg.shortName || __reg.name} 대형폐기물 신고</h4>`;
-      html += `<div style="font-size:13px;"><a href="${__url}" target="_blank" style="color:var(--primary);font-weight:600;">${__urlLabel} 페이지 →</a></div>`;
-      if (__reg.phone) html += `<div style="font-size:12px;opacity:0.75;margin-top:4px;">📞 ${__reg.phone}</div>`;
-      html += `<div style="font-size:12px;opacity:0.7;margin-top:4px;">신고 후 수수료 결제 → 필증 → 지정 장소 배출</div>`;
+      html += `<h4 style="margin:0 0 8px;font-size:15px;">🏗️ ${__reg.shortName || __reg.name} 대형폐기물</h4>`;
+      html += `<div style="font-size:13px;"><a href="${__bUrl}" target="_blank" style="color:var(--primary);font-weight:600;">생활폐기물 페이지 → "대형폐기물" 탭 선택</a></div>`;
+      if (__reg.phone) html += `<div style="font-size:12px;opacity:0.75;margin-top:4px;">📞 시청 대표 ${__reg.phone}</div>`;
+      html += `<div style="font-size:12px;opacity:0.7;margin-top:4px;">신고 → 수수료 결제 → 스티커 → 지정 장소 배출</div>`;
       html += `</div>`;
     }
   }
@@ -2290,12 +2289,12 @@ function renderResult(aiData) {
     const cat = rule.category;
     let cityHtml = '';
 
-    // v5.41: 배출 시간/장소 (이사 사용자 1순위) — 모든 카테고리에서 최상단
+    // v5.41/42: 배출 시간/장소 — 가시성 강화 (다크 배경 대비)
     if (cg.disposalTime) {
-      cityHtml += `<div style="margin-bottom:8px;padding:8px 12px;background:rgba(16,185,129,0.08);border-left:3px solid #10b981;border-radius:4px;">`;
-      cityHtml += `<div style="font-size:13px;"><b>⏰ 배출 시간</b>: ${cg.disposalTime}</div>`;
-      if (cg.pickupTime) cityHtml += `<div style="font-size:12px;opacity:0.85;margin-top:2px;">🚛 수거: ${cg.pickupTime}</div>`;
-      cityHtml += `<div style="font-size:11px;opacity:0.7;margin-top:4px;">※ 아파트는 단지 안내 따름</div>`;
+      cityHtml += `<div style="margin-bottom:8px;padding:10px 14px;background:#0f766e;color:#ecfdf5;border-radius:6px;">`;
+      cityHtml += `<div style="font-size:14px;"><b>⏰ 배출 시간</b>: ${cg.disposalTime}</div>`;
+      if (cg.pickupTime) cityHtml += `<div style="font-size:13px;opacity:0.95;margin-top:4px;">🚛 수거: ${cg.pickupTime}</div>`;
+      cityHtml += `<div style="font-size:11px;opacity:0.85;margin-top:4px;">※ 아파트는 단지 안내 따름</div>`;
       cityHtml += `</div>`;
     }
 
@@ -2357,17 +2356,7 @@ function renderResult(aiData) {
     }
   }
 
-  // v5.32: 영어 보조 안내 (외국인 거주자) — 카테고리 영어명 + 환경부 다국어 PDF
-  if (rule.category && CAT_EN[rule.category]) {
-    html += `<details style="margin-top:12px;padding:8px 14px;background:#f8fafc;border-left:3px solid #94a3b8;border-radius:6px;font-size:12px;color:#475569;">`;
-    html += `<summary style="cursor:pointer;font-weight:600;">🌐 English / 외국인 거주자 안내</summary>`;
-    html += `<div style="margin-top:8px;line-height:1.7;">`;
-    html += `<b>Category:</b> ${CAT_EN[rule.category]} (${rule.category})<br>`;
-    html += `<b>Multilingual guide (12 languages):</b><br>`;
-    html += `<a href="${ME_MULTILINGUAL_PDF}" target="_blank" style="color:var(--primary);">📄 Ministry of Environment Official Multilingual Recycling Guide</a><br>`;
-    html += `<span style="opacity:0.8;">EN · 中文 · Tiếng Việt · ภาษาไทย · 日本語 etc.</span>`;
-    html += `</div></details>`;
-  }
+  // v5.42: 외국인 안내 섹션 폐기 — 환경부 다국어 PDF URL 검증 안 됨 (죽은 링크). 정직성 우선.
 
   // v5.32: 본질 집중 — 공유 버튼 제거 (사용자 요청). 피드백 버튼만 유지 (학습용)
   html += `<div style="margin-top:16px;padding:14px 16px;background:var(--note-bg);border-radius:10px;text-align:center;">`;
@@ -2860,7 +2849,13 @@ async function detectLocation() {
       if (level2) {
         $('regionLevel2').value = level2;
         const r = REGIONS.level2[level2];
-        toast(`📍 ${r.name} 로 설정`);
+        // v5.42: GPS 찾으면 즉시 state·LS·chip 갱신 (사용자 "저장" 안 눌러도 적용)
+        state.regionLevel1 = level1;
+        state.regionLevel2 = level2;
+        LS.set('regionLevel1', level1);
+        LS.set('regionLevel2', level2);
+        updateLocationChip();
+        toast(`📍 ${r.name} 로 설정 완료`);
       } else {
         toast(`📍 ${REGIONS.level1[level1].name} 광역만 찾음. 시군구 직접 선택해주세요`);
       }
