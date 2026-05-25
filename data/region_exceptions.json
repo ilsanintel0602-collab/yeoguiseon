@@ -61,7 +61,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       }
     },
     "41285": {
@@ -873,7 +881,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -1038,7 +1054,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -1166,7 +1190,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -1443,7 +1475,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -1625,7 +1665,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -1656,7 +1704,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -2174,7 +2230,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -2205,7 +2269,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -2267,7 +2339,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -2422,7 +2502,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -2476,7 +2564,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -2630,7 +2726,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -2715,7 +2819,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -2741,7 +2853,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -2826,7 +2946,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -3035,7 +3163,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -3209,7 +3345,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -3302,7 +3446,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -3452,7 +3604,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -3665,7 +3825,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -3820,7 +3988,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -4059,7 +4235,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -4592,7 +4776,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -7330,7 +7522,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       },
       "exceptions": {}
     },
@@ -7654,7 +7854,15 @@
             "grade": "B",
             "note": "본청 wasteUrl + 환경부 표준 (세부 룰은 시청 홈페이지 안내 따름)"
           }
-        ]
+        ],
+        "paperPackExchange": {
+          "name": "종이팩-화장지 교환 사업",
+          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
+          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
+          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
+          "sourceGrade": "B_standard"
+        },
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
       }
     },
     "41280": {

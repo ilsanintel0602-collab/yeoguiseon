@@ -34,6 +34,9 @@
 <!-- Tesseract.js (한국어 OCR - v4 신규) -->
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
 
+<!-- v5.46+ 모듈 분할 단계 1 — SYSTEM_PROMPT (truncation 위험 한국어 큰 블록 격리) -->
+<script src="./js/prompts.js"></script>
+
 <style>
 :root {
   --primary: #2ecc71;
@@ -334,7 +337,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.46</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.46.1</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -1230,33 +1233,8 @@ function analyzeWithBrand(ocrRawText) {
   };
 }
 
-const SYSTEM_PROMPT = `한국 분리수거 사진 분류. JSON만 응답.
-
-응답 형식: {"item_id":"한국어 명사 1개 (예: 노트북, 페트병, 압력솥, 우유팩)","category_hint":"아래 enum 중 하나","danger":false}
-
-⛔ 절대 룰:
-1. item_id는 반드시 한국어 명사 (영문 금지). 예: spray_can ❌ → 에어로졸 캔 ✓
-2. category_hint는 아래 환경부 표준 12+8개 enum 중에서만 선택. 임의 카테고리 금지.
-3. 모르면 item_id="unknown", category_hint="unknown" 반환 — 추측 금지
-
-📋 카테고리 enum (환경부 분리배출.kr 표준 12 + 행정 7):
-재활용 12 (환경부 공식): paper, paper_pack, pet_clear, plastic, vinyl, styrofoam, glass, can, clothes, battery, lamp, electronics
-비재활용 7 (시·구청 행정): food, general, general_noncombustible, general_or_bulky, furniture, hazardous, medicine
-모름: unknown
-
-⛔ 위 19개 + unknown 외 절대 출력 금지. reusable·bulky 등 임의 카테고리 금지.
-
-⚠️ 위험물(danger:true): 가스통·부탄캔·스프레이→hazardous, 부풀은 배터리→hazardous, 주사기·약통→hazardous, 깨진유리·칼날→general_noncombustible
-
-📋 한국 분리수거 핵심 원칙:
-1. 재질+형태로 분류. 브랜드·표면 글자 무시 (OCR 금지)
-2. 무색 페트병(먹는샘물·음료)=pet_clear / 유색·기타 플라스틱=plastic
-3. 우유팩·두유팩·주스팩=paper_pack (종이류 X)
-4. 압력솥·냄비(금속)=can / 가전류=electronics
-5. 깨진 유리·도자기·거울=general_noncombustible (불연성종량제)
-6. 영수증·감열지·코팅전단지·종이호일·휴지·기저귀=general
-7. 재사용 가능 컵·텀블러·도시락통은 재질대로 (glass/plastic/can). reusable 카테고리 X
-8. 확신 없으면 unknown — 임의 분류 금지`;
+// v5.46+ 모듈 분할 단계 1: 큰 한국어 SYSTEM_PROMPT는 js/prompts.js에 격리됨 (truncation 위험 영역)
+const SYSTEM_PROMPT = (typeof window !== 'undefined' && window.YEOGUISEON_SYSTEM_PROMPT) || 'JSON 응답하세요. item_id, category_hint, danger 필드.';
 
 // v5.6: Cloudflare Worker 프록시 (키 GitHub 노출 X)
 const WORKER_URL = 'https://yeoguiseon-proxy.ilsanintel0602.workers.dev/';

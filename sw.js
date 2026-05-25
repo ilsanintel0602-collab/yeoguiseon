@@ -4,7 +4,7 @@
    - 외부 API/모델 CDN: 캐시 안 함
 */
 
-const VERSION = 'v5.46';
+const VERSION = 'v5.46.1';
 const APP_SHELL_CACHE = `yeoguiseon-shell-${VERSION}`;
 const DATA_CACHE = `yeoguiseon-data-${VERSION}`;
 
@@ -13,6 +13,7 @@ const APP_SHELL = [
   './app.html',
   './index.html',
   './manifest.json',
+  './js/prompts.js',
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/apple-touch-icon.png',
