@@ -334,7 +334,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.45</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.46</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -1239,10 +1239,12 @@ const SYSTEM_PROMPT = `한국 분리수거 사진 분류. JSON만 응답.
 2. category_hint는 아래 환경부 표준 12+8개 enum 중에서만 선택. 임의 카테고리 금지.
 3. 모르면 item_id="unknown", category_hint="unknown" 반환 — 추측 금지
 
-📋 카테고리 enum (환경부 분리배출.kr 표준):
-재활용 12: paper, paper_pack, pet_clear, plastic, vinyl, styrofoam, glass, can, clothes, battery, lamp, electronics
-비재활용 8: food, general, general_noncombustible, general_or_bulky, bulky, furniture, hazardous, medicine
+📋 카테고리 enum (환경부 분리배출.kr 표준 12 + 행정 7):
+재활용 12 (환경부 공식): paper, paper_pack, pet_clear, plastic, vinyl, styrofoam, glass, can, clothes, battery, lamp, electronics
+비재활용 7 (시·구청 행정): food, general, general_noncombustible, general_or_bulky, furniture, hazardous, medicine
 모름: unknown
+
+⛔ 위 19개 + unknown 외 절대 출력 금지. reusable·bulky 등 임의 카테고리 금지.
 
 ⚠️ 위험물(danger:true): 가스통·부탄캔·스프레이→hazardous, 부풀은 배터리→hazardous, 주사기·약통→hazardous, 깨진유리·칼날→general_noncombustible
 
@@ -2036,6 +2038,15 @@ function renderResult(aiData) {
   let html = aiBadge;
   html += `<div class="item-name">${itemName}</div>`;
   html += `<div class="category-pill ${rule.category}">${cat?.name || '일반'}</div>`;
+  // v5.46: 카테고리 출처 tier 라벨 (사용자 본질 명령 "임의 X" — 환경부 공식 vs 행정 명시)
+  if (cat?.tier === 'A') {
+    html += `<div style="display:inline-block;margin-left:8px;padding:4px 10px;background:#dcfce7;color:#065f46;border-radius:6px;font-size:12px;font-weight:600;">✅ 환경부 공식</div>`;
+  } else if (cat?.tier === 'B') {
+    html += `<div style="display:inline-block;margin-left:8px;padding:4px 10px;background:#fef3c7;color:#92400e;border-radius:6px;font-size:12px;font-weight:600;">🏛 시·구청 행정 (지자체별 차이)</div>`;
+  }
+  if (cat?.source) {
+    html += `<div style="font-size:11px;opacity:0.7;margin-top:4px;">출처: ${cat.source}</div>`;
+  }
   // v5.44: 모호 키워드 안내 (재질·용도 다른 경우 사용자 선택 권유)
   if (rule.ambiguous && Array.isArray(rule.ambiguous)) {
     html += `<div style="margin:10px 0;padding:10px 14px;background:#fef3c7;border-left:3px solid #f59e0b;border-radius:6px;font-size:13px;">`;
