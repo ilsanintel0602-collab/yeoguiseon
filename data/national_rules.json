@@ -694,7 +694,6 @@
       "sourceName": "분리배출.kr (한국폐기물협회·환경부)",
       "sourceGrade": "A",
       "aliases": [
-        "Carton",
         "Juice pack",
         "드링크팩",
         "멸균 종이팩",
@@ -1682,7 +1681,8 @@
         "은박 호일",
         "주방용 호일",
         "호일",
-        "호일이"
+        "호일이",
+        "쿠킹포일"
       ],
       "_bunribaechulSeq": 409,
       "lastVerified": "2026-05-18",
@@ -23758,14 +23758,17 @@
     },
     "reusable_cup": {
       "name": "재사용 컵 (유리·머그·스테인리스)",
-      "category": "glass",
-      "note": "재사용 컵 (유리·머그·스테인리스). 재사용 후 폐기 시 — 깨진 유리는 신문지 감싸 불연성종량제, 스테인리스는 금속류, 도자기는 불연성종량제.",
+      "category": "general_noncombustible",
+      "note": "환경부 표준에 별도 카테고리 없음. 버릴 때 재질로 분류 (유리·금속·도자기). 재사용 권장은 일반 상식.",
       "steps": [
-        "세척 후 본인이 다시 사용",
-        "버릴 때만 폐기 절차 (깨진 유리/도자기는 불연성 종량제봉투)"
+        "⚠️ 환경부 분리배출.kr에 \"재사용 컵\" 별도 카테고리 없음",
+        "버려야 할 때 — 재질대로:",
+        "깨진 유리·도자기·머그 → 신문지에 안전하게 감싸 불연성종량제봉투",
+        "스테인리스 컵 → 금속류 수거함 (날카로운 부분 안전 처리)",
+        "⚠️ 우리 앱의 \"재사용 권장\" 안내는 일반 상식. 시·구청 지침 X"
       ],
       "regionVariation": false,
-      "confidence": "high",
+      "confidence": "medium",
       "aliases": [
         "Tumbler",
         "개인컵",
@@ -23786,20 +23789,23 @@
         "도자기컵"
       ],
       "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110107",
-      "sourceName": "환경부 분리배출.kr (재사용 권장 항목)",
-      "sourceGrade": "A_official",
-      "lastVerified": "2026-05-24"
+      "sourceName": "환경부 분리배출.kr — 유리병 카테고리 (깨진 유리 안내)",
+      "sourceGrade": "B_partial",
+      "lastVerified": "2026-05-24 (v5.40 정직 정정)"
     },
     "reusable_tumbler": {
-      "name": "텀블러",
+      "name": "텀블러 (재사용)",
       "category": "plastic",
-      "note": "텀블러. 재사용 권장. 폐기 시 재질별 — 스테인리스는 금속류, 플라스틱은 플라스틱류.",
+      "note": "환경부 표준에 별도 카테고리 없음. 버릴 때 재질로 분류.",
       "steps": [
-        "세척 후 본인이 다시 사용",
-        "버릴 때만 폐기 절차"
+        "⚠️ 환경부 분리배출.kr에 \"재사용 텀블러\" 카테고리 없음",
+        "버려야 할 때 — 재질대로:",
+        "플라스틱 텀블러 → 플라스틱 수거함",
+        "스테인리스 → 금속류 수거함",
+        "⚠️ 재사용 권장은 일반 상식"
       ],
       "regionVariation": false,
-      "confidence": "high",
+      "confidence": "medium",
       "aliases": [
         "텀블러 컵",
         "스테인리스 텀블러",
@@ -23807,9 +23813,9 @@
         "물병(스테인리스)"
       ],
       "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110104",
-      "sourceName": "환경부 분리배출.kr (재사용 권장 항목)",
-      "sourceGrade": "A_official",
-      "lastVerified": "2026-05-24"
+      "sourceName": "환경부 분리배출.kr — 플라스틱류 카테고리",
+      "sourceGrade": "B_partial",
+      "lastVerified": "2026-05-24 (v5.40 정직 정정)"
     },
     "침대": {
       "name": "침대",
@@ -25171,9 +25177,9 @@
       "sourceGrade": "A"
     },
     "treadmill": {
-      "name": "런닝머신",
+      "name": "런닝머신 (대형)",
       "category": "furniture",
-      "note": "대형 운동기구는 대형폐기물 신고. 소형 (스텝퍼 등)은 종량제봉투.",
+      "note": "대형 운동기구는 대형폐기물 신고. 소형 (스텝퍼 등)은 종량제봉투. [한글 런닝머신 item과 통합 후 우선 사용]",
       "steps": [
         "거주 지자체 대형폐기물 신고",
         "수수료 납부 + 필증 부착",
@@ -25735,7 +25741,6 @@
         "은박지",
         "음식 포장 비닐",
         "쿠션 비닐",
-        "쿠킹 포일",
         "택배 비닐",
         "택배 비닐봉투",
         "투명 비닐",

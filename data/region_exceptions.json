@@ -79,7 +79,7 @@
           "RFID담당(시청)": "031-8075-2698",
           "일산동구청_환경녹지과": "031-8075-6243"
         },
-        "bulkyWasteUrl": "https://clean.gys.or.kr/",
+        "bulkyWasteUrl": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거 (E-순환거버넌스)",
           "phone": "1599-0903",
@@ -123,7 +123,8 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "bulkyWasteNote": "⚠️ 시청 페이지 안에서 \"대형폐기물\" 탭 선택. 또는 1599-0903 무상수거."
       },
       "exceptions": {
         "instant_rice_bowl": {
@@ -581,7 +582,7 @@
           "자원순환과(시청)": "031-8075-2695",
           "덕양구청": "031-8075-2114"
         },
-        "bulkyWasteUrl": "https://clean.gys.or.kr/",
+        "bulkyWasteUrl": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거",
           "phone": "1599-0903",
@@ -596,7 +597,15 @@
         "garbageBag": {
           "priceNote": "고양시 가정용 종량제: 1ℓ 60원 · 2ℓ 100원 · 3ℓ 130원 · 5ℓ 200원 · 10ℓ 400원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "bulkyWasteNote": "⚠️ 시청 페이지 안에서 \"대형폐기물\" 탭 선택. 또는 1599-0903 무상수거.",
+        "sources": [
+          {
+            "url": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
+            "grade": "A",
+            "note": "생활폐기물 안내 (대형폐기물 탭 포함)"
+          }
+        ]
       },
       "exceptions": {
         "instant_rice_bowl": {
@@ -6570,7 +6579,7 @@
           "자원순환과(시청)": "031-8075-2695",
           "일산서구청_환경녹지과": "031-8075-7243"
         },
-        "bulkyWasteUrl": "https://clean.gys.or.kr/",
+        "bulkyWasteUrl": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거",
           "phone": "1599-0903",
@@ -6585,7 +6594,15 @@
         "garbageBag": {
           "priceNote": "고양시 가정용 종량제: 1ℓ 60원 · 2ℓ 100원 · 3ℓ 130원 · 5ℓ 200원 · 10ℓ 400원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "bulkyWasteNote": "⚠️ 시청 페이지 안에서 \"대형폐기물\" 탭 선택. 또는 1599-0903 무상수거.",
+        "sources": [
+          {
+            "url": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
+            "grade": "A",
+            "note": "생활폐기물 안내 (대형폐기물 탭 포함)"
+          }
+        ]
       },
       "exceptions": {
         "instant_rice_bowl": {

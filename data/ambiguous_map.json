@@ -1,0 +1,32 @@
+{
+  "$schema": "Phase 5: 사용자 선택 UI — 같은 키워드가 재질 다른 물건 가리킴",
+  "version": "1.1.0",
+  "lastUpdated": "2026-05-24",
+  "note": "Gemini 응답 또는 사용자 검색이 아래 키워드일 때 → 사용자에게 후보 보여주고 선택받기",
+  "ambiguous": {
+    "라이스컨테이너": [
+      {
+        "id": "쌀통",
+        "name": "쌀통",
+        "cat": "furniture"
+      },
+      {
+        "id": "즉석밥용기",
+        "name": "즉석밥용기",
+        "cat": "plastic"
+      }
+    ],
+    "포장지": [
+      {
+        "id": "packaging_general",
+        "name": "포장재 (일반)",
+        "cat": "plastic"
+      },
+      {
+        "id": "paper",
+        "name": "종이류",
+        "cat": "paper"
+      }
+    ]
+  }
+}
