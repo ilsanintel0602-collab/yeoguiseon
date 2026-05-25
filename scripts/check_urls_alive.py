@@ -16,6 +16,14 @@ import urllib.request
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
+import sys
+if sys.platform == 'win32':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+        sys.stderr.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
+
 ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__), ".."))
 TIMEOUT = 5  # 5초
 HEADERS = {

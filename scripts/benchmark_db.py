@@ -18,6 +18,14 @@ v5.x 정정 효과를 객관 수치로 추적.
 """
 import json
 import os
+
+import sys
+if sys.platform == 'win32':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+        sys.stderr.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
 import sys
 from collections import Counter, defaultdict
 from datetime import datetime

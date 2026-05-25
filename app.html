@@ -334,7 +334,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.43</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.44</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -2050,6 +2050,17 @@ function renderResult(aiData) {
   let html = aiBadge;
   html += `<div class="item-name">${itemName}</div>`;
   html += `<div class="category-pill ${rule.category}">${cat?.name || '일반'}</div>`;
+  // v5.44: 모호 키워드 안내 (재질·용도 다른 경우 사용자 선택 권유)
+  if (rule.ambiguous && Array.isArray(rule.ambiguous)) {
+    html += `<div style="margin:10px 0;padding:10px 14px;background:#fef3c7;border-left:3px solid #f59e0b;border-radius:6px;font-size:13px;">`;
+    html += `<b>⚠️ 같은 이름, 다른 재질·용도</b><br>`;
+    html += `<div style="font-size:12px;opacity:0.85;margin-top:4px;">아래 중 어느 것? 정확한 분리를 위해 확인:</div>`;
+    html += `<ul style="margin:6px 0 0;padding-left:20px;">`;
+    for (const opt of rule.ambiguous) {
+      html += `<li>${opt.name} <span style="opacity:0.7;">[${opt.cat}]</span></li>`;
+    }
+    html += `</ul></div>`;
+  }
   html += `<div class="confidence">신뢰도: ${confText} (${(confValue * 100).toFixed(0)}%) · ${regionMeta?.shortName || ''} 기준 ${dataBadge}</div>`;
 
   if (rule.source_type === 'region_exception') {

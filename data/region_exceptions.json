@@ -657,7 +657,6 @@
         "city": "파주시",
         "officialUrl": "https://www.paju.go.kr/",
         "wasteUrl": "https://www.paju.go.kr/user/board/BD_board.list.do?bbsCd=1042",
-        "bulkyWasteUrl": "https://www.paju.go.kr/user/contents/contentsView.do?cntntsId=2079",
         "phones": {
           "자원순환과": "031-940-4000",
           "시청대표": "031-940-4000"
@@ -2092,7 +2091,6 @@
       "shortName": "영통구",
       "cityGuide": {
         "city": "경기도 수원시 영통구",
-        "officialUrl": "https://www.suwon.go.kr/yeongtong/",
         "phones": {
           "시청대표": "031-228-2114"
         },
@@ -2549,7 +2547,6 @@
       "shortName": "부산 북구",
       "cityGuide": {
         "city": "부산광역시 북구",
-        "officialUrl": "https://www.bsbuk.go.kr/",
         "phones": {
           "구청대표": "051-309-4000"
         },
@@ -2727,7 +2724,6 @@
       "shortName": "광주 동구",
       "cityGuide": {
         "city": "광주광역시 동구",
-        "officialUrl": "https://donggu.gwangju.kr/",
         "phones": {
           "구청대표": "062-608-2000"
         },
@@ -3346,7 +3342,6 @@
       "shortName": "보령",
       "cityGuide": {
         "city": "보령시",
-        "officialUrl": "https://www.boryeong.go.kr/",
         "phones": {
           "시청대표": "041-930-3114"
         },
@@ -3892,7 +3887,6 @@
       "shortName": "통영",
       "cityGuide": {
         "city": "통영시",
-        "officialUrl": "https://www.utongyeong.go.kr/",
         "phones": {
           "시청대표": "055-650-3000"
         },
@@ -4554,7 +4548,6 @@
       "shortName": "광주 북구",
       "cityGuide": {
         "city": "광주광역시 북구",
-        "officialUrl": "https://www.bukgu.gwangju.kr/",
         "phones": {
           "구청대표": "062-410-6000"
         },

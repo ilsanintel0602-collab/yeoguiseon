@@ -1,3 +1,11 @@
+
+import sys
+if sys.platform == 'win32':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+        sys.stderr.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
 #!/usr/bin/env python3
 """
 Phase F: 사용자 피드백 학습 루프

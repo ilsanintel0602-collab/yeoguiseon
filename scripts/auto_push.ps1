@@ -38,6 +38,22 @@ $Headers = @{
 }
 $API = "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME"
 
+# ==================== 1.5 (v5.44): quick_check + auto_snapshot ====================
+Write-Host "`n[1.5] quick_check + DB benchmark..." -ForegroundColor Cyan
+# v5.45: Windows cp949 인코딩 문제 회피 — Python stdout UTF-8 강제
+$env:PYTHONIOENCODING = "utf-8"
+$env:PYTHONUTF8 = "1"
+$qcResult = & python "$REPO_ROOT\scripts\quick_check.py"
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "[ERR] quick_check FAILED. Push aborted." -ForegroundColor Red
+    Write-Host "      Run: python scripts\auto_snapshot.py restore  (truncation 시)" -ForegroundColor Yellow
+    Read-Host "Press Enter to exit"
+    exit 1
+}
+Write-Host "[OK] quick_check PASS" -ForegroundColor Green
+& python "$REPO_ROOT\scripts\auto_snapshot.py" save | Out-Null
+Write-Host "[OK] snapshot saved" -ForegroundColor Green
+
 # ==================== 2. Commit message ====================
 $CommitMsg = Read-Host "`nCommit message (Enter for auto)"
 if ([string]::IsNullOrWhiteSpace($CommitMsg)) {

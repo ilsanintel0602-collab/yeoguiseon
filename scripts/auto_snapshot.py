@@ -18,6 +18,14 @@
 """
 import os
 import sys
+
+import sys
+if sys.platform == 'win32':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+        sys.stderr.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
 import shutil
 import glob
 from datetime import datetime
