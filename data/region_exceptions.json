@@ -57,7 +57,11 @@
         "garbageBag": {
           "priceNote": "강남구 가정용 종량제: 10ℓ 250원 · 20ℓ 490원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       }
     },
     "41285": {
@@ -669,7 +673,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -699,7 +707,11 @@
         "garbageBag": {
           "priceNote": "김포시 가정용 종량제: 50ℓ 2400원 · 75ℓ 3600원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -728,7 +740,11 @@
         "garbageBag": {
           "priceNote": "의정부시 가정용 종량제: 3ℓ 140원 · 5ℓ 240원 · 10ℓ 420원 · 20ℓ 840원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -756,7 +772,11 @@
         "garbageBag": {
           "priceNote": "광명시 가정용 종량제: 1ℓ 60원 · 2ℓ 80원 · 3ℓ 110원 · 5ℓ 180원 · 10ℓ 320원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -785,7 +805,11 @@
         "garbageBag": {
           "priceNote": "부천시 가정용 종량제: 5ℓ 150원 · 10ℓ 300원 · 20ℓ 600원 · 50ℓ 1500원 · 75ℓ 2250원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -813,7 +837,11 @@
         "garbageBag": {
           "priceNote": "평택시 가정용 종량제: 5ℓ 140원 · 10ℓ 270원 · 20ℓ 530원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -842,7 +870,11 @@
         "garbageBag": {
           "priceNote": "마포구 가정용 종량제: 5ℓ 130원 · 10ℓ 250원 · 20ℓ 490원 · 30ℓ 740원 · 50ℓ 1250원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -871,7 +903,11 @@
         "garbageBag": {
           "priceNote": "은평구 가정용 종량제: 2ℓ 80원 · 5ℓ 190원 · 10ℓ 380원 · 20ℓ 760원 · 50ℓ 1250원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -900,7 +936,11 @@
         "garbageBag": {
           "priceNote": "서대문구 가정용 종량제: 1ℓ 100원 · 2ℓ 200원 · 3ℓ 300원 · 5ℓ 500원 · 10ℓ 1000원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -929,7 +969,11 @@
         "garbageBag": {
           "priceNote": "영등포구 가정용 종량제: 3ℓ 90원 · 5ℓ 130원 · 10ℓ 250원 · 20ℓ 490원 · 30ℓ 740원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -958,7 +1002,11 @@
         "garbageBag": {
           "priceNote": "양천구 가정용 종량제: 3ℓ 90원 · 5ℓ 130원 · 10ℓ 250원 · 20ℓ 490원 · 30ℓ 740원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -987,7 +1035,11 @@
         "garbageBag": {
           "priceNote": "강서구 가정용 종량제: 10ℓ 250원 · 20ℓ 490원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1016,7 +1068,11 @@
         "garbageBag": {
           "priceNote": "종로구 가정용 종량제: 1ℓ 100원 · 2ℓ 190원 · 3ℓ 300원 · 5ℓ 500원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1045,7 +1101,11 @@
         "garbageBag": {
           "priceNote": "중구 가정용 종량제: 1ℓ 100원 · 2ℓ 200원 · 3ℓ 300원 · 5ℓ 500원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1070,7 +1130,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1099,7 +1163,11 @@
         "garbageBag": {
           "priceNote": "성남시 가정용 종량제: 5ℓ 130원 · 10ℓ 250원 · 20ℓ 500원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1127,7 +1195,11 @@
         "garbageBag": {
           "priceNote": "안양시 가정용 종량제: 10ℓ 300원 · 20ℓ 550원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1155,7 +1227,11 @@
         "garbageBag": {
           "priceNote": "안양시 가정용 종량제: 10ℓ 300원 · 20ℓ 550원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1182,7 +1258,11 @@
         "garbageBag": {
           "priceNote": "성동구 가정용 종량제: 5ℓ 130원 · 10ℓ 250원 · 20ℓ 490원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1209,7 +1289,11 @@
         "garbageBag": {
           "priceNote": "광진구 가정용 종량제: 3ℓ 90원 · 5ℓ 130원 · 10ℓ 250원 · 20ℓ 490원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1236,7 +1320,11 @@
         "garbageBag": {
           "priceNote": "동대문구 가정용 종량제: 10ℓ 250원 · 20ℓ 490원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1263,7 +1351,11 @@
         "garbageBag": {
           "priceNote": "중랑구 가정용 종량제: 5ℓ 130원 · 10ℓ 250원 · 20ℓ 490원 · 30ℓ 740원 · 50ℓ 1250원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1290,7 +1382,11 @@
         "garbageBag": {
           "priceNote": "성북구 가정용 종량제: 20ℓ 490원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1317,7 +1413,11 @@
         "garbageBag": {
           "priceNote": "강북구 가정용 종량제: 10ℓ 250원 · 20ℓ 490원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1340,7 +1440,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1367,7 +1471,11 @@
         "garbageBag": {
           "priceNote": "노원구 가정용 종량제: 3ℓ 90원 · 5ℓ 130원 · 10ℓ 250원 · 20ℓ 490원 · 50ℓ 1250원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1394,7 +1502,11 @@
         "garbageBag": {
           "priceNote": "구로구 가정용 종량제: 10ℓ 250원 · 20ℓ 490원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1417,7 +1529,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1444,7 +1560,11 @@
         "garbageBag": {
           "priceNote": "동작구 가정용 종량제: 3ℓ 90원 · 5ℓ 130원 · 10ℓ 250원 · 20ℓ 490원 · 30ℓ 740원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1471,7 +1591,11 @@
         "garbageBag": {
           "priceNote": "관악구 가정용 종량제: 1ℓ 100원 · 2ℓ 190원 · 3ℓ 300원 · 5ℓ 500원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1498,7 +1622,11 @@
         "garbageBag": {
           "priceNote": "서초구 가정용 종량제: 10ℓ 250원 · 20ℓ 490원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1525,7 +1653,11 @@
         "garbageBag": {
           "priceNote": "송파구 가정용 종량제: 10ℓ 250원 · 20ℓ 490원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1548,7 +1680,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1575,7 +1711,11 @@
         "garbageBag": {
           "priceNote": "구리시 가정용 종량제: 3ℓ 90원 · 5ℓ 140원 · 10ℓ 260원 · 20ℓ 510원 · 50ℓ 1250원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1602,7 +1742,11 @@
         "garbageBag": {
           "priceNote": "남양주시 가정용 종량제: 5ℓ 190원 · 10ℓ 370원 · 20ℓ 740원 · 30ℓ 1110원 · 50ℓ 1850원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1629,7 +1773,11 @@
         "garbageBag": {
           "priceNote": "군포시 가정용 종량제: 1ℓ 50원 · 2ℓ 100원 · 5ℓ 250원 · 10ℓ 800원 · 20ℓ 1600원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1656,7 +1804,11 @@
         "garbageBag": {
           "priceNote": "의왕시 가정용 종량제: 10ℓ 350원 · 20ℓ 680원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1683,7 +1835,11 @@
         "garbageBag": {
           "priceNote": "하남시 가정용 종량제: 5ℓ 130원 · 10ℓ 260원 · 20ℓ 500원 · 50ℓ 1240원 · 75ℓ 1860원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1710,7 +1866,11 @@
         "garbageBag": {
           "priceNote": "과천시 가정용 종량제: 1ℓ 30원 · 2ℓ 60원 · 3ℓ 70원 · 5ℓ 120원 · 10ℓ 230원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1737,7 +1897,11 @@
         "garbageBag": {
           "priceNote": "이천시 가정용 종량제: 5ℓ 170원 · 10ℓ 330원 · 20ℓ 640원 · 50ℓ 1580원 · 75ℓ 2360원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1764,7 +1928,11 @@
         "garbageBag": {
           "priceNote": "안성시 가정용 종량제: 5ℓ 170원 · 10ℓ 330원 · 20ℓ 660원 · 50ℓ 1650원 · 75ℓ 2500원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1791,7 +1959,11 @@
         "garbageBag": {
           "priceNote": "화성시 가정용 종량제: 5ℓ 150원 · 10ℓ 300원 · 20ℓ 600원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1814,7 +1986,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1841,7 +2017,11 @@
         "garbageBag": {
           "priceNote": "양주시 가정용 종량제: 3ℓ 90원 · 5ℓ 150원 · 10ℓ 300원 · 20ℓ 600원 · 50ℓ 1500원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1868,7 +2048,11 @@
         "garbageBag": {
           "priceNote": "포천시 가정용 종량제: 10ℓ 280원 · 20ℓ 560원 · 30ℓ 840원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1895,7 +2079,11 @@
         "garbageBag": {
           "priceNote": "여주시 가정용 종량제: 10ℓ 230원 · 20ℓ 460원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1922,7 +2110,11 @@
         "garbageBag": {
           "priceNote": "수원시 가정용 종량제: 10ℓ 300원 · 20ℓ 600원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1949,7 +2141,11 @@
         "garbageBag": {
           "priceNote": "동두천시 가정용 종량제: 5ℓ 120원 · 10ℓ 250원 · 20ℓ 550원 · 50ℓ 1250원 · 75ℓ 2000원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -1976,7 +2172,11 @@
         "garbageBag": {
           "priceNote": "중구 가정용 종량제: 5ℓ 160원 · 10ℓ 310원 · 20ℓ 620원 · 50ℓ 1540원 · 75ℓ 2300원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2003,7 +2203,11 @@
         "garbageBag": {
           "priceNote": "미추홀구 가정용 종량제: 5ℓ 210원 · 10ℓ 390원 · 20ℓ 750원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2030,7 +2234,11 @@
         "garbageBag": {
           "priceNote": "연수구 가정용 종량제: 30ℓ 2010원 · 60ℓ 3980원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2057,7 +2265,11 @@
         "garbageBag": {
           "priceNote": "남동구 가정용 종량제: 30ℓ 2350원 · 50ℓ 3920원 · 75ℓ 4730원 · 125ℓ 7870원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2084,7 +2296,11 @@
         "garbageBag": {
           "priceNote": "부평구 가정용 종량제: 30ℓ 1840원 · 60ℓ 3660원 · 125ℓ 7600원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2111,7 +2327,11 @@
         "garbageBag": {
           "priceNote": "계양구 가정용 종량제: 10ℓ 440원 · 20ℓ 870원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2138,7 +2358,11 @@
         "garbageBag": {
           "priceNote": "서구 가정용 종량제: 5ℓ 160원 · 10ℓ 310원 · 20ℓ 620원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2165,7 +2389,11 @@
         "garbageBag": {
           "priceNote": "강화군 가정용 종량제: 5ℓ 160원 · 10ℓ 310원 · 20ℓ 620원 · 50ℓ 1540원 · 75ℓ 2780원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2192,7 +2420,11 @@
         "garbageBag": {
           "priceNote": "중구 가정용 종량제: 10ℓ 430원 · 20ℓ 850원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2215,7 +2447,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2238,7 +2474,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2265,7 +2505,11 @@
         "garbageBag": {
           "priceNote": "동래구 가정용 종량제: 10ℓ 430원 · 20ℓ 850원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2292,7 +2536,11 @@
         "garbageBag": {
           "priceNote": "남구 가정용 종량제: 10ℓ 320원 · 20ℓ 640원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2319,7 +2567,11 @@
         "garbageBag": {
           "priceNote": "북구 가정용 종량제: 10ℓ 340원 · 20ℓ 680원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2346,7 +2598,11 @@
         "garbageBag": {
           "priceNote": "기장군 가정용 종량제: 5ℓ 150원 · 10ℓ 300원 · 20ℓ 590원 · 50ℓ 1470원 · 75ℓ 2200원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2373,7 +2629,11 @@
         "garbageBag": {
           "priceNote": "중구 가정용 종량제: 3ℓ 120원 · 5ℓ 180원 · 10ℓ 340원 · 20ℓ 670원 · 30ℓ 1080원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2396,7 +2656,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2423,7 +2687,11 @@
         "garbageBag": {
           "priceNote": "북구 가정용 종량제: 3ℓ 120원 · 5ℓ 180원 · 10ℓ 340원 · 20ℓ 670원 · 30ℓ 1080원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2446,7 +2714,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2469,7 +2741,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2492,7 +2768,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2519,7 +2799,11 @@
         "garbageBag": {
           "priceNote": "동구 가정용 종량제: 10ℓ 330원 · 20ℓ 660원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2542,7 +2826,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2565,7 +2853,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2592,7 +2884,11 @@
         "garbageBag": {
           "priceNote": "유성구 가정용 종량제: 3ℓ 100원 · 5ℓ 170원 · 10ℓ 330원 · 20ℓ 660원 · 50ℓ 1650원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2619,7 +2915,11 @@
         "garbageBag": {
           "priceNote": "대덕구 가정용 종량제: 10ℓ 330원 · 20ℓ 660원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2646,7 +2946,11 @@
         "garbageBag": {
           "priceNote": "중구 가정용 종량제: 5ℓ 160원 · 10ℓ 310원 · 20ℓ 600원 · 50ℓ 1490원 · 75ℓ 2220원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2673,7 +2977,11 @@
         "garbageBag": {
           "priceNote": "남구 가정용 종량제: 50ℓ 1490원 · 75ℓ 2220원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2696,7 +3004,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2723,7 +3035,11 @@
         "garbageBag": {
           "priceNote": "춘천시 가정용 종량제: 10ℓ 230원 · 20ℓ 470원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2746,7 +3062,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2773,7 +3093,11 @@
         "garbageBag": {
           "priceNote": "강릉시 가정용 종량제: 5ℓ 140원 · 10ℓ 290원 · 20ℓ 560원 · 50ℓ 1350원 · 75ℓ 2030원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2796,7 +3120,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2823,7 +3151,11 @@
         "garbageBag": {
           "priceNote": "태백시 가정용 종량제: 5ℓ 100원 · 10ℓ 190원 · 20ℓ 370원 · 50ℓ 890원 · 75ℓ 1320원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2846,7 +3178,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2873,7 +3209,11 @@
         "garbageBag": {
           "priceNote": "청주시 가정용 종량제: 100ℓ 6500원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2900,7 +3240,11 @@
         "garbageBag": {
           "priceNote": "충주시 가정용 종량제: 1ℓ 40원 · 2ℓ 80원 · 3ℓ 120원 · 5ℓ 200원 · 10ℓ 400원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2927,7 +3271,11 @@
         "garbageBag": {
           "priceNote": "제천시 가정용 종량제: 5ℓ 100원 · 10ℓ 200원 · 20ℓ 300원 · 50ℓ 700원 · 75ℓ 1050원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2954,7 +3302,11 @@
         "garbageBag": {
           "priceNote": "천안시 가정용 종량제: 1ℓ 40원 · 2ℓ 50원 · 3ℓ 60원 · 5ℓ 140원 · 10ℓ 250원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -2981,7 +3333,11 @@
         "garbageBag": {
           "priceNote": "공주시 가정용 종량제: 5ℓ 90원 · 10ℓ 170원 · 20ℓ 320원 · 30ℓ 480원 · 50ℓ 790원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3008,7 +3364,11 @@
         "garbageBag": {
           "priceNote": "보령시 가정용 종량제: 10ℓ 200원 · 20ℓ 380원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3035,7 +3395,11 @@
         "garbageBag": {
           "priceNote": "아산시 가정용 종량제: 1ℓ 20원 · 2ℓ 40원 · 3ℓ 60원 · 5ℓ 100원 · 10ℓ 180원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3062,7 +3426,11 @@
         "garbageBag": {
           "priceNote": "서산시 가정용 종량제: 3ℓ 70원 · 5ℓ 120원 · 10ℓ 230원 · 20ℓ 460원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3085,7 +3453,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3112,7 +3484,11 @@
         "garbageBag": {
           "priceNote": "군산시 가정용 종량제: 10ℓ 300원 · 20ℓ 500원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3139,7 +3515,11 @@
         "garbageBag": {
           "priceNote": "익산시 가정용 종량제: 3ℓ 80원 · 5ℓ 140원 · 10ℓ 270원 · 20ℓ 540원 · 30ℓ 810원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3166,7 +3546,11 @@
         "garbageBag": {
           "priceNote": "정읍시 가정용 종량제: 20ℓ 180원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3193,7 +3577,11 @@
         "garbageBag": {
           "priceNote": "목포시 가정용 종량제: 5ℓ 110원 · 10ℓ 210원 · 20ℓ 400원 · 30ℓ 600원 · 50ℓ 990원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3220,7 +3608,11 @@
         "garbageBag": {
           "priceNote": "여수시 가정용 종량제: 5ℓ 140원 · 10ℓ 250원 · 20ℓ 500원 · 30ℓ 720원 · 50ℓ 1200원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3247,7 +3639,11 @@
         "garbageBag": {
           "priceNote": "순천시 가정용 종량제: 3ℓ 90원 · 5ℓ 150원 · 10ℓ 290원 · 20ℓ 580원 · 50ℓ 1380원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3270,7 +3666,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3297,7 +3697,11 @@
         "garbageBag": {
           "priceNote": "포항시 가정용 종량제: 3ℓ 130원 · 5ℓ 220원 · 10ℓ 450원 · 20ℓ 900원 · 50ℓ 2250원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3324,7 +3728,11 @@
         "garbageBag": {
           "priceNote": "경주시 가정용 종량제: 10ℓ 180원 · 20ℓ 350원 · 30ℓ 520원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3351,7 +3759,11 @@
         "garbageBag": {
           "priceNote": "김천시 가정용 종량제: 5ℓ 100원 · 10ℓ 180원 · 20ℓ 350원 · 50ℓ 860원 · 75ℓ 1270원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3378,7 +3790,11 @@
         "garbageBag": {
           "priceNote": "안동시 가정용 종량제: 10ℓ 150원 · 20ℓ 300원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3405,7 +3821,11 @@
         "garbageBag": {
           "priceNote": "구미시 가정용 종량제: 5ℓ 150원 · 10ℓ 300원 · 20ℓ 600원 · 50ℓ 1500원 · 75ℓ 2250원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3432,7 +3852,11 @@
         "garbageBag": {
           "priceNote": "창원시 가정용 종량제: 5ℓ 170원 · 10ℓ 350원 · 20ℓ 700원 · 50ℓ 1790원 · 75ℓ 2690원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3455,7 +3879,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3482,7 +3910,11 @@
         "garbageBag": {
           "priceNote": "통영시 가정용 종량제: 3ℓ 110원 · 5ℓ 180원 · 10ℓ 340원 · 20ℓ 670원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3505,7 +3937,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3532,7 +3968,11 @@
         "garbageBag": {
           "priceNote": "김해시 가정용 종량제: 3ℓ 130원 · 5ℓ 200원 · 10ℓ 400원 · 20ℓ 800원 · 30ℓ 1200원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3559,7 +3999,11 @@
         "garbageBag": {
           "priceNote": "밀양시 가정용 종량제: 10ℓ 370원 · 20ℓ 700원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3586,7 +4030,11 @@
         "garbageBag": {
           "priceNote": "거제시 가정용 종량제: 50ℓ 1800원 · 75ℓ 2750원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3613,7 +4061,11 @@
         "garbageBag": {
           "priceNote": "양산시 가정용 종량제: 50ℓ 2750원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3640,7 +4092,11 @@
         "garbageBag": {
           "priceNote": "제주시 가정용 종량제: 5ℓ 120원 · 10ℓ 240원 · 20ℓ 700원 · 30ℓ 1050원 · 50ℓ 1750원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3667,7 +4123,11 @@
         "garbageBag": {
           "priceNote": "서귀포시 가정용 종량제: 5ℓ 120원 · 10ℓ 240원 · 20ℓ 700원 · 30ℓ 1050원 · 50ℓ 1750원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3690,7 +4150,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3717,7 +4181,11 @@
         "garbageBag": {
           "priceNote": "논산시 가정용 종량제: 5ℓ 120원 · 10ℓ 240원 · 20ℓ 470원 · 50ℓ 1170원 · 75ℓ 1740원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3744,7 +4212,11 @@
         "garbageBag": {
           "priceNote": "계룡시 가정용 종량제: 10ℓ 240원 · 20ℓ 470원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3771,7 +4243,11 @@
         "garbageBag": {
           "priceNote": "당진시 가정용 종량제: 1ℓ 40원 · 3ℓ 80원 · 5ℓ 130원 · 10ℓ 260원 · 20ℓ 510원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3794,7 +4270,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3821,7 +4301,11 @@
         "garbageBag": {
           "priceNote": "김제시 가정용 종량제: 20ℓ 470원 · 50ℓ 1150원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3848,7 +4332,11 @@
         "garbageBag": {
           "priceNote": "영주시 가정용 종량제: 5ℓ 120원 · 10ℓ 210원 · 20ℓ 390원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3875,7 +4363,11 @@
         "garbageBag": {
           "priceNote": "영천시 가정용 종량제: 5ℓ 90원 · 10ℓ 180원 · 20ℓ 360원 · 50ℓ 900원 · 75ℓ 1350원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3902,7 +4394,11 @@
         "garbageBag": {
           "priceNote": "상주시 가정용 종량제: 5ℓ 100원 · 10ℓ 160원 · 20ℓ 290원 · 50ℓ 720원 · 75ℓ 1080원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3929,7 +4425,11 @@
         "garbageBag": {
           "priceNote": "문경시 가정용 종량제: 5ℓ 70원 · 10ℓ 140원 · 20ℓ 270원 · 50ℓ 650원 · 75ℓ 930원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3956,7 +4456,11 @@
         "garbageBag": {
           "priceNote": "경산시 가정용 종량제: 5ℓ 120원 · 10ℓ 220원 · 20ℓ 430원 · 50ℓ 1050원 · 75ℓ 1520원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -3983,7 +4487,11 @@
         "garbageBag": {
           "priceNote": "달서구 가정용 종량제: 3ℓ 120원 · 5ℓ 180원 · 10ℓ 340원 · 20ℓ 670원 · 30ℓ 1080원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4006,7 +4514,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4029,7 +4541,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4052,7 +4568,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4075,7 +4595,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4102,7 +4626,11 @@
         "garbageBag": {
           "priceNote": "동구 가정용 종량제: 5ℓ 160원 · 10ℓ 310원 · 20ℓ 600원 · 50ℓ 1490원 · 75ℓ 2220원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4129,7 +4657,11 @@
         "garbageBag": {
           "priceNote": "북구 가정용 종량제: 5ℓ 160원 · 10ℓ 310원 · 20ℓ 600원 · 50ℓ 1490원 · 75ℓ 2220원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4156,7 +4688,11 @@
         "garbageBag": {
           "priceNote": "울주군 가정용 종량제: 5ℓ 160원 · 10ℓ 310원 · 20ℓ 600원 · 50ℓ 1490원 · 75ℓ 2220원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4183,7 +4719,11 @@
         "garbageBag": {
           "priceNote": "시흥시 가정용 종량제: 10ℓ 520원 · 30ℓ 1570원 · 50ℓ 2610원 · 75ℓ 3920원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4210,7 +4750,11 @@
         "garbageBag": {
           "priceNote": "오산시 가정용 종량제: 5ℓ 140원 · 10ℓ 260원 · 20ℓ 480원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4237,7 +4781,11 @@
         "garbageBag": {
           "priceNote": "가평군 가정용 종량제: 10ℓ 300원 · 20ℓ 600원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4264,7 +4812,11 @@
         "garbageBag": {
           "priceNote": "양평군 가정용 종량제: 5ℓ 140원 · 10ℓ 280원 · 20ℓ 560원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4291,7 +4843,11 @@
         "garbageBag": {
           "priceNote": "연천군 가정용 종량제: 1ℓ 30원 · 3ℓ 70원 · 5ℓ 130원 · 10ℓ 290원 · 20ℓ 560원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4318,7 +4874,11 @@
         "garbageBag": {
           "priceNote": "홍천군 가정용 종량제: 3ℓ 70원 · 5ℓ 120원 · 10ℓ 230원 · 20ℓ 450원 · 50ℓ 1110원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4345,7 +4905,11 @@
         "garbageBag": {
           "priceNote": "횡성군 가정용 종량제: 10ℓ 200원 · 20ℓ 400원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4372,7 +4936,11 @@
         "garbageBag": {
           "priceNote": "영월군 가정용 종량제: 10ℓ 180원 · 20ℓ 350원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4399,7 +4967,11 @@
         "garbageBag": {
           "priceNote": "평창군 가정용 종량제: 3ℓ 70원 · 5ℓ 130원 · 10ℓ 260원 · 20ℓ 490원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4426,7 +4998,11 @@
         "garbageBag": {
           "priceNote": "정선군 가정용 종량제: 10ℓ 220원 · 20ℓ 420원 · 30ℓ 640원 · 50ℓ 1050원 · 75ℓ 1560원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4453,7 +5029,11 @@
         "garbageBag": {
           "priceNote": "보은군 가정용 종량제: 5ℓ 80원 · 10ℓ 140원 · 20ℓ 270원 · 50ℓ 650원 · 75ℓ 1000원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4480,7 +5060,11 @@
         "garbageBag": {
           "priceNote": "옥천군 가정용 종량제: 5ℓ 80원 · 10ℓ 140원 · 20ℓ 270원 · 30ℓ 400원 · 50ℓ 650원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4507,7 +5091,11 @@
         "garbageBag": {
           "priceNote": "영동군 가정용 종량제: 50ℓ 2000원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4534,7 +5122,11 @@
         "garbageBag": {
           "priceNote": "증평군 가정용 종량제: 5ℓ 150원 · 10ℓ 260원 · 20ℓ 520원 · 30ℓ 730원 · 50ℓ 1200원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4561,7 +5153,11 @@
         "garbageBag": {
           "priceNote": "진천군 가정용 종량제: 2ℓ 90원 · 5ℓ 190원 · 10ℓ 340원 · 20ℓ 640원 · 30ℓ 2000원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4588,7 +5184,11 @@
         "garbageBag": {
           "priceNote": "괴산군 가정용 종량제: 10ℓ 140원 · 20ℓ 280원 · 50ℓ 660원 · 75ℓ 1000원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4615,7 +5215,11 @@
         "garbageBag": {
           "priceNote": "음성군 가정용 종량제: 5ℓ 190원 · 10ℓ 340원 · 20ℓ 640원 · 50ℓ 1580원 · 75ℓ 2310원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4642,7 +5246,11 @@
         "garbageBag": {
           "priceNote": "단양군 가정용 종량제: 20ℓ 300원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4665,7 +5273,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4688,7 +5300,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4715,7 +5331,11 @@
         "garbageBag": {
           "priceNote": "서천군 가정용 종량제: 10ℓ 150원 · 20ℓ 300원 · 30ℓ 450원 · 50ℓ 750원 · 75ℓ 1200원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4742,7 +5362,11 @@
         "garbageBag": {
           "priceNote": "청양군 가정용 종량제: 10ℓ 200원 · 20ℓ 400원 · 30ℓ 600원 · 50ℓ 1000원 · 75ℓ 1300원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4765,7 +5389,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4792,7 +5420,11 @@
         "garbageBag": {
           "priceNote": "예산군 가정용 종량제: 3ℓ 60원 · 5ℓ 100원 · 10ℓ 200원 · 20ℓ 400원 · 30ℓ 600원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4819,7 +5451,11 @@
         "garbageBag": {
           "priceNote": "태안군 가정용 종량제: 10ℓ 180원 · 20ℓ 350원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4846,7 +5482,11 @@
         "garbageBag": {
           "priceNote": "완주군 가정용 종량제: 5ℓ 110원 · 10ℓ 220원 · 20ℓ 420원 · 50ℓ 1100원 · 75ℓ 1450원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4869,7 +5509,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4892,7 +5536,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4919,7 +5567,11 @@
         "garbageBag": {
           "priceNote": "장수군 가정용 종량제: 3ℓ 70원 · 5ℓ 90원 · 10ℓ 180원 · 20ℓ 360원 · 30ℓ 540원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4946,7 +5598,11 @@
         "garbageBag": {
           "priceNote": "임실군 가정용 종량제: 5ℓ 90원 · 10ℓ 150원 · 20ℓ 320원 · 50ℓ 790원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -4973,7 +5629,11 @@
         "garbageBag": {
           "priceNote": "순창군 가정용 종량제: 5ℓ 120원 · 10ℓ 190원 · 20ℓ 380원 · 30ℓ 560원 · 50ℓ 900원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5000,7 +5660,11 @@
         "garbageBag": {
           "priceNote": "고창군 가정용 종량제: 10ℓ 210원 · 20ℓ 400원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5027,7 +5691,11 @@
         "garbageBag": {
           "priceNote": "부안군 가정용 종량제: 10ℓ 350원 · 20ℓ 700원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5050,7 +5718,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5077,7 +5749,11 @@
         "garbageBag": {
           "priceNote": "담양군 가정용 종량제: 5ℓ 90원 · 10ℓ 180원 · 20ℓ 310원 · 50ℓ 900원 · 75ℓ 1350원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5100,7 +5776,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5127,7 +5807,11 @@
         "garbageBag": {
           "priceNote": "구례군 가정용 종량제: 5ℓ 60원 · 10ℓ 110원 · 20ℓ 220원 · 50ℓ 540원 · 75ℓ 830원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5154,7 +5838,11 @@
         "garbageBag": {
           "priceNote": "고흥군 가정용 종량제: 3ℓ 30원 · 5ℓ 90원 · 10ℓ 140원 · 20ℓ 260원 · 50ℓ 450원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5181,7 +5869,11 @@
         "garbageBag": {
           "priceNote": "보성군 가정용 종량제: 5ℓ 90원 · 10ℓ 140원 · 20ℓ 260원 · 50ℓ 640원 · 75ℓ 950원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5204,7 +5896,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5231,7 +5927,11 @@
         "garbageBag": {
           "priceNote": "장흥군 가정용 종량제: 10ℓ 240원 · 20ℓ 460원 · 50ℓ 1100원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5258,7 +5958,11 @@
         "garbageBag": {
           "priceNote": "강진군 가정용 종량제: 10ℓ 160원 · 20ℓ 290원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5285,7 +5989,11 @@
         "garbageBag": {
           "priceNote": "해남군 가정용 종량제: 5ℓ 110원 · 10ℓ 210원 · 20ℓ 430원 · 50ℓ 1050원 · 75ℓ 1580원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5312,7 +6020,11 @@
         "garbageBag": {
           "priceNote": "영암군 가정용 종량제: 5ℓ 130원 · 10ℓ 270원 · 20ℓ 540원 · 50ℓ 1360원 · 75ℓ 2040원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5339,7 +6051,11 @@
         "garbageBag": {
           "priceNote": "무안군 가정용 종량제: 5ℓ 90원 · 10ℓ 170원 · 20ℓ 320원 · 30ℓ 540원 · 50ℓ 790원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5366,7 +6082,11 @@
         "garbageBag": {
           "priceNote": "함평군 가정용 종량제: 3ℓ 40원 · 5ℓ 65원 · 10ℓ 120원 · 20ℓ 220원 · 50ℓ 530원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5393,7 +6113,11 @@
         "garbageBag": {
           "priceNote": "영광군 가정용 종량제: 5ℓ 74원 · 10ℓ 148원 · 20ℓ 277원 · 50ℓ 690원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5420,7 +6144,11 @@
         "garbageBag": {
           "priceNote": "장성군 가정용 종량제: 3ℓ 50원 · 5ℓ 70원 · 10ℓ 140원 · 20ℓ 280원 · 30ℓ 420원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5443,7 +6171,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5470,7 +6202,11 @@
         "garbageBag": {
           "priceNote": "진도군 가정용 종량제: 5ℓ 70원 · 10ℓ 140원 · 20ℓ 260원 · 30ℓ 390원 · 50ℓ 650원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5497,7 +6233,11 @@
         "garbageBag": {
           "priceNote": "신안군 가정용 종량제: 10ℓ 120원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5524,7 +6264,11 @@
         "garbageBag": {
           "priceNote": "군위군 가정용 종량제: 5ℓ 70원 · 10ℓ 130원 · 20ℓ 240원 · 50ℓ 600원 · 100ℓ 1190원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5551,7 +6295,11 @@
         "garbageBag": {
           "priceNote": "의성군 가정용 종량제: 10ℓ 170원 · 20ℓ 340원 · 50ℓ 750원 · 75ℓ 1120원 · 100ℓ 1500원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5578,7 +6326,11 @@
         "garbageBag": {
           "priceNote": "청송군 가정용 종량제: 3ℓ 50원 · 5ℓ 70원 · 10ℓ 130원 · 20ℓ 250원 · 50ℓ 590원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5605,7 +6357,11 @@
         "garbageBag": {
           "priceNote": "영양군 가정용 종량제: 10ℓ 160원 · 20ℓ 300원 · 50ℓ 750원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5632,7 +6388,11 @@
         "garbageBag": {
           "priceNote": "영덕군 가정용 종량제: 10ℓ 130원 · 20ℓ 250원 · 50ℓ 600원 · 75ℓ 900원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5659,7 +6419,11 @@
         "garbageBag": {
           "priceNote": "청도군 가정용 종량제: 5ℓ 80원 · 10ℓ 150원 · 20ℓ 290원 · 30ℓ 430원 · 50ℓ 710원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5686,7 +6450,11 @@
         "garbageBag": {
           "priceNote": "고령군 가정용 종량제: 1ℓ 20원 · 2ℓ 40원 · 3ℓ 50원 · 5ℓ 90원 · 10ℓ 180원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5709,7 +6477,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5736,7 +6508,11 @@
         "garbageBag": {
           "priceNote": "칠곡군 가정용 종량제: 3ℓ 110원 · 5ℓ 160원 · 10ℓ 300원 · 20ℓ 600원 · 50ℓ 1480원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5763,7 +6539,11 @@
         "garbageBag": {
           "priceNote": "예천군 가정용 종량제: 2ℓ 60원 · 3ℓ 90원 · 5ℓ 150원 · 10ℓ 300원 · 20ℓ 600원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5786,7 +6566,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5813,7 +6597,11 @@
         "garbageBag": {
           "priceNote": "울진군 가정용 종량제: 5ℓ 100원 · 10ℓ 200원 · 20ℓ 400원 · 50ℓ 1000원 · 75ℓ 1500원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5840,7 +6628,11 @@
         "garbageBag": {
           "priceNote": "울릉군 가정용 종량제: 5ℓ 100원 · 10ℓ 170원 · 20ℓ 300원 · 50ℓ 710원 · 75ℓ 1060원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5867,7 +6659,11 @@
         "garbageBag": {
           "priceNote": "의령군 가정용 종량제: 10ℓ 200원 · 20ℓ 400원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5894,7 +6690,11 @@
         "garbageBag": {
           "priceNote": "함안군 가정용 종량제: 3ℓ 60원 · 5ℓ 120원 · 10ℓ 240원 · 20ℓ 480원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5921,7 +6721,11 @@
         "garbageBag": {
           "priceNote": "창녕군 가정용 종량제: 5ℓ 110원 · 10ℓ 220원 · 20ℓ 440원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5948,7 +6752,11 @@
         "garbageBag": {
           "priceNote": "고성군 가정용 종량제: 5ℓ 100원 · 10ℓ 200원 · 20ℓ 400원 · 30ℓ 600원 · 50ℓ 1000원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5971,7 +6779,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -5998,7 +6810,11 @@
         "garbageBag": {
           "priceNote": "하동군 가정용 종량제: 5ℓ 100원 · 10ℓ 200원 · 20ℓ 400원 · 50ℓ 900원 · 75ℓ 1350원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6025,7 +6841,11 @@
         "garbageBag": {
           "priceNote": "산청군 가정용 종량제: 20ℓ 600원 · 50ℓ 1500원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6052,7 +6872,11 @@
         "garbageBag": {
           "priceNote": "함양군 가정용 종량제: 3ℓ 60원 · 5ℓ 100원 · 10ℓ 200원 · 20ℓ 400원 · 50ℓ 980원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6079,7 +6903,11 @@
         "garbageBag": {
           "priceNote": "거창군 가정용 종량제: 50ℓ 1060원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6106,7 +6934,11 @@
         "garbageBag": {
           "priceNote": "합천군 가정용 종량제: 3ℓ 70원 · 5ℓ 90원 · 10ℓ 170원 · 20ℓ 350원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6133,7 +6965,11 @@
         "garbageBag": {
           "priceNote": "철원군 가정용 종량제: 10ℓ 190원 · 20ℓ 400원 · 50ℓ 970원 · 75ℓ 1460원 · 100ℓ 1950원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6160,7 +6996,11 @@
         "garbageBag": {
           "priceNote": "화천군 가정용 종량제: 2ℓ 50원 · 3ℓ 60원 · 5ℓ 70원 · 10ℓ 120원 · 20ℓ 230원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6187,7 +7027,11 @@
         "garbageBag": {
           "priceNote": "양구군 가정용 종량제: 10ℓ 210원 · 20ℓ 400원 · 50ℓ 950원 · 75ℓ 1470원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6214,7 +7058,11 @@
         "garbageBag": {
           "priceNote": "인제군 가정용 종량제: 2ℓ 40원 · 3ℓ 60원 · 5ℓ 90원 · 10ℓ 150원 · 20ℓ 300원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6241,7 +7089,11 @@
         "garbageBag": {
           "priceNote": "고성군 가정용 종량제: 2ℓ 60원 · 3ℓ 80원 · 5ℓ 120원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6268,7 +7120,11 @@
         "garbageBag": {
           "priceNote": "양양군 가정용 종량제: 20ℓ 340원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6291,7 +7147,11 @@
           "place": "동네 약국 또는 보건소",
           "note": "약국·보건소 폐의약품 수거함에 배출. 변기·종량제봉투 절대 금지.",
           "source": "환경부 표준 — 폐의약품 회수 (전국 공통)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6318,7 +7178,11 @@
         "garbageBag": {
           "priceNote": "영도구 가정용 종량제: 5ℓ 220원 · 10ℓ 430원 · 20ℓ 850원 · 30ℓ 1280원 · 50ℓ 2070원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6345,7 +7209,11 @@
         "garbageBag": {
           "priceNote": "해운대구 가정용 종량제: 3ℓ 140원 · 5ℓ 220원 · 10ℓ 430원 · 20ℓ 850원 · 30ℓ 1280원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6372,7 +7240,11 @@
         "garbageBag": {
           "priceNote": "사하구 가정용 종량제: 10ℓ 430원 · 20ℓ 850원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6399,7 +7271,11 @@
         "garbageBag": {
           "priceNote": "금정구 가정용 종량제: 10ℓ 430원 · 20ℓ 850원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6426,7 +7302,11 @@
         "garbageBag": {
           "priceNote": "강서구 가정용 종량제: 5ℓ 150원 · 10ℓ 270원 · 20ℓ 510원 · 30ℓ 780원 · 50ℓ 1240원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6453,7 +7333,11 @@
         "garbageBag": {
           "priceNote": "연제구 가정용 종량제: 3ℓ 130원 · 5ℓ 200원 · 10ℓ 390원 · 20ℓ 770원 · 30ℓ 1150원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6480,7 +7364,11 @@
         "garbageBag": {
           "priceNote": "수영구 가정용 종량제: 5ℓ 220원 · 10ℓ 430원 · 20ℓ 850원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6507,7 +7395,11 @@
         "garbageBag": {
           "priceNote": "사상구 가정용 종량제: 5ℓ 170원 · 10ℓ 340원 · 20ℓ 680원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6534,7 +7426,11 @@
         "garbageBag": {
           "priceNote": "동구 가정용 종량제: 3ℓ 120원 · 5ℓ 180원 · 10ℓ 340원 · 20ℓ 670원 · 30ℓ 1080원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },
@@ -6561,7 +7457,11 @@
         "garbageBag": {
           "priceNote": "서구 가정용 종량제: 5ℓ 180원 · 10ℓ 340원 · 20ℓ 670원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
-        }
+        },
+        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTimeSource": "B_standard",
+        "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
+        "pickupTimeSource": "B_standard"
       },
       "exceptions": {}
     },

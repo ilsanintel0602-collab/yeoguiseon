@@ -504,6 +504,26 @@ export default {
     let parsed = null;
     try { parsed = JSON.parse(text); } catch { /* 텍스트 그대로 반환 */ }
 
+    // v1.9.13 (2026-05-25): Post-AI 가드레일 — Gemini 환각 카테고리 차단
+    // 환경부 분리배출.kr 12 표준 + 비재활용 8 + unknown 만 허용
+    if (parsed && typeof parsed === 'object') {
+      const VALID_CATS = new Set([
+        'paper', 'paper_pack', 'pet_clear', 'plastic', 'vinyl', 'styrofoam',
+        'glass', 'can', 'clothes', 'battery', 'lamp', 'electronics',
+        'food', 'general', 'general_noncombustible', 'general_or_bulky',
+        'bulky', 'furniture', 'hazardous', 'medicine', 'unknown'
+      ]);
+      if (parsed.category_hint && !VALID_CATS.has(parsed.category_hint)) {
+        log("post_guard_invalid_cat", { ipHash, bad_cat: parsed.category_hint, item: parsed.item_id });
+        parsed.category_hint = 'unknown';
+        parsed._guarded = 'invalid_category';
+      }
+      // Gemini 환각 영문 ID는 client matchRule alias로 잡지만 — Worker도 명시 마킹
+      if (parsed.item_id && /^[a-z_]+$/i.test(String(parsed.item_id)) && parsed.item_id !== 'unknown') {
+        parsed._needs_alias_lookup = true;
+      }
+    }
+
     // v1.8: Gemini 빈 응답 시 Claude 폴백 (앙상블)
     if (!parsed && !text && env.ANTHROPIC_API_KEY) {
       log("gemini_empty_claude_fallback", { ipHash, finishReason, blockReason });
