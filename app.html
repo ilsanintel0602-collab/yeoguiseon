@@ -376,7 +376,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.50</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.51</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -1955,13 +1955,21 @@ async function capturePhoto() {
     return canvas.toDataURL('image/jpeg', 0.82);  // 크롭 화질 살짝 ↑
   }
 
-  // 폴백: 전체 프레임 (drag 박스 없을 때만)
-  const ratio = video.videoWidth / video.videoHeight;
-  // v5.47: 480 → 640 복원 (정확도 우선 — 480px 압축 시 노트북·텍스트 인식률 ↓ 발견)
-  // 사용자 본질 명령 "정확이 우선" — 속도보다 정확도
-  canvas.width = Math.min(video.videoWidth, 640);
-  canvas.height = canvas.width / ratio;
-  canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+  // 폴백: 중앙 70% 자동 크롭 (drag 박스 없을 때)
+  // v5.51: 전체프레임 대신 중앙 70% 크롭 — 배경·책상 제거, 주피사체 집중
+  //   전체프레임(방+사람+노트북) → Gemini 주피사체 특정 불가 → 빈응답 원인
+  //   중앙 크롭 → 사용자가 물건을 화면 중앙에 놓으면 정확히 인식
+  const vw = video.videoWidth, vh = video.videoHeight;
+  const cropRatio = 0.70;
+  const cropW = Math.floor(vw * cropRatio);
+  const cropH = Math.floor(vh * cropRatio);
+  const cropX = Math.floor((vw - cropW) / 2);
+  const cropY = Math.floor((vh - cropH) / 2);
+  const outW = Math.min(cropW, 640);
+  const outH = Math.round(outW * (cropH / cropW));
+  canvas.width = outW;
+  canvas.height = outH;
+  canvas.getContext('2d').drawImage(video, cropX, cropY, cropW, cropH, 0, 0, outW, outH);
   return canvas.toDataURL('image/jpeg', 0.82);
 }
 
@@ -2799,6 +2807,9 @@ async function handleCapture(imageDataUrl) {
       friendly = '⏱️ 응답이 너무 길어 잘렸어요. 더 가까이서 한 가지만 찍어보세요.';
     } else if (msg.includes('API') || msg.includes('네트워크') || msg.includes('fetch')) {
       friendly = '🌐 네트워크 문제예요. 잠시 후 다시 시도해주세요.';
+    } else if (msg.includes('빈 응답') || msg.includes('빈응답')) {
+      // v5.51: 카메라 전체프레임 복잡 장면 → Gemini 주피사체 특정 불가
+      friendly = '📷 물건을 화면 중앙에 놓고 손가락으로 물건 주위를 그려주세요.\n정확도가 훨씬 높아집니다.';
     }
     renderError(friendly);
   }
