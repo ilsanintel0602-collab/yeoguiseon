@@ -1,7 +1,7 @@
 {
   "$schema": "여기선 v3.0 - 전국 226개 시군구 메타",
   "version": "3.0.0",
-  "lastUpdated": "2026-05-17",
+  "lastUpdated": "2026-05-26",
   "source": "행정안전부 행정표준코드 + 위키백과 행정구역",
   "level1": {
     "11": {
@@ -3675,6 +3675,147 @@
       },
       "phone": "064-760-2114",
       "officialUrl": "https://www.seogwipo.go.kr/"
+    },
+    "41110": {
+      "name": "경기도 수원시",
+      "shortName": "수원",
+      "parent": "41",
+      "type": "시",
+      "boundingBox": {
+        "minLat": 37.22,
+        "maxLat": 37.34,
+        "minLng": 126.95,
+        "maxLng": 127.1
+      },
+      "phone": "031-228-2114",
+      "officialUrl": "https://www.suwon.go.kr/"
+    },
+    "41130": {
+      "name": "경기도 성남시",
+      "shortName": "성남",
+      "parent": "41",
+      "type": "시",
+      "boundingBox": {
+        "minLat": 37.32,
+        "maxLat": 37.47,
+        "minLng": 127.08,
+        "maxLng": 127.2
+      },
+      "phone": "031-729-8114",
+      "officialUrl": "https://www.seongnam.go.kr/"
+    },
+    "41170": {
+      "name": "경기도 안양시",
+      "shortName": "안양",
+      "parent": "41",
+      "type": "시",
+      "boundingBox": {
+        "minLat": 37.37,
+        "maxLat": 37.41,
+        "minLng": 126.91,
+        "maxLng": 127.0
+      },
+      "phone": "031-8045-2114",
+      "officialUrl": "https://www.anyang.go.kr/"
+    },
+    "41270": {
+      "name": "경기도 안산시",
+      "shortName": "안산",
+      "parent": "41",
+      "type": "시",
+      "boundingBox": {
+        "minLat": 37.27,
+        "maxLat": 37.36,
+        "minLng": 126.73,
+        "maxLng": 126.92
+      },
+      "phone": "031-481-2114",
+      "officialUrl": "https://www.ansan.go.kr/"
+    },
+    "41280": {
+      "name": "경기도 고양시",
+      "shortName": "고양",
+      "parent": "41",
+      "type": "시",
+      "boundingBox": {
+        "minLat": 37.58,
+        "maxLat": 37.72,
+        "minLng": 126.68,
+        "maxLng": 126.96
+      },
+      "phone": "031-909-9114",
+      "officialUrl": "https://www.goyang.go.kr/"
+    },
+    "41460": {
+      "name": "경기도 용인시",
+      "shortName": "용인",
+      "parent": "41",
+      "type": "시",
+      "boundingBox": {
+        "minLat": 37.04,
+        "maxLat": 37.36,
+        "minLng": 127.05,
+        "maxLng": 127.48
+      },
+      "phone": "031-324-2114",
+      "officialUrl": "https://www.yongin.go.kr/"
+    },
+    "43110": {
+      "name": "충청북도 청주시",
+      "shortName": "청주",
+      "parent": "43",
+      "type": "시",
+      "boundingBox": {
+        "minLat": 36.55,
+        "maxLat": 36.85,
+        "minLng": 127.35,
+        "maxLng": 127.8
+      },
+      "phone": "043-201-1114",
+      "officialUrl": "https://www.cheongju.go.kr/"
+    },
+    "44130": {
+      "name": "충청남도 천안시",
+      "shortName": "천안",
+      "parent": "44",
+      "type": "시",
+      "boundingBox": {
+        "minLat": 36.65,
+        "maxLat": 37.0,
+        "minLng": 127.0,
+        "maxLng": 127.4
+      },
+      "phone": "041-521-2114",
+      "officialUrl": "https://www.cheonan.go.kr/"
+    },
+    "48120": {
+      "name": "경상남도 창원시",
+      "shortName": "창원",
+      "parent": "48",
+      "type": "시",
+      "boundingBox": {
+        "minLat": 35.0,
+        "maxLat": 35.4,
+        "minLng": 128.4,
+        "maxLng": 128.85
+      },
+      "phone": "055-225-2114",
+      "officialUrl": "https://www.changwon.go.kr/"
+    },
+    "45110": {
+      "name": "전북특별자치도 전주시",
+      "shortName": "전주",
+      "parent": "45",
+      "type": "시",
+      "boundingBox": {
+        "minLat": 35.75,
+        "maxLat": 35.95,
+        "minLng": 127.05,
+        "maxLng": 127.2
+      },
+      "phone": "063-281-2114",
+      "officialUrl": "https://www.jeonju.go.kr/"
     }
-  }
+  },
+  "note": " v5.54: 통합시 본청 10개 추가 (수원·성남·안양·안산·고양·용인·청주·천안·창원·전주)."
 }
