@@ -1,5 +1,5 @@
 /**
- * 여기선 PWA - Gemini API Proxy Worker (v1.9.12 — /data/bins GPS 가까운 수거함 + v1.9.11 필드명 정정 + UA 헤더 / v1.9.10 /admin/crawl-bins (시군구 데이터 자동 수집) + DAILY_LIMIT 100→1000)
+ * 여기선 PWA - Gemini API Proxy Worker (v1.9.14 — 영문 item_id 사용자 노출 차단 + v1.9.13 Post-AI 가드레일 + v1.9.12 /data/bins GPS 가까운 수거함 + v1.9.11 필드명 정정 + UA 헤더 / v1.9.10 /admin/crawl-bins (시군구 데이터 자동 수집) + DAILY_LIMIT 100→1000)
  * ------------------------------------------------
  * 목적: 클라이언트에 API 키 노출 없이 Gemini 호출 + D1 DB 직접 서비스 + 무인 운영
  * 배포: Cloudflare Workers (ES Module, fetch + scheduled handler)
@@ -518,9 +518,38 @@ export default {
         parsed.category_hint = 'unknown';
         parsed._guarded = 'invalid_category';
       }
-      // Gemini 환각 영문 ID는 client matchRule alias로 잡지만 — Worker도 명시 마킹
-      if (parsed.item_id && /^[a-z_]+$/i.test(String(parsed.item_id)) && parsed.item_id !== 'unknown') {
-        parsed._needs_alias_lookup = true;
+      // v1.9.14 (2026-05-25): 영문 item_id 사용자 노출 절대 차단 (사용자 본질 명령 "대한민국이에요! 영어 X")
+      // Gemini가 영문/숫자 ID 출력 시 → Worker 단에서 즉시 차단·정직 마킹
+      // 클라이언트는 영문 ID를 절대 사용자에게 노출 X (renderResult에서도 영문 fallback 차단됨)
+      if (parsed.item_id && parsed.item_id !== 'unknown') {
+        const _id = String(parsed.item_id);
+        const _hasKor = /[가-힣]/.test(_id);
+        if (!_hasKor) {
+          log("post_guard_english_id_blocked", { ipHash, blocked_id: _id, category: parsed.category_hint });
+          // 한국어 매핑 시도 — EN_KO 사전 (Worker 내부 미니 사전)
+          const EN_KO_MIN = {
+            'spray_can': '에어로졸 캔', 'pressure_cooker': '압력솥', 'coffee_maker': '커피머신',
+            'hand_blender': '핸드블렌더', 'mug': '머그잔', 'newspaper': '신문지',
+            'milk_carton': '우유팩', 'battery': '폐건전지', 'aerosol_can': '에어로졸 캔',
+            'vinyl_bag': '비닐봉지', 'pet_bottle': '페트병', 'plastic_bottle': '플라스틱 병',
+            'glass_bottle': '유리병', 'paper_box': '종이박스', 'snack_bag': '과자 봉지',
+            'instant_rice_bowl': '즉석밥 용기', 'styrofoam_box': '스티로폼 박스',
+            'paper_cup': '종이컵', 'paper_cup_coated': '코팅 종이컵', 'ceramic_dish': '도자기 그릇',
+            'plastic_container': '플라스틱 용기', 'diaper': '기저귀', 'wet_tissue': '물티슈',
+            'medicine': '폐의약품', 'clothes': '의류', 'electronics': '소형가전',
+            'furniture': '대형폐기물', 'receipt': '영수증', 'food': '음식물쓰레기',
+          };
+          const lower = _id.toLowerCase().replace(/_\d+$/, '');  // _001 같은 숫자 꼬리 제거
+          if (EN_KO_MIN[lower]) {
+            parsed.item_id = EN_KO_MIN[lower];
+            parsed._worker_translated_from = _id;
+          } else {
+            // 매칭 실패 — 클라이언트에서 카테고리 폴백
+            parsed.item_id = 'unknown';
+            parsed._worker_blocked_id = _id;
+            parsed._needs_alias_lookup = true;
+          }
+        }
       }
     }
 
@@ -1101,46 +1130,4 @@ JSON 응답만:`;
     const r = await fetch(geminiUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    if (!r.ok) {
-      return json({ error: `Gemini API error ${r.status}` }, 502, corsHeaders(corsOrigin));
-    }
-    const data = await r.json();
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
-    // v1.7.1: 유연한 파싱 — Gemini는 배열/객체/코드펜스 다양하게 응답
-    let aliases = [];
-    let parseHow = "none";
-    try {
-      const parsed = JSON.parse(text);
-      if (Array.isArray(parsed)) {
-        aliases = parsed;
-        parseHow = "direct_array";
-      } else if (parsed && typeof parsed === "object") {
-        // 객체 응답 — 자주 쓰이는 키 찾기
-        if (Array.isArray(parsed.aliases)) { aliases = parsed.aliases; parseHow = "obj.aliases"; }
-        else if (Array.isArray(parsed.items)) { aliases = parsed.items; parseHow = "obj.items"; }
-        else if (Array.isArray(parsed.result)) { aliases = parsed.result; parseHow = "obj.result"; }
-        else if (Array.isArray(parsed.data)) { aliases = parsed.data; parseHow = "obj.data"; }
-        else {
-          // 처음 발견되는 배열 값
-          const firstArr = Object.values(parsed).find(v => Array.isArray(v));
-          if (firstArr) { aliases = firstArr; parseHow = "obj.firstArr"; }
-        }
-      }
-    } catch {
-      // JSON 파싱 실패 — 정규식으로 배열 추출
-      const m = text.match(/\[[\s\S]*?\]/);
-      if (m) {
-        try { aliases  = JSON.parse(m[0]); parseHow = "regex_array"; } catch {}
-      }
-    }
-    if (!Array.isArray(aliases)) aliases = [];
-    // 각 요소 문자열로 정제
-    aliases = aliases.filter(a => typeof a === "string").map(a => a.trim()).filter(a => a.length > 0);
-    log("augment_ok", { item_name, count: aliases.length, parseHow });
-    return json({ ok: true, item_name, category, aliases, parseHow, raw_preview: text.slice(0, 200) }, 200, corsHeaders(corsOrigin));
-  } catch (e) {
-    return json({ error: `Worker fetch failed: ${String(e)}` }, 500, corsHeaders(corsOrigin));
-  }
-}
+      body: JSO

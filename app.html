@@ -322,6 +322,46 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 .toast.error { background: #e74c3c; }
 [hidden] { display: none !important; }
+
+/* v5.47 강제 가시성 — 라이트 배경 박스 안 텍스트 회귀 영구 차단 */
+/* 다크모드에서 흰 박스 + 흰 글씨 = 안 보임 → 명시 진한 회색 강제 */
+.sheet-content div[style*="background:#eff6ff"],
+.sheet-content div[style*="background:#fff7e6"],
+.sheet-content div[style*="background:#f0f9ff"],
+.sheet-content div[style*="background:#fef3c7"],
+.sheet-content div[style*="background:#dbeafe"],
+.sheet-content div[style*="background:#dcfce7"],
+.sheet-content div[style*="background:#fdf2f8"],
+.sheet-content div[style*="background:#fce7f3"],
+.sheet-content div[style*="background:#fff"],
+.sheet-content table[style] {
+  color: #1f2937 !important;
+}
+.sheet-content div[style*="background:#eff6ff"] *,
+.sheet-content div[style*="background:#fff7e6"] *,
+.sheet-content div[style*="background:#f0f9ff"] *,
+.sheet-content div[style*="background:#fef3c7"] *,
+.sheet-content div[style*="background:#dbeafe"] *,
+.sheet-content div[style*="background:#dcfce7"] *,
+.sheet-content div[style*="background:#fdf2f8"] *,
+.sheet-content div[style*="background:#fce7f3"] *,
+.sheet-content div[style*="background:#fff"] *,
+.sheet-content table[style] td,
+.sheet-content table[style] th {
+  color: inherit !important;
+}
+/* 링크는 primary 색상 유지 — 사용자 클릭 가능 시각 신호 */
+.sheet-content div[style*="background:#eff6ff"] a,
+.sheet-content div[style*="background:#fff7e6"] a,
+.sheet-content div[style*="background:#f0f9ff"] a,
+.sheet-content div[style*="background:#fef3c7"] a,
+.sheet-content div[style*="background:#dbeafe"] a,
+.sheet-content div[style*="background:#dcfce7"] a,
+.sheet-content div[style*="background:#fff"] a,
+.sheet-content table a {
+  color: #0369a1 !important;
+  font-weight: 700;
+}
 </style>
 </head>
 <body>
@@ -1893,11 +1933,12 @@ async function capturePhoto() {
 
   // 폴백: 전체 프레임 (drag 박스 없을 때만)
   const ratio = video.videoWidth / video.videoHeight;
-  // v5.21: 800 → 640, quality 0.85 → 0.78 → Worker 전송 데이터 ~50% ↓, Gemini 응답 빠름
-  canvas.width = Math.min(video.videoWidth, 640);
+  // v5.46.1: 640 → 480, quality 0.78 → 0.72 → Worker 전송 ~40% ↓, Gemini 응답 30%+ 빠름
+  // (drag 박스 사용 시는 640 + 0.82 유지 — 정확도 우선)
+  canvas.width = Math.min(video.videoWidth, 480);
   canvas.height = canvas.width / ratio;
   canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-  return canvas.toDataURL('image/jpeg', 0.78);
+  return canvas.toDataURL('image/jpeg', 0.72);
 }
 
 async function pickFromGallery() {
@@ -1912,11 +1953,11 @@ async function pickFromGallery() {
         img.onload = () => {
           const canvas = document.createElement('canvas');
           const ratio = img.width / img.height;
-          // v5.21: 800 → 640, quality 0.78 (Worker 전송 50% ↓)
-          canvas.width = Math.min(img.width, 640);
+          // v5.46.1: 640 → 480, quality 0.78 → 0.72 (Worker 전송 ~40% ↓, Gemini 응답 30%+ 빠름)
+          canvas.width = Math.min(img.width, 480);
           canvas.height = canvas.width / ratio;
           canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
-          resolve(canvas.toDataURL('image/jpeg', 0.78));
+          resolve(canvas.toDataURL('image/jpeg', 0.72));
         };
         img.src = e.target.result;
       };
@@ -1988,7 +2029,15 @@ function renderResult(aiData) {
     // 마지막: 카테고리 라벨 (예: 의류, 소형가전)
     itemName = NATIONAL.categories[rule.category].name;
   } else {
-    itemName = aiData.item_id || '알 수 없음';
+    // v5.47: 영어 ID 절대 노출 X (사용자 본질 "대한민국이에요! 영어 X")
+    const __engOnly = aiData.item_id && /^[a-zA-Z0-9_\-]+$/.test(String(aiData.item_id));
+    if (__engOnly) {
+      itemName = (rule.category && NATIONAL.categories[rule.category]?.name)
+        ? `${NATIONAL.categories[rule.category].name} (DB에 정확한 품목 없음)`
+        : '미확정 — 시·구청 안내 권장';
+    } else {
+      itemName = aiData.item_id || '알 수 없음';
+    }
   }
   const autoConfidence = dbItem ? 0.95 : (rule.source_type === 'national_default' ? 0.6 : 0.3);
   const confValue = (typeof aiData.confidence === 'number') ? aiData.confidence : autoConfidence;

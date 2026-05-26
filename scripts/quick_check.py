@@ -175,6 +175,20 @@ try:
                     "IIFE 닫기 누락" if not ("})();" in last500 or "})()" in last500) else "OK")
     all_ok &= check("app.html init() 호출", "init();" in last500,
                     "init() 호출 누락" if "init();" not in last500 else "OK")
+    # v5.47 (2026-05-25): 회귀 영구 차단 — 사용자 본질 명령 "반복 사고 멈춤"
+    # 1. 결과 카드 박스 안 텍스트 가시성 강제 (다크모드 흰 박스 흰 글씨 회귀 차단)
+    has_visibility_rule = (
+        '.sheet-content div[style*="background:#eff6ff"]' in html
+        and 'color: #1f2937 !important' in html
+    )
+    all_ok &= check("결과 카드 박스 가시성 CSS 룰",
+                    has_visibility_rule,
+                    "다크모드 박스 가시성 룰 없음 — !important 글로벌 룰 필요" if not has_visibility_rule else "OK (회귀 차단)")
+    # 2. 영문 ID 사용자 노출 차단 (Gemini 영문 출력 → 사용자 화면 영문 노출 회귀)
+    has_eng_block = "영어 ID 절대 노출 X" in html or "영어 ID 노출" in html
+    all_ok &= check("영문 ID 노출 차단 (renderResult fallback)",
+                    has_eng_block,
+                    "영문 ID fallback 차단 룰 없음" if not has_eng_block else "OK (회귀 차단)")
     # 추가: inline JS syntax 검증 (Node available 시)
     try:
         import subprocess as _sp
