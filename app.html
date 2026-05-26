@@ -376,7 +376,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.48</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.49</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -1535,8 +1535,7 @@ async function analyzeHybrid(imageDataUrl, onOcrProgress) {
       return r;
     } catch (e) {
       console.warn('[v5.23] Gemini 실패:', e);
-      toast(`⚠️ AI 분석 실패: ${e.message}. 잠시 후 재시도해주세요.`, true);
-      // 분석 실패 — COCO-SSD는 분리수거 카테고리에 맞지 않아 폴백 안 함
+      // v5.49: toast 제거 — handleCapture가 renderError로 이미 표시 (이중 노출/깜빡임 방지)
       throw e;
     }
   } else {
@@ -1967,25 +1966,41 @@ async function capturePhoto() {
 }
 
 async function pickFromGallery() {
+  // v5.49: 갤러리 열기 전 실시간 검출 중지 (카메라 루프 간섭 방지)
+  stopRealtimeDetection();
   return new Promise(resolve => {
     const input = $('galleryInput');
+    // v5.49: 같은 파일 재선택 시 onchange 미발화 버그 수정 — value 초기화 필수
+    input.value = '';
+    // v5.49: 취소 감지 — 파일 피커 닫힐 때 window focus 이벤트로 resolve(null) 처리
+    let resolved = false;
+    function onFocus() {
+      window.removeEventListener('focus', onFocus);
+      setTimeout(() => {
+        if (!resolved) { resolved = true; resolve(null); }
+      }, 400);
+    }
+    window.addEventListener('focus', onFocus);
     input.onchange = () => {
+      window.removeEventListener('focus', onFocus);
       const file = input.files[0];
-      if (!file) { resolve(null); return; }
+      if (!file) { resolved = true; resolve(null); return; }
       const reader = new FileReader();
       reader.onload = e => {
         const img = new Image();
         img.onload = () => {
           const canvas = document.createElement('canvas');
           const ratio = img.width / img.height;
-          // v5.47: 480 → 640 복원 (정확도 우선)
           canvas.width = Math.min(img.width, 640);
           canvas.height = canvas.width / ratio;
           canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+          resolved = true;
           resolve(canvas.toDataURL('image/jpeg', 0.82));
         };
+        img.onerror = () => { resolved = true; resolve(null); };
         img.src = e.target.result;
       };
+      reader.onerror = () => { resolved = true; resolve(null); };
       reader.readAsDataURL(file);
     };
     input.click();
