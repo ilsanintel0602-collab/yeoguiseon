@@ -1,5 +1,5 @@
 /**
- * 여기선 PWA - Gemini API Proxy Worker (v1.9.14 — 영문 item_id 사용자 노출 차단 / v1.9.13 Post-AI 가드레일 / v1.9.12 — /data/bins GPS 가까운 수거함 + v1.9.11 필드명 정정 + UA 헤더 / v1.9.10 /admin/crawl-bins (시군구 데이터 자동 수집) + DAILY_LIMIT 100→1000)
+ * 여기선 PWA - Gemini API Proxy Worker (v1.9.15 — 캐시 정확도·정직성 미세 개선: hash 5KB→32KB + 데이터 버전 prefix v5.56 / v1.9.14 영문 item_id 사용자 노출 차단 / v1.9.13 Post-AI 가드레일 / v1.9.12 /data/bins GPS 가까운 수거함 + v1.9.11 필드명 정정 + UA 헤더 / v1.9.10 /admin/crawl-bins + DAILY_LIMIT 100→1000)
  * ------------------------------------------------
  * 목적: 클라이언트에 API 키 노출 없이 Gemini 호출 + D1 DB 직접 서비스 + 무인 운영
  * 배포: Cloudflare Workers (ES Module, fetch + scheduled handler)
@@ -429,8 +429,13 @@ export default {
     }
 
     // v1.8: 결과 캐싱 — 같은 이미지 = 즉시 응답 (Gemini 호출 0, 비용 0)
-    const imageHash = await sha256(pureB64.slice(0, 5000));  // 빠른 hash (첫 5KB)
-    const cacheKey = `cache:img:${imageHash}`;
+    // v1.9.15 (A): hash 5KB → 32KB. 다른 사진인데 첫 5KB만 같은 경우(JPEG 헤더+EXIF 동일) 차단. 충돌 위험 ↓ → 정확도 ↑
+    // v1.9.15 (B): cache key에 데이터 버전 prefix 추가. push 시 옛 캐시 자동 무효화 → 데이터 정직성 보호
+    //   - sweep prefix는 'cache:img:' 그대로 유지 (옛/새 캐시 모두 정리)
+    //   - TTL 24시간 유지 (정직성 > 속도)
+    const CACHE_VER = "v5.56";
+    const imageHash = await sha256(pureB64.slice(0, 32000));
+    const cacheKey = `cache:img:${CACHE_VER}:${imageHash}`;
     if (env.RATE_LIMIT_KV) {
       try {
         const cached = await env.RATE_LIMIT_KV.get(cacheKey);
@@ -1162,7 +1167,7 @@ JSON 응답만:`;
         try { aliases  = JSON.parse(m[0]); parseHow = "regex_array"; } catch {}
       }
     }
-    if (!Array.isArray(aliases)) aliases = [];
+        if (!Array.isArray(aliases)) aliases = [];
     // 각 요소 문자열로 정제
     aliases = aliases.filter(a => typeof a === "string").map(a => a.trim()).filter(a => a.length > 0);
     log("augment_ok", { item_name, count: aliases.length, parseHow });

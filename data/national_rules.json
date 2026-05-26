@@ -1,7 +1,7 @@
 {
   "$schema": "여기선 v3.0 - 환경부 표준 분리수거 룰",
   "version": "5.1.0",
-  "lastUpdated": "2026-05-18",
+  "lastUpdated": "2026-05-26",
   "source": "환경부 '내손안에 분리배출' 가이드라인 / 자원순환정보시스템 (recycling-info.or.kr)",
   "officialUrl": "https://www.me.go.kr/",
   "references": [
@@ -1521,7 +1521,7 @@
         "종량제봉투에 배출"
       ],
       "regionVariation": true,
-      "knownVariations": "서울 강남구는 비닐류로 분류, 성동/광진구는 특수마대 사용",
+      "knownVariations": "지자체별 분류 다름 — 비닐류 또는 특수마대 사용 지역 있음. 시·구청 공식 안내 우선.",
       "confidence": "high",
       "aliases": [
         "고무장",

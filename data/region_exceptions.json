@@ -1,6 +1,6 @@
 {
   "$schema": "여기선 v3.1 - 지역별 예외 룰 (환경부 표준 + 차이만)",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "lastUpdated": "2026-05-26",
   "note": "환경부 표준은 national_rules.json. 이 파일은 지역별 차이/세부 룰만 정의. v3.2: 강서·노원 itemExceptions/sources/cleanUrl/phone 보강 (Phase 1).",
   "sourceGradeLegend": {
@@ -447,7 +447,7 @@
         },
         "rubber_glove": {
           "category": "general",
-          "note": "고양시 — 환경부 표준대로 고무장갑은 일반쓰레기 (강남구처럼 비닐 분류 X)",
+          "note": "고양시 — 환경부 표준대로 일반쓰레기 (종량제봉투)",
           "steps": [
             "종량제봉투에 배출"
           ],
