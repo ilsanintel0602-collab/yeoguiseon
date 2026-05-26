@@ -1,6 +1,6 @@
 {
   "$schema": "여기선 v3.1 - 지역별 예외 룰 (환경부 표준 + 차이만)",
-  "version": "3.4.0",
+  "version": "3.5.0",
   "lastUpdated": "2026-05-26",
   "note": "환경부 표준은 national_rules.json. 이 파일은 지역별 차이/세부 룰만 정의. v3.2: 강서·노원 itemExceptions/sources/cleanUrl/phone 보강 (Phase 1).",
   "sourceGradeLegend": {
@@ -46,7 +46,6 @@
         "officialUrl": "https://www.gangnam.go.kr/",
         "cleanUrl": "https://clean.gangnam.go.kr/",
         "specialNote": "강남구는 IoT 분리수거함(현금 환급) 운영. 종이팩·페트병 전용 수거기 사용 가능.",
-        "phone": "02-3423-5000",
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거 (E-순환거버넌스, 환경부 표준)",
           "phone": "1599-0903",
@@ -75,7 +74,10 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "phones": {
+          "자원순환과": "02-3423-5000"
+        }
       }
     },
     "41285": {
@@ -930,7 +932,8 @@
         "officialUrl": "https://www.ep.go.kr/",
         "phones": {
           "청소행정과": "02-351-6371",
-          "구청대표": "02-351-6114"
+          "구청대표": "02-351-6114",
+          "자원순환과": "02-351-7777"
         },
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거",
@@ -952,7 +955,6 @@
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
         "pickupTimeSource": "B_standard",
         "cleanUrl": "https://www.ep.go.kr/CmsWeb/viewPage.req?idx=PG0000003979",
-        "phone": "02-351-7777",
         "specialNote": "은평 광역자원순환센터 운영 — 폐기물 친환경 처리, 재활용 자원화 (은평구청 운영)",
         "sources": [
           {
@@ -1016,7 +1018,8 @@
         "officialUrl": "https://www.ydp.go.kr/",
         "phones": {
           "청소행정과": "02-2670-3777",
-          "구청대표": "02-2670-3114"
+          "구청대표": "02-2670-3114",
+          "자원순환과": "02-2670-7590"
         },
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거",
@@ -1038,7 +1041,6 @@
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
         "pickupTimeSource": "B_standard",
         "cleanUrl": "https://www.ydp.go.kr/www/contents.do?key=2733",
-        "phone": "02-2670-7590",
         "disposalDay": "재활용: 그 외 품목 일·월·화·목 / 투명페트병·비닐: 수요일만. 공동주택은 단지 지정.",
         "sources": [
           {
@@ -1079,7 +1081,8 @@
         "officialUrl": "https://www.yangcheon.go.kr/",
         "phones": {
           "청소행정과": "02-2620-3000",
-          "구청대표": "02-2620-3114"
+          "구청대표": "02-2620-3114",
+          "자원순환과": "02-2620-3420"
         },
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거",
@@ -1101,7 +1104,6 @@
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
         "pickupTimeSource": "B_standard",
         "cleanUrl": "https://www.yangcheon.go.kr/site/yangcheon/05/10504010100002016081013.jsp",
-        "phone": "02-2620-3420",
         "sources": [
           {
             "url": "https://www.yangcheon.go.kr/site/yangcheon/05/10504010100002016081013.jsp",
@@ -1797,7 +1799,8 @@
         "city": "서울특별시 관악구",
         "officialUrl": "https://www.gwanak.go.kr/",
         "phones": {
-          "구청대표": "02-879-5114"
+          "구청대표": "02-879-5114",
+          "자원순환과": "02-879-5614"
         },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
@@ -1819,7 +1822,6 @@
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
         "pickupTimeSource": "B_standard",
         "cleanUrl": "https://www.gwanak.go.kr/site/gwanak/07/10703010200002016051206.jsp",
-        "phone": "02-879-5614",
         "disposalDay": "단독주택·빌라·상가: 일~수·금 일반 재활용 / 목요일 투명페트병·비닐만. 아파트는 단지 지정요일.",
         "sources": [
           {
@@ -1853,7 +1855,8 @@
         "city": "서울특별시 서초구",
         "officialUrl": "https://www.seocho.go.kr/",
         "phones": {
-          "구청대표": "02-2155-6114"
+          "구청대표": "02-2155-6114",
+          "자원순환과": "02-2155-6114"
         },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
@@ -1883,7 +1886,6 @@
         },
         "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
         "cleanUrl": "https://www.seocho.go.kr/site/seocho/04/10411010600002018030711.jsp",
-        "phone": "02-2155-6114",
         "sources": [
           {
             "url": "https://www.seocho.go.kr/site/seocho/04/10411010600002018030711.jsp",
@@ -1911,7 +1913,8 @@
         "city": "서울특별시 송파구",
         "officialUrl": "https://www.songpa.go.kr/",
         "phones": {
-          "구청대표": "02-2147-2000"
+          "구청대표": "02-2147-2000",
+          "자원순환과": "02-2147-2852"
         },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
@@ -1942,7 +1945,6 @@
         },
         "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
         "cleanUrl": "https://www.songpa.go.kr/www/contents.do?key=3165",
-        "phone": "02-2147-2852",
         "foodWasteNote": "음식물쓰레기를 일반 종량제봉투에 담아 배출하면 과태료 최고 20만원 부과 (송파구청 공지)",
         "sources": [
           {
@@ -1976,7 +1978,8 @@
         "city": "서울특별시 강동구",
         "officialUrl": "https://www.gangdong.go.kr/",
         "phones": {
-          "구청대표": "02-3425-5114"
+          "구청대표": "02-3425-5114",
+          "자원순환과": "02-3425-5114"
         },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
@@ -1994,7 +1997,6 @@
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
         "pickupTimeSource": "B_standard",
         "cleanUrl": "https://www.gangdong.go.kr/web/newportal/contents/gdp_005_004_010_001",
-        "phone": "02-3425-5114",
         "garbageBag": {
           "priceNote": "강동구 일반용(흰색) 종량제: 3ℓ 90원 · 5ℓ 130원 · 10ℓ 250원 · 20ℓ 490원",
           "source": "https://www.gangdong.go.kr/web/newportal/contents/gdp_005_004_010_002",

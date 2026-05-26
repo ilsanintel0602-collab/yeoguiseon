@@ -3815,6 +3815,20 @@
       },
       "phone": "063-281-2114",
       "officialUrl": "https://www.jeonju.go.kr/"
+    },
+    "47110": {
+      "name": "경상북도 포항시",
+      "shortName": "포항",
+      "parent": "47",
+      "type": "시",
+      "boundingBox": {
+        "minLat": 35.85,
+        "maxLat": 36.3,
+        "minLng": 129.15,
+        "maxLng": 129.55
+      },
+      "phone": "054-270-2114",
+      "officialUrl": "https://www.pohang.go.kr/"
     }
   },
   "note": " v5.54: 통합시 본청 10개 추가 (수원·성남·안양·안산·고양·용인·청주·천안·창원·전주)."
