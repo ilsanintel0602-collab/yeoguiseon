@@ -1933,12 +1933,12 @@ async function capturePhoto() {
 
   // 폴백: 전체 프레임 (drag 박스 없을 때만)
   const ratio = video.videoWidth / video.videoHeight;
-  // v5.46.1: 640 → 480, quality 0.78 → 0.72 → Worker 전송 ~40% ↓, Gemini 응답 30%+ 빠름
-  // (drag 박스 사용 시는 640 + 0.82 유지 — 정확도 우선)
-  canvas.width = Math.min(video.videoWidth, 480);
+  // v5.47: 480 → 640 복원 (정확도 우선 — 480px 압축 시 노트북·텍스트 인식률 ↓ 발견)
+  // 사용자 본질 명령 "정확이 우선" — 속도보다 정확도
+  canvas.width = Math.min(video.videoWidth, 640);
   canvas.height = canvas.width / ratio;
   canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-  return canvas.toDataURL('image/jpeg', 0.72);
+  return canvas.toDataURL('image/jpeg', 0.82);
 }
 
 async function pickFromGallery() {
@@ -1953,11 +1953,11 @@ async function pickFromGallery() {
         img.onload = () => {
           const canvas = document.createElement('canvas');
           const ratio = img.width / img.height;
-          // v5.46.1: 640 → 480, quality 0.78 → 0.72 (Worker 전송 ~40% ↓, Gemini 응답 30%+ 빠름)
-          canvas.width = Math.min(img.width, 480);
+          // v5.47: 480 → 640 복원 (정확도 우선)
+          canvas.width = Math.min(img.width, 640);
           canvas.height = canvas.width / ratio;
           canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
-          resolve(canvas.toDataURL('image/jpeg', 0.72));
+          resolve(canvas.toDataURL('image/jpeg', 0.82));
         };
         img.src = e.target.result;
       };
@@ -2267,19 +2267,26 @@ function renderResult(aiData) {
       }
       html += `</div>`;
     } else if (__isBulkyCat && RECYCLE_CENTER_FALLBACKS?.fallbacks?.[regionCode]) {
-      // v5.45 fallback: 등록 센터 0개. 광역도 인근 센터 + 1599-0903 안내
+      // v5.47: 폐가전 1599-0903 (전국 공통, 무료, 가까움) — 최우선 노출
+      // 멀리 있는 광역도 센터는 작게 아래 (사용자 명령 "사이트·전화 먼저, 먼거리 센터는 뒤로")
       const fb = RECYCLE_CENTER_FALLBACKS.fallbacks[regionCode];
-      html += `<div style="margin-top:16px;padding:12px 16px;background:#fff7e6;border-radius:8px;">`;
-      html += `<h4 style="margin:0 0 8px;font-size:15px;">🏗️ 대형/폐가전 신고처</h4>`;
-      html += `<div style="font-size:12px;opacity:0.85;margin-bottom:6px;">📍 이 시·구에 등록된 센터 없음 — ${fb.sido_name} 인근 센터 참고</div>`;
-      (fb.fallback_centers || []).slice(0, 2).forEach(c => {
-        html += `<div style="font-size:13px;margin:6px 0;">`;
-        html += `<b>${c.name}</b> <span style="opacity:0.6;font-size:11px;">(${c.sggName})</span>`;
-        if (c.address) html += `<br><span style="opacity:0.75;">📍 ${c.address.slice(0, 50)}</span>`;
-        if (c.phone) html += `<br><span style="opacity:0.75;">📞 ${c.phone}</span>`;
-        html += `</div>`;
-      });
-      html += `<div style="margin-top:8px;font-size:12px;opacity:0.85;">또는 폐가전 무상수거: <b>1599-0903</b> (E-순환거버넌스, 전국 공통)</div>`;
+      html += `<div style="margin-top:16px;padding:14px 16px;background:#fff7e6;border-radius:8px;">`;
+      html += `<h4 style="margin:0 0 10px;font-size:15px;color:#92400e;">🚛 폐가전 무상 방문수거 (전국 공통)</h4>`;
+      html += `<div style="font-size:15px;margin-bottom:6px;"><b>📞 전화 예약</b>: <a href="tel:1599-0903" style="color:#0369a1;font-weight:700;font-size:17px;">1599-0903</a></div>`;
+      html += `<div style="font-size:13px;margin-bottom:4px;">🌐 <a href="https://15990903.or.kr/" target="_blank" style="color:#0369a1;font-weight:600;">온라인 예약 (E-순환거버넌스)</a></div>`;
+      html += `<div style="font-size:12px;opacity:0.8;">대형(냉장고·세탁기·TV·에어컨·전자레인지) 1개부터 무료. 소형 5개 이상 모음.</div>`;
+      // 먼거리 광역도 센터는 작게 보조 안내
+      const fbCenters = (fb.fallback_centers || []).slice(0, 2);
+      if (fbCenters.length) {
+        html += `<details style="margin-top:10px;font-size:12px;opacity:0.75;"><summary style="cursor:pointer;">📍 ${fb.sido_name} 광역도 재활용센터 (먼거리, 참고용)</summary>`;
+        fbCenters.forEach(c => {
+          html += `<div style="margin:4px 0 0 12px;">`;
+          html += `<b>${c.name}</b> <span style="opacity:0.7;">(${c.sggName})</span>`;
+          if (c.phone) html += ` · 📞 ${c.phone}`;
+          html += `</div>`;
+        });
+        html += `</details>`;
+      }
       html += `</div>`;
     }
   }
