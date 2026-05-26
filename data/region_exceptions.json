@@ -1,6 +1,6 @@
 {
   "$schema": "여기선 v3.1 - 지역별 예외 룰 (환경부 표준 + 차이만)",
-  "version": "3.2.2",
+  "version": "3.4.0",
   "lastUpdated": "2026-05-26",
   "note": "환경부 표준은 national_rules.json. 이 파일은 지역별 차이/세부 룰만 정의. v3.2: 강서·노원 itemExceptions/sources/cleanUrl/phone 보강 (Phase 1).",
   "sourceGradeLegend": {
@@ -22,17 +22,23 @@
         "instant_rice_bowl": {
           "category": "plastic",
           "note": "내용물 비우고 헹궈서 플라스틱 배출",
-          "confidence": "medium"
+          "confidence": "medium",
+          "source": "https://clean.gangnam.go.kr/",
+          "sourceGrade": "B"
         },
         "paper_cup_coated": {
           "category": "paper",
           "note": "강남구는 종이팩 IoT 수거함 운영",
-          "confidence": "medium"
+          "confidence": "medium",
+          "source": "https://clean.gangnam.go.kr/",
+          "sourceGrade": "B"
         },
         "small_plastic_cap": {
           "category": "plastic",
           "note": "병뚜껑은 페트병에 끼워 배출",
-          "confidence": "medium"
+          "confidence": "medium",
+          "source": "https://clean.gangnam.go.kr/",
+          "sourceGrade": "B"
         }
       },
       "cityGuide": {
@@ -861,7 +867,9 @@
         "officialUrl": "https://www.mapo.go.kr/",
         "phones": {
           "청소행정과": "02-3153-8311",
-          "구청대표": "02-3153-8114"
+          "구청대표": "02-3153-8114",
+          "자원순환과": "02-3153-9210",
+          "음식물쓰레기": "02-3153-9200"
         },
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거",
@@ -878,7 +886,7 @@
           "priceNote": "마포구 가정용 종량제: 5ℓ 130원 · 10ℓ 250원 · 20ℓ 490원 · 30ℓ 740원 · 50ℓ 1250원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
         },
-        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTime": "11월~3월 18:00~ / 4월~10월 19:00~ (시기별 다름)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
         "pickupTimeSource": "B_standard",
@@ -889,7 +897,27 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "cleanUrl": "https://www.mapo.go.kr/site/main/content/mapo05060501",
+        "disposalDay": "일반·음식물: 일·월·화·수·목. 재활용 투명페트병·비닐: 수요일. 그 외 재활용: 일·월·화·목.",
+        "specialNote": "마포구 파란색 의류수거함 \"오시네요\" 운영 — 의류 재활용 전용.",
+        "sources": [
+          {
+            "url": "https://www.mapo.go.kr/site/main/content/mapo05060501",
+            "grade": "A",
+            "note": "쓰레기 배출 안내"
+          },
+          {
+            "url": "https://smartclean.mapo.go.kr/",
+            "grade": "A",
+            "note": "스마트클린 마포 (대형폐기물)"
+          },
+          {
+            "url": "https://www.mapo.go.kr/CmsWeb/bigclean/index.jsp",
+            "grade": "A",
+            "note": "대형생활폐기물 관리"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -922,7 +950,27 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "cleanUrl": "https://www.ep.go.kr/CmsWeb/viewPage.req?idx=PG0000003979",
+        "phone": "02-351-7777",
+        "specialNote": "은평 광역자원순환센터 운영 — 폐기물 친환경 처리, 재활용 자원화 (은평구청 운영)",
+        "sources": [
+          {
+            "url": "https://www.ep.go.kr/CmsWeb/viewPage.req?idx=PG0000003979",
+            "grade": "A",
+            "note": "재활용품 분리배출 안내"
+          },
+          {
+            "url": "https://www.ep.go.kr/www/downloadBbsFile.do?key=744&bbsNo=42&atchmnflNo=124698",
+            "grade": "A",
+            "note": "재활용품 분리배출 길라잡이 PDF"
+          },
+          {
+            "url": "https://ai-waste.ep.go.kr/",
+            "grade": "A",
+            "note": "대형폐기물 처리 시스템 (AI)"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -985,10 +1033,40 @@
           "priceNote": "영등포구 가정용 종량제: 3ℓ 90원 · 5ℓ 130원 · 10ℓ 250원 · 20ℓ 490원 · 30ℓ 740원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
         },
-        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTime": "저녁 20시 ~ 24시 (내 집·내 점포 앞)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "cleanUrl": "https://www.ydp.go.kr/www/contents.do?key=2733",
+        "phone": "02-2670-7590",
+        "disposalDay": "재활용: 그 외 품목 일·월·화·목 / 투명페트병·비닐: 수요일만. 공동주택은 단지 지정.",
+        "sources": [
+          {
+            "url": "https://www.ydp.go.kr/www/contents.do?key=2733",
+            "grade": "A",
+            "note": "재활용 분리배출"
+          },
+          {
+            "url": "https://www.ydp.go.kr/www/contents.do?key=2735",
+            "grade": "A",
+            "note": "생활쓰레기 배출요령"
+          },
+          {
+            "url": "https://www.ydp.go.kr/www/contents.do?key=2736",
+            "grade": "A",
+            "note": "음식물쓰레기 배출요령"
+          },
+          {
+            "url": "https://www.ydp.go.kr/www/contents.do?key=2734",
+            "grade": "A",
+            "note": "주택가 재활용정거장"
+          },
+          {
+            "url": "https://smartclean.ydp.go.kr/",
+            "grade": "A",
+            "note": "스마트클린 영등포 (대형폐기물)"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1021,7 +1099,26 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "cleanUrl": "https://www.yangcheon.go.kr/site/yangcheon/05/10504010100002016081013.jsp",
+        "phone": "02-2620-3420",
+        "sources": [
+          {
+            "url": "https://www.yangcheon.go.kr/site/yangcheon/05/10504010100002016081013.jsp",
+            "grade": "A",
+            "note": "대형생활폐기물 배출신고 안내"
+          },
+          {
+            "url": "https://www.yangcheon.go.kr/common/files/Download.do?cfIdx=CF00006644&cfGroup=COMMON&cfRename=ac393933-d336-4c14-83a7-bc226ad9def3.pdf",
+            "grade": "A",
+            "note": "올바른 쓰레기 배출 방법 PDF"
+          },
+          {
+            "url": "https://smartclean.yangcheon.go.kr/",
+            "grade": "A",
+            "note": "스마트클린 양천 (대형폐기물)"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1717,10 +1814,35 @@
           "priceNote": "관악구 가정용 종량제: 1ℓ 100원 · 2ℓ 190원 · 3ℓ 300원 · 5ℓ 500원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
         },
-        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTime": "저녁 18시 ~ 24시 (내 집·내 점포 앞)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "cleanUrl": "https://www.gwanak.go.kr/site/gwanak/07/10703010200002016051206.jsp",
+        "phone": "02-879-5614",
+        "disposalDay": "단독주택·빌라·상가: 일~수·금 일반 재활용 / 목요일 투명페트병·비닐만. 아파트는 단지 지정요일.",
+        "sources": [
+          {
+            "url": "https://www.gwanak.go.kr/site/gwanak/07/10703010200002016051206.jsp",
+            "grade": "A",
+            "note": "재활용품 분리배출"
+          },
+          {
+            "url": "https://www.gwanak.go.kr/site/gwanak/07/10703010100002016051206.jsp",
+            "grade": "A",
+            "note": "생활쓰레기 배출"
+          },
+          {
+            "url": "https://smartclean.gwanak.go.kr/",
+            "grade": "A",
+            "note": "스마트클린 관악 (대형폐기물)"
+          },
+          {
+            "url": "https://www.gwanak.go.kr/common/files/Download.do?cfIdx=CF00000219&cfGroup=COMMON&cfRename=577d49f0-53dc-440c-a9ec-78ea84d55165.pdf",
+            "grade": "A",
+            "note": "재활용품 분리배출 길라잡이 PDF"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1759,7 +1881,26 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "cleanUrl": "https://www.seocho.go.kr/site/seocho/04/10411010600002018030711.jsp",
+        "phone": "02-2155-6114",
+        "sources": [
+          {
+            "url": "https://www.seocho.go.kr/site/seocho/04/10411010600002018030711.jsp",
+            "grade": "A",
+            "note": "쓰레기 배출 안내"
+          },
+          {
+            "url": "https://www.seocho.go.kr/html/seochoLife/main.html",
+            "grade": "A",
+            "note": "서초사용법 (생활 안내)"
+          },
+          {
+            "url": "https://www.seocho.go.kr/site/seocho/04/10408030101002015070706.jsp",
+            "grade": "A",
+            "note": "재활용 분리배출"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1792,13 +1933,39 @@
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
         "pickupTimeSource": "B_standard",
         "paperPackExchange": {
-          "name": "종이팩-화장지 교환 사업",
-          "where": "동·읍·면 주민센터 (대부분 운영, 시·구청 자원순환과 문의)",
-          "rule": "내용물 비우고 헹궈 말린 종이팩 1kg → 화장지 1롤 (재고 소진 시 수거만 가능)",
-          "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
-          "sourceGrade": "B_standard"
+          "name": "종이팩-화장지 교환 사업 (송파)",
+          "where": "동주민센터",
+          "rule": "우유팩 1.5kg → 화장지 1롤",
+          "scheduleNote": "매주 수요일 08:30~10:30 수거",
+          "source": "https://www.songpa.go.kr/www/contents.do?key=3165",
+          "sourceGrade": "A"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "cleanUrl": "https://www.songpa.go.kr/www/contents.do?key=3165",
+        "phone": "02-2147-2852",
+        "foodWasteNote": "음식물쓰레기를 일반 종량제봉투에 담아 배출하면 과태료 최고 20만원 부과 (송파구청 공지)",
+        "sources": [
+          {
+            "url": "https://www.songpa.go.kr/user.kdf?a=songpa.menu.MenuApp&c=1001&cate_id=AA0602001000",
+            "grade": "A",
+            "note": "쓰레기 배출 안내"
+          },
+          {
+            "url": "https://www.songpa.go.kr/www/contents.do?key=3165",
+            "grade": "A",
+            "note": "재활용품 분리수거함 안내"
+          },
+          {
+            "url": "http://office.songpa.go.kr/user.kdf?a=songpa.menu.MenuApp&cate_id=AA0604001000",
+            "grade": "A",
+            "note": "음식물쓰레기 배출요령/수수료"
+          },
+          {
+            "url": "https://www.songpa.go.kr/www/contents.do?key=3169",
+            "grade": "A",
+            "note": "재활용품 분리수거 의무사업장"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1825,7 +1992,41 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "cleanUrl": "https://www.gangdong.go.kr/web/newportal/contents/gdp_005_004_010_001",
+        "phone": "02-3425-5114",
+        "garbageBag": {
+          "priceNote": "강동구 일반용(흰색) 종량제: 3ℓ 90원 · 5ℓ 130원 · 10ℓ 250원 · 20ℓ 490원",
+          "source": "https://www.gangdong.go.kr/web/newportal/contents/gdp_005_004_010_002",
+          "sourceGrade": "A"
+        },
+        "sources": [
+          {
+            "url": "https://www.gangdong.go.kr/web/newportal/contents/gdp_005_004_010_001",
+            "grade": "A",
+            "note": "쓰레기 배출 안내"
+          },
+          {
+            "url": "https://www.gangdong.go.kr/web/newportal/contents/gdp_005_004_010_004_001",
+            "grade": "A",
+            "note": "재활용품 품목별 배출안내"
+          },
+          {
+            "url": "https://www.gangdong.go.kr/web/newportal/contents/gdp_005_004_010_002",
+            "grade": "A",
+            "note": "종량제봉투 가격·판매처"
+          },
+          {
+            "url": "https://www.gangdong.go.kr/web/newportal/contents/gdp_005_004_010_003_001",
+            "grade": "A",
+            "note": "음식물쓰레기 배출방법"
+          },
+          {
+            "url": "https://www.gangdong.go.kr/web/newportal/largeWaste/apply/step1",
+            "grade": "A",
+            "note": "대형폐기물 신청"
+          }
+        ]
       },
       "exceptions": {}
     },

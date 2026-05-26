@@ -219,6 +219,24 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .result-loading { text-align: center; padding: 40px 20px; }
 .spinner { width: 40px; height: 40px; margin: 0 auto 16px; border: 4px solid var(--divider); border-top-color: var(--primary); border-radius: 999px; animation: spin 0.8s linear infinite; }
 
+/* v5.60: 스켈레톤 카드 (응답 대기 동안 결과 카드 구조 미리 보여줌) */
+.result-skeleton { padding: 20px; }
+.skeleton-badge { width: 90px; height: 26px; background: #e8e8e8; border-radius: 13px; margin: 8px 0 16px; animation: skPulse 1.4s ease-in-out infinite; }
+.skeleton-title { width: 65%; height: 36px; background: #e8e8e8; border-radius: 8px; margin-bottom: 14px; animation: skPulse 1.4s ease-in-out infinite; animation-delay: 0.1s; }
+.skeleton-tags { display: flex; gap: 8px; margin-bottom: 24px; }
+.skeleton-tag { width: 80px; height: 28px; background: #ececec; border-radius: 6px; animation: skPulse 1.4s ease-in-out infinite; animation-delay: 0.15s; }
+.skeleton-tag.short { width: 60px; }
+.skeleton-steps { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.skeleton-step { width: 100%; height: 44px; background: #f0f0f0; border-radius: 8px; animation: skPulse 1.4s ease-in-out infinite; }
+.skeleton-step:nth-child(2) { animation-delay: 0.1s; }
+.skeleton-step:nth-child(3) { animation-delay: 0.2s; }
+@keyframes skPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
+@media (prefers-color-scheme: dark) {
+  .skeleton-badge, .skeleton-title { background: #2a2a2a; }
+  .skeleton-tag { background: #262626; }
+  .skeleton-step { background: #222; }
+}
+
 .source-badge { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 14px; font-weight: 600; margin-bottom: 12px; }
 .source-badge.yolo { background: #e8f8f0; color: #1e8e4f; }
 .source-badge.brand { background: #fce7f3; color: #9d174d; }
@@ -380,7 +398,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.58</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.61</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -2773,7 +2791,19 @@ function showCandidateSearch() {
 }
 
 function renderLoading(msg) {
-  $('sheetContent').innerHTML = `<div class="result-loading"><div class="spinner"></div><div style="font-size:18px;">${msg || 'AI가 분석하고 있어요...'}</div></div>`;
+  // v5.60: 스켈레톤 카드 + 진행 메시지 (체감 속도 ↑, 정확도 영향 0)
+  $('sheetContent').innerHTML = `
+    <div class="result-skeleton">
+      <div class="skeleton-badge"></div>
+      <div class="skeleton-title"></div>
+      <div class="skeleton-tags"><div class="skeleton-tag"></div><div class="skeleton-tag short"></div></div>
+      <div class="skeleton-steps">
+        <div class="skeleton-step"></div>
+        <div class="skeleton-step"></div>
+        <div class="skeleton-step"></div>
+      </div>
+      <div class="result-loading"><div class="spinner"></div><div style="font-size:16px;color:#666;" id="loadingMsg">${msg || 'AI가 분석하고 있어요...'}</div></div>
+    </div>`;
   openSheet();
 }
 function renderError(msg) {
@@ -2788,13 +2818,18 @@ async function handleCapture(imageDataUrl) {
   if (!imageDataUrl) return;
   if (!state.regionLevel2) { toast('먼저 거주지를 설정해주세요', true); openSettings(); return; }
   state.lastImageDataUrl = imageDataUrl;
-  renderLoading('🤖 AI가 인식 중...');
+  // v5.60: 진행 메시지 단계별 (체감 속도 개선)
+  renderLoading('📷 사진 전송 중...');
+  setTimeout(() => { const el=$('loadingMsg'); if (el && el.textContent==='📷 사진 전송 중...') el.textContent='🤖 AI 분석 중...'; }, 600);
   try {
     const result = await analyzeHybrid(imageDataUrl, (msg) => {
       // OCR 진행 상태를 로딩 메시지로 표시
-      const loadingEl = document.querySelector('#sheetContent .result-loading div:nth-child(2)');
+      const loadingEl = $('loadingMsg');
       if (loadingEl) loadingEl.textContent = '📖 ' + msg;
     });
+    // 응답 받음 → 렌더 직전 메시지
+    const el2 = $('loadingMsg');
+    if (el2) el2.textContent = '📋 안내 준비 중...';
     try {
       renderResult(result);
       // v5.32: 영역 안내는 startRealtimeDetection로 이동 (카메라 켤 때 = 더 시의적절)
