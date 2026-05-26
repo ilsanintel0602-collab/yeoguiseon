@@ -380,7 +380,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.57</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.58</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -2815,7 +2815,12 @@ async function handleCapture(imageDataUrl) {
       friendly = '🌐 네트워크 문제예요. 잠시 후 다시 시도해주세요.';
     } else if (msg.includes('빈 응답') || msg.includes('빈응답')) {
       // v5.51: 카메라 전체프레임 복잡 장면 → Gemini 주피사체 특정 불가
-      friendly = '📷 물건을 화면 중앙에 놓고 손가락으로 물건 주위를 그려주세요.\n정확도가 훨씬 높아집니다.';
+      // v5.58: source별 분기 — 갤러리는 이미 찍힌 사진이라 "손가락 그리기" 부적절
+      if (window._lastCaptureSource === 'gallery') {
+        friendly = '🖼️ 사진에서 물건을 찾지 못했어요.\n한 가지 물건이 사진 가운데 크게·명확히 보이는 사진으로 다시 시도해주세요.';
+      } else {
+        friendly = '📷 물건을 화면 중앙에 놓고 손가락으로 물건 주위를 그려주세요.\n정확도가 훨씬 높아집니다.';
+      }
     }
     renderError(friendly);
   }
@@ -3099,9 +3104,15 @@ async function init() {
     if (!video.srcObject) { const ok = await startCamera(); if (!ok) return; return; }
     // v5.15: 햅틱 진동 (모바일에서 촬영 피드백)
     if (navigator.vibrate) navigator.vibrate(20);
+    // v5.58: source 트래킹 — 빈 응답 안내 분기용 (camera = 손가락 그리기 권장, gallery = 다른 사진 시도)
+    window._lastCaptureSource = 'camera';
     handleCapture(await capturePhoto());
   };
-  $('galleryBtn').onclick = async () => handleCapture(await pickFromGallery());
+  $('galleryBtn').onclick = async () => {
+    // v5.58: source 트래킹
+    window._lastCaptureSource = 'gallery';
+    handleCapture(await pickFromGallery());
+  };
   $('settingsBtn').onclick = openSettings;
   $('locationBtn').onclick = openSettings;
   $('settingsClose').onclick = closeSettings;
