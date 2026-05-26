@@ -22,6 +22,10 @@
 
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#2ecc71">
+
+<!-- v5.57: Worker URL DNS preconnect — 첫 카메라 분석 시 TLS handshake 절약 (-100~300ms, 정확도 영향 0) -->
+<link rel="preconnect" href="https://yeoguiseon-proxy.ilsanintel0602.workers.dev" crossorigin>
+<link rel="dns-prefetch" href="https://yeoguiseon-proxy.ilsanintel0602.workers.dev">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="여기선">
@@ -376,7 +380,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.56</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.57</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -1671,6 +1675,8 @@ async function analyzeHybrid(imageDataUrl, onOcrProgress) {
 // ===== 카메라 =====
 async function startCamera() {
   const video = $('cameraVideo');
+  // v5.57: 중복 호출 가드 — 이미 시동되어 활성화된 경우 즉시 true (pointerdown 사전 시동 + click 모두 안전)
+  if (video.srcObject && video.videoWidth > 0) return true;
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } }, audio: false });
     state.stream = stream;
@@ -3082,6 +3088,12 @@ async function init() {
   updateLocationChip();
 
   // 이벤트
+  // v5.57: pointerdown 사전 시동 — 사용자가 버튼에 손가락 닿는 즉시 카메라 시동 (click 발화 100~300ms 전)
+  //   효과: -100~300ms 체감 속도. UX 변경 0, 정확도 영향 0. 권한 다이얼로그 시점은 동일 (사용자 명확한 의도 후).
+  $('captureBtn').addEventListener('pointerdown', () => {
+    const video = $('cameraVideo');
+    if (!video.srcObject) startCamera().catch(() => {});
+  });
   $('captureBtn').onclick = async () => {
     const video = $('cameraVideo');
     if (!video.srcObject) { const ok = await startCamera(); if (!ok) return; return; }
