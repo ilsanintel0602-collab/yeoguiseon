@@ -1,6 +1,6 @@
 {
   "$schema": "여기선 v3.1 - 지역별 예외 룰 (환경부 표준 + 차이만)",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "lastUpdated": "2026-05-26",
   "note": "환경부 표준은 national_rules.json. 이 파일은 지역별 차이/세부 룰만 정의. v3.2: 강서·노원 itemExceptions/sources/cleanUrl/phone 보강 (Phase 1).",
   "sourceGradeLegend": {
@@ -1034,7 +1034,8 @@
         "officialUrl": "https://www.gangseo.seoul.kr/",
         "phones": {
           "청소행정과": "02-2600-1751",
-          "구청대표": "02-2600-6114"
+          "구청대표": "02-2600-6114",
+          "자원순환과": "02-2600-4242"
         },
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거",
@@ -1064,7 +1065,6 @@
         },
         "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
         "cleanUrl": "https://www.gangseo.seoul.kr/env/env010101",
-        "phone": "02-2600-4242",
         "disposalDay": "재활용품: 일·월·화·수·목 (금·토 제외). 25.2.1 부터 적용. 공동주택은 단지별 지정요일.",
         "sources": [
           {
@@ -1519,7 +1519,8 @@
         "city": "서울특별시 노원구",
         "officialUrl": "https://www.nowon.kr/",
         "phones": {
-          "구청대표": "02-2116-3114"
+          "구청대표": "02-2116-3114",
+          "자원순환과": "02-2116-3812"
         },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
@@ -1541,7 +1542,6 @@
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
         "pickupTimeSource": "B_standard",
         "cleanUrl": "https://smartclean.nowon.kr/",
-        "phone": "02-2116-3812",
         "disposalDay": "재활용품: 매일 (목·토 제외). 목요일은 투명페트병·폐비닐만. 공동주택은 단지별 지정요일.",
         "sources": [
           {
