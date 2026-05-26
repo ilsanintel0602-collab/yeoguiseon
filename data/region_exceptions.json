@@ -1,8 +1,8 @@
 {
   "$schema": "여기선 v3.1 - 지역별 예외 룰 (환경부 표준 + 차이만)",
-  "version": "3.1.0",
-  "lastUpdated": "2026-05-18",
-  "note": "환경부 표준은 national_rules.json. 이 파일은 지역별 차이/세부 룰만 정의.",
+  "version": "3.2.0",
+  "lastUpdated": "2026-05-26",
+  "note": "환경부 표준은 national_rules.json. 이 파일은 지역별 차이/세부 룰만 정의. v3.2: 강서·노원 itemExceptions/sources/cleanUrl/phone 보강 (Phase 1).",
   "sourceGradeLegend": {
     "A": "지자체 공식 페이지·고시·공공시설 홈페이지 (1차 출처)",
     "B": "검증된 공공기관 보도자료·시 위탁 시설(고양환경에너지) 등 2차 출처"
@@ -1062,7 +1062,32 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "cleanUrl": "https://www.gangseo.seoul.kr/env/env010101",
+        "phone": "02-2600-4242",
+        "disposalDay": "재활용품: 일·월·화·수·목 (금·토 제외). 25.2.1 부터 적용. 공동주택은 단지별 지정요일.",
+        "sources": [
+          {
+            "url": "https://www.gangseo.seoul.kr/env/env010101",
+            "grade": "A",
+            "note": "재활용품 분리배출 방법"
+          },
+          {
+            "url": "https://www.gangseo.seoul.kr/env/env010202",
+            "grade": "A",
+            "note": "음식물쓰레기 분리배출"
+          },
+          {
+            "url": "https://www.gangseo.seoul.kr/env/env010401",
+            "grade": "A",
+            "note": "일반 생활쓰레기 배출방법"
+          },
+          {
+            "url": "https://www.gangseo.seoul.kr/env/env010501",
+            "grade": "A",
+            "note": "폐의약품 배출방법"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1511,12 +1536,73 @@
           "priceNote": "노원구 가정용 종량제: 3ℓ 90원 · 5ℓ 130원 · 10ℓ 250원 · 20ℓ 490원 · 50ℓ 1250원",
           "source": "행정안전부 표준데이터 (data.go.kr 15025538)"
         },
-        "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
+        "disposalTime": "저녁 18시 ~ 24시 (내 집·내 점포 앞)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "cleanUrl": "https://smartclean.nowon.kr/",
+        "phone": "02-2116-3812",
+        "disposalDay": "재활용품: 매일 (목·토 제외). 목요일은 투명페트병·폐비닐만. 공동주택은 단지별 지정요일.",
+        "sources": [
+          {
+            "url": "https://www.nowon.kr/www/minwon/minwon4/minwon4_03/minwon4_03_04.jsp",
+            "grade": "A",
+            "note": "재활용품 배출안내 및 배출방법"
+          },
+          {
+            "url": "https://www.nowon.kr/www/minwon/minwon4/minwon4_03/minwon4_03_02.jsp",
+            "grade": "A",
+            "note": "생활폐기물 배출안내"
+          },
+          {
+            "url": "https://www.nowon.kr/www/minwon/minwon4/minwon4_03/minwon4_03_03.jsp",
+            "grade": "A",
+            "note": "음식물류 폐기물 배출안내"
+          },
+          {
+            "url": "https://smartclean.nowon.kr/online/bulky/guide",
+            "grade": "A",
+            "note": "대형폐기물 (스마트클린)"
+          }
+        ]
       },
-      "exceptions": {}
+      "exceptions": {
+        "아이스팩": {
+          "category": "vinyl",
+          "note": "노원구: 물 아이스팩은 물을 비우고 깨끗한 겉비닐만 비닐류로 배출. 젤 아이스팩은 특수종량제 마대.",
+          "confidence": "high",
+          "source": "https://www.nowon.kr/www/minwon/minwon4/minwon4_03/minwon4_03_04.jsp",
+          "sourceGrade": "A"
+        },
+        "젤아이스팩": {
+          "category": "general",
+          "note": "노원구: 젤 아이스팩은 특수종량제 마대에 담아 배출.",
+          "confidence": "high",
+          "source": "https://www.nowon.kr/www/minwon/minwon4/minwon4_03/minwon4_03_04.jsp",
+          "sourceGrade": "A"
+        },
+        "카페 일회용컵": {
+          "category": "plastic",
+          "note": "노원구: 1회용 커피컵·투명 트레이는 투명페트병으로 분리 배출 불가. 플라스틱류로 함께 배출.",
+          "confidence": "high",
+          "source": "https://www.nowon.kr/www/minwon/minwon4/minwon4_03/minwon4_03_04.jsp",
+          "sourceGrade": "A"
+        },
+        "aerosol_can": {
+          "category": "can",
+          "note": "노원구: 부탄가스·살충제 용기는 통풍 좋은 곳에서 구멍을 뚫어 내용물을 완전히 비운 후 배출.",
+          "confidence": "high",
+          "source": "https://www.nowon.kr/www/minwon/minwon4/minwon4_03/minwon4_03_04.jsp",
+          "sourceGrade": "A"
+        },
+        "카펫": {
+          "category": "furniture",
+          "note": "노원구: 카펫·베개·물에 젖은 의류는 특수종량제봉투에 담거나 대형폐기물 신고 후 배출.",
+          "confidence": "high",
+          "source": "https://www.nowon.kr/www/minwon/minwon4/minwon4_03/minwon4_03_04.jsp",
+          "sourceGrade": "A"
+        }
+      }
     },
     "11530": {
       "name": "서울특별시 구로구",
