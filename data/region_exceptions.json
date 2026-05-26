@@ -1,6 +1,6 @@
 {
   "$schema": "여기선 v3.1 - 지역별 예외 룰 (환경부 표준 + 차이만)",
-  "version": "3.5.0",
+  "version": "3.7.1",
   "lastUpdated": "2026-05-26",
   "note": "환경부 표준은 national_rules.json. 이 파일은 지역별 차이/세부 룰만 정의. v3.2: 강서·노원 itemExceptions/sources/cleanUrl/phone 보강 (Phase 1).",
   "sourceGradeLegend": {
@@ -77,7 +77,14 @@
         "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
         "phones": {
           "자원순환과": "02-3423-5000"
-        }
+        },
+        "sources": [
+          {
+            "url": "https://www.gangnam.go.kr/",
+            "grade": "B",
+            "note": "강남구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       }
     },
     "41285": {
@@ -674,7 +681,6 @@
         "officialUrl": "https://www.paju.go.kr/",
         "wasteUrl": "https://www.paju.go.kr/user/board/BD_board.list.do?bbsCd=1042",
         "phones": {
-          "자원순환과": "031-940-4000",
           "시청대표": "031-940-4000"
         },
         "applianceRecycle": {
@@ -692,7 +698,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.paju.go.kr/",
+            "grade": "B",
+            "note": "파주시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -705,7 +718,6 @@
         "officialUrl": "https://www.gimpo.go.kr/",
         "wasteUrl": "https://www.gimpo.go.kr/portal/contents.do?key=2287",
         "phones": {
-          "자원순환팀": "031-980-2114",
           "시청대표": "031-980-2114"
         },
         "applianceRecycle": {
@@ -726,7 +738,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gimpo.go.kr/",
+            "grade": "B",
+            "note": "김포시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -738,7 +757,6 @@
         "city": "의정부시",
         "officialUrl": "https://www.ui4u.go.kr/",
         "phones": {
-          "자원순환과": "031-828-2114",
           "시청대표": "031-828-2114"
         },
         "applianceRecycle": {
@@ -759,7 +777,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.ui4u.go.kr/",
+            "grade": "B",
+            "note": "의정부시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -791,7 +816,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gm.go.kr/",
+            "grade": "B",
+            "note": "광명시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -803,7 +835,6 @@
         "city": "부천시",
         "officialUrl": "https://www.bucheon.go.kr/",
         "phones": {
-          "자원순환과": "032-625-2114",
           "시청대표": "032-625-2114"
         },
         "applianceRecycle": {
@@ -824,7 +855,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.bucheon.go.kr/",
+            "grade": "B",
+            "note": "부천시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -856,7 +894,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.pyeongtaek.go.kr/",
+            "grade": "B",
+            "note": "평택시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -871,7 +916,8 @@
           "청소행정과": "02-3153-8311",
           "구청대표": "02-3153-8114",
           "자원순환과": "02-3153-9210",
-          "음식물쓰레기": "02-3153-9200"
+          "음식물쓰레기": "02-3153-9200",
+          "깨끗한마포과": "02-3153-9226"
         },
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거",
@@ -1005,7 +1051,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.sdm.go.kr/",
+            "grade": "B",
+            "note": "서대문구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1219,7 +1272,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.jongno.go.kr/",
+            "grade": "B",
+            "note": "종로구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1252,7 +1312,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.junggu.seoul.kr/",
+            "grade": "B",
+            "note": "중구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1281,7 +1348,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yongsan.go.kr/",
+            "grade": "B",
+            "note": "용산구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1293,7 +1367,6 @@
         "city": "성남시",
         "officialUrl": "https://www.seongnam.go.kr/",
         "phones": {
-          "자원순환과": "031-729-2114",
           "시청대표": "031-729-2114"
         },
         "applianceRecycle": {
@@ -1322,7 +1395,14 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "sources": [
+          {
+            "url": "https://www.seongnam.go.kr/",
+            "grade": "B",
+            "note": "성남시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1354,7 +1434,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.anyang.go.kr/",
+            "grade": "B",
+            "note": "만안구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1386,7 +1473,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.anyang.go.kr/",
+            "grade": "B",
+            "note": "동안구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1417,7 +1511,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.sd.go.kr/",
+            "grade": "B",
+            "note": "성동구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1448,7 +1549,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gwangjin.go.kr/",
+            "grade": "B",
+            "note": "광진구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1479,7 +1587,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.ddm.go.kr/",
+            "grade": "B",
+            "note": "동대문구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1510,7 +1625,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.jungnang.go.kr/",
+            "grade": "B",
+            "note": "중랑구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1541,7 +1663,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.sb.go.kr/",
+            "grade": "B",
+            "note": "성북구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1572,7 +1701,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gangbuk.go.kr/",
+            "grade": "B",
+            "note": "강북구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1607,7 +1743,14 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "sources": [
+          {
+            "url": "https://www.dobong.go.kr/",
+            "grade": "B",
+            "note": "도봉구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1730,7 +1873,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.guro.go.kr/",
+            "grade": "B",
+            "note": "구로구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1757,7 +1907,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.geumcheon.go.kr/",
+            "grade": "B",
+            "note": "금천구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1788,7 +1945,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.dongjak.go.kr/",
+            "grade": "B",
+            "note": "동작구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -1856,7 +2020,7 @@
         "officialUrl": "https://www.seocho.go.kr/",
         "phones": {
           "구청대표": "02-2155-6114",
-          "자원순환과": "02-2155-6114"
+          "청소행정과": "02-2155-6747"
         },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
@@ -1979,7 +2143,7 @@
         "officialUrl": "https://www.gangdong.go.kr/",
         "phones": {
           "구청대표": "02-3425-5114",
-          "자원순환과": "02-3425-5114"
+          "청소행정과": "02-3425-5860"
         },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
@@ -2059,7 +2223,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.guri.go.kr/",
+            "grade": "B",
+            "note": "구리시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2090,7 +2261,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.nyj.go.kr/",
+            "grade": "B",
+            "note": "남양주시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2121,7 +2299,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gunpo.go.kr/",
+            "grade": "B",
+            "note": "군포시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2152,7 +2337,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.uiwang.go.kr/",
+            "grade": "B",
+            "note": "의왕시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2183,7 +2375,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.hanam.go.kr/",
+            "grade": "B",
+            "note": "하남시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2214,7 +2413,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gccity.go.kr/",
+            "grade": "B",
+            "note": "과천시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2245,7 +2451,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.icheon.go.kr/",
+            "grade": "B",
+            "note": "이천시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2276,7 +2489,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.anseong.go.kr/",
+            "grade": "B",
+            "note": "안성시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2307,7 +2527,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.hscity.go.kr/",
+            "grade": "B",
+            "note": "화성시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2334,7 +2561,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gjcity.go.kr/",
+            "grade": "B",
+            "note": "광주시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2365,7 +2599,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yangju.go.kr/",
+            "grade": "B",
+            "note": "양주시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2396,7 +2637,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.pocheon.go.kr/",
+            "grade": "B",
+            "note": "포천시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2427,7 +2675,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yeoju.go.kr/",
+            "grade": "B",
+            "note": "여주시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2459,7 +2714,8 @@
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
         "pickupTimeSource": "B_standard"
       },
-      "exceptions": {}
+      "exceptions": {},
+      "_inherits": "41110"
     },
     "41250": {
       "name": "경기도 동두천시",
@@ -2488,7 +2744,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.ddc21.net/",
+            "grade": "B",
+            "note": "동두천시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2527,7 +2790,19 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "sources": [
+          {
+            "url": "https://www.icjg.go.kr/",
+            "grade": "B",
+            "note": "중구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.incheon.go.kr/recycle/index",
+            "grade": "A",
+            "note": "인천광역시 자원순환 선도도시 (광역 공식 안내)"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2566,7 +2841,19 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "sources": [
+          {
+            "url": "https://www.michuhol.go.kr/",
+            "grade": "B",
+            "note": "미추홀구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.incheon.go.kr/recycle/index",
+            "grade": "A",
+            "note": "인천광역시 자원순환 선도도시 (광역 공식 안내)"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2597,7 +2884,19 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yeonsu.go.kr/",
+            "grade": "B",
+            "note": "연수구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.incheon.go.kr/recycle/index",
+            "grade": "A",
+            "note": "인천광역시 자원순환 선도도시 (광역 공식 안내)"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2636,7 +2935,19 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "sources": [
+          {
+            "url": "https://www.namdong.go.kr/",
+            "grade": "B",
+            "note": "남동구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.incheon.go.kr/recycle/index",
+            "grade": "A",
+            "note": "인천광역시 자원순환 선도도시 (광역 공식 안내)"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2667,7 +2978,29 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.icbp.go.kr/",
+            "grade": "B",
+            "note": "부평구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.incheon.go.kr/recycle/index",
+            "grade": "A",
+            "note": "인천광역시 자원순환 선도도시 (광역 공식 안내)"
+          },
+          {
+            "url": "https://www.icbp.go.kr/main/life/clean/remove.jsp",
+            "grade": "A",
+            "note": "대형폐기물 배출"
+          },
+          {
+            "url": "https://waste.icbp.go.kr/icbp/load_page.asp",
+            "grade": "A",
+            "note": "폐기물 신고 시스템"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2698,7 +3031,19 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gyeyang.go.kr/",
+            "grade": "B",
+            "note": "계양구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.incheon.go.kr/recycle/index",
+            "grade": "A",
+            "note": "인천광역시 자원순환 선도도시 (광역 공식 안내)"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2709,7 +3054,9 @@
         "city": "인천광역시 서구",
         "officialUrl": "https://www.seo.incheon.kr/",
         "phones": {
-          "구청대표": "032-560-5114"
+          "구청대표": "032-560-5114",
+          "자원순환과 자원순환팀": "032-560-4390",
+          "음식물자원화팀": "032-560-4410"
         },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
@@ -2729,7 +3076,41 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.seo.incheon.kr/open_content/main/part/clean/detritus.jsp",
+            "grade": "A",
+            "note": "생활쓰레기 배출"
+          },
+          {
+            "url": "https://www.seo.incheon.kr/open_content/main/part/clean/detritus_food.jsp",
+            "grade": "A",
+            "note": "음식물쓰레기 배출 (동별 배출요일)"
+          },
+          {
+            "url": "https://waste.seo.incheon.kr/seogu/index.do",
+            "grade": "A",
+            "note": "대형폐기물 배출 시스템"
+          },
+          {
+            "url": "https://www.seo.incheon.kr/open_content/main/part/clean/detritus_waste.jsp",
+            "grade": "A",
+            "note": "폐가전 무상 배출"
+          },
+          {
+            "url": "https://waste.seo.incheon.kr/MobileGBMS_Seogu/login.do",
+            "grade": "A",
+            "note": "종량제봉투 웹주문"
+          },
+          {
+            "url": "https://www.incheon.go.kr/recycle/index",
+            "grade": "A",
+            "note": "인천광역시 자원순환 선도도시 (광역 안내)"
+          }
+        ],
+        "specialNote": "인천 서구: 타지역 전입자는 동 행정복지센터에서 인증스티커 받아 종량제봉투에 부착·배출. 종량제봉투 웹주문 가능.",
+        "cleanUrl": "https://www.seo.incheon.kr/open_content/main/part/clean/detritus.jsp"
       },
       "exceptions": {}
     },
@@ -2760,7 +3141,19 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.ganghwa.go.kr/",
+            "grade": "B",
+            "note": "강화군 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.incheon.go.kr/recycle/index",
+            "grade": "A",
+            "note": "인천광역시 자원순환 선도도시 (광역 공식 안내)"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -2799,7 +3192,45 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "sources": [
+          {
+            "url": "https://www.bsjunggu.go.kr/",
+            "grade": "B",
+            "note": "중구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwastepolicy09",
+            "grade": "A",
+            "note": "부산광역시 재활용품 분리배출 (광역)"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo01",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 줄이기 홍보관"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo03",
+            "grade": "A",
+            "note": "부산광역시 음식물쓰레기 배출방법"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/944703",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 배출요령"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/968383",
+            "grade": "A",
+            "note": "부산 주택가 재활용 요일별 분리배출"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/958319",
+            "grade": "A",
+            "note": "부산 대형폐기물·폐가전 배출"
+          }
+        ],
+        "specialNote": "부산광역시 공통: 주택가 재활용은 요일별 분리배출 운영 (병류·플라스틱·종이류 등). 거주 자치구 공식 페이지에서 본인 동 요일 확인."
       },
       "exceptions": {}
     },
@@ -2826,7 +3257,45 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.bsseogu.go.kr/",
+            "grade": "B",
+            "note": "서구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwastepolicy09",
+            "grade": "A",
+            "note": "부산광역시 재활용품 분리배출 (광역)"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo01",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 줄이기 홍보관"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo03",
+            "grade": "A",
+            "note": "부산광역시 음식물쓰레기 배출방법"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/944703",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 배출요령"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/968383",
+            "grade": "A",
+            "note": "부산 주택가 재활용 요일별 분리배출"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/958319",
+            "grade": "A",
+            "note": "부산 대형폐기물·폐가전 배출"
+          }
+        ],
+        "specialNote": "부산광역시 공통: 주택가 재활용은 요일별 분리배출 운영 (병류·플라스틱·종이류 등). 거주 자치구 공식 페이지에서 본인 동 요일 확인."
       },
       "exceptions": {}
     },
@@ -2861,7 +3330,45 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "sources": [
+          {
+            "url": "https://www.busanjin.go.kr/",
+            "grade": "B",
+            "note": "부산진구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwastepolicy09",
+            "grade": "A",
+            "note": "부산광역시 재활용품 분리배출 (광역)"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo01",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 줄이기 홍보관"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo03",
+            "grade": "A",
+            "note": "부산광역시 음식물쓰레기 배출방법"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/944703",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 배출요령"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/968383",
+            "grade": "A",
+            "note": "부산 주택가 재활용 요일별 분리배출"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/958319",
+            "grade": "A",
+            "note": "부산 대형폐기물·폐가전 배출"
+          }
+        ],
+        "specialNote": "부산광역시 공통: 주택가 재활용은 요일별 분리배출 운영 (병류·플라스틱·종이류 등). 거주 자치구 공식 페이지에서 본인 동 요일 확인."
       },
       "exceptions": {}
     },
@@ -2892,7 +3399,45 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.dongnae.go.kr/",
+            "grade": "B",
+            "note": "동래구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwastepolicy09",
+            "grade": "A",
+            "note": "부산광역시 재활용품 분리배출 (광역)"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo01",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 줄이기 홍보관"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo03",
+            "grade": "A",
+            "note": "부산광역시 음식물쓰레기 배출방법"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/944703",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 배출요령"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/968383",
+            "grade": "A",
+            "note": "부산 주택가 재활용 요일별 분리배출"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/958319",
+            "grade": "A",
+            "note": "부산 대형폐기물·폐가전 배출"
+          }
+        ],
+        "specialNote": "부산광역시 공통: 주택가 재활용은 요일별 분리배출 운영 (병류·플라스틱·종이류 등). 거주 자치구 공식 페이지에서 본인 동 요일 확인."
       },
       "exceptions": {}
     },
@@ -2923,7 +3468,45 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.bsnamgu.go.kr/",
+            "grade": "B",
+            "note": "남구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwastepolicy09",
+            "grade": "A",
+            "note": "부산광역시 재활용품 분리배출 (광역)"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo01",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 줄이기 홍보관"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo03",
+            "grade": "A",
+            "note": "부산광역시 음식물쓰레기 배출방법"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/944703",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 배출요령"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/968383",
+            "grade": "A",
+            "note": "부산 주택가 재활용 요일별 분리배출"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/958319",
+            "grade": "A",
+            "note": "부산 대형폐기물·폐가전 배출"
+          }
+        ],
+        "specialNote": "부산광역시 공통: 주택가 재활용은 요일별 분리배출 운영 (병류·플라스틱·종이류 등). 거주 자치구 공식 페이지에서 본인 동 요일 확인."
       },
       "exceptions": {}
     },
@@ -2933,7 +3516,8 @@
       "cityGuide": {
         "city": "부산광역시 북구",
         "phones": {
-          "구청대표": "051-309-4000"
+          "구청대표": "051-309-4000",
+          "자원순환과": "051-309-4455"
         },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
@@ -2953,7 +3537,46 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "officialUrl": "https://www.bsbukgu.go.kr/",
+        "sources": [
+          {
+            "url": "https://www.bsbukgu.go.kr/",
+            "grade": "B",
+            "note": "북구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwastepolicy09",
+            "grade": "A",
+            "note": "부산광역시 재활용품 분리배출 (광역)"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo01",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 줄이기 홍보관"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo03",
+            "grade": "A",
+            "note": "부산광역시 음식물쓰레기 배출방법"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/944703",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 배출요령"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/968383",
+            "grade": "A",
+            "note": "부산 주택가 재활용 요일별 분리배출"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/958319",
+            "grade": "A",
+            "note": "부산 대형폐기물·폐가전 배출"
+          }
+        ],
+        "specialNote": "부산광역시 공통: 주택가 재활용은 요일별 분리배출 운영 (병류·플라스틱·종이류 등). 거주 자치구 공식 페이지에서 본인 동 요일 확인."
       },
       "exceptions": {}
     },
@@ -2984,7 +3607,45 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gijang.go.kr/",
+            "grade": "B",
+            "note": "기장군 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwastepolicy09",
+            "grade": "A",
+            "note": "부산광역시 재활용품 분리배출 (광역)"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo01",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 줄이기 홍보관"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo03",
+            "grade": "A",
+            "note": "부산광역시 음식물쓰레기 배출방법"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/944703",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 배출요령"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/968383",
+            "grade": "A",
+            "note": "부산 주택가 재활용 요일별 분리배출"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/958319",
+            "grade": "A",
+            "note": "부산 대형폐기물·폐가전 배출"
+          }
+        ],
+        "specialNote": "부산광역시 공통: 주택가 재활용은 요일별 분리배출 운영 (병류·플라스틱·종이류 등). 거주 자치구 공식 페이지에서 본인 동 요일 확인."
       },
       "exceptions": {}
     },
@@ -3023,7 +3684,14 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "sources": [
+          {
+            "url": "https://www.jung.daegu.kr/",
+            "grade": "B",
+            "note": "중구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3050,7 +3718,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.nam.daegu.kr/",
+            "grade": "B",
+            "note": "남구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3081,7 +3756,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.buk.daegu.kr/",
+            "grade": "B",
+            "note": "북구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3116,7 +3798,14 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "sources": [
+          {
+            "url": "https://www.suseong.kr/",
+            "grade": "B",
+            "note": "수성구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3150,7 +3839,15 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "officialUrl": "https://www.donggu.gwangju.kr/",
+        "sources": [
+          {
+            "url": "https://www.donggu.gwangju.kr/",
+            "grade": "B",
+            "note": "동구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3177,7 +3874,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.seogu.gwangju.kr/",
+            "grade": "B",
+            "note": "서구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3208,7 +3912,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.donggu.go.kr/",
+            "grade": "B",
+            "note": "동구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3243,7 +3954,14 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "sources": [
+          {
+            "url": "https://www.djjunggu.go.kr/",
+            "grade": "B",
+            "note": "중구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3270,7 +3988,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.seogu.go.kr/",
+            "grade": "B",
+            "note": "서구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3301,7 +4026,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yuseong.go.kr/",
+            "grade": "B",
+            "note": "유성구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3332,7 +4064,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.daedeok.go.kr/",
+            "grade": "B",
+            "note": "대덕구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3363,7 +4102,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.junggu.ulsan.kr/",
+            "grade": "B",
+            "note": "중구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3394,7 +4140,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.ulsannamgu.go.kr/",
+            "grade": "B",
+            "note": "남구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3421,7 +4174,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.sejong.go.kr/",
+            "grade": "B",
+            "note": "세종특별자치시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3460,7 +4220,14 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "sources": [
+          {
+            "url": "https://www.chuncheon.go.kr/",
+            "grade": "B",
+            "note": "춘천시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3487,7 +4254,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.wonju.go.kr/",
+            "grade": "B",
+            "note": "원주시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3518,7 +4292,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gn.go.kr/",
+            "grade": "B",
+            "note": "강릉시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3545,7 +4326,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.dh.go.kr/",
+            "grade": "B",
+            "note": "동해시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3576,7 +4364,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.taebaek.go.kr/",
+            "grade": "B",
+            "note": "태백시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3603,7 +4398,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.sokcho.go.kr/",
+            "grade": "B",
+            "note": "속초시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3642,7 +4444,14 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "sources": [
+          {
+            "url": "https://www.cheongju.go.kr/",
+            "grade": "B",
+            "note": "청주시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3673,7 +4482,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.chungju.go.kr/",
+            "grade": "B",
+            "note": "충주시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3704,7 +4520,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.jecheon.go.kr/",
+            "grade": "B",
+            "note": "제천시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3743,7 +4566,14 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "sources": [
+          {
+            "url": "https://www.cheonan.go.kr/",
+            "grade": "B",
+            "note": "천안시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3774,7 +4604,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gongju.go.kr/",
+            "grade": "B",
+            "note": "공주시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3804,7 +4641,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "officialUrl": "https://www.brcn.go.kr/",
+        "sources": [
+          {
+            "url": "https://www.brcn.go.kr/",
+            "grade": "B",
+            "note": "보령시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3835,7 +4680,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.asan.go.kr/",
+            "grade": "B",
+            "note": "아산시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3866,7 +4718,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.seosan.go.kr/",
+            "grade": "B",
+            "note": "서산시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3901,7 +4760,14 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "sources": [
+          {
+            "url": "https://www.jeonju.go.kr/",
+            "grade": "B",
+            "note": "전주시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3932,7 +4798,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gunsan.go.kr/",
+            "grade": "B",
+            "note": "군산시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3963,7 +4836,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.iksan.go.kr/",
+            "grade": "B",
+            "note": "익산시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -3994,7 +4874,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.jeongeup.go.kr/",
+            "grade": "B",
+            "note": "정읍시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4025,7 +4912,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.mokpo.go.kr/",
+            "grade": "B",
+            "note": "목포시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4056,7 +4950,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.suncheon.go.kr/",
+            "grade": "B",
+            "note": "순천시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4083,7 +4984,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.naju.go.kr/",
+            "grade": "B",
+            "note": "나주시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4122,7 +5030,14 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "sources": [
+          {
+            "url": "https://www.pohang.go.kr/",
+            "grade": "B",
+            "note": "포항시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4153,7 +5068,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gyeongju.go.kr/",
+            "grade": "B",
+            "note": "경주시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4184,7 +5106,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gc.go.kr/",
+            "grade": "B",
+            "note": "김천시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4215,7 +5144,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.andong.go.kr/",
+            "grade": "B",
+            "note": "안동시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4246,7 +5182,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gumi.go.kr/",
+            "grade": "B",
+            "note": "구미시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4285,7 +5228,14 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "sources": [
+          {
+            "url": "https://www.changwon.go.kr/",
+            "grade": "B",
+            "note": "창원시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4312,7 +5262,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.jinju.go.kr/",
+            "grade": "B",
+            "note": "진주시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4342,7 +5299,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "officialUrl": "http://www.tongyeong.go.kr/",
+        "sources": [
+          {
+            "url": "http://www.tongyeong.go.kr/",
+            "grade": "B",
+            "note": "통영시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4369,7 +5334,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.sacheon.go.kr/",
+            "grade": "B",
+            "note": "사천시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4400,7 +5372,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gimhae.go.kr/",
+            "grade": "B",
+            "note": "김해시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4431,7 +5410,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.miryang.go.kr/",
+            "grade": "B",
+            "note": "밀양시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4462,7 +5448,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.geoje.go.kr/",
+            "grade": "B",
+            "note": "거제시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4493,7 +5486,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yangsan.go.kr/",
+            "grade": "B",
+            "note": "양산시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4532,7 +5532,14 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "sources": [
+          {
+            "url": "https://www.jejusi.go.kr/",
+            "grade": "B",
+            "note": "제주시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4563,7 +5570,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.seogwipo.go.kr/",
+            "grade": "B",
+            "note": "서귀포시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4590,7 +5604,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.samcheok.go.kr/",
+            "grade": "B",
+            "note": "삼척시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4621,7 +5642,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.nonsan.go.kr/",
+            "grade": "B",
+            "note": "논산시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4652,7 +5680,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gyeryong.go.kr/",
+            "grade": "B",
+            "note": "계룡시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4683,7 +5718,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.dangjin.go.kr/",
+            "grade": "B",
+            "note": "당진시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4710,7 +5752,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.namwon.go.kr/",
+            "grade": "B",
+            "note": "남원시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4741,7 +5790,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gimje.go.kr/",
+            "grade": "B",
+            "note": "김제시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4772,7 +5828,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yeongju.go.kr/",
+            "grade": "B",
+            "note": "영주시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4803,7 +5866,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yc.go.kr/",
+            "grade": "B",
+            "note": "영천시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4834,7 +5904,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.sangju.go.kr/",
+            "grade": "B",
+            "note": "상주시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4865,7 +5942,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gbmg.go.kr/",
+            "grade": "B",
+            "note": "문경시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4896,7 +5980,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gbgs.go.kr/",
+            "grade": "B",
+            "note": "경산시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4927,7 +6018,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.dalseo.daegu.kr/",
+            "grade": "B",
+            "note": "달서구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4954,7 +6052,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.dalseong.daegu.kr/",
+            "grade": "B",
+            "note": "달성군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -4981,7 +6086,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.namgu.gwangju.kr/",
+            "grade": "B",
+            "note": "남구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5007,7 +6119,15 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "officialUrl": "https://bukgu.gwangju.kr/",
+        "sources": [
+          {
+            "url": "https://bukgu.gwangju.kr/",
+            "grade": "B",
+            "note": "북구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5034,7 +6154,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gwangsan.go.kr/",
+            "grade": "B",
+            "note": "광산구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5073,7 +6200,14 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "sources": [
+          {
+            "url": "https://www.donggu.ulsan.kr/",
+            "grade": "B",
+            "note": "동구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5104,7 +6238,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.bukgu.ulsan.kr/",
+            "grade": "B",
+            "note": "북구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5135,7 +6276,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.ulju.ulsan.kr/",
+            "grade": "B",
+            "note": "울주군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5166,7 +6314,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.siheung.go.kr/",
+            "grade": "B",
+            "note": "시흥시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5197,7 +6352,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.osan.go.kr/",
+            "grade": "B",
+            "note": "오산시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5228,7 +6390,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gp.go.kr/",
+            "grade": "B",
+            "note": "가평군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5259,7 +6428,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yp21.go.kr/",
+            "grade": "B",
+            "note": "양평군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5290,7 +6466,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yeoncheon.go.kr/",
+            "grade": "B",
+            "note": "연천군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5321,7 +6504,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.hongcheon.go.kr/",
+            "grade": "B",
+            "note": "홍천군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5352,7 +6542,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.hsg.go.kr/",
+            "grade": "B",
+            "note": "횡성군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5383,7 +6580,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yw.go.kr/",
+            "grade": "B",
+            "note": "영월군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5414,7 +6618,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.pc.go.kr/",
+            "grade": "B",
+            "note": "평창군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5445,7 +6656,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.jeongseon.go.kr/",
+            "grade": "B",
+            "note": "정선군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5476,7 +6694,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.boeun.go.kr/",
+            "grade": "B",
+            "note": "보은군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5507,7 +6732,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.oc.go.kr/",
+            "grade": "B",
+            "note": "옥천군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5538,7 +6770,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yd21.go.kr/",
+            "grade": "B",
+            "note": "영동군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5569,7 +6808,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.jp.go.kr/",
+            "grade": "B",
+            "note": "증평군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5600,7 +6846,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.jincheon.go.kr/",
+            "grade": "B",
+            "note": "진천군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5631,7 +6884,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.goesan.go.kr/",
+            "grade": "B",
+            "note": "괴산군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5662,7 +6922,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.eumseong.go.kr/",
+            "grade": "B",
+            "note": "음성군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5693,7 +6960,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.danyang.go.kr/",
+            "grade": "B",
+            "note": "단양군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5720,7 +6994,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.geumsan.go.kr/",
+            "grade": "B",
+            "note": "금산군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5747,7 +7028,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.buyeo.go.kr/",
+            "grade": "B",
+            "note": "부여군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5778,7 +7066,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.seocheon.go.kr/",
+            "grade": "B",
+            "note": "서천군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5809,7 +7104,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.cheongyang.go.kr/",
+            "grade": "B",
+            "note": "청양군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5836,7 +7138,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.hongseong.go.kr/",
+            "grade": "B",
+            "note": "홍성군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5867,7 +7176,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yesan.go.kr/",
+            "grade": "B",
+            "note": "예산군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5898,7 +7214,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.taean.go.kr/",
+            "grade": "B",
+            "note": "태안군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5929,7 +7252,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.wanju.go.kr/",
+            "grade": "B",
+            "note": "완주군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5956,7 +7286,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.jinan.go.kr/",
+            "grade": "B",
+            "note": "진안군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -5983,7 +7320,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.muju.go.kr/",
+            "grade": "B",
+            "note": "무주군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6014,7 +7358,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.jangsu.go.kr/",
+            "grade": "B",
+            "note": "장수군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6045,7 +7396,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.imsil.go.kr/",
+            "grade": "B",
+            "note": "임실군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6076,7 +7434,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.sunchang.go.kr/",
+            "grade": "B",
+            "note": "순창군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6107,7 +7472,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gochang.go.kr/",
+            "grade": "B",
+            "note": "고창군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6138,7 +7510,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.buan.go.kr/",
+            "grade": "B",
+            "note": "부안군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6165,7 +7544,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gwangyang.go.kr/",
+            "grade": "B",
+            "note": "광양시 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6196,7 +7582,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.damyang.go.kr/",
+            "grade": "B",
+            "note": "담양군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6223,7 +7616,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gokseong.go.kr/",
+            "grade": "B",
+            "note": "곡성군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6254,7 +7654,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gurye.go.kr/",
+            "grade": "B",
+            "note": "구례군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6285,7 +7692,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.goheung.go.kr/",
+            "grade": "B",
+            "note": "고흥군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6316,7 +7730,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.boseong.go.kr/",
+            "grade": "B",
+            "note": "보성군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6343,7 +7764,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.hwasun.go.kr/",
+            "grade": "B",
+            "note": "화순군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6374,7 +7802,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.jangheung.go.kr/",
+            "grade": "B",
+            "note": "장흥군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6405,7 +7840,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gangjin.go.kr/",
+            "grade": "B",
+            "note": "강진군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6436,7 +7878,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.haenam.go.kr/",
+            "grade": "B",
+            "note": "해남군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6467,7 +7916,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yeongam.go.kr/",
+            "grade": "B",
+            "note": "영암군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6498,7 +7954,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.muan.go.kr/",
+            "grade": "B",
+            "note": "무안군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6529,7 +7992,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.hampyeong.go.kr/",
+            "grade": "B",
+            "note": "함평군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6560,7 +8030,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yeonggwang.go.kr/",
+            "grade": "B",
+            "note": "영광군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6591,7 +8068,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.jangseong.go.kr/",
+            "grade": "B",
+            "note": "장성군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6618,7 +8102,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.wando.go.kr/",
+            "grade": "B",
+            "note": "완도군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6649,7 +8140,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.jindo.go.kr/",
+            "grade": "B",
+            "note": "진도군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6680,7 +8178,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.shinan.go.kr/",
+            "grade": "B",
+            "note": "신안군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6711,7 +8216,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.gunwi.go.kr/",
+            "grade": "B",
+            "note": "군위군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6742,7 +8254,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.usc.go.kr/",
+            "grade": "B",
+            "note": "의성군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6773,7 +8292,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.cs.go.kr/",
+            "grade": "B",
+            "note": "청송군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6804,7 +8330,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yyg.go.kr/",
+            "grade": "B",
+            "note": "영양군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6835,7 +8368,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yd.go.kr/",
+            "grade": "B",
+            "note": "영덕군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6866,7 +8406,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.cheongdo.go.kr/",
+            "grade": "B",
+            "note": "청도군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6897,7 +8444,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.goryeong.go.kr/",
+            "grade": "B",
+            "note": "고령군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6924,7 +8478,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.sj.go.kr/",
+            "grade": "B",
+            "note": "성주군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6955,7 +8516,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.chilgok.go.kr/",
+            "grade": "B",
+            "note": "칠곡군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -6986,7 +8554,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.ycg.kr/",
+            "grade": "B",
+            "note": "예천군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7013,7 +8588,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.bonghwa.go.kr/",
+            "grade": "B",
+            "note": "봉화군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7044,7 +8626,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.uljin.go.kr/",
+            "grade": "B",
+            "note": "울진군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7075,7 +8664,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.ulleung.go.kr/",
+            "grade": "B",
+            "note": "울릉군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7106,7 +8702,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.uiryeong.go.kr/",
+            "grade": "B",
+            "note": "의령군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7137,7 +8740,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.haman.go.kr/",
+            "grade": "B",
+            "note": "함안군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7168,7 +8778,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.cng.go.kr/",
+            "grade": "B",
+            "note": "창녕군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7199,7 +8816,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.goseong.go.kr/",
+            "grade": "B",
+            "note": "고성군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7226,7 +8850,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.namhae.go.kr/",
+            "grade": "B",
+            "note": "남해군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7257,7 +8888,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.hadong.go.kr/",
+            "grade": "B",
+            "note": "하동군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7288,7 +8926,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.sancheong.go.kr/",
+            "grade": "B",
+            "note": "산청군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7319,7 +8964,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.hygn.go.kr/",
+            "grade": "B",
+            "note": "함양군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7350,7 +9002,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.geochang.go.kr/",
+            "grade": "B",
+            "note": "거창군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7381,7 +9040,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.hc.go.kr/",
+            "grade": "B",
+            "note": "합천군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7412,7 +9078,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.cwg.go.kr/",
+            "grade": "B",
+            "note": "철원군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7443,7 +9116,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.ihc.go.kr/",
+            "grade": "B",
+            "note": "화천군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7474,7 +9154,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yanggu.go.kr/",
+            "grade": "B",
+            "note": "양구군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7505,7 +9192,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.inje.go.kr/",
+            "grade": "B",
+            "note": "인제군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7536,7 +9230,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.goseong.go.kr/",
+            "grade": "B",
+            "note": "고성군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7567,7 +9268,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yangyang.go.kr/",
+            "grade": "B",
+            "note": "양양군 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7594,7 +9302,45 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.bsdonggu.go.kr/",
+            "grade": "B",
+            "note": "동구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwastepolicy09",
+            "grade": "A",
+            "note": "부산광역시 재활용품 분리배출 (광역)"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo01",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 줄이기 홍보관"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo03",
+            "grade": "A",
+            "note": "부산광역시 음식물쓰레기 배출방법"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/944703",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 배출요령"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/968383",
+            "grade": "A",
+            "note": "부산 주택가 재활용 요일별 분리배출"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/958319",
+            "grade": "A",
+            "note": "부산 대형폐기물·폐가전 배출"
+          }
+        ],
+        "specialNote": "부산광역시 공통: 주택가 재활용은 요일별 분리배출 운영 (병류·플라스틱·종이류 등). 거주 자치구 공식 페이지에서 본인 동 요일 확인."
       },
       "exceptions": {}
     },
@@ -7625,7 +9371,45 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yeongdo.go.kr/",
+            "grade": "B",
+            "note": "영도구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwastepolicy09",
+            "grade": "A",
+            "note": "부산광역시 재활용품 분리배출 (광역)"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo01",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 줄이기 홍보관"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo03",
+            "grade": "A",
+            "note": "부산광역시 음식물쓰레기 배출방법"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/944703",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 배출요령"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/968383",
+            "grade": "A",
+            "note": "부산 주택가 재활용 요일별 분리배출"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/958319",
+            "grade": "A",
+            "note": "부산 대형폐기물·폐가전 배출"
+          }
+        ],
+        "specialNote": "부산광역시 공통: 주택가 재활용은 요일별 분리배출 운영 (병류·플라스틱·종이류 등). 거주 자치구 공식 페이지에서 본인 동 요일 확인."
       },
       "exceptions": {}
     },
@@ -7656,7 +9440,45 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.haeundae.go.kr/",
+            "grade": "B",
+            "note": "해운대구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwastepolicy09",
+            "grade": "A",
+            "note": "부산광역시 재활용품 분리배출 (광역)"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo01",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 줄이기 홍보관"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo03",
+            "grade": "A",
+            "note": "부산광역시 음식물쓰레기 배출방법"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/944703",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 배출요령"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/968383",
+            "grade": "A",
+            "note": "부산 주택가 재활용 요일별 분리배출"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/958319",
+            "grade": "A",
+            "note": "부산 대형폐기물·폐가전 배출"
+          }
+        ],
+        "specialNote": "부산광역시 공통: 주택가 재활용은 요일별 분리배출 운영 (병류·플라스틱·종이류 등). 거주 자치구 공식 페이지에서 본인 동 요일 확인."
       },
       "exceptions": {}
     },
@@ -7687,7 +9509,45 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.saha.go.kr/",
+            "grade": "B",
+            "note": "사하구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwastepolicy09",
+            "grade": "A",
+            "note": "부산광역시 재활용품 분리배출 (광역)"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo01",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 줄이기 홍보관"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo03",
+            "grade": "A",
+            "note": "부산광역시 음식물쓰레기 배출방법"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/944703",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 배출요령"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/968383",
+            "grade": "A",
+            "note": "부산 주택가 재활용 요일별 분리배출"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/958319",
+            "grade": "A",
+            "note": "부산 대형폐기물·폐가전 배출"
+          }
+        ],
+        "specialNote": "부산광역시 공통: 주택가 재활용은 요일별 분리배출 운영 (병류·플라스틱·종이류 등). 거주 자치구 공식 페이지에서 본인 동 요일 확인."
       },
       "exceptions": {}
     },
@@ -7718,7 +9578,45 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.geumjeong.go.kr/",
+            "grade": "B",
+            "note": "금정구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwastepolicy09",
+            "grade": "A",
+            "note": "부산광역시 재활용품 분리배출 (광역)"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo01",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 줄이기 홍보관"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo03",
+            "grade": "A",
+            "note": "부산광역시 음식물쓰레기 배출방법"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/944703",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 배출요령"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/968383",
+            "grade": "A",
+            "note": "부산 주택가 재활용 요일별 분리배출"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/958319",
+            "grade": "A",
+            "note": "부산 대형폐기물·폐가전 배출"
+          }
+        ],
+        "specialNote": "부산광역시 공통: 주택가 재활용은 요일별 분리배출 운영 (병류·플라스틱·종이류 등). 거주 자치구 공식 페이지에서 본인 동 요일 확인."
       },
       "exceptions": {}
     },
@@ -7749,7 +9647,45 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.bsgangseo.go.kr/",
+            "grade": "B",
+            "note": "강서구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwastepolicy09",
+            "grade": "A",
+            "note": "부산광역시 재활용품 분리배출 (광역)"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo01",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 줄이기 홍보관"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo03",
+            "grade": "A",
+            "note": "부산광역시 음식물쓰레기 배출방법"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/944703",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 배출요령"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/968383",
+            "grade": "A",
+            "note": "부산 주택가 재활용 요일별 분리배출"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/958319",
+            "grade": "A",
+            "note": "부산 대형폐기물·폐가전 배출"
+          }
+        ],
+        "specialNote": "부산광역시 공통: 주택가 재활용은 요일별 분리배출 운영 (병류·플라스틱·종이류 등). 거주 자치구 공식 페이지에서 본인 동 요일 확인."
       },
       "exceptions": {}
     },
@@ -7780,7 +9716,45 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.yeonje.go.kr/",
+            "grade": "B",
+            "note": "연제구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwastepolicy09",
+            "grade": "A",
+            "note": "부산광역시 재활용품 분리배출 (광역)"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo01",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 줄이기 홍보관"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo03",
+            "grade": "A",
+            "note": "부산광역시 음식물쓰레기 배출방법"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/944703",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 배출요령"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/968383",
+            "grade": "A",
+            "note": "부산 주택가 재활용 요일별 분리배출"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/958319",
+            "grade": "A",
+            "note": "부산 대형폐기물·폐가전 배출"
+          }
+        ],
+        "specialNote": "부산광역시 공통: 주택가 재활용은 요일별 분리배출 운영 (병류·플라스틱·종이류 등). 거주 자치구 공식 페이지에서 본인 동 요일 확인."
       },
       "exceptions": {}
     },
@@ -7819,7 +9793,45 @@
           "source": "환경부 자원순환정보시스템 — 종이팩 회수 사업 (전국 공통)",
           "sourceGrade": "B_standard"
         },
-        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+        "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거",
+        "sources": [
+          {
+            "url": "https://www.suyeong.go.kr/",
+            "grade": "B",
+            "note": "수영구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwastepolicy09",
+            "grade": "A",
+            "note": "부산광역시 재활용품 분리배출 (광역)"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo01",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 줄이기 홍보관"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo03",
+            "grade": "A",
+            "note": "부산광역시 음식물쓰레기 배출방법"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/944703",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 배출요령"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/968383",
+            "grade": "A",
+            "note": "부산 주택가 재활용 요일별 분리배출"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/958319",
+            "grade": "A",
+            "note": "부산 대형폐기물·폐가전 배출"
+          }
+        ],
+        "specialNote": "부산광역시 공통: 주택가 재활용은 요일별 분리배출 운영 (병류·플라스틱·종이류 등). 거주 자치구 공식 페이지에서 본인 동 요일 확인."
       },
       "exceptions": {}
     },
@@ -7850,7 +9862,45 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.sasang.go.kr/",
+            "grade": "B",
+            "note": "사상구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwastepolicy09",
+            "grade": "A",
+            "note": "부산광역시 재활용품 분리배출 (광역)"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo01",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 줄이기 홍보관"
+          },
+          {
+            "url": "https://www.busan.go.kr/depart/ahwasteinfo03",
+            "grade": "A",
+            "note": "부산광역시 음식물쓰레기 배출방법"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/944703",
+            "grade": "A",
+            "note": "부산광역시 생활쓰레기 배출요령"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/968383",
+            "grade": "A",
+            "note": "부산 주택가 재활용 요일별 분리배출"
+          },
+          {
+            "url": "https://www.busan.go.kr/jumin04/958319",
+            "grade": "A",
+            "note": "부산 대형폐기물·폐가전 배출"
+          }
+        ],
+        "specialNote": "부산광역시 공통: 주택가 재활용은 요일별 분리배출 운영 (병류·플라스틱·종이류 등). 거주 자치구 공식 페이지에서 본인 동 요일 확인."
       },
       "exceptions": {}
     },
@@ -7881,7 +9931,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.dong.daegu.kr/",
+            "grade": "B",
+            "note": "동구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -7912,7 +9969,14 @@
         "disposalTime": "일몰 후 ~ 새벽 4시 (문 앞 또는 지정 거점)",
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
-        "pickupTimeSource": "B_standard"
+        "pickupTimeSource": "B_standard",
+        "sources": [
+          {
+            "url": "https://www.dgs.go.kr/",
+            "grade": "B",
+            "note": "서구 공식 홈 — 분리수거·청소 메뉴 확인"
+          }
+        ]
       },
       "exceptions": {}
     },
@@ -8212,6 +10276,11 @@
             "url": "https://www.icdonggu.go.kr/main/area/clean/waste_living.jsp",
             "grade": "B",
             "note": "본청 wasteUrl + 환경부 표준 (세부 룰은 시청 홈페이지 안내 따름)"
+          },
+          {
+            "url": "https://www.incheon.go.kr/recycle/index",
+            "grade": "A",
+            "note": "인천광역시 자원순환 선도도시 (광역 공식 안내)"
           }
         ]
       }
@@ -8244,6 +10313,11 @@
             "url": "https://www.ongjin.go.kr/open_content/main/environment/cleaning/excretion.jsp",
             "grade": "B",
             "note": "본청 wasteUrl + 환경부 표준 (세부 룰은 시청 홈페이지 안내 따름)"
+          },
+          {
+            "url": "https://www.incheon.go.kr/recycle/index",
+            "grade": "A",
+            "note": "인천광역시 자원순환 선도도시 (광역 공식 안내)"
           }
         ]
       }
