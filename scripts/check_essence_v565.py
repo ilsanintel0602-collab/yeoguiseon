@@ -342,6 +342,34 @@ def run_checks(check, ROOT):
         all_ok &= check("[본질㉑] 일반화·단정 표현 차단 (자극적 안내 영구 방지)",
                         len(abs_violations) == 0,
                         f"{len(abs_violations)}건: {abs_violations[:3]}" if abs_violations else "0건")
+
+        # ㉒ 매장명·브랜드명 직접 언급 차단 (변동 가능 정보 일반화 — "정확한 것만 전달" 본질)
+        # 카페 프랜차이즈 매장명을 aliases·note·feature에 직접 사용 차단
+        BRAND_KW = ["스타벅스", "이디야", "메가커피", "투썸", "컴포즈", "할리스",
+                    "폴바셋", "커피빈", "엔젤리너스", "탐앤탐스", "파스쿠찌"]
+        brand_violations = []
+        for iid, it in items.items():
+            if not isinstance(it, dict):
+                continue
+            # aliases 검사
+            for a in (it.get("aliases", []) or []):
+                for kw in BRAND_KW:
+                    if kw in str(a):
+                        brand_violations.append(f"{iid}/alias:{a}")
+                        break
+            # note/feature/caution 검사
+            combined = " ".join([
+                str(it.get("note", "")),
+                str(it.get("feature", "")),
+                str(it.get("caution", "")),
+            ])
+            for kw in BRAND_KW:
+                if kw in combined:
+                    brand_violations.append(f"{iid}/text:{kw}")
+                    break
+        all_ok &= check("[본질㉒] 매장명·브랜드명 직접 언급 차단 (변동 가능 정보 일반화)",
+                        len(brand_violations) == 0,
+                        f"{len(brand_violations)}건: {brand_violations[:3]}" if brand_violations else "0건")
     except Exception as e:
         check("[본질] 자동 감지 실행", False, f"검사 실패: {e}")
         all_ok = False
