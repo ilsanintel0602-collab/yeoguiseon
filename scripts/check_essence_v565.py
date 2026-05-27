@@ -131,6 +131,22 @@ def run_checks(check, ROOT):
                         bad_cats.append(f"{c}/{iid}={cat}")
         all_ok &= check("[본질⑨] itemExceptions 카테고리 enum 일치", len(bad_cats) == 0,
                         f"{len(bad_cats)}건: {bad_cats[:3]}" if bad_cats else "0건")
+
+        # ⑩ app.html script src 참조 파일 존재 확인 (404 차단, v5.48 회귀 영구 방지)
+        import re as _re
+        app_path = os.path.join(ROOT, "app.html")
+        if os.path.exists(app_path):
+            with open(app_path, "r", encoding="utf-8") as _f:
+                _app = _f.read()
+            local_srcs = [_m.group(1) for _m in _re.finditer(r'<script\s+src="(\./[^"]+)"', _app)]
+            missing_srcs = []
+            for _s in local_srcs:
+                _p = os.path.join(ROOT, _s.lstrip("./"))
+                if not os.path.exists(_p):
+                    missing_srcs.append(_s)
+            all_ok &= check("[본질⑩] app.html script src 파일 존재 (404 차단)",
+                            len(missing_srcs) == 0,
+                            f"{len(missing_srcs)}건 누락: {missing_srcs[:3]}" if missing_srcs else f"{len(local_srcs)}개 OK")
     except Exception as e:
         check("[본질] 자동 감지 실행", False, f"검사 실패: {e}")
         all_ok = False
