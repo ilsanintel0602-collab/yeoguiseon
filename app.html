@@ -399,7 +399,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.80</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.81</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -2146,7 +2146,9 @@ function renderResult(aiData) {
   // v5.33: 품목명 큰 글씨를 먼저 (사용자가 본 사물의 정체를 즉시 인지), 카테고리는 보조 라벨로
   let html = aiBadge;
   html += `<div class="item-name">${itemName}</div>`;
-  html += `<div class="category-pill ${rule.category}">${cat?.name || '일반'}</div>`;
+  // v5.81: multi_material:true 시 카테고리 칩 모순 정정 — "기본 추정·재질 확인" 명시
+  const _catSuffix = rule.multi_material ? ' · 재질 확인' : '';
+  html += `<div class="category-pill ${rule.category}">${cat?.name || '일반'}${_catSuffix}</div>`;
   // v5.46: 카테고리 출처 tier 라벨 (사용자 본질 명령 "임의 X" — 환경부 공식 vs 행정 명시)
   if (cat?.tier === 'A') {
     html += `<div style="display:inline-block;margin-left:8px;padding:4px 10px;background:#dcfce7;color:#065f46;border-radius:6px;font-size:12px;font-weight:600;">✅ 환경부 공식</div>`;
@@ -2235,15 +2237,15 @@ function renderResult(aiData) {
   if (rule.feature && rule.feature.length > 10) {
     const __feat = rule.feature.replace(/\s+/g, ' ').slice(0, 240);
     const __more = rule.feature.length > 240 ? '...' : '';
-    html += `<details style="margin-top:8px;padding:8px 12px;background:#f3f4f6;border-radius:6px;font-size:13px;">`;
-    html += `<summary style="cursor:pointer;opacity:0.85;">📖 환경부 추가 안내</summary>`;
-    html += `<div style="margin-top:6px;line-height:1.5;">${__feat}${__more}</div>`;
+    html += `<details style="margin-top:8px;padding:8px 12px;background:#f3f4f6;color:#1f2937;border-radius:6px;font-size:13px;">`;
+    html += `<summary style="cursor:pointer;opacity:0.85;color:#1f2937;">📖 환경부 추가 안내</summary>`;
+    html += `<div style="margin-top:6px;line-height:1.5;color:#1f2937;">${__feat}${__more}</div>`;
     html += `</details>`;
   }
   // v5.9: 환경부 caution (주의) 노출 — note에 이미 들어 있으면 스킵
   if (rule.caution && rule.caution.length > 5 && !(rule.note || '').includes(rule.caution.slice(0, 30))) {
     const __caut = rule.caution.replace(/\s+/g, ' ').slice(0, 150);
-    html += `<div style="margin-top:8px;padding:8px 12px;background:#fef3c7;border-left:3px solid #f59e0b;border-radius:6px;font-size:13px;">`;
+    html += `<div style="margin-top:8px;padding:8px 12px;background:#fef3c7;color:#78350f;border-left:3px solid #f59e0b;border-radius:6px;font-size:13px;">`;
     html += `⚠️ <b>주의</b>: ${__caut}`;
     html += `</div>`;
   }

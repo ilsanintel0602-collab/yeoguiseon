@@ -297,6 +297,51 @@ def run_checks(check, ROOT):
         all_ok &= check("[본질⑲] 경쟁사 직접 언급 차단 (GitHub 공개 평판 보호)",
                         len(leaks) == 0,
                         f"{len(leaks)}건: {leaks[:3]}" if leaks else f"{len(target_files)}개 파일 깨끗")
+
+        # ⑳ 금액·법적 정책 안내 검증 (자극적 거짓정보 차단)
+        # note/feature/caution에 금액·환급·보증금 키워드 → policyScope/policySourceUrl/policyLastVerified 필수
+        POLICY_KW = ["원 환급", "원 보증금", "보증금제", "자원순환보증금"]
+        policy_violations = []
+        for iid, it in items.items():
+            if not isinstance(it, dict):
+                continue
+            combined = " ".join([
+                str(it.get("note", "")),
+                str(it.get("feature", "")),
+                str(it.get("caution", "")),
+            ])
+            has_policy = any(kw in combined for kw in POLICY_KW)
+            if has_policy:
+                missing = []
+                if not it.get("policyScope") and "세종" not in combined and "제주" not in combined and "일부 매장" not in combined:
+                    missing.append("policyScope/시행범위")
+                if not it.get("policySourceUrl") and not it.get("sourceUrl"):
+                    missing.append("policySourceUrl")
+                if missing:
+                    policy_violations.append(f"{iid}: {missing}")
+        all_ok &= check("[본질⑳] 금액·정책 안내 검증 (시행범위·출처 필수, 거짓정보 차단)",
+                        len(policy_violations) == 0,
+                        f"{len(policy_violations)}건: {policy_violations[:3]}" if policy_violations else "0건")
+
+        # ㉑ 일반화·단정 표현 차단 (자극적 안내 영구 방지)
+        # "전국 모든 매장·반드시 환급·100% 환급·언제나" 같은 단정 표현 차단
+        ABS_KW = ["전국 모든 매장", "모든 매장에서 환급", "반드시 환급", "100% 환급", "언제나 환급", "어디서나 환급"]
+        abs_violations = []
+        for iid, it in items.items():
+            if not isinstance(it, dict):
+                continue
+            combined = " ".join([
+                str(it.get("note", "")),
+                str(it.get("feature", "")),
+                str(it.get("caution", "")),
+            ])
+            for kw in ABS_KW:
+                if kw in combined:
+                    abs_violations.append(f"{iid}: \"{kw}\"")
+                    break
+        all_ok &= check("[본질㉑] 일반화·단정 표현 차단 (자극적 안내 영구 방지)",
+                        len(abs_violations) == 0,
+                        f"{len(abs_violations)}건: {abs_violations[:3]}" if abs_violations else "0건")
     except Exception as e:
         check("[본질] 자동 감지 실행", False, f"검사 실패: {e}")
         all_ok = False
