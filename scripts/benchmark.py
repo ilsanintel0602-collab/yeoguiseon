@@ -1,28 +1,9 @@
 #!/usr/bin/env python3
 """
-Phase 5: PC 기반 객관 벤치마크 (Worker 직접 호출)
-
-사용법:
-    1. benchmark/samples/ 폴더에 사진 추가 (.jpg, .png)
-    2. benchmark/labels.csv 에 정답 라벨 작성:
-       filename,expected_item,expected_category
-       sample001.jpg,pet_bottle,plastic
-       sample002.jpg,종이컵,general
-    3. python scripts/benchmark.py
-    4. 결과: benchmark/report_YYYY-MM-DD.md
-
-특징:
-- Worker URL 직접 호출 (모바일·앱 안 거침 → 깔끔)
-- 카테고리별 정확도 자동 계산
-- 약점 카테고리 자동 식별
-- 버전별 비교 (이전 결과와 diff)
+사진 벤치마크 — Gemini AI 정확도 정량 측정.
+사용: python scripts/benchmark.py [--mock] [--limit N] [--threshold P] [--verbose]
 """
-import base64
-import csv
-import json
-import os
-import sys
-import time
+import argparse, base64, csv, glob, json, os, random, sys, time
 from collections import defaultdict, Counter
 from datetime import datetime
 from urllib import request, error
@@ -34,13 +15,21 @@ SAMPLES = os.path.join(BENCH_DIR, "samples")
 LABELS = os.path.join(BENCH_DIR, "labels.csv")
 WORKER_URL = "https://yeoguiseon-proxy.ilsanintel0602.workers.dev/"
 
-# SYSTEM_PROMPT는 app.html과 동일 — Worker가 받기 때문에 그쪽에 위임 가능
-# 단 직접 호출 시 prompt 함께 보내야 함. 간소화: Worker가 기본 prompt 사용하도록 빈 prompt도 OK.
-DEFAULT_PROMPT = "분리수거 분류. JSON 응답만: {\"item_id\": \"<id>\", \"item_label_ko\": \"<한국어>\", \"category\": \"<plastic|paper|paper_pack|vinyl|can|glass|styrofoam|food|general|battery|lamp|clothes|electronics|furniture|hazardous|medicine|reusable>\", \"confidence\": 0.95}"
+CATEGORIES = [
+    "paper", "paper_pack", "pet_clear", "plastic", "vinyl",
+    "styrofoam", "glass", "can", "clothes", "battery", "lamp", "electronics",
+    "food", "general", "general_noncombustible", "general_or_bulky",
+    "furniture", "hazardous", "medicine"
+]
+DEFAULT_PROMPT = (
+    '한국 분리수거 분류. JSON 응답만: '
+    '{"item_id": "<id>", "item_label_ko": "<한국어>", '
+    '"category": "<' + "|".join(CATEGORIES) + '>", '
+    '"confidence": 0.95, "danger": false}'
+)
 
 
 def call_worker(image_path):
-    """Worker에 사진 보내고 결과 받기"""
     with open(image_path, "rb") as f:
         b64 = base64.b64encode(f.read()).decode("ascii")
     body = json.dumps({
@@ -56,17 +45,28 @@ def call_worker(image_path):
         if data.get("ok") and data.get("result"):
             result = data["result"]
             if isinstance(result, str):
-                # JSON 복구 (v5.11 클라이언트 로직과 동일)
                 try:
                     return json.loads(result)
                 except json.JSONDecodeError:
                     return {"_parse_error": "JSON 손상", "raw": result[:200]}
             return result
-        return {"_error": data.get("error") or "unknown", "finishReason": data.get("finishReason"), "blockReason": data.get("blockReason")}
+        return {"_error": data.get("error") or "unknown",
+                "finishReason": data.get("finishReason"),
+                "blockReason": data.get("blockReason")}
     except error.HTTPError as e:
         return {"_http_error": e.code, "_msg": str(e)}
     except Exception as e:
         return {"_exception": str(e)}
+
+
+def mock_worker(expected_item, expected_cat):
+    """mock 모드 — 90% 정답, 10% 오답"""
+    if random.random() < 0.9:
+        return {"item_id": expected_item, "item_label_ko": expected_item,
+                "category": expected_cat, "confidence": 0.92, "danger": False}
+    wrong_cat = random.choice([c for c in CATEGORIES if c != expected_cat])
+    return {"item_id": "wrong_" + expected_item, "item_label_ko": "오답",
+            "category": wrong_cat, "confidence": 0.65, "danger": False}
 
 
 def load_labels():
@@ -77,47 +77,90 @@ def load_labels():
     return rows
 
 
+def find_previous_overall():
+    pattern = os.path.join(BENCH_DIR, "report_*.md")
+    files = sorted(glob.glob(pattern))
+    if not files:
+        return None, None
+    prev_path = files[-1]
+    try:
+        with open(prev_path, encoding="utf-8") as f:
+            for line in f:
+                if "pass@1" in line:
+                    import re
+                    m = re.search(r"(\d+\.\d+)%", line)
+                    if m:
+                        return float(m.group(1)), os.path.basename(prev_path)
+    except Exception:
+        pass
+    return None, None
+
+
 def main():
+    ap = argparse.ArgumentParser(description="여기선 사진 벤치마크")
+    ap.add_argument("--mock", action="store_true", help="사진 없이 dry-run")
+    ap.add_argument("--limit", type=int, default=0, help="처음 N장만 평가")
+    ap.add_argument("--threshold", type=float, default=80.0,
+                    help="pass@1 < P%% 면 exit 1 (default 80)")
+    ap.add_argument("--verbose", action="store_true", help="상세 출력")
+    args = ap.parse_args()
+
+    mode_label = "MOCK (dry-run)" if args.mock else "LIVE Worker"
     print(f"Worker URL: {WORKER_URL}")
     print(f"Samples:    {SAMPLES}")
     print(f"Labels:     {LABELS}")
+    print(f"Mode:       {mode_label}")
+    print(f"Threshold:  pass@1 >= {args.threshold}%")
     print()
 
     if not os.path.exists(SAMPLES):
         os.makedirs(SAMPLES, exist_ok=True)
-        print(f"[INFO] samples 폴더 생성됨. 사진을 여기에 넣고 다시 실행하세요.")
-        return
 
     rows = load_labels()
-    if not rows:
-        print(f"[INFO] labels.csv 없음. 템플릿 생성합니다.")
-        template = "filename,expected_item,expected_category\n# 예시:\n# sample001.jpg,pet_bottle,plastic\n# sample002.jpg,종이컵,general\n"
-        with open(LABELS, "w", encoding="utf-8") as f:
-            f.write(template)
-        print(f"  → {LABELS}")
-        return
+    valid_rows = [r for r in rows if r.get("filename", "").strip()
+                  and not r.get("filename", "").strip().startswith("#")]
+    if not valid_rows:
+        print("[INFO] 유효한 라벨 행 없음. benchmark/labels.csv 에 행을 추가하세요.")
+        if args.mock:
+            print("[MOCK] 가상 라벨 5건으로 진행")
+            valid_rows = [
+                {"filename": "mock_pet.jpg", "expected_item": "페트병", "expected_category": "pet_clear"},
+                {"filename": "mock_paper.jpg", "expected_item": "신문지", "expected_category": "paper"},
+                {"filename": "mock_can.jpg", "expected_item": "캔", "expected_category": "can"},
+                {"filename": "mock_vinyl.jpg", "expected_item": "비닐", "expected_category": "vinyl"},
+                {"filename": "mock_general.jpg", "expected_item": "일반쓰레기", "expected_category": "general"},
+            ]
+        else:
+            return 0
 
-    print(f"=== {len(rows)}장 평가 시작 ===\n")
+    if args.limit > 0:
+        valid_rows = valid_rows[:args.limit]
+
+    print(f"=== {len(valid_rows)}장 평가 시작 ===\n")
+
     cat_correct = Counter()
     cat_total = Counter()
-    item_results = []
+    item_correct = 0
+    total_evaluated = 0
+    confusion = defaultdict(Counter)
     errors = []
 
-    for i, row in enumerate(rows, 1):
+    for i, row in enumerate(valid_rows, 1):
         fname = row.get("filename", "").strip()
-        if not fname or fname.startswith("#"):
-            continue
         path = os.path.join(SAMPLES, fname)
-        if not os.path.exists(path):
-            print(f"  [{i:3d}] SKIP   {fname:30s}  파일 없음")
-            continue
-
         expected_item = row.get("expected_item", "").strip()
         expected_cat = row.get("expected_category", "").strip()
 
-        result = call_worker(path)
+        if args.mock:
+            result = mock_worker(expected_item, expected_cat)
+        else:
+            if not os.path.exists(path):
+                if args.verbose:
+                    print(f"  [{i:3d}] SKIP   {fname:30s}  파일 없음")
+                continue
+            result = call_worker(path)
 
-        if "_error" in result or "_http_error" in result or "_exception" in result or "_parse_error" in result:
+        if any(k.startswith("_") for k in result.keys()):
             errors.append((fname, result))
             print(f"  [{i:3d}] ERR    {fname:30s}  {list(result.keys())[0]}")
             continue
@@ -132,55 +175,107 @@ def main():
             cat_total[expected_cat] += 1
             if cat_match:
                 cat_correct[expected_cat] += 1
+            confusion[expected_cat][got_cat] += 1
+
+        if cat_match and item_match:
+            item_correct += 1
+        total_evaluated += 1
 
         mark = "OK " if cat_match else "FAIL"
-        print(f"  [{i:3d}] {mark}  {fname:30s}  expect={expected_cat}/{expected_item}  got={got_cat}/{got_item}")
-        item_results.append({
-            "filename": fname,
-            "expected_item": expected_item,
-            "expected_category": expected_cat,
-            "got_item": got_item,
-            "got_category": got_cat,
-            "match_cat": cat_match,
-            "match_item": item_match,
-        })
-        time.sleep(0.5)  # Worker 부담 줄임
+        if args.verbose or not cat_match:
+            print(f"  [{i:3d}] {mark}  {fname:30s}  expect={expected_cat}/{expected_item}  got={got_cat}/{got_item}")
+        if not args.mock:
+            time.sleep(0.5)
 
-    print("\n=== 카테고리별 정확도 ===")
+    print(f"\n=== 결과 요약 ===")
     total_correct = sum(cat_correct.values())
     total_n = sum(cat_total.values())
     overall_acc = total_correct * 100 / max(total_n, 1)
-    print(f"  Overall: {total_correct}/{total_n} ({overall_acc:.1f}%)\n")
+    pass_at_1 = item_correct * 100 / max(total_evaluated, 1)
+
+    print(f"  카테고리 정확도: {total_correct}/{total_n} ({overall_acc:.1f}%)")
+    print(f"  pass@1 (item+cat): {item_correct}/{total_evaluated} ({pass_at_1:.1f}%)")
+    print(f"  에러: {len(errors)}건")
+
+    print(f"\n=== 카테고리별 ===")
     for cat, total in sorted(cat_total.items(), key=lambda x: -x[1]):
         correct = cat_correct[cat]
         acc = correct * 100 / total
-        print(f"    {cat:14s}  {correct:3d}/{total:3d}  ({acc:5.1f}%)")
+        bar = "#" * int(acc / 10) + "." * (10 - int(acc / 10))
+        print(f"  {cat:24s}  {correct:3d}/{total:3d}  ({acc:5.1f}%)  {bar}")
 
-    # 약점 카테고리 자동 식별
-    weak = [(c, cat_correct[c], cat_total[c]) for c, t in cat_total.items() if cat_correct[c] / t < 0.8]
+    if confusion and any(len(v) > 1 for v in confusion.values()):
+        print(f"\n=== 혼동 행렬 (오류 패턴) ===")
+        for exp_cat in sorted(confusion):
+            row = confusion[exp_cat]
+            if len(row) <= 1:
+                continue
+            total = sum(row.values())
+            print(f"  {exp_cat} (총 {total}건):")
+            for got_cat, n in sorted(row.items(), key=lambda x: -x[1]):
+                if got_cat == exp_cat:
+                    continue
+                pct = n * 100 / total
+                print(f"    -> {got_cat}: {n}건 ({pct:.0f}%)")
+
+    weak = [(c, cat_correct[c], cat_total[c]) for c, t in cat_total.items()
+            if cat_correct[c] / t < 0.8]
     if weak:
-        print(f"\n=== ⚠️ 약점 카테고리 (정확도 80% 미만) ===")
+        print(f"\n=== [WARN] 약점 카테고리 (정확도 80% 미만) ===")
         for c, k, t in weak:
             print(f"    {c}: {k}/{t} ({k*100/t:.0f}%)")
 
+    prev_overall, prev_name = find_previous_overall()
+    diff_msg = ""
+    if prev_overall is not None:
+        diff = pass_at_1 - prev_overall
+        sign = "+" if diff >= 0 else ""
+        diff_msg = f" (이전 {prev_overall:.1f}% -> {sign}{diff:.1f}%)"
+        print(f"\n=== 회귀 감지 ===")
+        print(f"  이전: {prev_overall:.1f}% ({prev_name})")
+        print(f"  현재: {pass_at_1:.1f}%")
+        if diff < -5.0:
+            print(f"  [REGRESSION] {diff:.1f}% 하락")
+        elif diff > 1.0:
+            print(f"  [IMPROVE] +{diff:.1f}%")
+        else:
+            print(f"  [STABLE] {diff:+.1f}%")
+
     if errors:
-        print(f"\n=== ❌ 에러 ({len(errors)}건) ===")
+        print(f"\n=== 에러 ({len(errors)}건) ===")
         for fname, err in errors[:5]:
             print(f"    {fname}: {err}")
 
-    # 보고서 저장
-    report_path = os.path.join(BENCH_DIR, f"report_{datetime.now().strftime('%Y-%m-%d_%H%M')}.md")
+    suffix = "_mock" if args.mock else ""
+    ts = datetime.now().strftime("%Y-%m-%d_%H%M")
+    report_path = os.path.join(BENCH_DIR, f"report_{ts}{suffix}.md")
+    mode_str = "MOCK" if args.mock else "LIVE"
     with open(report_path, "w", encoding="utf-8") as f:
-        f.write(f"# 여기선 벤치마크 보고서\n\n")
+        f.write(f"# 여기선 사진 벤치마크 보고서\n\n")
         f.write(f"- 일시: {datetime.now().isoformat()}\n")
+        f.write(f"- Mode: {mode_str}\n")
         f.write(f"- Worker: `{WORKER_URL}`\n")
         f.write(f"- 평가: {total_n}장\n")
-        f.write(f"- **Overall 정확도: {overall_acc:.1f}%**\n\n")
+        f.write(f"- 에러: {len(errors)}건\n\n")
+        f.write(f"## 점수\n\n")
+        f.write(f"- **Overall 정확도: {overall_acc:.1f}%**{diff_msg}\n")
+        f.write(f"- **pass@1 (item+cat): {pass_at_1:.1f}%**\n\n")
         f.write(f"## 카테고리별\n\n| 카테고리 | 정확/전체 | 정확도 |\n|---|---|---|\n")
         for cat, total in sorted(cat_total.items(), key=lambda x: -x[1]):
             f.write(f"| {cat} | {cat_correct[cat]}/{total} | {cat_correct[cat]*100/total:.1f}% |\n")
+        if confusion and any(len(v) > 1 for v in confusion.values()):
+            f.write(f"\n## 혼동 행렬\n\n")
+            for exp_cat in sorted(confusion):
+                row = confusion[exp_cat]
+                if len(row) <= 1:
+                    continue
+                f.write(f"### {exp_cat}\n\n")
+                for got_cat, n in sorted(row.items(), key=lambda x: -x[1]):
+                    mark = "OK" if got_cat == exp_cat else "X"
+                    f.write(f"- {mark} -> {got_cat}: {n}건\n")
+                f.write("\n")
         if weak:
-            f.write(f"\n## 약점\n\n")
+            f.write(f"\n## 약점 카테고리\n\n")
             for c, k, t in weak:
                 f.write(f"- {c}: {k}/{t} ({k*100/t:.0f}%)\n")
         if errors:
@@ -189,6 +284,12 @@ def main():
                 f.write(f"- {fname}: `{err}`\n")
     print(f"\n  보고서 저장: {report_path}")
 
+    if total_evaluated > 0 and pass_at_1 < args.threshold:
+        print(f"\n[FAIL] pass@1 {pass_at_1:.1f}% < threshold {args.threshold}% — 회귀 차단")
+        return 1
+    print(f"\n[PASS] pass@1 {pass_at_1:.1f}% >= threshold {args.threshold}%")
+    return 0
+
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

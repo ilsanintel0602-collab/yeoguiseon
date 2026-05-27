@@ -241,6 +241,32 @@ def run_checks(check, ROOT):
         all_ok &= check("[본질⑯] items aliases 중복 차단 (검색 충돌 영구 방지)",
                         len(alias_dup) == 0,
                         f"{len(alias_dup)}건: {alias_dup[:3]}" if alias_dup else f"{len(alias_owner)}개 unique")
+
+        # ⑰ items sourceUrl 결측 차단 (정직성·출처 필수 — 사용자 본질 명령)
+        no_src_url = []
+        for iid, it in items.items():
+            if not isinstance(it, dict):
+                continue
+            if not it.get("sourceUrl"):
+                no_src_url.append(iid)
+        all_ok &= check("[본질⑰] items sourceUrl 결측 차단 (정직성 — 출처 필수)",
+                        len(no_src_url) == 0,
+                        f"{len(no_src_url)}건: {no_src_url[:3]}" if no_src_url else f"{len(items)}개 모두 출처 있음")
+
+        # ⑱ sw.js APP_SHELL ↔ app.html script src 정합성 (v5.69 SYSTEM_PROMPT 회귀 영구 차단)
+        sw_path = os.path.join(ROOT, "sw.js")
+        if os.path.exists(app_path) and os.path.exists(sw_path):
+            with open(sw_path, "r", encoding="utf-8") as _f:
+                _sw = _f.read()
+            app_modules = sorted(set(_re.findall(r'<script\s+src="\./(js/[^"]+)"', _app)))
+            shell_match = _re.search(r'const\s+APP_SHELL\s*=\s*\[(.*?)\]', _sw, _re.DOTALL)
+            shell_modules = []
+            if shell_match:
+                shell_modules = sorted(set(_re.findall(r"['\"]\./(js/[^'\"]+)['\"]", shell_match.group(1))))
+            missing_in_shell = [m for m in app_modules if m not in shell_modules]
+            all_ok &= check("[본질⑱] sw.js APP_SHELL ↔ app.html script src 정합성 (PWA 오프라인 차단)",
+                            len(missing_in_shell) == 0,
+                            f"{len(missing_in_shell)}건 sw.js APP_SHELL 누락: {missing_in_shell}" if missing_in_shell else f"{len(app_modules)}/{len(app_modules)}개 정합")
     except Exception as e:
         check("[본질] 자동 감지 실행", False, f"검사 실패: {e}")
         all_ok = False
