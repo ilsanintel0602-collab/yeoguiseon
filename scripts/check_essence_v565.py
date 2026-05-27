@@ -84,6 +84,20 @@ def run_checks(check, ROOT):
                 ps.append(c)
         all_ok &= check("[본질⑤] cityGuide.phone(string) 차단 (phones 객체 표준)", len(ps) == 0,
                         f"{len(ps)}건: {ps[:3]}" if ps else "0건")
+
+        # ⑥ cityGuide.phones에 시청/구청/군청대표 라벨 차단 (regions_meta.phone과 중복)
+        dup_main = []
+        for c, info in ex.items():
+            if not isinstance(info, dict):
+                continue
+            ph = info.get("cityGuide", {}).get("phones") or {}
+            if not isinstance(ph, dict):
+                continue
+            for label in ("시청대표", "구청대표", "군청대표"):
+                if label in ph:
+                    dup_main.append(f"{c}/{label}")
+        all_ok &= check("[본질⑥] cityGuide.phones 대표 라벨 차단 (regions_meta와 중복)", len(dup_main) == 0,
+                        f"{len(dup_main)}건: {dup_main[:3]}" if dup_main else "0건")
     except Exception as e:
         check("[본질] 자동 감지 실행", False, f"검사 실패: {e}")
         all_ok = False

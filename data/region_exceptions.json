@@ -1,6 +1,6 @@
 {
   "$schema": "여기선 v3.1 - 지역별 예외 룰 (환경부 표준 + 차이만)",
-  "version": "3.7.1",
+  "version": "3.8.0",
   "lastUpdated": "2026-05-26",
   "note": "환경부 표준은 national_rules.json. 이 파일은 지역별 차이/세부 룰만 정의. v3.2: 강서·노원 itemExceptions/sources/cleanUrl/phone 보강 (Phase 1).",
   "sourceGradeLegend": {
@@ -680,9 +680,6 @@
         "city": "파주시",
         "officialUrl": "https://www.paju.go.kr/",
         "wasteUrl": "https://www.paju.go.kr/user/board/BD_board.list.do?bbsCd=1042",
-        "phones": {
-          "시청대표": "031-940-4000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거 (E-순환거버넌스)",
           "phone": "1599-0903",
@@ -717,9 +714,6 @@
         "city": "김포시",
         "officialUrl": "https://www.gimpo.go.kr/",
         "wasteUrl": "https://www.gimpo.go.kr/portal/contents.do?key=2287",
-        "phones": {
-          "시청대표": "031-980-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거",
           "phone": "1599-0903",
@@ -756,9 +750,6 @@
       "cityGuide": {
         "city": "의정부시",
         "officialUrl": "https://www.ui4u.go.kr/",
-        "phones": {
-          "시청대표": "031-828-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거",
           "phone": "1599-0903",
@@ -795,9 +786,6 @@
       "cityGuide": {
         "city": "광명시",
         "officialUrl": "https://www.gm.go.kr/",
-        "phones": {
-          "시청대표": "02-2680-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거",
           "phone": "1599-0903",
@@ -834,9 +822,6 @@
       "cityGuide": {
         "city": "부천시",
         "officialUrl": "https://www.bucheon.go.kr/",
-        "phones": {
-          "시청대표": "032-625-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거",
           "phone": "1599-0903",
@@ -873,9 +858,6 @@
       "cityGuide": {
         "city": "평택시",
         "officialUrl": "https://www.pyeongtaek.go.kr/",
-        "phones": {
-          "시청대표": "031-8024-1000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거",
           "phone": "1599-0903",
@@ -914,7 +896,6 @@
         "officialUrl": "https://www.mapo.go.kr/",
         "phones": {
           "청소행정과": "02-3153-8311",
-          "구청대표": "02-3153-8114",
           "자원순환과": "02-3153-9210",
           "음식물쓰레기": "02-3153-9200",
           "깨끗한마포과": "02-3153-9226"
@@ -978,7 +959,6 @@
         "officialUrl": "https://www.ep.go.kr/",
         "phones": {
           "청소행정과": "02-351-6371",
-          "구청대표": "02-351-6114",
           "자원순환과": "02-351-7777"
         },
         "applianceRecycle": {
@@ -1030,8 +1010,7 @@
         "city": "서울특별시 서대문구",
         "officialUrl": "https://www.sdm.go.kr/",
         "phones": {
-          "청소행정과": "02-330-1399",
-          "구청대표": "02-330-1114"
+          "청소행정과": "02-330-1399"
         },
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거",
@@ -1071,7 +1050,6 @@
         "officialUrl": "https://www.ydp.go.kr/",
         "phones": {
           "청소행정과": "02-2670-3777",
-          "구청대표": "02-2670-3114",
           "자원순환과": "02-2670-7590"
         },
         "applianceRecycle": {
@@ -1134,7 +1112,6 @@
         "officialUrl": "https://www.yangcheon.go.kr/",
         "phones": {
           "청소행정과": "02-2620-3000",
-          "구청대표": "02-2620-3114",
           "자원순환과": "02-2620-3420"
         },
         "applianceRecycle": {
@@ -1186,7 +1163,6 @@
         "officialUrl": "https://www.gangseo.seoul.kr/",
         "phones": {
           "청소행정과": "02-2600-1751",
-          "구청대표": "02-2600-6114",
           "자원순환과": "02-2600-4242"
         },
         "applianceRecycle": {
@@ -1251,8 +1227,7 @@
         "city": "서울특별시 종로구",
         "officialUrl": "https://www.jongno.go.kr/",
         "phones": {
-          "청소행정과": "02-2148-2444",
-          "구청대표": "02-2148-2114"
+          "청소행정과": "02-2148-2444"
         },
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거",
@@ -1291,8 +1266,7 @@
         "city": "서울특별시 중구",
         "officialUrl": "https://www.junggu.seoul.kr/",
         "phones": {
-          "청소행정과": "02-3396-5921",
-          "구청대표": "02-3396-4114"
+          "청소행정과": "02-3396-5921"
         },
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거",
@@ -1331,8 +1305,7 @@
         "city": "서울특별시 용산구",
         "officialUrl": "https://www.yongsan.go.kr/",
         "phones": {
-          "청소행정과": "02-2199-7400",
-          "구청대표": "02-2199-7000"
+          "청소행정과": "02-2199-7400"
         },
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거",
@@ -1366,9 +1339,6 @@
       "cityGuide": {
         "city": "성남시",
         "officialUrl": "https://www.seongnam.go.kr/",
-        "phones": {
-          "시청대표": "031-729-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거",
           "phone": "1599-0903",
@@ -1413,9 +1383,6 @@
       "cityGuide": {
         "city": "경기도 안양시 만안구",
         "officialUrl": "https://www.anyang.go.kr/",
-        "phones": {
-          "구청대표": "031-389-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -1452,9 +1419,6 @@
       "cityGuide": {
         "city": "경기도 안양시 동안구",
         "officialUrl": "https://www.anyang.go.kr/",
-        "phones": {
-          "구청대표": "031-389-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -1490,9 +1454,6 @@
       "cityGuide": {
         "city": "서울특별시 성동구",
         "officialUrl": "https://www.sd.go.kr/",
-        "phones": {
-          "구청대표": "02-2286-5114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -1528,9 +1489,6 @@
       "cityGuide": {
         "city": "서울특별시 광진구",
         "officialUrl": "https://www.gwangjin.go.kr/",
-        "phones": {
-          "구청대표": "02-450-1114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -1566,9 +1524,6 @@
       "cityGuide": {
         "city": "서울특별시 동대문구",
         "officialUrl": "https://www.ddm.go.kr/",
-        "phones": {
-          "구청대표": "02-2127-4114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -1604,9 +1559,6 @@
       "cityGuide": {
         "city": "서울특별시 중랑구",
         "officialUrl": "https://www.jungnang.go.kr/",
-        "phones": {
-          "구청대표": "02-2094-1000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -1642,9 +1594,6 @@
       "cityGuide": {
         "city": "서울특별시 성북구",
         "officialUrl": "https://www.sb.go.kr/",
-        "phones": {
-          "구청대표": "02-2241-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -1680,9 +1629,6 @@
       "cityGuide": {
         "city": "서울특별시 강북구",
         "officialUrl": "https://www.gangbuk.go.kr/",
-        "phones": {
-          "구청대표": "02-901-6114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -1718,9 +1664,6 @@
       "cityGuide": {
         "city": "서울특별시 도봉구",
         "officialUrl": "https://www.dobong.go.kr/",
-        "phones": {
-          "구청대표": "02-2091-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -1761,7 +1704,6 @@
         "city": "서울특별시 노원구",
         "officialUrl": "https://www.nowon.kr/",
         "phones": {
-          "구청대표": "02-2116-3114",
           "자원순환과": "02-2116-3812"
         },
         "applianceRecycle": {
@@ -1852,9 +1794,6 @@
       "cityGuide": {
         "city": "서울특별시 구로구",
         "officialUrl": "https://www.guro.go.kr/",
-        "phones": {
-          "구청대표": "02-860-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -1890,9 +1829,6 @@
       "cityGuide": {
         "city": "서울특별시 금천구",
         "officialUrl": "https://www.geumcheon.go.kr/",
-        "phones": {
-          "구청대표": "02-2627-1000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -1924,9 +1860,6 @@
       "cityGuide": {
         "city": "서울특별시 동작구",
         "officialUrl": "https://www.dongjak.go.kr/",
-        "phones": {
-          "구청대표": "02-820-1114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -1963,7 +1896,6 @@
         "city": "서울특별시 관악구",
         "officialUrl": "https://www.gwanak.go.kr/",
         "phones": {
-          "구청대표": "02-879-5114",
           "자원순환과": "02-879-5614"
         },
         "applianceRecycle": {
@@ -2019,7 +1951,6 @@
         "city": "서울특별시 서초구",
         "officialUrl": "https://www.seocho.go.kr/",
         "phones": {
-          "구청대표": "02-2155-6114",
           "청소행정과": "02-2155-6747"
         },
         "applianceRecycle": {
@@ -2077,7 +2008,6 @@
         "city": "서울특별시 송파구",
         "officialUrl": "https://www.songpa.go.kr/",
         "phones": {
-          "구청대표": "02-2147-2000",
           "자원순환과": "02-2147-2852"
         },
         "applianceRecycle": {
@@ -2142,7 +2072,6 @@
         "city": "서울특별시 강동구",
         "officialUrl": "https://www.gangdong.go.kr/",
         "phones": {
-          "구청대표": "02-3425-5114",
           "청소행정과": "02-3425-5860"
         },
         "applianceRecycle": {
@@ -2202,9 +2131,6 @@
       "cityGuide": {
         "city": "구리시",
         "officialUrl": "https://www.guri.go.kr/",
-        "phones": {
-          "시청대표": "031-550-2000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -2240,9 +2166,6 @@
       "cityGuide": {
         "city": "남양주시",
         "officialUrl": "https://www.nyj.go.kr/",
-        "phones": {
-          "시청대표": "031-590-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -2278,9 +2201,6 @@
       "cityGuide": {
         "city": "군포시",
         "officialUrl": "https://www.gunpo.go.kr/",
-        "phones": {
-          "시청대표": "031-390-0114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -2316,9 +2236,6 @@
       "cityGuide": {
         "city": "의왕시",
         "officialUrl": "https://www.uiwang.go.kr/",
-        "phones": {
-          "시청대표": "031-345-2000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -2354,9 +2271,6 @@
       "cityGuide": {
         "city": "하남시",
         "officialUrl": "https://www.hanam.go.kr/",
-        "phones": {
-          "시청대표": "031-790-6114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -2392,9 +2306,6 @@
       "cityGuide": {
         "city": "과천시",
         "officialUrl": "https://www.gccity.go.kr/",
-        "phones": {
-          "시청대표": "02-3677-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -2430,9 +2341,6 @@
       "cityGuide": {
         "city": "이천시",
         "officialUrl": "https://www.icheon.go.kr/",
-        "phones": {
-          "시청대표": "031-644-2000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -2468,9 +2376,6 @@
       "cityGuide": {
         "city": "안성시",
         "officialUrl": "https://www.anseong.go.kr/",
-        "phones": {
-          "시청대표": "031-678-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -2506,9 +2411,6 @@
       "cityGuide": {
         "city": "화성시",
         "officialUrl": "https://www.hscity.go.kr/",
-        "phones": {
-          "시청대표": "031-369-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -2544,9 +2446,6 @@
       "cityGuide": {
         "city": "광주시",
         "officialUrl": "https://www.gjcity.go.kr/",
-        "phones": {
-          "시청대표": "031-760-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -2578,9 +2477,6 @@
       "cityGuide": {
         "city": "양주시",
         "officialUrl": "https://www.yangju.go.kr/",
-        "phones": {
-          "시청대표": "031-8082-5500"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -2616,9 +2512,6 @@
       "cityGuide": {
         "city": "포천시",
         "officialUrl": "https://www.pocheon.go.kr/",
-        "phones": {
-          "시청대표": "031-538-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -2654,9 +2547,6 @@
       "cityGuide": {
         "city": "여주시",
         "officialUrl": "https://www.yeoju.go.kr/",
-        "phones": {
-          "시청대표": "031-887-2000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -2691,9 +2581,6 @@
       "shortName": "영통구",
       "cityGuide": {
         "city": "경기도 수원시 영통구",
-        "phones": {
-          "시청대표": "031-228-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -2723,9 +2610,6 @@
       "cityGuide": {
         "city": "동두천시",
         "officialUrl": "https://www.ddc21.net/",
-        "phones": {
-          "시청대표": "031-860-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -2761,9 +2645,6 @@
       "cityGuide": {
         "city": "인천광역시 중구",
         "officialUrl": "https://www.icjg.go.kr/",
-        "phones": {
-          "구청대표": "032-760-7000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -2812,9 +2693,6 @@
       "cityGuide": {
         "city": "인천광역시 미추홀구",
         "officialUrl": "https://www.michuhol.go.kr/",
-        "phones": {
-          "구청대표": "032-880-4000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -2863,9 +2741,6 @@
       "cityGuide": {
         "city": "인천광역시 연수구",
         "officialUrl": "https://www.yeonsu.go.kr/",
-        "phones": {
-          "구청대표": "032-749-7000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -2906,9 +2781,6 @@
       "cityGuide": {
         "city": "인천광역시 남동구",
         "officialUrl": "https://www.namdong.go.kr/",
-        "phones": {
-          "구청대표": "032-453-2000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -2957,9 +2829,6 @@
       "cityGuide": {
         "city": "인천광역시 부평구",
         "officialUrl": "https://www.icbp.go.kr/",
-        "phones": {
-          "구청대표": "032-509-6114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -3010,9 +2879,6 @@
       "cityGuide": {
         "city": "인천광역시 계양구",
         "officialUrl": "https://www.gyeyang.go.kr/",
-        "phones": {
-          "구청대표": "032-450-5000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -3054,7 +2920,6 @@
         "city": "인천광역시 서구",
         "officialUrl": "https://www.seo.incheon.kr/",
         "phones": {
-          "구청대표": "032-560-5114",
           "자원순환과 자원순환팀": "032-560-4390",
           "음식물자원화팀": "032-560-4410"
         },
@@ -3120,9 +2985,6 @@
       "cityGuide": {
         "city": "인천광역시 강화군",
         "officialUrl": "https://www.ganghwa.go.kr/",
-        "phones": {
-          "군청대표": "032-930-3000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -3163,9 +3025,6 @@
       "cityGuide": {
         "city": "부산광역시 중구",
         "officialUrl": "https://www.bsjunggu.go.kr/",
-        "phones": {
-          "구청대표": "051-600-4000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -3240,9 +3099,6 @@
       "cityGuide": {
         "city": "부산광역시 서구",
         "officialUrl": "https://www.bsseogu.go.kr/",
-        "phones": {
-          "구청대표": "051-240-4000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -3305,9 +3161,6 @@
       "cityGuide": {
         "city": "부산광역시 부산진구",
         "officialUrl": "https://www.busanjin.go.kr/",
-        "phones": {
-          "구청대표": "051-605-4000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -3378,9 +3231,6 @@
       "cityGuide": {
         "city": "부산광역시 동래구",
         "officialUrl": "https://www.dongnae.go.kr/",
-        "phones": {
-          "구청대표": "051-550-4000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -3447,9 +3297,6 @@
       "cityGuide": {
         "city": "부산광역시 남구",
         "officialUrl": "https://www.bsnamgu.go.kr/",
-        "phones": {
-          "구청대표": "051-607-4000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -3516,7 +3363,6 @@
       "cityGuide": {
         "city": "부산광역시 북구",
         "phones": {
-          "구청대표": "051-309-4000",
           "자원순환과": "051-309-4455"
         },
         "applianceRecycle": {
@@ -3586,9 +3432,6 @@
       "cityGuide": {
         "city": "부산광역시 기장군",
         "officialUrl": "https://www.gijang.go.kr/",
-        "phones": {
-          "군청대표": "051-709-4000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -3655,9 +3498,6 @@
       "cityGuide": {
         "city": "대구광역시 중구",
         "officialUrl": "https://www.jung.daegu.kr/",
-        "phones": {
-          "구청대표": "053-661-2000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -3701,9 +3541,6 @@
       "cityGuide": {
         "city": "대구광역시 남구",
         "officialUrl": "https://www.nam.daegu.kr/",
-        "phones": {
-          "구청대표": "053-664-2000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -3735,9 +3572,6 @@
       "cityGuide": {
         "city": "대구광역시 북구",
         "officialUrl": "https://www.buk.daegu.kr/",
-        "phones": {
-          "구청대표": "053-665-2000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -3773,9 +3607,6 @@
       "cityGuide": {
         "city": "대구광역시 수성구",
         "officialUrl": "https://www.suseong.kr/",
-        "phones": {
-          "구청대표": "053-666-2000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -3814,9 +3645,6 @@
       "shortName": "광주 동구",
       "cityGuide": {
         "city": "광주광역시 동구",
-        "phones": {
-          "구청대표": "062-608-2000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -3857,9 +3685,6 @@
       "cityGuide": {
         "city": "광주광역시 서구",
         "officialUrl": "https://www.seogu.gwangju.kr/",
-        "phones": {
-          "구청대표": "062-360-7000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -3891,9 +3716,6 @@
       "cityGuide": {
         "city": "대전광역시 동구",
         "officialUrl": "https://www.donggu.go.kr/",
-        "phones": {
-          "구청대표": "042-251-4000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -3929,9 +3751,6 @@
       "cityGuide": {
         "city": "대전광역시 중구",
         "officialUrl": "https://www.djjunggu.go.kr/",
-        "phones": {
-          "구청대표": "042-606-7000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -3971,9 +3790,6 @@
       "cityGuide": {
         "city": "대전광역시 서구",
         "officialUrl": "https://www.seogu.go.kr/",
-        "phones": {
-          "구청대표": "042-288-2000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4005,9 +3821,6 @@
       "cityGuide": {
         "city": "대전광역시 유성구",
         "officialUrl": "https://www.yuseong.go.kr/",
-        "phones": {
-          "구청대표": "042-611-2000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4043,9 +3856,6 @@
       "cityGuide": {
         "city": "대전광역시 대덕구",
         "officialUrl": "https://www.daedeok.go.kr/",
-        "phones": {
-          "구청대표": "042-608-6114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4081,9 +3891,6 @@
       "cityGuide": {
         "city": "울산광역시 중구",
         "officialUrl": "https://www.junggu.ulsan.kr/",
-        "phones": {
-          "구청대표": "052-290-3000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4119,9 +3926,6 @@
       "cityGuide": {
         "city": "울산광역시 남구",
         "officialUrl": "https://www.ulsannamgu.go.kr/",
-        "phones": {
-          "구청대표": "052-226-5000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4157,9 +3961,6 @@
       "cityGuide": {
         "city": "세종특별자치시",
         "officialUrl": "https://www.sejong.go.kr/",
-        "phones": {
-          "시청대표": "044-300-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4191,9 +3992,6 @@
       "cityGuide": {
         "city": "춘천시",
         "officialUrl": "https://www.chuncheon.go.kr/",
-        "phones": {
-          "시청대표": "033-250-3000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4237,9 +4035,6 @@
       "cityGuide": {
         "city": "원주시",
         "officialUrl": "https://www.wonju.go.kr/",
-        "phones": {
-          "시청대표": "033-737-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4271,9 +4066,6 @@
       "cityGuide": {
         "city": "강릉시",
         "officialUrl": "https://www.gn.go.kr/",
-        "phones": {
-          "시청대표": "033-640-5114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4309,9 +4101,6 @@
       "cityGuide": {
         "city": "동해시",
         "officialUrl": "https://www.dh.go.kr/",
-        "phones": {
-          "시청대표": "033-530-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4343,9 +4132,6 @@
       "cityGuide": {
         "city": "태백시",
         "officialUrl": "https://www.taebaek.go.kr/",
-        "phones": {
-          "시청대표": "033-550-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4381,9 +4167,6 @@
       "cityGuide": {
         "city": "속초시",
         "officialUrl": "https://www.sokcho.go.kr/",
-        "phones": {
-          "시청대표": "033-639-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4415,9 +4198,6 @@
       "cityGuide": {
         "city": "청주시",
         "officialUrl": "https://www.cheongju.go.kr/",
-        "phones": {
-          "시청대표": "043-201-1114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4461,9 +4241,6 @@
       "cityGuide": {
         "city": "충주시",
         "officialUrl": "https://www.chungju.go.kr/",
-        "phones": {
-          "시청대표": "043-850-5000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4499,9 +4276,6 @@
       "cityGuide": {
         "city": "제천시",
         "officialUrl": "https://www.jecheon.go.kr/",
-        "phones": {
-          "시청대표": "043-641-5000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4537,9 +4311,6 @@
       "cityGuide": {
         "city": "천안시",
         "officialUrl": "https://www.cheonan.go.kr/",
-        "phones": {
-          "시청대표": "041-521-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4583,9 +4354,6 @@
       "cityGuide": {
         "city": "공주시",
         "officialUrl": "https://www.gongju.go.kr/",
-        "phones": {
-          "시청대표": "041-840-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4620,9 +4388,6 @@
       "shortName": "보령",
       "cityGuide": {
         "city": "보령시",
-        "phones": {
-          "시청대표": "041-930-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4659,9 +4424,6 @@
       "cityGuide": {
         "city": "아산시",
         "officialUrl": "https://www.asan.go.kr/",
-        "phones": {
-          "시청대표": "041-540-2000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4697,9 +4459,6 @@
       "cityGuide": {
         "city": "서산시",
         "officialUrl": "https://www.seosan.go.kr/",
-        "phones": {
-          "시청대표": "041-660-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4735,9 +4494,6 @@
       "cityGuide": {
         "city": "전주시",
         "officialUrl": "https://www.jeonju.go.kr/",
-        "phones": {
-          "시청대표": "063-281-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4777,9 +4533,6 @@
       "cityGuide": {
         "city": "군산시",
         "officialUrl": "https://www.gunsan.go.kr/",
-        "phones": {
-          "시청대표": "063-454-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4815,9 +4568,6 @@
       "cityGuide": {
         "city": "익산시",
         "officialUrl": "https://www.iksan.go.kr/",
-        "phones": {
-          "시청대표": "063-859-5114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4853,9 +4603,6 @@
       "cityGuide": {
         "city": "정읍시",
         "officialUrl": "https://www.jeongeup.go.kr/",
-        "phones": {
-          "시청대표": "063-539-5000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4891,9 +4638,6 @@
       "cityGuide": {
         "city": "목포시",
         "officialUrl": "https://www.mokpo.go.kr/",
-        "phones": {
-          "시청대표": "061-270-3000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4929,9 +4673,6 @@
       "cityGuide": {
         "city": "순천시",
         "officialUrl": "https://www.suncheon.go.kr/",
-        "phones": {
-          "시청대표": "061-749-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -4967,9 +4708,6 @@
       "cityGuide": {
         "city": "나주시",
         "officialUrl": "https://www.naju.go.kr/",
-        "phones": {
-          "시청대표": "061-339-8114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5001,9 +4739,6 @@
       "cityGuide": {
         "city": "포항시",
         "officialUrl": "https://www.pohang.go.kr/",
-        "phones": {
-          "시청대표": "054-270-0114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5047,9 +4782,6 @@
       "cityGuide": {
         "city": "경주시",
         "officialUrl": "https://www.gyeongju.go.kr/",
-        "phones": {
-          "시청대표": "054-779-6000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5085,9 +4817,6 @@
       "cityGuide": {
         "city": "김천시",
         "officialUrl": "https://www.gc.go.kr/",
-        "phones": {
-          "시청대표": "054-420-6114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5123,9 +4852,6 @@
       "cityGuide": {
         "city": "안동시",
         "officialUrl": "https://www.andong.go.kr/",
-        "phones": {
-          "시청대표": "054-840-3000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5161,9 +4887,6 @@
       "cityGuide": {
         "city": "구미시",
         "officialUrl": "https://www.gumi.go.kr/",
-        "phones": {
-          "시청대표": "054-480-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5199,9 +4922,6 @@
       "cityGuide": {
         "city": "창원시",
         "officialUrl": "https://www.changwon.go.kr/",
-        "phones": {
-          "시청대표": "055-225-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5245,9 +4965,6 @@
       "cityGuide": {
         "city": "진주시",
         "officialUrl": "https://www.jinju.go.kr/",
-        "phones": {
-          "시청대표": "055-749-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5278,9 +4995,6 @@
       "shortName": "통영",
       "cityGuide": {
         "city": "통영시",
-        "phones": {
-          "시청대표": "055-650-3000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5317,9 +5031,6 @@
       "cityGuide": {
         "city": "사천시",
         "officialUrl": "https://www.sacheon.go.kr/",
-        "phones": {
-          "시청대표": "055-831-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5351,9 +5062,6 @@
       "cityGuide": {
         "city": "김해시",
         "officialUrl": "https://www.gimhae.go.kr/",
-        "phones": {
-          "시청대표": "055-330-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5389,9 +5097,6 @@
       "cityGuide": {
         "city": "밀양시",
         "officialUrl": "https://www.miryang.go.kr/",
-        "phones": {
-          "시청대표": "055-359-5000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5427,9 +5132,6 @@
       "cityGuide": {
         "city": "거제시",
         "officialUrl": "https://www.geoje.go.kr/",
-        "phones": {
-          "시청대표": "055-639-3000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5465,9 +5167,6 @@
       "cityGuide": {
         "city": "양산시",
         "officialUrl": "https://www.yangsan.go.kr/",
-        "phones": {
-          "시청대표": "055-392-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5503,9 +5202,6 @@
       "cityGuide": {
         "city": "제주특별자치도 제주시",
         "officialUrl": "https://www.jejusi.go.kr/",
-        "phones": {
-          "시청대표": "064-728-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5549,9 +5245,6 @@
       "cityGuide": {
         "city": "제주특별자치도 서귀포시",
         "officialUrl": "https://www.seogwipo.go.kr/",
-        "phones": {
-          "시청대표": "064-760-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5587,9 +5280,6 @@
       "cityGuide": {
         "city": "삼척시",
         "officialUrl": "https://www.samcheok.go.kr/",
-        "phones": {
-          "시청대표": "033-570-3000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5621,9 +5311,6 @@
       "cityGuide": {
         "city": "논산시",
         "officialUrl": "https://www.nonsan.go.kr/",
-        "phones": {
-          "시청대표": "041-746-5000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5659,9 +5346,6 @@
       "cityGuide": {
         "city": "계룡시",
         "officialUrl": "https://www.gyeryong.go.kr/",
-        "phones": {
-          "시청대표": "042-840-2000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5697,9 +5381,6 @@
       "cityGuide": {
         "city": "당진시",
         "officialUrl": "https://www.dangjin.go.kr/",
-        "phones": {
-          "시청대표": "041-350-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5735,9 +5416,6 @@
       "cityGuide": {
         "city": "남원시",
         "officialUrl": "https://www.namwon.go.kr/",
-        "phones": {
-          "시청대표": "063-620-6000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5769,9 +5447,6 @@
       "cityGuide": {
         "city": "김제시",
         "officialUrl": "https://www.gimje.go.kr/",
-        "phones": {
-          "시청대표": "063-540-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5807,9 +5482,6 @@
       "cityGuide": {
         "city": "영주시",
         "officialUrl": "https://www.yeongju.go.kr/",
-        "phones": {
-          "시청대표": "054-639-6000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5845,9 +5517,6 @@
       "cityGuide": {
         "city": "영천시",
         "officialUrl": "https://www.yc.go.kr/",
-        "phones": {
-          "시청대표": "054-330-6000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5883,9 +5552,6 @@
       "cityGuide": {
         "city": "상주시",
         "officialUrl": "https://www.sangju.go.kr/",
-        "phones": {
-          "시청대표": "054-537-7114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5921,9 +5587,6 @@
       "cityGuide": {
         "city": "문경시",
         "officialUrl": "https://www.gbmg.go.kr/",
-        "phones": {
-          "시청대표": "054-550-6114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5959,9 +5622,6 @@
       "cityGuide": {
         "city": "경산시",
         "officialUrl": "https://www.gbgs.go.kr/",
-        "phones": {
-          "시청대표": "053-810-5000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -5997,9 +5657,6 @@
       "cityGuide": {
         "city": "대구광역시 달서구",
         "officialUrl": "https://www.dalseo.daegu.kr/",
-        "phones": {
-          "구청대표": "053-667-2000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6035,9 +5692,6 @@
       "cityGuide": {
         "city": "대구광역시 달성군",
         "officialUrl": "https://www.dalseong.daegu.kr/",
-        "phones": {
-          "군청대표": "053-668-2000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6069,9 +5723,6 @@
       "cityGuide": {
         "city": "광주광역시 남구",
         "officialUrl": "https://www.namgu.gwangju.kr/",
-        "phones": {
-          "구청대표": "062-607-2000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6102,9 +5753,6 @@
       "shortName": "광주 북구",
       "cityGuide": {
         "city": "광주광역시 북구",
-        "phones": {
-          "구청대표": "062-410-6000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6137,9 +5785,6 @@
       "cityGuide": {
         "city": "광주광역시 광산구",
         "officialUrl": "https://www.gwangsan.go.kr/",
-        "phones": {
-          "구청대표": "062-960-8114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6171,9 +5816,6 @@
       "cityGuide": {
         "city": "울산광역시 동구",
         "officialUrl": "https://www.donggu.ulsan.kr/",
-        "phones": {
-          "구청대표": "052-209-3000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6217,9 +5859,6 @@
       "cityGuide": {
         "city": "울산광역시 북구",
         "officialUrl": "https://www.bukgu.ulsan.kr/",
-        "phones": {
-          "구청대표": "052-241-7000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6255,9 +5894,6 @@
       "cityGuide": {
         "city": "울산광역시 울주군",
         "officialUrl": "https://www.ulju.ulsan.kr/",
-        "phones": {
-          "군청대표": "052-204-1114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6293,9 +5929,6 @@
       "cityGuide": {
         "city": "시흥시",
         "officialUrl": "https://www.siheung.go.kr/",
-        "phones": {
-          "시청대표": "031-310-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6331,9 +5964,6 @@
       "cityGuide": {
         "city": "오산시",
         "officialUrl": "https://www.osan.go.kr/",
-        "phones": {
-          "시청대표": "031-8036-7114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6369,9 +5999,6 @@
       "cityGuide": {
         "city": "가평군",
         "officialUrl": "https://www.gp.go.kr/",
-        "phones": {
-          "군청대표": "031-580-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6407,9 +6034,6 @@
       "cityGuide": {
         "city": "양평군",
         "officialUrl": "https://www.yp21.go.kr/",
-        "phones": {
-          "군청대표": "031-770-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6445,9 +6069,6 @@
       "cityGuide": {
         "city": "연천군",
         "officialUrl": "https://www.yeoncheon.go.kr/",
-        "phones": {
-          "군청대표": "031-839-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6483,9 +6104,6 @@
       "cityGuide": {
         "city": "홍천군",
         "officialUrl": "https://www.hongcheon.go.kr/",
-        "phones": {
-          "군청대표": "033-430-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6521,9 +6139,6 @@
       "cityGuide": {
         "city": "횡성군",
         "officialUrl": "https://www.hsg.go.kr/",
-        "phones": {
-          "군청대표": "033-340-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6559,9 +6174,6 @@
       "cityGuide": {
         "city": "영월군",
         "officialUrl": "https://www.yw.go.kr/",
-        "phones": {
-          "군청대표": "033-370-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6597,9 +6209,6 @@
       "cityGuide": {
         "city": "평창군",
         "officialUrl": "https://www.pc.go.kr/",
-        "phones": {
-          "군청대표": "033-330-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6635,9 +6244,6 @@
       "cityGuide": {
         "city": "정선군",
         "officialUrl": "https://www.jeongseon.go.kr/",
-        "phones": {
-          "군청대표": "033-560-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6673,9 +6279,6 @@
       "cityGuide": {
         "city": "보은군",
         "officialUrl": "https://www.boeun.go.kr/",
-        "phones": {
-          "군청대표": "043-540-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6711,9 +6314,6 @@
       "cityGuide": {
         "city": "옥천군",
         "officialUrl": "https://www.oc.go.kr/",
-        "phones": {
-          "군청대표": "043-730-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6749,9 +6349,6 @@
       "cityGuide": {
         "city": "영동군",
         "officialUrl": "https://www.yd21.go.kr/",
-        "phones": {
-          "군청대표": "043-740-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6787,9 +6384,6 @@
       "cityGuide": {
         "city": "증평군",
         "officialUrl": "https://www.jp.go.kr/",
-        "phones": {
-          "군청대표": "043-835-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6825,9 +6419,6 @@
       "cityGuide": {
         "city": "진천군",
         "officialUrl": "https://www.jincheon.go.kr/",
-        "phones": {
-          "군청대표": "043-539-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6863,9 +6454,6 @@
       "cityGuide": {
         "city": "괴산군",
         "officialUrl": "https://www.goesan.go.kr/",
-        "phones": {
-          "군청대표": "043-830-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6901,9 +6489,6 @@
       "cityGuide": {
         "city": "음성군",
         "officialUrl": "https://www.eumseong.go.kr/",
-        "phones": {
-          "군청대표": "043-871-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6939,9 +6524,6 @@
       "cityGuide": {
         "city": "단양군",
         "officialUrl": "https://www.danyang.go.kr/",
-        "phones": {
-          "군청대표": "043-422-1110"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -6977,9 +6559,6 @@
       "cityGuide": {
         "city": "금산군",
         "officialUrl": "https://www.geumsan.go.kr/",
-        "phones": {
-          "군청대표": "041-750-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7011,9 +6590,6 @@
       "cityGuide": {
         "city": "부여군",
         "officialUrl": "https://www.buyeo.go.kr/",
-        "phones": {
-          "군청대표": "041-830-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7045,9 +6621,6 @@
       "cityGuide": {
         "city": "서천군",
         "officialUrl": "https://www.seocheon.go.kr/",
-        "phones": {
-          "군청대표": "041-950-4000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7083,9 +6656,6 @@
       "cityGuide": {
         "city": "청양군",
         "officialUrl": "https://www.cheongyang.go.kr/",
-        "phones": {
-          "군청대표": "041-940-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7121,9 +6691,6 @@
       "cityGuide": {
         "city": "홍성군",
         "officialUrl": "https://www.hongseong.go.kr/",
-        "phones": {
-          "군청대표": "041-630-1114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7155,9 +6722,6 @@
       "cityGuide": {
         "city": "예산군",
         "officialUrl": "https://www.yesan.go.kr/",
-        "phones": {
-          "군청대표": "041-339-7114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7193,9 +6757,6 @@
       "cityGuide": {
         "city": "태안군",
         "officialUrl": "https://www.taean.go.kr/",
-        "phones": {
-          "군청대표": "041-670-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7231,9 +6792,6 @@
       "cityGuide": {
         "city": "완주군",
         "officialUrl": "https://www.wanju.go.kr/",
-        "phones": {
-          "군청대표": "063-290-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7269,9 +6827,6 @@
       "cityGuide": {
         "city": "진안군",
         "officialUrl": "https://www.jinan.go.kr/",
-        "phones": {
-          "군청대표": "063-430-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7303,9 +6858,6 @@
       "cityGuide": {
         "city": "무주군",
         "officialUrl": "https://www.muju.go.kr/",
-        "phones": {
-          "군청대표": "063-320-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7337,9 +6889,6 @@
       "cityGuide": {
         "city": "장수군",
         "officialUrl": "https://www.jangsu.go.kr/",
-        "phones": {
-          "군청대표": "063-350-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7375,9 +6924,6 @@
       "cityGuide": {
         "city": "임실군",
         "officialUrl": "https://www.imsil.go.kr/",
-        "phones": {
-          "군청대표": "063-640-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7413,9 +6959,6 @@
       "cityGuide": {
         "city": "순창군",
         "officialUrl": "https://www.sunchang.go.kr/",
-        "phones": {
-          "군청대표": "063-650-1114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7451,9 +6994,6 @@
       "cityGuide": {
         "city": "고창군",
         "officialUrl": "https://www.gochang.go.kr/",
-        "phones": {
-          "군청대표": "063-560-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7489,9 +7029,6 @@
       "cityGuide": {
         "city": "부안군",
         "officialUrl": "https://www.buan.go.kr/",
-        "phones": {
-          "군청대표": "063-580-4000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7527,9 +7064,6 @@
       "cityGuide": {
         "city": "광양시",
         "officialUrl": "https://www.gwangyang.go.kr/",
-        "phones": {
-          "시청대표": "061-797-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7561,9 +7095,6 @@
       "cityGuide": {
         "city": "담양군",
         "officialUrl": "https://www.damyang.go.kr/",
-        "phones": {
-          "군청대표": "061-380-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7599,9 +7130,6 @@
       "cityGuide": {
         "city": "곡성군",
         "officialUrl": "https://www.gokseong.go.kr/",
-        "phones": {
-          "군청대표": "061-360-8114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7633,9 +7161,6 @@
       "cityGuide": {
         "city": "구례군",
         "officialUrl": "https://www.gurye.go.kr/",
-        "phones": {
-          "군청대표": "061-780-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7671,9 +7196,6 @@
       "cityGuide": {
         "city": "고흥군",
         "officialUrl": "https://www.goheung.go.kr/",
-        "phones": {
-          "군청대표": "061-830-5114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7709,9 +7231,6 @@
       "cityGuide": {
         "city": "보성군",
         "officialUrl": "https://www.boseong.go.kr/",
-        "phones": {
-          "군청대표": "061-852-2300"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7747,9 +7266,6 @@
       "cityGuide": {
         "city": "화순군",
         "officialUrl": "https://www.hwasun.go.kr/",
-        "phones": {
-          "군청대표": "061-379-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7781,9 +7297,6 @@
       "cityGuide": {
         "city": "장흥군",
         "officialUrl": "https://www.jangheung.go.kr/",
-        "phones": {
-          "군청대표": "061-860-0114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7819,9 +7332,6 @@
       "cityGuide": {
         "city": "강진군",
         "officialUrl": "https://www.gangjin.go.kr/",
-        "phones": {
-          "군청대표": "061-430-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7857,9 +7367,6 @@
       "cityGuide": {
         "city": "해남군",
         "officialUrl": "https://www.haenam.go.kr/",
-        "phones": {
-          "군청대표": "061-530-5114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7895,9 +7402,6 @@
       "cityGuide": {
         "city": "영암군",
         "officialUrl": "https://www.yeongam.go.kr/",
-        "phones": {
-          "군청대표": "061-470-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7933,9 +7437,6 @@
       "cityGuide": {
         "city": "무안군",
         "officialUrl": "https://www.muan.go.kr/",
-        "phones": {
-          "군청대표": "061-450-5114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -7971,9 +7472,6 @@
       "cityGuide": {
         "city": "함평군",
         "officialUrl": "https://www.hampyeong.go.kr/",
-        "phones": {
-          "군청대표": "061-320-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8009,9 +7507,6 @@
       "cityGuide": {
         "city": "영광군",
         "officialUrl": "https://www.yeonggwang.go.kr/",
-        "phones": {
-          "군청대표": "061-350-5114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8047,9 +7542,6 @@
       "cityGuide": {
         "city": "장성군",
         "officialUrl": "https://www.jangseong.go.kr/",
-        "phones": {
-          "군청대표": "061-390-7114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8085,9 +7577,6 @@
       "cityGuide": {
         "city": "완도군",
         "officialUrl": "https://www.wando.go.kr/",
-        "phones": {
-          "군청대표": "061-550-5114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8119,9 +7608,6 @@
       "cityGuide": {
         "city": "진도군",
         "officialUrl": "https://www.jindo.go.kr/",
-        "phones": {
-          "군청대표": "061-540-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8157,9 +7643,6 @@
       "cityGuide": {
         "city": "신안군",
         "officialUrl": "https://www.shinan.go.kr/",
-        "phones": {
-          "군청대표": "061-240-8114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8195,9 +7678,6 @@
       "cityGuide": {
         "city": "군위군",
         "officialUrl": "https://www.gunwi.go.kr/",
-        "phones": {
-          "군청대표": "054-380-6000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8233,9 +7713,6 @@
       "cityGuide": {
         "city": "의성군",
         "officialUrl": "https://www.usc.go.kr/",
-        "phones": {
-          "군청대표": "054-830-6114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8271,9 +7748,6 @@
       "cityGuide": {
         "city": "청송군",
         "officialUrl": "https://www.cs.go.kr/",
-        "phones": {
-          "군청대표": "054-870-6114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8309,9 +7783,6 @@
       "cityGuide": {
         "city": "영양군",
         "officialUrl": "https://www.yyg.go.kr/",
-        "phones": {
-          "군청대표": "054-680-6114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8347,9 +7818,6 @@
       "cityGuide": {
         "city": "영덕군",
         "officialUrl": "https://www.yd.go.kr/",
-        "phones": {
-          "군청대표": "054-730-6114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8385,9 +7853,6 @@
       "cityGuide": {
         "city": "청도군",
         "officialUrl": "https://www.cheongdo.go.kr/",
-        "phones": {
-          "군청대표": "054-370-6114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8423,9 +7888,6 @@
       "cityGuide": {
         "city": "고령군",
         "officialUrl": "https://www.goryeong.go.kr/",
-        "phones": {
-          "군청대표": "054-950-6000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8461,9 +7923,6 @@
       "cityGuide": {
         "city": "성주군",
         "officialUrl": "https://www.sj.go.kr/",
-        "phones": {
-          "군청대표": "054-930-6114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8495,9 +7954,6 @@
       "cityGuide": {
         "city": "칠곡군",
         "officialUrl": "https://www.chilgok.go.kr/",
-        "phones": {
-          "군청대표": "054-979-6114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8533,9 +7989,6 @@
       "cityGuide": {
         "city": "예천군",
         "officialUrl": "https://www.ycg.kr/",
-        "phones": {
-          "군청대표": "054-650-6114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8571,9 +8024,6 @@
       "cityGuide": {
         "city": "봉화군",
         "officialUrl": "https://www.bonghwa.go.kr/",
-        "phones": {
-          "군청대표": "054-679-6114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8605,9 +8055,6 @@
       "cityGuide": {
         "city": "울진군",
         "officialUrl": "https://www.uljin.go.kr/",
-        "phones": {
-          "군청대표": "054-789-6000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8643,9 +8090,6 @@
       "cityGuide": {
         "city": "울릉군",
         "officialUrl": "https://www.ulleung.go.kr/",
-        "phones": {
-          "군청대표": "054-790-6114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8681,9 +8125,6 @@
       "cityGuide": {
         "city": "의령군",
         "officialUrl": "https://www.uiryeong.go.kr/",
-        "phones": {
-          "군청대표": "055-570-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8719,9 +8160,6 @@
       "cityGuide": {
         "city": "함안군",
         "officialUrl": "https://www.haman.go.kr/",
-        "phones": {
-          "군청대표": "055-580-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8757,9 +8195,6 @@
       "cityGuide": {
         "city": "창녕군",
         "officialUrl": "https://www.cng.go.kr/",
-        "phones": {
-          "군청대표": "055-530-1114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8795,9 +8230,6 @@
       "cityGuide": {
         "city": "고성군(경남)",
         "officialUrl": "https://www.goseong.go.kr/",
-        "phones": {
-          "군청대표": "055-670-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8833,9 +8265,6 @@
       "cityGuide": {
         "city": "남해군",
         "officialUrl": "https://www.namhae.go.kr/",
-        "phones": {
-          "군청대표": "055-860-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8867,9 +8296,6 @@
       "cityGuide": {
         "city": "하동군",
         "officialUrl": "https://www.hadong.go.kr/",
-        "phones": {
-          "군청대표": "055-880-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8905,9 +8331,6 @@
       "cityGuide": {
         "city": "산청군",
         "officialUrl": "https://www.sancheong.go.kr/",
-        "phones": {
-          "군청대표": "055-970-6000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8943,9 +8366,6 @@
       "cityGuide": {
         "city": "함양군",
         "officialUrl": "https://www.hygn.go.kr/",
-        "phones": {
-          "군청대표": "055-960-5114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -8981,9 +8401,6 @@
       "cityGuide": {
         "city": "거창군",
         "officialUrl": "https://www.geochang.go.kr/",
-        "phones": {
-          "군청대표": "055-940-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -9019,9 +8436,6 @@
       "cityGuide": {
         "city": "합천군",
         "officialUrl": "https://www.hc.go.kr/",
-        "phones": {
-          "군청대표": "055-930-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -9057,9 +8471,6 @@
       "cityGuide": {
         "city": "철원군",
         "officialUrl": "https://www.cwg.go.kr/",
-        "phones": {
-          "군청대표": "033-450-5114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -9095,9 +8506,6 @@
       "cityGuide": {
         "city": "화천군",
         "officialUrl": "https://www.ihc.go.kr/",
-        "phones": {
-          "군청대표": "033-440-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -9133,9 +8541,6 @@
       "cityGuide": {
         "city": "양구군",
         "officialUrl": "https://www.yanggu.go.kr/",
-        "phones": {
-          "군청대표": "033-480-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -9171,9 +8576,6 @@
       "cityGuide": {
         "city": "인제군",
         "officialUrl": "https://www.inje.go.kr/",
-        "phones": {
-          "군청대표": "033-460-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -9209,9 +8611,6 @@
       "cityGuide": {
         "city": "고성군(강원)",
         "officialUrl": "https://www.goseong.go.kr/",
-        "phones": {
-          "군청대표": "033-680-3114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -9247,9 +8646,6 @@
       "cityGuide": {
         "city": "양양군",
         "officialUrl": "https://www.yangyang.go.kr/",
-        "phones": {
-          "군청대표": "033-670-2114"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -9285,9 +8681,6 @@
       "cityGuide": {
         "city": "부산광역시 동구",
         "officialUrl": "https://www.bsdonggu.go.kr/",
-        "phones": {
-          "구청대표": "051-440-4000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -9350,9 +8743,6 @@
       "cityGuide": {
         "city": "부산광역시 영도구",
         "officialUrl": "https://www.yeongdo.go.kr/",
-        "phones": {
-          "구청대표": "051-419-4000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -9419,9 +8809,6 @@
       "cityGuide": {
         "city": "부산광역시 해운대구",
         "officialUrl": "https://www.haeundae.go.kr/",
-        "phones": {
-          "구청대표": "051-749-4000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -9488,9 +8875,6 @@
       "cityGuide": {
         "city": "부산광역시 사하구",
         "officialUrl": "https://www.saha.go.kr/",
-        "phones": {
-          "구청대표": "051-220-4000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -9557,9 +8941,6 @@
       "cityGuide": {
         "city": "부산광역시 금정구",
         "officialUrl": "https://www.geumjeong.go.kr/",
-        "phones": {
-          "구청대표": "051-519-4000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -9626,9 +9007,6 @@
       "cityGuide": {
         "city": "부산광역시 강서구",
         "officialUrl": "https://www.bsgangseo.go.kr/",
-        "phones": {
-          "구청대표": "051-970-4000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -9695,9 +9073,6 @@
       "cityGuide": {
         "city": "부산광역시 연제구",
         "officialUrl": "https://www.yeonje.go.kr/",
-        "phones": {
-          "구청대표": "051-665-4000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -9764,9 +9139,6 @@
       "cityGuide": {
         "city": "부산광역시 수영구",
         "officialUrl": "https://www.suyeong.go.kr/",
-        "phones": {
-          "구청대표": "051-610-4000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -9841,9 +9213,6 @@
       "cityGuide": {
         "city": "부산광역시 사상구",
         "officialUrl": "https://www.sasang.go.kr/",
-        "phones": {
-          "구청대표": "051-310-4000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -9910,9 +9279,6 @@
       "cityGuide": {
         "city": "대구광역시 동구",
         "officialUrl": "https://www.dong.daegu.kr/",
-        "phones": {
-          "구청대표": "053-662-2000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -9948,9 +9314,6 @@
       "cityGuide": {
         "city": "대구광역시 서구",
         "officialUrl": "https://www.dgs.go.kr/",
-        "phones": {
-          "구청대표": "053-663-2000"
-        },
         "applianceRecycle": {
           "name": "폐가전 무상수거",
           "phone": "1599-0903",
@@ -10125,7 +9488,6 @@
       "cityGuide": {
         "city": "경기도 수원시",
         "officialUrl": "https://www.suwon.go.kr/sw-www/deptHome/dep_env/env_03/env_03_11/env_03_01.jsp",
-        "phones": {},
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거 (E-순환거버넌스)",
           "phone": "1599-0903",
@@ -10155,7 +9517,6 @@
       "cityGuide": {
         "city": "경기도 안산시",
         "officialUrl": "https://www.ansan.go.kr/www/common/cntnts/selectContents.do?cntnts_id=C0001357",
-        "phones": {},
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거 (E-순환거버넌스)",
           "phone": "1599-0903",
@@ -10185,7 +9546,6 @@
       "cityGuide": {
         "city": "경기도 용인시",
         "officialUrl": "https://www.yongin.go.kr/home/www/www12/www12_08/www12_08_03/www12_08_03_03.jsp",
-        "phones": {},
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거 (E-순환거버넌스)",
           "phone": "1599-0903",
@@ -10223,7 +9583,6 @@
       "cityGuide": {
         "city": "경기도 고양시",
         "officialUrl": "https://www.goyang.go.kr/www/www03/www03_3/www03_3_3/www03_3_3_tab1.jsp",
-        "phones": {},
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거 (E-순환거버넌스)",
           "phone": "1599-0903",
@@ -10327,7 +9686,6 @@
       "cityGuide": {
         "city": "경기도 안양시",
         "officialUrl": "https://www.anyang.go.kr/main/contents.do?key=806",
-        "phones": {},
         "applianceRecycle": {
           "name": "폐가전 무상 방문수거 (E-순환거버넌스)",
           "phone": "1599-0903",
