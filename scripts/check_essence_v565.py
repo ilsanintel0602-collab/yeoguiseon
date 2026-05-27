@@ -267,6 +267,36 @@ def run_checks(check, ROOT):
             all_ok &= check("[본질⑱] sw.js APP_SHELL ↔ app.html script src 정합성 (PWA 오프라인 차단)",
                             len(missing_in_shell) == 0,
                             f"{len(missing_in_shell)}건 sw.js APP_SHELL 누락: {missing_in_shell}" if missing_in_shell else f"{len(app_modules)}/{len(app_modules)}개 정합")
+
+        # ⑲ 경쟁사 직접 언급 차단 (라이브 + scripts + js, GitHub 공개 평판 보호)
+        # 검사 대상: app.html, sw.js, scripts/*.py, js/*.js (docs/HANDOFF*는 과거 기록이라 예외)
+        # 키워드 동적 생성 (자기 파일에 직접 문자열 회피)
+        _base = chr(82)+chr(101)+chr(99)+chr(121)+chr(99)+chr(108)+chr(101)
+        COMPETITOR_KW = [_base+"AI", _base+"Ai", _base.lower()+"ai", _base.upper()+"AI"]
+        SELF_FILE = "check_essence_v565.py"
+        target_files = [app_path, sw_path]
+        for sub in ["scripts", "js"]:
+            sub_path = os.path.join(ROOT, sub)
+            if os.path.isdir(sub_path):
+                for fn in os.listdir(sub_path):
+                    if fn.endswith((".py", ".js")) and fn != SELF_FILE:
+                        target_files.append(os.path.join(sub_path, fn))
+        leaks = []
+        for fpath in target_files:
+            if not os.path.exists(fpath):
+                continue
+            try:
+                with open(fpath, "r", encoding="utf-8") as _f:
+                    _txt = _f.read()
+                for kw in COMPETITOR_KW:
+                    if kw in _txt:
+                        leaks.append(f"{os.path.basename(fpath)}:{kw}")
+                        break
+            except Exception:
+                pass
+        all_ok &= check("[본질⑲] 경쟁사 직접 언급 차단 (GitHub 공개 평판 보호)",
+                        len(leaks) == 0,
+                        f"{len(leaks)}건: {leaks[:3]}" if leaks else f"{len(target_files)}개 파일 깨끗")
     except Exception as e:
         check("[본질] 자동 감지 실행", False, f"검사 실패: {e}")
         all_ok = False

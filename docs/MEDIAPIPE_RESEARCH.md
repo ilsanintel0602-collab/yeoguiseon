@@ -6,14 +6,14 @@
 
 = 현재 COCO-SSD (TensorFlow.js) 자동 인식의 정확도·속도 한계. v5.42에서 박스 표시 폐기, v5.45에서 손가락 영역 드래그(customBox) crop으로 우회.
 
-## RecycleAI 대비 비교
+## 객관 기준 (모바일 카메라 분리수거 분야)
 
-| 항목 | RecycleAI | 여기선 v5.46 |
+| 항목 | 일반적 네이티브 앱 | 여기선 v5.46 |
 |---|---|---|
-| 카메라 모델 | Google ML Kit Object Detection | COCO-SSD (TensorFlow.js 80 클래스) |
+| 카메라 모델 | Google ML Kit Object Detection (on-device) | COCO-SSD (TensorFlow.js 80 클래스) |
 | 모바일 성능 | Native (Android) | WebView TF.js (느림) |
 | 한국 사물 정확도 | ML Kit 일반 객체 (영문 라벨, 한국 제품 fine-tune X) | 동일 한계 (살충제→bottle 등 false-positive) |
-| 차별점 | 빠름·매끄러움 | 정직 안내·전국 100%·환경부 표준 |
+| 본질 가치 | 빠름·매끄러움 | 정직 안내·전국 100%·환경부 표준 |
 
 ## MediaPipe 옵션 3가지
 
@@ -57,7 +57,7 @@
 - Roboflow 한국 분리수거 데이터셋 구축 (사용자 사진 수집)
 - TFLite Model Maker로 EfficientNet-Lite fine-tune
 - 한국 사물 정확 분류
-- **효과**: 정확도 큰 ↑, RecycleAI 능가 가능
+- **효과**: 정확도 큰 ↑, 한국 사물 특화 도달 가능
 
 ## 비교 결론
 
@@ -65,7 +65,7 @@
 |---|---|---|---|---|
 | **1단계 (Gemini 최적화)** | 1.5시간 | +30~50% | 0 | 즉시 |
 | 2단계 (MediaPipe) | 1일 | +20% | 0 | 작음 (customBox로 이미 해결) |
-| 3단계 (자체 학습) | 1~2주 | 0 | 큰 ↑ | RecycleAI 능가 (장기 목표) |
+| 3단계 (자체 학습) | 1~2주 | 0 | 큰 ↑ | 한국 사물 특화 (장기 목표) |
 
 ## 권장 시점
 
@@ -75,4 +75,4 @@
 
 ## 결론
 
-**MediaPipe는 직접 가치 작음** (정확도 변화 X). 같은 자원으로 Gemini 최적화가 더 효과적. v5.45의 customBox crop이 이미 핵심 우회. 3단계 자체 학습이 진짜 RecycleAI 능가의 길.
+**MediaPipe는 직접 가치 작음** (정확도 변화 X). 같은 자원으로 Gemini 최적화가 더 효과적. v5.45의 customBox crop이 이미 핵심 우회. 3단계 자체 학습이 진짜 한국 사물 특화의 길.
