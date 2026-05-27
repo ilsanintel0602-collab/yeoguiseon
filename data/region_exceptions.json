@@ -1,6 +1,6 @@
 {
   "$schema": "여기선 v3.1 - 지역별 예외 룰 (환경부 표준 + 차이만)",
-  "version": "3.9.0",
+  "version": "3.10.0",
   "lastUpdated": "2026-05-27",
   "note": "환경부 표준은 national_rules.json. 이 파일은 지역별 차이/세부 룰만 정의. v3.2: 강서·노원 itemExceptions/sources/cleanUrl/phone 보강 (Phase 1). v3.9: 서울 RFID 구(도봉·노원·강동·금천·영등포·서초·동대문) + 강서(병행) + 종로(납부필증) + 경기 RFID시(수원·성남·용인·안양) food_waste 예외 추가 (P1).",
   "sourceGradeLegend": {
@@ -3689,8 +3689,14 @@
             "url": "https://www.jung.daegu.kr/",
             "grade": "B",
             "note": "중구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.daegu.go.kr/index.do?menu_id=00935997",
+            "grade": "B",
+            "note": "대구광역시 자원순환 (광역 안내)"
           }
-        ]
+        ],
+        "specialNote": "대구광역시 공통: 거주 자치구 공식 페이지에서 정확한 분리수거 룰·요일 확인."
       },
       "exceptions": {}
     },
@@ -3720,8 +3726,14 @@
             "url": "https://www.nam.daegu.kr/",
             "grade": "B",
             "note": "남구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.daegu.go.kr/index.do?menu_id=00935997",
+            "grade": "B",
+            "note": "대구광역시 자원순환 (광역 안내)"
           }
-        ]
+        ],
+        "specialNote": "대구광역시 공통: 거주 자치구 공식 페이지에서 정확한 분리수거 룰·요일 확인."
       },
       "exceptions": {}
     },
@@ -3755,8 +3767,14 @@
             "url": "https://www.buk.daegu.kr/",
             "grade": "B",
             "note": "북구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.daegu.go.kr/index.do?menu_id=00935997",
+            "grade": "B",
+            "note": "대구광역시 자원순환 (광역 안내)"
           }
-        ]
+        ],
+        "specialNote": "대구광역시 공통: 거주 자치구 공식 페이지에서 정확한 분리수거 룰·요일 확인."
       },
       "exceptions": {}
     },
@@ -3794,8 +3812,14 @@
             "url": "https://www.suseong.kr/",
             "grade": "B",
             "note": "수성구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.daegu.go.kr/index.do?menu_id=00935997",
+            "grade": "B",
+            "note": "대구광역시 자원순환 (광역 안내)"
           }
-        ]
+        ],
+        "specialNote": "대구광역시 공통: 거주 자치구 공식 페이지에서 정확한 분리수거 룰·요일 확인."
       },
       "exceptions": {}
     },
@@ -3833,8 +3857,34 @@
             "url": "https://www.donggu.gwangju.kr/",
             "grade": "B",
             "note": "동구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi246",
+            "grade": "A",
+            "note": "광주광역시 재활용 자원"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi248",
+            "grade": "A",
+            "note": "광주광역시 대형 폐기물"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi240",
+            "grade": "A",
+            "note": "광주 폐가전 무상방문수거"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi249",
+            "grade": "A",
+            "note": "광주 폐건전지·폐휴대폰"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi252",
+            "grade": "A",
+            "note": "광주 순환자원정보센터"
           }
-        ]
+        ],
+        "specialNote": "광주광역시 공통: 자원순환 통합 안내 (재활용·대형폐기물·폐가전·폐건전지). 거주 자치구 페이지 우선."
       },
       "exceptions": {}
     },
@@ -3864,8 +3914,34 @@
             "url": "https://www.seogu.gwangju.kr/",
             "grade": "B",
             "note": "서구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi246",
+            "grade": "A",
+            "note": "광주광역시 재활용 자원"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi248",
+            "grade": "A",
+            "note": "광주광역시 대형 폐기물"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi240",
+            "grade": "A",
+            "note": "광주 폐가전 무상방문수거"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi249",
+            "grade": "A",
+            "note": "광주 폐건전지·폐휴대폰"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi252",
+            "grade": "A",
+            "note": "광주 순환자원정보센터"
           }
-        ]
+        ],
+        "specialNote": "광주광역시 공통: 자원순환 통합 안내 (재활용·대형폐기물·폐가전·폐건전지). 거주 자치구 페이지 우선."
       },
       "exceptions": {}
     },
@@ -3899,8 +3975,29 @@
             "url": "https://www.donggu.go.kr/",
             "grade": "B",
             "note": "동구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.daejeon.go.kr/drh/DrhContentsHtmlView.do?menuSeq=1976",
+            "grade": "A",
+            "note": "대전광역시 재활용품목·분리배출요령"
+          },
+          {
+            "url": "https://www.daejeon.go.kr/drh/DrhContentsHtmlView.do?menuSeq=1988",
+            "grade": "A",
+            "note": "대전 음식물쓰레기 이물질 분리배출"
+          },
+          {
+            "url": "https://www.daejeon.go.kr/drh/DrhContentsHtmlView.do?menuSeq=7347",
+            "grade": "A",
+            "note": "대전 환경관련 센터 소개"
+          },
+          {
+            "url": "https://www.daejeon.go.kr/drh/drhStoryDaejeonView.do?boardId=blog_0001&menuSeq=1479&pageIndex=1&ntatcSeq=1083945769",
+            "grade": "A",
+            "note": "대전 폐가전제품 무상 방문수거"
           }
-        ]
+        ],
+        "specialNote": "대전광역시 공통: 폐가전 무상수거 1599-0903·홈페이지·카카오톡(폐가전무상방문수거). 가정 분리수거 철저(쇠붙이·비닐류 혼입 차단)."
       },
       "exceptions": {}
     },
@@ -3938,8 +4035,29 @@
             "url": "https://www.djjunggu.go.kr/",
             "grade": "B",
             "note": "중구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.daejeon.go.kr/drh/DrhContentsHtmlView.do?menuSeq=1976",
+            "grade": "A",
+            "note": "대전광역시 재활용품목·분리배출요령"
+          },
+          {
+            "url": "https://www.daejeon.go.kr/drh/DrhContentsHtmlView.do?menuSeq=1988",
+            "grade": "A",
+            "note": "대전 음식물쓰레기 이물질 분리배출"
+          },
+          {
+            "url": "https://www.daejeon.go.kr/drh/DrhContentsHtmlView.do?menuSeq=7347",
+            "grade": "A",
+            "note": "대전 환경관련 센터 소개"
+          },
+          {
+            "url": "https://www.daejeon.go.kr/drh/drhStoryDaejeonView.do?boardId=blog_0001&menuSeq=1479&pageIndex=1&ntatcSeq=1083945769",
+            "grade": "A",
+            "note": "대전 폐가전제품 무상 방문수거"
           }
-        ]
+        ],
+        "specialNote": "대전광역시 공통: 폐가전 무상수거 1599-0903·홈페이지·카카오톡(폐가전무상방문수거). 가정 분리수거 철저(쇠붙이·비닐류 혼입 차단)."
       },
       "exceptions": {}
     },
@@ -3969,8 +4087,29 @@
             "url": "https://www.seogu.go.kr/",
             "grade": "B",
             "note": "서구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.daejeon.go.kr/drh/DrhContentsHtmlView.do?menuSeq=1976",
+            "grade": "A",
+            "note": "대전광역시 재활용품목·분리배출요령"
+          },
+          {
+            "url": "https://www.daejeon.go.kr/drh/DrhContentsHtmlView.do?menuSeq=1988",
+            "grade": "A",
+            "note": "대전 음식물쓰레기 이물질 분리배출"
+          },
+          {
+            "url": "https://www.daejeon.go.kr/drh/DrhContentsHtmlView.do?menuSeq=7347",
+            "grade": "A",
+            "note": "대전 환경관련 센터 소개"
+          },
+          {
+            "url": "https://www.daejeon.go.kr/drh/drhStoryDaejeonView.do?boardId=blog_0001&menuSeq=1479&pageIndex=1&ntatcSeq=1083945769",
+            "grade": "A",
+            "note": "대전 폐가전제품 무상 방문수거"
           }
-        ]
+        ],
+        "specialNote": "대전광역시 공통: 폐가전 무상수거 1599-0903·홈페이지·카카오톡(폐가전무상방문수거). 가정 분리수거 철저(쇠붙이·비닐류 혼입 차단)."
       },
       "exceptions": {}
     },
@@ -4004,8 +4143,29 @@
             "url": "https://www.yuseong.go.kr/",
             "grade": "B",
             "note": "유성구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.daejeon.go.kr/drh/DrhContentsHtmlView.do?menuSeq=1976",
+            "grade": "A",
+            "note": "대전광역시 재활용품목·분리배출요령"
+          },
+          {
+            "url": "https://www.daejeon.go.kr/drh/DrhContentsHtmlView.do?menuSeq=1988",
+            "grade": "A",
+            "note": "대전 음식물쓰레기 이물질 분리배출"
+          },
+          {
+            "url": "https://www.daejeon.go.kr/drh/DrhContentsHtmlView.do?menuSeq=7347",
+            "grade": "A",
+            "note": "대전 환경관련 센터 소개"
+          },
+          {
+            "url": "https://www.daejeon.go.kr/drh/drhStoryDaejeonView.do?boardId=blog_0001&menuSeq=1479&pageIndex=1&ntatcSeq=1083945769",
+            "grade": "A",
+            "note": "대전 폐가전제품 무상 방문수거"
           }
-        ]
+        ],
+        "specialNote": "대전광역시 공통: 폐가전 무상수거 1599-0903·홈페이지·카카오톡(폐가전무상방문수거). 가정 분리수거 철저(쇠붙이·비닐류 혼입 차단)."
       },
       "exceptions": {}
     },
@@ -4039,8 +4199,29 @@
             "url": "https://www.daedeok.go.kr/",
             "grade": "B",
             "note": "대덕구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.daejeon.go.kr/drh/DrhContentsHtmlView.do?menuSeq=1976",
+            "grade": "A",
+            "note": "대전광역시 재활용품목·분리배출요령"
+          },
+          {
+            "url": "https://www.daejeon.go.kr/drh/DrhContentsHtmlView.do?menuSeq=1988",
+            "grade": "A",
+            "note": "대전 음식물쓰레기 이물질 분리배출"
+          },
+          {
+            "url": "https://www.daejeon.go.kr/drh/DrhContentsHtmlView.do?menuSeq=7347",
+            "grade": "A",
+            "note": "대전 환경관련 센터 소개"
+          },
+          {
+            "url": "https://www.daejeon.go.kr/drh/drhStoryDaejeonView.do?boardId=blog_0001&menuSeq=1479&pageIndex=1&ntatcSeq=1083945769",
+            "grade": "A",
+            "note": "대전 폐가전제품 무상 방문수거"
           }
-        ]
+        ],
+        "specialNote": "대전광역시 공통: 폐가전 무상수거 1599-0903·홈페이지·카카오톡(폐가전무상방문수거). 가정 분리수거 철저(쇠붙이·비닐류 혼입 차단)."
       },
       "exceptions": {}
     },
@@ -4074,8 +4255,29 @@
             "url": "https://www.junggu.ulsan.kr/",
             "grade": "B",
             "note": "중구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.ulsan.go.kr/u/envi/contents.ulsan?mId=001005002002000000",
+            "grade": "A",
+            "note": "울산광역시 재활용 분리배출 기준·요령"
+          },
+          {
+            "url": "https://ulsan.go.kr/u/envi/contents.ulsan?mId=001005002001000000",
+            "grade": "A",
+            "note": "울산 폐기물 배출방법"
+          },
+          {
+            "url": "https://ulsan.go.kr/u/envi/contents.ulsan?mId=001005002003000000",
+            "grade": "A",
+            "note": "울산 음식물쓰레기 분리배출 기준"
+          },
+          {
+            "url": "https://www.ulsan.go.kr/u/envi/contents.ulsan?mId=001005002004000000",
+            "grade": "A",
+            "note": "울산 음식물쓰레기 처리방법"
           }
-        ]
+        ],
+        "specialNote": "울산광역시 공통: 자원순환 통합 안내. 거주 자치구 페이지에서 본인 동 요일·시간 확인."
       },
       "exceptions": {}
     },
@@ -4109,8 +4311,29 @@
             "url": "https://www.ulsannamgu.go.kr/",
             "grade": "B",
             "note": "남구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.ulsan.go.kr/u/envi/contents.ulsan?mId=001005002002000000",
+            "grade": "A",
+            "note": "울산광역시 재활용 분리배출 기준·요령"
+          },
+          {
+            "url": "https://ulsan.go.kr/u/envi/contents.ulsan?mId=001005002001000000",
+            "grade": "A",
+            "note": "울산 폐기물 배출방법"
+          },
+          {
+            "url": "https://ulsan.go.kr/u/envi/contents.ulsan?mId=001005002003000000",
+            "grade": "A",
+            "note": "울산 음식물쓰레기 분리배출 기준"
+          },
+          {
+            "url": "https://www.ulsan.go.kr/u/envi/contents.ulsan?mId=001005002004000000",
+            "grade": "A",
+            "note": "울산 음식물쓰레기 처리방법"
           }
-        ]
+        ],
+        "specialNote": "울산광역시 공통: 자원순환 통합 안내. 거주 자치구 페이지에서 본인 동 요일·시간 확인."
       },
       "exceptions": {}
     },
@@ -5840,8 +6063,14 @@
             "url": "https://www.dalseo.daegu.kr/",
             "grade": "B",
             "note": "달서구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.daegu.go.kr/index.do?menu_id=00935997",
+            "grade": "B",
+            "note": "대구광역시 자원순환 (광역 안내)"
           }
-        ]
+        ],
+        "specialNote": "대구광역시 공통: 거주 자치구 공식 페이지에서 정확한 분리수거 룰·요일 확인."
       },
       "exceptions": {}
     },
@@ -5871,8 +6100,14 @@
             "url": "https://www.dalseong.daegu.kr/",
             "grade": "B",
             "note": "달성군 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.daegu.go.kr/index.do?menu_id=00935997",
+            "grade": "B",
+            "note": "대구광역시 자원순환 (광역 안내)"
           }
-        ]
+        ],
+        "specialNote": "대구광역시 공통: 거주 자치구 공식 페이지에서 정확한 분리수거 룰·요일 확인."
       },
       "exceptions": {}
     },
@@ -5902,8 +6137,34 @@
             "url": "https://www.namgu.gwangju.kr/",
             "grade": "B",
             "note": "남구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi246",
+            "grade": "A",
+            "note": "광주광역시 재활용 자원"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi248",
+            "grade": "A",
+            "note": "광주광역시 대형 폐기물"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi240",
+            "grade": "A",
+            "note": "광주 폐가전 무상방문수거"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi249",
+            "grade": "A",
+            "note": "광주 폐건전지·폐휴대폰"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi252",
+            "grade": "A",
+            "note": "광주 순환자원정보센터"
           }
-        ]
+        ],
+        "specialNote": "광주광역시 공통: 자원순환 통합 안내 (재활용·대형폐기물·폐가전·폐건전지). 거주 자치구 페이지 우선."
       },
       "exceptions": {}
     },
@@ -5933,8 +6194,34 @@
             "url": "https://bukgu.gwangju.kr/",
             "grade": "B",
             "note": "북구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi246",
+            "grade": "A",
+            "note": "광주광역시 재활용 자원"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi248",
+            "grade": "A",
+            "note": "광주광역시 대형 폐기물"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi240",
+            "grade": "A",
+            "note": "광주 폐가전 무상방문수거"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi249",
+            "grade": "A",
+            "note": "광주 폐건전지·폐휴대폰"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi252",
+            "grade": "A",
+            "note": "광주 순환자원정보센터"
           }
-        ]
+        ],
+        "specialNote": "광주광역시 공통: 자원순환 통합 안내 (재활용·대형폐기물·폐가전·폐건전지). 거주 자치구 페이지 우선."
       },
       "exceptions": {}
     },
@@ -5964,8 +6251,34 @@
             "url": "https://www.gwangsan.go.kr/",
             "grade": "B",
             "note": "광산구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi246",
+            "grade": "A",
+            "note": "광주광역시 재활용 자원"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi248",
+            "grade": "A",
+            "note": "광주광역시 대형 폐기물"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi240",
+            "grade": "A",
+            "note": "광주 폐가전 무상방문수거"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi249",
+            "grade": "A",
+            "note": "광주 폐건전지·폐휴대폰"
+          },
+          {
+            "url": "https://www.gwangju.go.kr/envi/contentsView.do?pageId=envi252",
+            "grade": "A",
+            "note": "광주 순환자원정보센터"
           }
-        ]
+        ],
+        "specialNote": "광주광역시 공통: 자원순환 통합 안내 (재활용·대형폐기물·폐가전·폐건전지). 거주 자치구 페이지 우선."
       },
       "exceptions": {}
     },
@@ -6007,8 +6320,29 @@
             "url": "https://www.donggu.ulsan.kr/",
             "grade": "B",
             "note": "동구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.ulsan.go.kr/u/envi/contents.ulsan?mId=001005002002000000",
+            "grade": "A",
+            "note": "울산광역시 재활용 분리배출 기준·요령"
+          },
+          {
+            "url": "https://ulsan.go.kr/u/envi/contents.ulsan?mId=001005002001000000",
+            "grade": "A",
+            "note": "울산 폐기물 배출방법"
+          },
+          {
+            "url": "https://ulsan.go.kr/u/envi/contents.ulsan?mId=001005002003000000",
+            "grade": "A",
+            "note": "울산 음식물쓰레기 분리배출 기준"
+          },
+          {
+            "url": "https://www.ulsan.go.kr/u/envi/contents.ulsan?mId=001005002004000000",
+            "grade": "A",
+            "note": "울산 음식물쓰레기 처리방법"
           }
-        ]
+        ],
+        "specialNote": "울산광역시 공통: 자원순환 통합 안내. 거주 자치구 페이지에서 본인 동 요일·시간 확인."
       },
       "exceptions": {}
     },
@@ -6042,8 +6376,29 @@
             "url": "https://www.bukgu.ulsan.kr/",
             "grade": "B",
             "note": "북구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.ulsan.go.kr/u/envi/contents.ulsan?mId=001005002002000000",
+            "grade": "A",
+            "note": "울산광역시 재활용 분리배출 기준·요령"
+          },
+          {
+            "url": "https://ulsan.go.kr/u/envi/contents.ulsan?mId=001005002001000000",
+            "grade": "A",
+            "note": "울산 폐기물 배출방법"
+          },
+          {
+            "url": "https://ulsan.go.kr/u/envi/contents.ulsan?mId=001005002003000000",
+            "grade": "A",
+            "note": "울산 음식물쓰레기 분리배출 기준"
+          },
+          {
+            "url": "https://www.ulsan.go.kr/u/envi/contents.ulsan?mId=001005002004000000",
+            "grade": "A",
+            "note": "울산 음식물쓰레기 처리방법"
           }
-        ]
+        ],
+        "specialNote": "울산광역시 공통: 자원순환 통합 안내. 거주 자치구 페이지에서 본인 동 요일·시간 확인."
       },
       "exceptions": {}
     },
@@ -6077,8 +6432,29 @@
             "url": "https://www.ulju.ulsan.kr/",
             "grade": "B",
             "note": "울주군 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.ulsan.go.kr/u/envi/contents.ulsan?mId=001005002002000000",
+            "grade": "A",
+            "note": "울산광역시 재활용 분리배출 기준·요령"
+          },
+          {
+            "url": "https://ulsan.go.kr/u/envi/contents.ulsan?mId=001005002001000000",
+            "grade": "A",
+            "note": "울산 폐기물 배출방법"
+          },
+          {
+            "url": "https://ulsan.go.kr/u/envi/contents.ulsan?mId=001005002003000000",
+            "grade": "A",
+            "note": "울산 음식물쓰레기 분리배출 기준"
+          },
+          {
+            "url": "https://www.ulsan.go.kr/u/envi/contents.ulsan?mId=001005002004000000",
+            "grade": "A",
+            "note": "울산 음식물쓰레기 처리방법"
           }
-        ]
+        ],
+        "specialNote": "울산광역시 공통: 자원순환 통합 안내. 거주 자치구 페이지에서 본인 동 요일·시간 확인."
       },
       "exceptions": {}
     },
@@ -9462,8 +9838,14 @@
             "url": "https://www.dong.daegu.kr/",
             "grade": "B",
             "note": "동구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.daegu.go.kr/index.do?menu_id=00935997",
+            "grade": "B",
+            "note": "대구광역시 자원순환 (광역 안내)"
           }
-        ]
+        ],
+        "specialNote": "대구광역시 공통: 거주 자치구 공식 페이지에서 정확한 분리수거 룰·요일 확인."
       },
       "exceptions": {}
     },
@@ -9497,8 +9879,14 @@
             "url": "https://www.dgs.go.kr/",
             "grade": "B",
             "note": "서구 공식 홈 — 분리수거·청소 메뉴 확인"
+          },
+          {
+            "url": "https://www.daegu.go.kr/index.do?menu_id=00935997",
+            "grade": "B",
+            "note": "대구광역시 자원순환 (광역 안내)"
           }
-        ]
+        ],
+        "specialNote": "대구광역시 공통: 거주 자치구 공식 페이지에서 정확한 분리수거 룰·요일 확인."
       },
       "exceptions": {}
     },
