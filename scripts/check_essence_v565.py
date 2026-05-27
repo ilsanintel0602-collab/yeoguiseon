@@ -1,12 +1,12 @@
 """
-본질 위반 영구 차단 룰 (v5.51~v5.65 사이클에서 발견된 패턴 자동화)
+본질 위반 영구 차단 룰 (v5.51~v5.75 사이클에서 발견된 패턴 자동화)
 quick_check.py에서 호출. 매 push마다 자동 차단.
 """
 import json, os
 
 
 def run_checks(check, ROOT):
-    """check(name, ok, detail) 헬퍼 받아 5개 룰 검사. all_ok 누적 반환."""
+    """check(name, ok, detail) 헬퍼 받아 16개 룰 검사. all_ok 누적 반환."""
     all_ok = True
     try:
         r = json.load(open(os.path.join(ROOT, "data", "region_exceptions.json"), encoding="utf-8"))
@@ -162,6 +162,85 @@ def run_checks(check, ROOT):
                 bp_inconsistent.append(f"{c} 자치구인데 데이터 없음")
         all_ok &= check("[본질⑪] bag_prices 본청·자치구 구조 정합성", len(bp_inconsistent) == 0,
                         f"{len(bp_inconsistent)}건: {bp_inconsistent[:3]}" if bp_inconsistent else "0건")
+
+        # ⑬ items category vs note 모순 자동 감지 (v5.75 텀블러 케이스 영구 차단)
+        AMBIG_KW = ["재질 확인", "재질이 다양", "재질이 다름", "재질에 따라",
+                    "두 종류", "여러 재질", "종류가 다"]
+        ambig_violations = []
+        for iid, it in items.items():
+            if not isinstance(it, dict):
+                continue
+            note = it.get("note", "") or ""
+            cat = it.get("category", "")
+            if not note or not cat:
+                continue
+            if cat in ("other", "general", "general_or_bulky", "general_noncombustible"):
+                continue
+            for kw in AMBIG_KW:
+                if kw in note and not it.get("multi_material"):
+                    ambig_violations.append(f"{iid}({cat})")
+                    break
+        all_ok &= check("[본질⑫] items category vs note 모순 차단 (multi_material flag 강제)",
+                        len(ambig_violations) == 0,
+                        f"{len(ambig_violations)}건: {ambig_violations[:3]}" if ambig_violations else "0건")
+
+        # ⑭ items 이름이 'X의 재질' / 'X 재질' 패턴이면 multi_material:true 강제
+        meta_items = []
+        for iid, it in items.items():
+            if not isinstance(it, dict):
+                continue
+            name = it.get("name", "") or iid
+            if ("의 재질" in name or name.endswith("재질")) and not it.get("multi_material"):
+                meta_items.append(name)
+        all_ok &= check("[본질⑬] '재질' 메타 items multi_material:true 강제",
+                        len(meta_items) == 0,
+                        f"{len(meta_items)}건: {meta_items[:3]}" if meta_items else "0건")
+
+        # ⑮ regions_meta boundingBox 동일 4튜플 중복 차단 (잘못 복제 감지)
+        bbox_seen = {}
+        bbox_dup = []
+        for c, info in m.get("level2", {}).items():
+            bb = info.get("boundingBox")
+            if not bb:
+                continue
+            key = (bb.get("minLat"), bb.get("maxLat"), bb.get("minLng"), bb.get("maxLng"))
+            if None in key:
+                continue
+            if key in bbox_seen:
+                name1 = m["level2"][bbox_seen[key]].get("name", bbox_seen[key])
+                name2 = info.get("name", c)
+                bbox_dup.append(f"{name1}({bbox_seen[key]}) = {name2}({c})")
+            else:
+                bbox_seen[key] = c
+        all_ok &= check("[본질⑭] regions_meta boundingBox 동일 복제 차단 (잘못 복제 감지)",
+                        len(bbox_dup) == 0,
+                        f"{len(bbox_dup)}건: {bbox_dup[:3]}" if bbox_dup else f"{len(bbox_seen)}개 unique")
+
+        # ⑯ SYSTEM_PROMPT external + inline fallback 동시 존재 강제 (v5.69 회귀 영구 차단)
+        if os.path.exists(app_path):
+            has_ext = '<script src="./js/prompts.js"></script>' in _app
+            has_fallback = "if (typeof SYSTEM_PROMPT === 'undefined')" in _app
+            sp_ok = has_ext and has_fallback
+            all_ok &= check("[본질⑮] SYSTEM_PROMPT external+inline fallback 강제 (v5.69 회귀 차단)",
+                            sp_ok, f"external={has_ext} fallback={has_fallback}")
+
+        # ⑰ items aliases 중복 차단 (검색 충돌 영구 방지)
+        alias_owner = {}
+        alias_dup = []
+        for iid, it in items.items():
+            if not isinstance(it, dict):
+                continue
+            for a in (it.get("aliases", []) or []):
+                a_norm = str(a).strip().lower()
+                if not a_norm:
+                    continue
+                if a_norm in alias_owner:
+                    alias_dup.append(f'"{a}": {alias_owner[a_norm]} ↔ {iid}')
+                else:
+                    alias_owner[a_norm] = iid
+        all_ok &= check("[본질⑯] items aliases 중복 차단 (검색 충돌 영구 방지)",
+                        len(alias_dup) == 0,
+                        f"{len(alias_dup)}건: {alias_dup[:3]}" if alias_dup else f"{len(alias_owner)}개 unique")
     except Exception as e:
         check("[본질] 자동 감지 실행", False, f"검사 실패: {e}")
         all_ok = False
