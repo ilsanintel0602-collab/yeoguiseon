@@ -1,8 +1,8 @@
 {
   "$schema": "여기선 v3.1 - 지역별 예외 룰 (환경부 표준 + 차이만)",
-  "version": "3.8.0",
-  "lastUpdated": "2026-05-26",
-  "note": "환경부 표준은 national_rules.json. 이 파일은 지역별 차이/세부 룰만 정의. v3.2: 강서·노원 itemExceptions/sources/cleanUrl/phone 보강 (Phase 1).",
+  "version": "3.9.0",
+  "lastUpdated": "2026-05-27",
+  "note": "환경부 표준은 national_rules.json. 이 파일은 지역별 차이/세부 룰만 정의. v3.2: 강서·노원 itemExceptions/sources/cleanUrl/phone 보강 (Phase 1). v3.9: 서울 RFID 구(도봉·노원·강동·금천·영등포·서초·동대문) + 강서(병행) + 종로(납부필증) + 경기 RFID시(수원·성남·용인·안양) food_waste 예외 추가 (P1).",
   "sourceGradeLegend": {
     "A": "지자체 공식 페이지·고시·공공시설 홈페이지 (1차 출처)",
     "B": "검증된 공공기관 보도자료·시 위탁 시설(고양환경에너지) 등 2차 출처"
@@ -1101,7 +1101,23 @@
           }
         ]
       },
-      "exceptions": {}
+      "exceptions": {
+        "food_waste": {
+          "category": "food",
+          "disposalMethod": "RFID",
+          "note": "영등포구는 RFID 종량기 사용.",
+          "steps": [
+            "물기 꼭 짜기",
+            "비닐·뼈·껍데기 등 이물질 분리",
+            "RFID 종량기 카드(또는 앱) 인식",
+            "뚜껑 열고 투입 → 닫힘 버튼 누르기"
+          ],
+          "confidence": "high",
+          "source": "https://www.ydp.go.kr/",
+          "sourceGrade": "A",
+          "sourceName": "서울특별시 영등포구 공식 음식물 쓰레기 안내"
+        }
+      }
     },
     "11470": {
       "name": "서울특별시 양천구",
@@ -1217,7 +1233,23 @@
           }
         ]
       },
-      "exceptions": {}
+      "exceptions": {
+        "food_waste": {
+          "category": "food",
+          "disposalMethod": "RFID+봉투",
+          "note": "강서구는 RFID 종량기와 전용봉투를 병행 운영. 공동주택은 RFID, 단독주택은 봉투.",
+          "steps": [
+            "물기 꼭 짜기",
+            "비닐·뼈·껍데기 등 이물질 분리",
+            "공동주택: RFID 종량기 카드 인식 → 투입",
+            "단독주택: 음식물 전용봉투에 담아 배출"
+          ],
+          "confidence": "high",
+          "source": "https://www.gangseo.seoul.kr/",
+          "sourceGrade": "A",
+          "sourceName": "서울특별시 강서구 공식 음식물 쓰레기 안내"
+        }
+      }
     },
     "11110": {
       "name": "서울특별시 종로구",
@@ -1256,7 +1288,23 @@
           }
         ]
       },
-      "exceptions": {}
+      "exceptions": {
+        "food_waste": {
+          "category": "food",
+          "disposalMethod": "납부필증+봉투",
+          "note": "종로구는 음식물 전용봉투에 납부필증(스티커)을 부착해 배출.",
+          "steps": [
+            "물기 꼭 짜기",
+            "이물질 분리",
+            "음식물 전용봉투 구입 (동 주민센터·편의점)",
+            "봉투에 담아 지정 배출 장소에 놓기"
+          ],
+          "confidence": "high",
+          "source": "https://www.jongno.go.kr/",
+          "sourceGrade": "A",
+          "sourceName": "서울특별시 종로구 공식 음식물 쓰레기 안내"
+        }
+      }
     },
     "11140": {
       "name": "서울특별시 중구",
@@ -1374,7 +1422,23 @@
           }
         ]
       },
-      "exceptions": {}
+      "exceptions": {
+        "food_waste": {
+          "category": "food",
+          "disposalMethod": "RFID",
+          "note": "성남시는 RFID 종량기 사용.",
+          "steps": [
+            "물기 꼭 짜기",
+            "비닐·뼈·껍데기 등 이물질 분리",
+            "RFID 종량기 카드(또는 앱) 인식",
+            "뚜껑 열고 투입 → 닫힘 버튼 누르기"
+          ],
+          "confidence": "high",
+          "source": "https://www.seongnam.go.kr/",
+          "sourceGrade": "A",
+          "sourceName": "경기도 성남시 공식 음식물 쓰레기 안내"
+        }
+      }
     },
     "41171": {
       "name": "경기도 안양시 만안구",
@@ -1551,7 +1615,23 @@
           }
         ]
       },
-      "exceptions": {}
+      "exceptions": {
+        "food_waste": {
+          "category": "food",
+          "disposalMethod": "RFID",
+          "note": "동대문구는 RFID 종량기 사용.",
+          "steps": [
+            "물기 꼭 짜기",
+            "비닐·뼈·껍데기 등 이물질 분리",
+            "RFID 종량기 카드(또는 앱) 인식",
+            "뚜껑 열고 투입 → 닫힘 버튼 누르기"
+          ],
+          "confidence": "high",
+          "source": "https://www.ddm.go.kr/",
+          "sourceGrade": "A",
+          "sourceName": "서울특별시 동대문구 공식 음식물 쓰레기 안내"
+        }
+      }
     },
     "11260": {
       "name": "서울특별시 중랑구",
@@ -1695,7 +1775,23 @@
           }
         ]
       },
-      "exceptions": {}
+      "exceptions": {
+        "food_waste": {
+          "category": "food",
+          "disposalMethod": "RFID",
+          "note": "도봉구는 공동주택 96.1% RFID 종량기 의무 사용. 봉투 병행 불가.",
+          "steps": [
+            "물기 꼭 짜기",
+            "비닐·뼈·껍데기 등 이물질 분리",
+            "RFID 종량기 카드(또는 앱) 인식",
+            "뚜껑 열고 투입 → 닫힘 버튼 누르기"
+          ],
+          "confidence": "high",
+          "source": "https://www.dobong.go.kr/",
+          "sourceGrade": "A",
+          "sourceName": "서울특별시 도봉구 공식 음식물 쓰레기 안내"
+        }
+      }
     },
     "11350": {
       "name": "서울특별시 노원구",
@@ -1785,6 +1881,21 @@
           "confidence": "high",
           "source": "https://www.nowon.kr/www/minwon/minwon4/minwon4_03/minwon4_03_04.jsp",
           "sourceGrade": "A"
+        },
+        "food_waste": {
+          "category": "food",
+          "disposalMethod": "RFID",
+          "note": "노원구는 RFID 종량기 사용. 전용봉투 병행 불가.",
+          "steps": [
+            "물기 꼭 짜기",
+            "비닐·뼈·껍데기 등 이물질 분리",
+            "RFID 종량기 카드(또는 앱) 인식",
+            "뚜껑 열고 투입 → 닫힘 버튼 누르기"
+          ],
+          "confidence": "high",
+          "source": "https://www.nowon.kr/",
+          "sourceGrade": "A",
+          "sourceName": "서울특별시 노원구 공식 음식물 쓰레기 안내"
         }
       }
     },
@@ -1852,7 +1963,23 @@
           }
         ]
       },
-      "exceptions": {}
+      "exceptions": {
+        "food_waste": {
+          "category": "food",
+          "disposalMethod": "RFID",
+          "note": "금천구는 RFID 종량기 사용.",
+          "steps": [
+            "물기 꼭 짜기",
+            "비닐·뼈·껍데기 등 이물질 분리",
+            "RFID 종량기 카드(또는 앱) 인식",
+            "뚜껑 열고 투입 → 닫힘 버튼 누르기"
+          ],
+          "confidence": "high",
+          "source": "https://www.geumcheon.go.kr/",
+          "sourceGrade": "A",
+          "sourceName": "서울특별시 금천구 공식 음식물 쓰레기 안내"
+        }
+      }
     },
     "11590": {
       "name": "서울특별시 동작구",
@@ -1999,7 +2126,23 @@
           }
         ]
       },
-      "exceptions": {}
+      "exceptions": {
+        "food_waste": {
+          "category": "food",
+          "disposalMethod": "RFID",
+          "note": "서초구는 RFID 종량기 사용.",
+          "steps": [
+            "물기 꼭 짜기",
+            "비닐·뼈·껍데기 등 이물질 분리",
+            "RFID 종량기 카드(또는 앱) 인식",
+            "뚜껑 열고 투입 → 닫힘 버튼 누르기"
+          ],
+          "confidence": "high",
+          "source": "https://www.seocho.go.kr/",
+          "sourceGrade": "A",
+          "sourceName": "서울특별시 서초구 공식 음식물 쓰레기 안내"
+        }
+      }
     },
     "11710": {
       "name": "서울특별시 송파구",
@@ -2123,7 +2266,23 @@
           }
         ]
       },
-      "exceptions": {}
+      "exceptions": {
+        "food_waste": {
+          "category": "food",
+          "disposalMethod": "RFID",
+          "note": "강동구는 RFID 종량기 사용. 공동주택 전면 RFID.",
+          "steps": [
+            "물기 꼭 짜기",
+            "비닐·뼈·껍데기 등 이물질 분리",
+            "RFID 종량기 카드(또는 앱) 인식",
+            "뚜껑 열고 투입 → 닫힘 버튼 누르기"
+          ],
+          "confidence": "high",
+          "source": "https://www.gangdong.go.kr/",
+          "sourceGrade": "A",
+          "sourceName": "서울특별시 강동구 공식 음식물 쓰레기 안내"
+        }
+      }
     },
     "41310": {
       "name": "경기도 구리시",
@@ -9510,6 +9669,24 @@
             "note": "본청 wasteUrl + 환경부 표준 (세부 룰은 시청 홈페이지 안내 따름)"
           }
         ]
+      },
+      "exceptions": {
+        "food_waste": {
+          "category": "food",
+          "disposalMethod": "RFID",
+          "note": "수원시는 RFID 종량기 사용. 요금: kg당 72원.",
+          "steps": [
+            "물기 꼭 짜기",
+            "비닐·뼈·껍데기 등 이물질 분리",
+            "RFID 종량기 카드(또는 앱) 인식",
+            "뚜껑 열고 투입 → 닫힘 버튼 누르기"
+          ],
+          "confidence": "high",
+          "source": "https://www.suwon.go.kr/",
+          "sourceGrade": "A",
+          "sourceName": "경기도 수원시 공식 음식물 쓰레기 안내",
+          "fee": "kg당 72원"
+        }
       }
     },
     "41270": {
@@ -9576,6 +9753,24 @@
           "sourceGrade": "B_standard"
         },
         "bulkyWasteNote": "⚠ 시·구청 페이지 안에서 '대형폐기물' 탭 선택 → 신고 → 수수료 결제 → 스티커 → 지정 장소 배출. 또는 폐가전은 1599-0903 무상수거"
+      },
+      "exceptions": {
+        "food_waste": {
+          "category": "food",
+          "disposalMethod": "RFID",
+          "note": "용인시는 RFID 종량기 사용. 요금: kg당 68원.",
+          "steps": [
+            "물기 꼭 짜기",
+            "비닐·뼈·껍데기 등 이물질 분리",
+            "RFID 종량기 카드(또는 앱) 인식",
+            "뚜껑 열고 투입 → 닫힘 버튼 누르기"
+          ],
+          "confidence": "high",
+          "source": "https://www.yongin.go.kr/",
+          "sourceGrade": "A",
+          "sourceName": "경기도 용인시 공식 음식물 쓰레기 안내",
+          "fee": "kg당 68원"
+        }
       }
     },
     "41280": {
@@ -9708,6 +9903,23 @@
             "note": "본청 wasteUrl + 환경부 표준 (세부 룰은 시청 홈페이지 안내 따름)"
           }
         ]
+      },
+      "exceptions": {
+        "food_waste": {
+          "category": "food",
+          "disposalMethod": "RFID",
+          "note": "안양시는 RFID 종량기 사용.",
+          "steps": [
+            "물기 꼭 짜기",
+            "비닐·뼈·껍데기 등 이물질 분리",
+            "RFID 종량기 카드(또는 앱) 인식",
+            "뚜껑 열고 투입 → 닫힘 버튼 누르기"
+          ],
+          "confidence": "high",
+          "source": "https://www.anyang.go.kr/",
+          "sourceGrade": "A",
+          "sourceName": "경기도 안양시 공식 음식물 쓰레기 안내"
+        }
       }
     },
     "41111": {
