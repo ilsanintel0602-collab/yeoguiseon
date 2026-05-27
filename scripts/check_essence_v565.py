@@ -147,6 +147,21 @@ def run_checks(check, ROOT):
             all_ok &= check("[본질⑩] app.html script src 파일 존재 (404 차단)",
                             len(missing_srcs) == 0,
                             f"{len(missing_srcs)}건 누락: {missing_srcs[:3]}" if missing_srcs else f"{len(local_srcs)}개 OK")
+
+        # ⑪ bag_prices isHeadOffice 정합성 (본청 vs 자치구 구조 검증)
+        bp_inconsistent = []
+        for c, info in b.get("data", {}).items():
+            if not isinstance(info, dict):
+                continue
+            is_ho = info.get("isHeadOffice", False)
+            has_bags = bool(info.get("bags"))
+            inherits = info.get("inheritsFrom")
+            if is_ho and has_bags:
+                bp_inconsistent.append(f"{c} 본청인데 bags")
+            elif not is_ho and not has_bags and not inherits:
+                bp_inconsistent.append(f"{c} 자치구인데 데이터 없음")
+        all_ok &= check("[본질⑪] bag_prices 본청·자치구 구조 정합성", len(bp_inconsistent) == 0,
+                        f"{len(bp_inconsistent)}건: {bp_inconsistent[:3]}" if bp_inconsistent else "0건")
     except Exception as e:
         check("[본질] 자동 감지 실행", False, f"검사 실패: {e}")
         all_ok = False
