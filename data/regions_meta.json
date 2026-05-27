@@ -1,7 +1,7 @@
 {
   "$schema": "여기선 v3.0 - 전국 226개 시군구 메타",
   "version": "3.0.0",
-  "lastUpdated": "2026-05-26",
+  "lastUpdated": "2026-05-27",
   "source": "행정안전부 행정표준코드 + 위키백과 행정구역",
   "level1": {
     "11": {
@@ -1472,7 +1472,7 @@
       "boundingBox": {
         "minLat": 37.63,
         "maxLat": 37.72,
-        "minLng": 126.74,
+        "minLng": 126.76,
         "maxLng": 126.8
       },
       "phone": "031-8075-3114",
@@ -1487,7 +1487,7 @@
         "minLat": 37.62,
         "maxLat": 37.72,
         "minLng": 126.68,
-        "maxLng": 126.78
+        "maxLng": 126.76
       },
       "phone": "031-8075-3114",
       "officialUrl": "https://www.goyang.go.kr/"
