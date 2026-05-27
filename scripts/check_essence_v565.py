@@ -98,6 +98,39 @@ def run_checks(check, ROOT):
                     dup_main.append(f"{c}/{label}")
         all_ok &= check("[본질⑥] cityGuide.phones 대표 라벨 차단 (regions_meta와 중복)", len(dup_main) == 0,
                         f"{len(dup_main)}건: {dup_main[:3]}" if dup_main else "0건")
+
+        # v5.68: cross-reference 자동 검증 (⑦⑧⑨)
+        m = json.load(open(os.path.join(ROOT, "data", "regions_meta.json"), encoding="utf-8"))
+        meta_codes = set(m.get("level2", {}).keys())
+        ex_codes = set(ex.keys())
+        bp_codes = set(b.get("data", {}).keys())
+
+        # ⑦ regions_meta ↔ region_exceptions 코드 정합성
+        sym_diff_7 = (meta_codes ^ ex_codes)
+        all_ok &= check("[본질⑦] regions_meta ↔ region_exceptions 코드 정합성", len(sym_diff_7) == 0,
+                        f"{len(sym_diff_7)}건: {sorted(sym_diff_7)[:3]}" if sym_diff_7 else "261/261")
+
+        # ⑧ bag_prices ↔ regions_meta 코드 정합성
+        sym_diff_8 = (meta_codes ^ bp_codes)
+        all_ok &= check("[본질⑧] bag_prices ↔ regions_meta 코드 정합성", len(sym_diff_8) == 0,
+                        f"{len(sym_diff_8)}건: {sorted(sym_diff_8)[:3]}" if sym_diff_8 else f"{len(bp_codes)}/{len(meta_codes)}")
+
+        # ⑨ itemExceptions 카테고리 ↔ national_rules enum
+        valid_cats = set()
+        for it in items.values():
+            if isinstance(it, dict) and it.get("category"):
+                valid_cats.add(it["category"])
+        bad_cats = []
+        for c, info in ex.items():
+            if not isinstance(info, dict):
+                continue
+            for iid, ct in (info.get("exceptions") or {}).items():
+                if isinstance(ct, dict):
+                    cat = ct.get("category")
+                    if cat and cat not in valid_cats:
+                        bad_cats.append(f"{c}/{iid}={cat}")
+        all_ok &= check("[본질⑨] itemExceptions 카테고리 enum 일치", len(bad_cats) == 0,
+                        f"{len(bad_cats)}건: {bad_cats[:3]}" if bad_cats else "0건")
     except Exception as e:
         check("[본질] 자동 감지 실행", False, f"검사 실패: {e}")
         all_ok = False

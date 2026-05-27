@@ -4,7 +4,7 @@
   "lastUpdated": "2026-05-26",
   "source": "행정안전부 전국종량제봉투가격표준데이터 (공공데이터포털 #15025538)",
   "sourceUrl": "https://www.data.go.kr/data/15025538/standard.do",
-  "sgguCount": 260,
+  "sgguCount": 261,
   "matchRate": 98.4,
   "totalBagTypes": 720,
   "data": {
@@ -11263,6 +11263,13 @@
       "sggCode": "45113",
       "inheritsFrom": "45110",
       "note": "전주시 본청(45110) 봉투가격 적용 — 자치구별 차이 없음",
+      "lastUpdated": "2026-05-26"
+    },
+    "47110": {
+      "name": "(통합시 본청 47110)",
+      "sggCode": "47110",
+      "isHeadOffice": true,
+      "note": "통합시 본청 — 봉투가격은 자치구(남구·북구)별로 다름. 거주 자치구 선택해서 정확한 가격 확인.",
       "lastUpdated": "2026-05-26"
     }
   }
