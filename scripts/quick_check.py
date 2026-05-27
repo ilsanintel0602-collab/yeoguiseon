@@ -219,6 +219,14 @@ except FileNotFoundError:
 except Exception as e:
     check("cloudflare_worker.js 문법", False, f"검사 실패: {e}")
 
+# v5.65: 본질 위반 자동 감지 룰 5개 (별도 모듈 check_essence_v565.py 호출)
+try:
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from check_essence_v565 import run_checks as _run_essence
+    all_ok &= _run_essence(check, ROOT)
+except Exception as _e:
+    check("[본질] 자동 감지 모듈", False, f"import 실패: {_e}")
+
 print("\n" + "=" * 40)
 if all_ok:
     print("[PASS] 모든 체크 통과. push 가능.")
