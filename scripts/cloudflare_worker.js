@@ -448,7 +448,7 @@ export default {
     }
 
     // 6) Gemini 호출 (캐시 miss)
-    const model = env.GEMINI_MODEL || "gemini-2.5-flash";
+    const model = env.GEMINI_MODEL || "gemini-3.5-flash";
     const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${env.GEMINI_API_KEY}`;
     const payload = {
       contents: [{
@@ -1111,7 +1111,7 @@ async function handleAugment(request, env, corsOrigin) {
 
 JSON 응답만:`;
 
-  const model = env.GEMINI_MODEL || "gemini-2.5-flash";
+  const model = env.GEMINI_MODEL || "gemini-3.5-flash";
   const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${env.GEMINI_API_KEY}`;
   const payload = {
     contents: [{ parts: [{ text: prompt }] }],

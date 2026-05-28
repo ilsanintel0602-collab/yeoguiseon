@@ -412,7 +412,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.92</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.94</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -1343,7 +1343,14 @@ if (typeof SYSTEM_PROMPT === 'undefined') {
 9. 다재질(필통·연필꽂이·사다리·소화기·매트리스): 가장 큰 비중 단일 재질, 불명이면 unknown
 10. 노트북·모니터·청소기·공유기·키보드·마우스·리모컨·이어폰·케이블→electronics, 건전지=battery, LED·형광등=lamp
 11. 의약품(연고·알약·물약·주사기·약병)→medicine (약국 폐의약품 수거)
-12. 확신 없으면 unknown — 임의 분류 금지`;
+12. 음식물: 과일껍질·잔반·계란껍질=food / 뼈·해산물껍데기·차찌꺼기·식용유=general
+13. 빈용기 보증금(소주·맥주·청량음료병)=glass (환경부 1985 표준, 빈용기 반환)
+14. 스티로폼 깨끗+흰색=styrofoam / 음식 묻은·색상있는 것=general
+15. 비닐(비닐장갑·랩·지퍼백·에어캡·과자봉지)=vinyl / 음식 묻으면 general
+16. 종이: 신문·박스=paper / 우유·주스팩(PE코팅)=paper_pack / 영수증·감열지=general
+17. 헌옷·헌신발·이불·담요=clothes (의류수거함) / 손상 심하면 general
+18. 매트리스·소파·침대·책상·장롱=furniture (대형폐기물 신고+수수료)
+19. 확신 없으면 unknown — 임의 분류 금지`;
 }
 
 // v5.6: Cloudflare Worker 프록시 (키 GitHub 노출 X)
@@ -2153,6 +2160,8 @@ async function pickFromGallery() {
 
 // ===== 결과 렌더링 =====
 function renderResult(aiData) {
+  // v5.93: 모든 결과 자동 캐싱 → 지역 변경 시 재렌더 가능 (속초→일산서구 미갱신 사고 영구 차단)
+  state._lastAiData = aiData;
   const content = $('sheetContent');
   if (!state.regionLevel2) {
     content.innerHTML = '<div class="result-empty">현재 거주지를 먼저 설정해주세요</div>';

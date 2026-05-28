@@ -4475,6 +4475,9 @@
         "disposalTimeSource": "B_standard",
         "pickupTime": "새벽 5시 ~ 11시 (일요일 휴무는 지자체별 다름)",
         "pickupTimeSource": "B_standard",
+        "phones": {
+          "자원순환과": "033-640-4526"
+        },
         "sources": [
           {
             "url": "https://www.gn.go.kr/",
