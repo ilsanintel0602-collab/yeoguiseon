@@ -1,7 +1,7 @@
 {
   "$schema": "여기선 v3.0 - 환경부 표준 분리수거 룰",
   "version": "5.1.0",
-  "lastUpdated": "2026-05-27",
+  "lastUpdated": "2026-05-28",
   "source": "환경부 '내손안에 분리배출' 가이드라인 / 자원순환정보시스템 (recycling-info.or.kr)",
   "officialUrl": "https://www.me.go.kr/",
   "references": [
@@ -431,7 +431,8 @@
         "햇반 그릇",
         "햇반 플라스틱",
         "햇반용기",
-        "햇반통"
+        "햇반통",
+        "즉석밥"
       ],
       "caution": "즉석밥 용기 = 플라스틱류. 헹궈서 배출.",
       "feature": "· 플라스틱에는 PP, PE, PS, PET와 OTHER류가 있으며, 2가지 이상의 플라스틱이 복합된 복합재질 또는 PVC, ABS재질 등의 단일재질 제품은 OTHER류에 해당합니다. · 플라스틱은 재활용 선별장에서 재질별(PP, PE, PET, PS, OTHER)로 선별한 후 각 재활용업체로 운반하여 재활용하고 있습니다. OTEHR류의 경우 물질 재활용은 어려우나 화학적 재활용 또는 에너지..."
@@ -731,7 +732,8 @@
         "종이팩",
         "음료 카톤",
         "두유 카톤",
-        "마시는 요거트 팩"
+        "마시는 요거트 팩",
+        "주스팩"
       ],
       "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110102",
       "official_classification": [
@@ -821,7 +823,8 @@
         "코팅된 종이컵",
         "코팅컵",
         "페이퍼 컨테이너",
-        "페이퍼컵"
+        "페이퍼컵",
+        "컵라면"
       ],
       "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110101",
       "sourceName": "환경부 분리배출.kr — 종이 카테고리 가이드 명시",
@@ -963,7 +966,8 @@
       "aliases": [
         "사이다캔",
         "에너지드링크캔",
-        "캔(음료)"
+        "캔(음료)",
+        "맥주캔"
       ],
       "sourceUrl": "https://www.xn--oy2b29bd3a601b.kr/front/dischargeMethod/dictionaryView.do?niIdx=616",
       "official_classification": [
@@ -19850,7 +19854,8 @@
         "봉지라면 포장재",
         "신라면 봉지",
         "인스턴트 라면 봉지",
-        "진라면 봉지"
+        "진라면 봉지",
+        "라면봉지"
       ],
       "note": "· 라면, 과일, 과자 등을 포장하기 위해 사용하는 대부분의 합성수지 비닐은 생산자책임재활용제도 (EPR)대상 품목에 해당되어 재활용이 가능합니다. · 비닐은 재질, 색상과 상관없이 한데 모아 파쇄, 선별, 용융 및 성형과정을 거쳐 플라스틱 배수로, 건축 자재 등으로 재활용하고 있습니다.",
       "steps": [
@@ -25679,7 +25684,9 @@
         "회의록",
         "일회용 젓가락",
         "성냥",
-        "나무젓가락"
+        "나무젓가락",
+        "닭뼈",
+        "동물뼈"
       ],
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do"
     },
