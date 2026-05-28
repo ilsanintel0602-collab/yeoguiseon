@@ -164,7 +164,8 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .capture-btn { width: 80px; height: 80px; border-radius: 999px; background: #fff; padding: 6px; box-shadow: 0 0 0 4px rgba(255,255,255,0.4), 0 16px 40px rgba(0,0,0,0.4); transition: transform 0.1s; }
 .capture-btn:active { transform: scale(0.94); }
 .capture-btn-inner { display: block; width: 100%; height: 100%; border-radius: 999px; background: #fff; border: 2px solid rgba(0,0,0,0.06); }
-.gallery-btn { padding: 8px 18px; background: rgba(255,255,255,0.15); border-radius: 999px; color: #fff; font-size: 14px; cursor: pointer; border: none; }
+.gallery-btn { padding: 12px 22px; background: rgba(46,204,113,0.25); border: 2px solid rgba(46,204,113,0.85); border-radius: 999px; color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+.gallery-btn:active { background: rgba(46,204,113,0.45); transform: scale(0.97); }
 .alt-actions { display: flex; gap: 10px; margin-top: 10px; justify-content: center; flex-wrap: wrap; }
 
 /* v5.32: 첫 사용자 onboarding 모달 */
@@ -412,7 +413,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.96</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.98</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -421,7 +422,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 </header>
 
 <main class="stage">
-  <video id="cameraVideo" playsinline muted autoplay></video>
+  <video id="cameraVideo" playsinline muted autoplay disablepictureinpicture controlslist="nodownload noplaybackrate nofullscreen" style="background:#000;"></video>
   <!-- v5: 실시간 객체 검출 바운딩 박스 오버레이 (모바일 카메라 UX) -->
   <canvas id="bboxOverlay" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:auto;touch-action:none;"></canvas>
   <div class="permission-card" id="permissionCard">
