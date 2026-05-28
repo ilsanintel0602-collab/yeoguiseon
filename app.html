@@ -302,6 +302,17 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   .secondary-chip { background: #1e1b4b; border-color: #6366f1; color: #c7d2fe; }
   .secondary-items-hint { color: #9ca3af; }
 }
+/* v6.11: 자동 인식 박스 — 결과 카드 상단 캡처 이미지 위에 박스+라벨 오버레이 (Gemini 박스 좌표) */
+.auto-box-photo-wrap { position: relative; margin: 0 0 14px; border-radius: 12px; overflow: hidden; background: #000; }
+.auto-box-photo { display: block; width: 100%; height: auto; max-height: 320px; object-fit: contain; }
+.auto-box-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.auto-box-rect { fill: none; stroke: #14b8a6; stroke-width: 2.5; filter: drop-shadow(0 0 4px rgba(20,184,166,0.6)); }
+.auto-box-label-bg { fill: #14b8a6; opacity: 0.95; }
+.auto-box-label-text { fill: #fff; font-size: 12px; font-weight: 700; font-family: -apple-system, system-ui, sans-serif; }
+.auto-box-hint { font-size: 11px; color: #6b7280; margin-top: 4px; text-align: center; }
+@media (prefers-color-scheme: dark) {
+  .auto-box-hint { color: #9ca3af; }
+}
 .category-pill { display: inline-block; padding: 4px 12px; border-radius: 999px; color: #fff; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
 .confidence { font-size: 13px; color: var(--text-soft); margin-bottom: 16px; }
 
@@ -428,7 +439,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v6.10</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v6.11</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -2307,8 +2318,44 @@ function renderResult(aiData) {
                     rule.source_type === 'national_default' ? '<span class="data-source national">🇰🇷 환경부 표준</span>' :
                     '<span class="data-source fallback">⚠️ 일반 가이드</span>';
 
+  // v6.11: Gemini 박스 좌표 있으면 캡처 이미지 + 박스 오버레이를 카드 최상단 표시. 피처 플래그: window.AUTO_BOXES_ENABLED=false 즉시 숨김.
+  let html = '';
+  try {
+    var __boxOK = (typeof window.AUTO_BOXES_ENABLED === 'undefined') ? true : !!window.AUTO_BOXES_ENABLED;
+    if (__boxOK && state.lastImageDataUrl && Array.isArray(aiData.boxes) && aiData.boxes.length > 0) {
+      var __safeBoxes = aiData.boxes
+        .filter(function(b){
+          if (!b || typeof b !== 'object') return false;
+          var x = +b.x, y = +b.y, w = +b.w, h = +b.h;
+          if (![x,y,w,h].every(function(n){ return typeof n === 'number' && !isNaN(n) && n >= 0 && n <= 1; })) return false;
+          if (w <= 0.01 || h <= 0.01) return false;
+          if (!b.label || typeof b.label !== 'string' || !/[가-힣]/.test(b.label)) return false;
+          return true;
+        })
+        .slice(0, 5);
+      if (__safeBoxes.length > 0) {
+        var __svgEls = __safeBoxes.map(function(b, i){
+          var xPct = (b.x * 100).toFixed(2);
+          var yPct = (b.y * 100).toFixed(2);
+          var wPct = (b.w * 100).toFixed(2);
+          var hPct = (b.h * 100).toFixed(2);
+          var lbl = String(b.label).replace(/[<>"']/g, '').slice(0, 14);
+          var labelW = Math.max(36, lbl.length * 8 + 12);
+          return '<rect class="auto-box-rect" x="' + xPct + '%" y="' + yPct + '%" width="' + wPct + '%" height="' + hPct + '%"/>' +
+                 '<rect class="auto-box-label-bg" x="' + xPct + '%" y="' + yPct + '%" width="' + labelW + '" height="20" transform="translate(0,-20)"/>' +
+                 '<text class="auto-box-label-text" x="' + xPct + '%" y="' + yPct + '%" dx="6" dy="-6">' + lbl + '</text>';
+        }).join('');
+        html += '<div class="auto-box-photo-wrap">' +
+                  '<img class="auto-box-photo" src="' + state.lastImageDataUrl + '" alt="분석 사진"/>' +
+                  '<svg class="auto-box-svg" preserveAspectRatio="none">' + __svgEls + '</svg>' +
+                '</div>' +
+                '<div class="auto-box-hint">📸 사진에서 인식한 물건 ' + __safeBoxes.length + '개</div>';
+      }
+    }
+  } catch (_e) { /* 박스 렌더 실패해도 기존 흐름 영향 X */ }
+
   // v6.06: 사물 명칭 최상단 강조 박스 (사용자 "다중 인식 명칭 — 하나만이라도" 요청). 소스 뱃지는 아래로 이동.
-  let html = `<div class="item-name-wrap"><span class="item-name-label">🏷️ 이 물건은</span><div class="item-name">${itemName}</div></div>`;
+  html += `<div class="item-name-wrap"><span class="item-name-label">🏷️ 이 물건은</span><div class="item-name">${itemName}</div></div>`;
 
   // v6.08: 다중 객체 명칭 (선택적). secondary_items 있으면 추가. 없으면 v6.07 동일. 피처 플래그: window.MULTI_OBJECT_ENABLED=false 즉시 숨김.
   try {
