@@ -455,7 +455,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v6.15</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v6.17</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -624,6 +624,9 @@ let RECYCLE_CENTERS = null; // v5: 행안부 전국 재활용센터
 let REGION_URLS = null;
 let AMBIGUOUS_MAP = null;  // v5.43: 모호 키워드 사용자 선택 데이터
 let BULKY_FEES = null;  // v6.15: 행안부 대형폐기물 수수료 (141 시군구)
+let LAMP_BATTERY_BINS = null;  // v6.17: 폐형광등·폐건전지 수거함 (464건)
+let CLOTHING_BINS = null;      // v6.17: 의류 수거함 (9571건)
+let MEDICINE_BINS = null;      // v6.17: 폐의약품 수거함 (6622건)
 let RECYCLE_CENTER_FALLBACKS = null;  // v5.45: 센터 0개 시군구 광역도 fallback
 
 // v5.32: D1 의존 제거 — 정적 JSON만 사용 (Phase A2 cron 활성 전까지)
@@ -693,6 +696,20 @@ async function loadAllData() {
         console.log('[v6.15] BULKY_FEES loaded:', BULKY_FEES.sgguCount, '시군구');
       }
     } catch (e) { console.warn('[v6.15] bulky_fees 로드 실패:', e); }
+    // v6.17: 수거함 3종 (lamp_battery / clothing / medicine)
+    try {
+      const [lbRes, clRes, mdRes] = await Promise.all([
+        fetch('./data/lamp_battery_bins.json', { cache: 'no-cache' }),
+        fetch('./data/clothing_bins.json', { cache: 'no-cache' }),
+        fetch('./data/medicine_bins.json', { cache: 'no-cache' })
+      ]);
+      if (lbRes.ok) LAMP_BATTERY_BINS = await lbRes.json();
+      if (clRes.ok) CLOTHING_BINS = await clRes.json();
+      if (mdRes.ok) MEDICINE_BINS = await mdRes.json();
+      console.log('[v6.17] 수거함 로드 — lamp:', LAMP_BATTERY_BINS?.totalBins||0,
+                  'cloth:', CLOTHING_BINS?.totalBins||0,
+                  'med:', MEDICINE_BINS?.totalBins||0);
+    } catch (e) { console.warn('[v6.17] 수거함 로드 실패:', e); }
     RECYCLE_CENTER_FALLBACKS = rcf;  // v5.45: 센터 0개 시군구 fallback
     console.log('[여기선 v5.32] 데이터 로드 (items source:',
       NATIONAL._source || '?', '):',
@@ -2909,31 +2926,66 @@ function renderResult(aiData) {
     }
 
     // v6.15: 대형폐기물 수수료 (furniture 카테고리 시) — 행안부 표준데이터
+    //   141개 시군구는 정확 수수료, 나머지 120곳은 안내 폴백
     try {
-      if (rule.category === 'furniture' && BULKY_FEES && BULKY_FEES.data && BULKY_FEES.data[regionCode]) {
-        const __bf = BULKY_FEES.data[regionCode];
-        const __keyword = (itemName || aiData.item_id || '').toLowerCase();
-        // 매칭: 정확 일치 우선, 부분 일치 폴백
-        const __feeEntries = Object.entries(__bf.fees || {});
-        const __exact = __feeEntries.filter(([k]) => k.toLowerCase() === __keyword);
-        const __partial = __feeEntries.filter(([k]) => {
-          const kl = k.toLowerCase();
-          return kl.includes(__keyword) || (__keyword.length >= 2 && __keyword.includes(kl.split(' ')[0]));
-        }).slice(0, 5);
-        const __show = __exact.length ? __exact : __partial;
+      if (rule.category === 'furniture') {
+        var __bf = (BULKY_FEES && BULKY_FEES.data) ? BULKY_FEES.data[regionCode] : null;
+        var __short = (regionMeta && (regionMeta.shortName || regionMeta.name)) || '우리 지역';
+        var __show = [];
+        if (__bf && __bf.fees) {
+          var __keyword = String(itemName || aiData.item_id || '').toLowerCase().trim();
+          var __feeEntries = Object.entries(__bf.fees);
+          var __exact = __feeEntries.filter(function(e){ return e[0].toLowerCase() === __keyword; });
+          var __partial = __feeEntries.filter(function(e){
+            var kl = e[0].toLowerCase();
+            return kl.indexOf(__keyword) >= 0 || (__keyword.length >= 2 && __keyword.indexOf(kl.split(' ')[0]) >= 0);
+          }).slice(0, 5);
+          __show = __exact.length ? __exact : __partial;
+        }
         if (__show.length) {
           cityHtml += '<div style="margin-top:10px;padding:10px 12px;background:#fff7ed;border-left:3px solid #f97316;border-radius:8px;">' +
-            '<b>💰 ' + (regionMeta?.shortName || '지역') + ' 대형폐기물 수수료</b><br>' +
-            __show.map(([k, v]) => '<span style="font-size:13px;">• ' + String(k).replace(/[<>"\047]/g, '') + ': <b>' + v.toLocaleString() + '원</b></span>').join('<br>') +
+            '<b>💰 ' + __short + ' 대형폐기물 수수료</b><br>' +
+            __show.map(function(e){ return '<span style="font-size:13px;">• ' + String(e[0]).replace(/[<>"\047]/g, '') + ': <b>' + e[1].toLocaleString() + '원</b></span>'; }).join('<br>') +
             '<br><span style="font-size:11px;opacity:0.7;">출처: 행정안전부 표준데이터 (data.go.kr)</span>' +
             '</div>';
         } else {
           cityHtml += '<div style="margin-top:10px;padding:8px 12px;background:#fff7ed;border-left:3px solid #f97316;border-radius:8px;font-size:13px;">' +
-            '<b>💰 대형폐기물</b>: ' + (regionMeta?.shortName || '') + '에 신고·수수료 납부 후 스티커 부착 (시·구청 자원순환과 문의)' +
+            '<b>💰 대형폐기물 수수료 안내</b>: ' + __short + ' 시·구청 자원순환과에 신고 → 수수료 결제 → 스티커 → 지정 장소 배출' +
+            (BULKY_FEES ? '<br><span style="font-size:11px;opacity:0.7;">※ ' + __short + '은 행안부 표준데이터 미등록 — 시·구청 문의</span>' : '') +
             '</div>';
         }
       }
     } catch (_e) { /* 수수료 표시 실패해도 기존 흐름 정상 */ }
+
+    // v6.17: 카테고리별 수거함 표시 (clothes·medicine·battery·lamp)
+    try {
+      var __binsDB = null, __binIcon = '', __binLabel = '';
+      if ((rule.category === 'battery' || rule.category === 'lamp') && LAMP_BATTERY_BINS) {
+        __binsDB = LAMP_BATTERY_BINS; __binIcon = '🔋'; __binLabel = '폐형광등·폐건전지 수거함';
+      } else if (rule.category === 'clothes' && CLOTHING_BINS) {
+        __binsDB = CLOTHING_BINS; __binIcon = '👕'; __binLabel = '의류 수거함';
+      } else if (rule.category === 'medicine' && MEDICINE_BINS) {
+        __binsDB = MEDICINE_BINS; __binIcon = '💊'; __binLabel = '폐의약품 수거함 (약국)';
+      }
+      if (__binsDB && __binsDB.data && __binsDB.data[regionCode]) {
+        var __bins = __binsDB.data[regionCode].bins || [];
+        var __regShort = (regionMeta && (regionMeta.shortName || regionMeta.name)) || '우리 지역';
+        if (__bins.length > 0) {
+          var __show = __bins.slice(0, 5);
+          cityHtml += '<div style="margin-top:10px;padding:10px 12px;background:#ecfdf5;border-left:3px solid #10b981;border-radius:8px;">' +
+            '<b>' + __binIcon + ' ' + __regShort + ' ' + __binLabel + ' (' + __bins.length + '곳)</b><br>' +
+            __show.map(function(b){
+              var p = String(b.place || '').replace(/[<>"\047]/g, '').slice(0, 30);
+              var a = String(b.addr || '').replace(/[<>"\047]/g, '').slice(0, 50);
+              var phHtml = b.phone ? ' · <a href="tel:' + b.phone + '" style="color:#10b981;">📞 ' + b.phone + '</a>' : '';
+              return '<span style="font-size:13px;">• <b>' + p + '</b><br><span style="font-size:12px;opacity:0.85;">  ' + a + phHtml + '</span></span>';
+            }).join('<br>') +
+            (__bins.length > 5 ? '<br><span style="font-size:11px;opacity:0.7;">외 ' + (__bins.length - 5) + '곳 — 시·구청 자원순환과 문의</span>' : '') +
+            '<br><span style="font-size:11px;opacity:0.7;">출처: 행정안전부 표준데이터</span>' +
+            '</div>';
+        }
+      }
+    } catch (_e) { /* 수거함 표시 실패해도 기존 흐름 정상 */ }
 
     // 공통: 시청/구청 대표 연락처 (있으면)
     // v5.45: 라벨 명확화 — 각 전화번호가 어디 부서인지 사용자가 한눈에 보이도록.
