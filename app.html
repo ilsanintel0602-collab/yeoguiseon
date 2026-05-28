@@ -291,6 +291,17 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .item-name-label { display: block; font-size: 12px; font-weight: 600; color: #2ecc71; letter-spacing: 0.5px; margin-bottom: 4px; }
 .item-name { font-size: 36px; font-weight: 800; margin: 0; line-height: 1.15; color: var(--text); }
 @media (prefers-color-scheme: dark) { .item-name-wrap { background: rgba(46,204,113,0.18); } }
+/* v6.08: 다중 객체 — secondary_items 보조 표시 (primary보다 작게) */
+.secondary-items-wrap { margin: 0 0 12px; padding: 10px 14px; background: rgba(99,102,241,0.08); border-left: 3px solid #6366f1; border-radius: 8px; }
+.secondary-items-label { display: block; font-size: 11px; font-weight: 600; color: #6366f1; letter-spacing: 0.3px; margin-bottom: 6px; }
+.secondary-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+.secondary-chip { display: inline-block; padding: 4px 10px; background: #fff; border: 1px solid #c7d2fe; border-radius: 999px; font-size: 13px; font-weight: 600; color: #4338ca; }
+.secondary-items-hint { font-size: 11px; color: #6b7280; line-height: 1.4; }
+@media (prefers-color-scheme: dark) {
+  .secondary-items-wrap { background: rgba(99,102,241,0.18); }
+  .secondary-chip { background: #1e1b4b; border-color: #6366f1; color: #c7d2fe; }
+  .secondary-items-hint { color: #9ca3af; }
+}
 .category-pill { display: inline-block; padding: 4px 12px; border-radius: 999px; color: #fff; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
 .confidence { font-size: 13px; color: var(--text-soft); margin-bottom: 16px; }
 
@@ -417,7 +428,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v6.07</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v6.08</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -2271,6 +2282,25 @@ function renderResult(aiData) {
 
   // v6.06: 사물 명칭 최상단 강조 박스 (사용자 "다중 인식 명칭 — 하나만이라도" 요청). 소스 뱃지는 아래로 이동.
   let html = `<div class="item-name-wrap"><span class="item-name-label">🏷️ 이 물건은</span><div class="item-name">${itemName}</div></div>`;
+
+  // v6.08: 다중 객체 명칭 (선택적). secondary_items 있으면 추가. 없으면 v6.07 동일. 피처 플래그: window.MULTI_OBJECT_ENABLED=false 즉시 숨김.
+  try {
+    var __multiOK = (typeof window.MULTI_OBJECT_ENABLED === 'undefined') ? true : !!window.MULTI_OBJECT_ENABLED;
+    if (__multiOK && Array.isArray(aiData.secondary_items) && aiData.secondary_items.length > 0) {
+      var __safeItems = aiData.secondary_items
+        .filter(function(x){ return x && typeof x === 'object' && x.item_id && typeof x.item_id === 'string'; })
+        .filter(function(x){ return /[가-힣]/.test(x.item_id); })
+        .slice(0, 3);
+      if (__safeItems.length > 0) {
+        var __chips = __safeItems.map(function(x){
+          var n = String(x.item_id).replace(/[<>"']/g, '');
+          return '<span class="secondary-chip">📷 ' + n + '</span>';
+        }).join('');
+        html += '<div class="secondary-items-wrap"><span class="secondary-items-label">📸 사진에 함께 보이는 물건</span><div class="secondary-chips">' + __chips + '</div><div class="secondary-items-hint">※ 위에 표시된 "' + itemName + '" 기준으로 안내해요. 다른 물건은 따로 검색하세요.</div></div>';
+      }
+    }
+  } catch (_e) { /* secondary 렌더 실패해도 기존 흐름 영향 X */ }
+
   html += aiBadge;
   // v5.81: multi_material:true 시 카테고리 칩 모순 정정 — "기본 추정·재질 확인" 명시
   const _catSuffix = rule.multi_material ? ' · 재질 확인' : '';
