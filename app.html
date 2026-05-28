@@ -141,7 +141,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   display: flex; align-items: center; justify-content: center;
 }
 .stage video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.permission-card { position: relative; z-index: 2; max-width: 320px; text-align: center; color: #fff; padding: 32px 24px; }
+.permission-card { position: relative; z-index: 2; max-width: 320px; text-align: center; color: #fff; padding: 32px 24px 200px; }
 .permission-card .icon { font-size: 64px; margin-bottom: 16px; }
 .permission-card h2 { font-size: 26px; margin-bottom: 12px; }
 .permission-card p { font-size: 18px; line-height: 1.6; opacity: 0.85; }
@@ -413,7 +413,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v6.01</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v6.03</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -429,12 +429,20 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     <div class="icon">📷</div>
     <h2>여기선 어떻게 버려요?</h2>
     <p>버릴 물건을 비춰주세요<br>대한민국 어디서나 안내해요</p>
-    <div style="margin-top:16px;padding:12px 14px;background:rgba(46,204,113,0.18);border:2px solid rgba(46,204,113,0.85);border-radius:14px;text-align:center;">
-      <p style="margin:0 0 10px;color:#fff;font-size:15px;font-weight:700;">💡 3가지 방법으로 검색</p>
-      <p style="margin:0;color:#fff;font-size:15px;font-weight:700;line-height:1.6;">
-        📷 사진 촬영<br>
-        🔍 이름 입력 · 🎤 음성 검색
-      </p>
+    <div style="margin:16px 0 24px;padding:14px 12px;background:rgba(46,204,113,0.15);border:2px solid rgba(46,204,113,0.85);border-radius:14px;">
+      <p style="margin:0 0 12px;color:#fff;font-size:14px;font-weight:700;text-align:center;">💡 4가지 방법으로 검색</p>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <button type="button" id="homeGalleryBtn" style="display:flex;align-items:center;gap:10px;padding:11px 14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:10px;color:#fff;font-size:15px;font-weight:600;cursor:pointer;text-align:left;">
+          <span style="font-size:20px;">🖼️</span><span>갤러리에서 사진</span>
+        </button>
+        <button type="button" id="homeSearchBtn" style="display:flex;align-items:center;gap:10px;padding:11px 14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:10px;color:#fff;font-size:15px;font-weight:600;cursor:pointer;text-align:left;">
+          <span style="font-size:20px;">🔍</span><span>이름으로 검색</span>
+        </button>
+        <button type="button" id="homeVoiceBtn" style="display:flex;align-items:center;gap:10px;padding:11px 14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:10px;color:#fff;font-size:15px;font-weight:600;cursor:pointer;text-align:left;">
+          <span style="font-size:20px;">🎤</span><span>음성으로 검색</span>
+        </button>
+      </div>
+      <p style="margin:10px 0 0;color:rgba(255,255,255,0.75);font-size:12px;text-align:center;">↓ 아래 흰 버튼 = 📷 촬영 (4번째)</p>
     </div>
     <p class="hint">※ 첫 사용 시 카메라 권한 허용</p>
   </div>
@@ -455,7 +463,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 <footer class="capture-bar">
   <p class="capture-hint" id="captureHint">버튼을 눌러 사진을 찍어주세요</p>
   <button class="capture-btn" id="captureBtn"><span class="capture-btn-inner"></span></button>
-  <div class="alt-actions">
+  <div class="alt-actions" style="display:none;">
     <button class="gallery-btn" id="galleryBtn">🖼️ 갤러리</button>
     <button class="gallery-btn" id="searchBtn">🔍 이름으로 찾기</button>
   </div>
@@ -3332,6 +3340,17 @@ async function init() {
   $('searchInput').onkeydown = (e) => { if (e.key === 'Escape') closeSearch(); };
   const vBtn = $('voiceSearchBtn');
   if (vBtn) vBtn.onclick = startVoiceSearch;
+
+  // v6.03: 첫 화면 안내 박스 안의 3개 버튼 — 기존 동작 트리거
+  const homeGallery = $('homeGalleryBtn');
+  if (homeGallery) homeGallery.onclick = () => $('galleryBtn').click();
+  const homeSearch = $('homeSearchBtn');
+  if (homeSearch) homeSearch.onclick = () => openSearch();
+  const homeVoice = $('homeVoiceBtn');
+  if (homeVoice) homeVoice.onclick = () => {
+    openSearch();
+    setTimeout(() => startVoiceSearch(), 300);  // sheet 열린 후 음성 시작
+  };
 
   // YOLO 모델 로드
   try {
