@@ -439,7 +439,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v6.12</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v6.13</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -467,6 +467,8 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   <!-- v5.45: HTML guide-box + canvas 4-모서리 가이드 둘 다 폐기 (사용자 "큰 네모 안에 또 네모" 피드백). cameraTopHint 하나로 통일. -->
   <!-- v5.32: 카메라 영역 안내 영구 배너 (HTML overlay — canvas 잘림 X) -->
   <!-- v5.45: 항상 표시 (자동 인식 의존 X, 손가락 영역 표시 강조) -->
+  <!-- v6.13: 라이브 카메라 박스 인식 버튼 (우상단 floating) -->
+  <button id="detectLiveBtn" type="button" style="position:absolute;top:14px;right:14px;padding:10px 16px;background:rgba(20,184,166,0.95);color:#fff;border:none;border-radius:24px;font-size:14px;font-weight:700;z-index:7;box-shadow:0 2px 12px rgba(0,0,0,0.4);cursor:pointer;display:none;">🎯 박스 인식</button>
   <div id="cameraTopHint" style="position:absolute;top:60px;left:12px;right:12px;padding:12px 14px;background:rgba(0,0,0,0.85);color:#ffe600;border-radius:12px;font-size:15px;font-weight:700;text-align:center;line-height:1.5;display:none;z-index:6;box-shadow:0 4px 16px rgba(0,0,0,0.4);">
     👆 <u>물건 위를 탭</u>하거나 <u>영역을 손가락으로 그리세요</u><br><span style="font-size:12px;font-weight:500;opacity:0.85;">탭=자동 분석 · 드래그=영역 선택 · 두 손가락=줌</span>
   </div>
@@ -1858,6 +1860,7 @@ let detectionState = {
   detections: [],  // 현재 화면에 보이는 박스들
   lastDetectTime: 0,
   customBox: null,  // 사용자 드래그 박스
+  liveBoxes: null,  // v6.13: Gemini 박스 인식 결과 (탭 인터랙션용)
   dragStart: null,
 };
 
@@ -1870,7 +1873,7 @@ async function startRealtimeDetection() {
   status.style.display = 'block';
   // v5.32: 카메라 영역 안내 영구 배너 ON
   const topHint = $('cameraTopHint');
-  if (topHint) topHint.style.display = 'block';
+  if (topHint) topHint.style.display = 'block'; var __dlb2 = $('detectLiveBtn'); if (__dlb2) __dlb2.style.display = 'block';
 
   // YOLO (COCO-SSD) 미리 로드
   try {
@@ -2076,6 +2079,26 @@ function drawBoxes(canvas) {
         if (hitDet) {
           await analyzeCroppedRegion(hitDet);
         } else {
+          // v6.13: liveBoxes 탭 우선 처리 (사용자 박스 인식 후 탭)
+          if (Array.isArray(detectionState.liveBoxes) && detectionState.liveBoxes.length > 0) {
+            var hitLive = null;
+            for (var bi = 0; bi < detectionState.liveBoxes.length; bi++) {
+              var lb = detectionState.liveBoxes[bi];
+              var lx = lb.x * canvas.width, ly = lb.y * canvas.height;
+              var lw = lb.w * canvas.width, lh = lb.h * canvas.height;
+              if (downPos.x >= lx && downPos.x <= lx + lw && downPos.y >= ly && downPos.y <= ly + lh) {
+                hitLive = { x: lx, y: ly, w: lw, h: lh };
+                break;
+              }
+            }
+            if (hitLive) {
+              detectionState.customBox = hitLive;
+              await analyzeCroppedRegion(hitLive);
+              detectionState.customBox = null;
+              downPos = null; isDragging = false;
+              return;
+            }
+          }
           // v5.92: 빈 곳 탭 → 그 위치 중심 crop (300x300) 자동 분석
           // 사용자 본질 명령: "클릭하면 자동 분석"
           const CROP_SIZE = 300;
@@ -2098,6 +2121,95 @@ function drawBoxes(canvas) {
     });
   });
 })();
+
+// v6.13: 라이브 카메라 박스 인식 — 사용자가 "🎯 박스 인식" 버튼 누르면 호출. 피처 플래그: window.LIVE_BOXES_ENABLED=false 즉시 숨김.
+async function detectLiveBoxes() {
+  try {
+    var __ok = (typeof window.LIVE_BOXES_ENABLED === 'undefined') ? true : !!window.LIVE_BOXES_ENABLED;
+    if (!__ok) { toast('라이브 박스 비활성', true); return; }
+    var video = $('cameraVideo');
+    if (!video || !video.srcObject || video.videoWidth === 0) {
+      toast('카메라 먼저 시작', true);
+      return;
+    }
+    var btn = $('detectLiveBtn');
+    if (btn) { btn.disabled = true; btn.textContent = '🔍 분석 중...'; }
+    // 현재 프레임 캡처 (압축)
+    var capCanvas = document.createElement('canvas');
+    var sw = video.videoWidth, sh = video.videoHeight;
+    var maxDim = 640;
+    if (sw > maxDim || sh > maxDim) {
+      var ratio = maxDim / Math.max(sw, sh);
+      capCanvas.width = Math.round(sw * ratio);
+      capCanvas.height = Math.round(sh * ratio);
+    } else {
+      capCanvas.width = sw; capCanvas.height = sh;
+    }
+    capCanvas.getContext('2d').drawImage(video, 0, 0, capCanvas.width, capCanvas.height);
+    var dataUrl = capCanvas.toDataURL('image/jpeg', 0.72);
+    // Gemini 호출 (기존 analyzeWithLLM 재사용 — boxes만 사용)
+    var llm = await analyzeWithLLM(dataUrl);
+    if (llm && Array.isArray(llm.boxes) && llm.boxes.length > 0) {
+      var safe = llm.boxes
+        .filter(function(b){
+          if (!b || typeof b !== 'object') return false;
+          var x=+b.x, y=+b.y, w=+b.w, hh=+b.h;
+          if (![x,y,w,hh].every(function(n){ return typeof n==='number' && !isNaN(n) && n>=0 && n<=1; })) return false;
+          if (w<=0.01 || hh<=0.01) return false;
+          if (!b.label || typeof b.label!=='string' || !/[가-힣]/.test(b.label)) return false;
+          return true;
+        })
+        .slice(0, 5);
+      if (safe.length > 0) {
+        drawLiveBoxes(safe);
+        toast('✨ ' + safe.length + '개 물건 인식 — 박스 탭하면 자세 분석', false);
+      } else {
+        toast('인식된 물건 없음 — 다시 시도 또는 사진 촬영', true);
+      }
+    } else {
+      toast('박스 응답 없음 — 사진 촬영 권장', true);
+    }
+  } catch (e) {
+    console.error('[v6.13] detectLiveBoxes 실패:', e);
+    toast('박스 인식 실패: ' + (e.message || ''), true);
+  } finally {
+    var btn2 = $('detectLiveBtn');
+    if (btn2) { btn2.disabled = false; btn2.textContent = '🎯 박스 인식'; }
+  }
+}
+
+// 라이브 박스 그리기 (bboxOverlay에 청록 박스 + 한국어 라벨). 박스 탭은 setupBoxInteraction이 처리.
+function drawLiveBoxes(boxes) {
+  try {
+    var canvas = $('bboxOverlay');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    detectionState.liveBoxes = boxes;  // 탭 인터랙션용 저장
+    boxes.forEach(function(b){
+      var x = b.x * canvas.width;
+      var y = b.y * canvas.height;
+      var w = b.w * canvas.width;
+      var hh = b.h * canvas.height;
+      // 박스
+      ctx.strokeStyle = '#14b8a6';
+      ctx.lineWidth = 3;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = 'rgba(20,184,166,0.6)';
+      ctx.strokeRect(x, y, w, hh);
+      ctx.shadowBlur = 0;
+      // 라벨 배경
+      var lbl = String(b.label).slice(0, 14);
+      ctx.font = 'bold 13px system-ui, -apple-system, sans-serif';
+      var tw = ctx.measureText(lbl).width;
+      ctx.fillStyle = 'rgba(20,184,166,0.95)';
+      ctx.fillRect(x, Math.max(0, y - 22), tw + 14, 22);
+      // 라벨 텍스트
+      ctx.fillStyle = '#fff';
+      ctx.fillText(lbl, x + 7, Math.max(13, y - 7));
+    });
+  } catch (_e) { /* draw 실패해도 흐름 영향 X */ }
+}
 
 // 크롭된 영역을 잘라서 Gemini 분석으로 보냄
 async function analyzeCroppedRegion(box) {
@@ -3405,6 +3517,11 @@ async function init() {
     const video = $('cameraVideo');
     if (!video.srcObject) startCamera().catch(() => {});
   });
+  // v6.13: 박스 인식 버튼 이벤트 연결
+  var __dlb = $('detectLiveBtn');
+  if (__dlb) {
+    __dlb.addEventListener('click', function(e){ e.preventDefault(); detectLiveBoxes(); });
+  }
   $('captureBtn').onclick = async () => {
     const video = $('cameraVideo');
     if (!video.srcObject) { const ok = await startCamera(); if (!ok) return; return; }
