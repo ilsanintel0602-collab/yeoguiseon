@@ -412,7 +412,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.91</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.92</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -2005,7 +2005,20 @@ function drawBoxes(canvas) {
         if (hitDet) {
           await analyzeCroppedRegion(hitDet);
         } else {
-          // 빈 곳 탭 → 드래그 박스 해제
+          // v5.92: 빈 곳 탭 → 그 위치 중심 crop (300x300) 자동 분석
+          // 사용자 본질 명령: "클릭하면 자동 분석"
+          const CROP_SIZE = 300;
+          const cw = canvas.width;
+          const ch = canvas.height;
+          const tapBox = {
+            x: Math.max(0, Math.min(cw - CROP_SIZE, downPos.x - CROP_SIZE/2)),
+            y: Math.max(0, Math.min(ch - CROP_SIZE, downPos.y - CROP_SIZE/2)),
+            w: Math.min(CROP_SIZE, cw),
+            h: Math.min(CROP_SIZE, ch)
+          };
+          // 시각 피드백: 박스 잠깐 표시
+          detectionState.customBox = tapBox;
+          await analyzeCroppedRegion(tapBox);
           detectionState.customBox = null;
         }
       }
