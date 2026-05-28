@@ -4,7 +4,7 @@
    - 외부 API/모델 CDN: 캐시 안 함
 */
 
-const VERSION = 'v6.13';
+const VERSION = 'v6.14';
 const APP_SHELL_CACHE = `yeoguiseon-shell-${VERSION}`;
 const DATA_CACHE = `yeoguiseon-data-${VERSION}`;
 
@@ -28,6 +28,7 @@ const DATA_FILES = [
   './data/recycle_centers.json',      // 신규 (v5)
   './data/ocr_keywords.json',
   './data/brand_db.json',
+  './data/ambiguous_map.json',  // v6.14: 충돌 검색어 분기
 ];
 
 // ==================== Install ====================

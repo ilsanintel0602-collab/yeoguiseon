@@ -313,6 +313,22 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 @media (prefers-color-scheme: dark) {
   .auto-box-hint { color: #9ca3af; }
 }
+/* v6.14: 충돌 검색어 분기 카드 — 모호 단어("병"·"컵") 입력 시 사용자 선택 유도 */
+.ambig-branch-card { margin: 0 0 16px; padding: 16px 18px; background: #fef3c7; border: 2px solid #f59e0b; border-radius: 14px; box-shadow: 0 2px 8px rgba(245,158,11,0.2); }
+.ambig-branch-q { font-size: 17px; font-weight: 800; color: #92400e; margin: 0 0 10px; }
+.ambig-branch-hint { font-size: 12px; color: #92400e; opacity: 0.85; margin-bottom: 12px; }
+.ambig-branch-chips { display: flex; flex-direction: column; gap: 8px; }
+.ambig-branch-chip { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #fff; border: 2px solid #fde68a; border-radius: 10px; font-size: 15px; font-weight: 600; color: #1f2937; cursor: pointer; transition: all 0.15s; text-align: left; }
+.ambig-branch-chip:hover, .ambig-branch-chip:active { background: #fef3c7; border-color: #f59e0b; transform: translateY(-1px); }
+.ambig-branch-chip-cat { font-size: 12px; padding: 3px 10px; background: #f3f4f6; border-radius: 999px; color: #6b7280; font-weight: 500; }
+@media (prefers-color-scheme: dark) {
+  .ambig-branch-card { background: #422006; border-color: #d97706; }
+  .ambig-branch-q { color: #fcd34d; }
+  .ambig-branch-hint { color: #fcd34d; }
+  .ambig-branch-chip { background: #1f2937; border-color: #4b5563; color: #f3f4f6; }
+  .ambig-branch-chip:hover, .ambig-branch-chip:active { background: #422006; border-color: #d97706; }
+  .ambig-branch-chip-cat { background: #374151; color: #9ca3af; }
+}
 .category-pill { display: inline-block; padding: 4px 12px; border-radius: 999px; color: #fff; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
 .confidence { font-size: 13px; color: var(--text-soft); margin-bottom: 16px; }
 
@@ -439,7 +455,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v6.13</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v6.14</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -905,6 +921,63 @@ function renderSearchResults(query) {
     box.innerHTML = '<p class="search-placeholder">물건 이름을 입력하세요. 765개 품목 · 2,300+ 검색어 매칭.</p>';
     return;
   }
+
+  // v6.14: 모호 키워드 분기 카드 — "병"·"컵"·"봉지" 같은 단어 입력 시 사용자 선택 유도
+  //   피처 플래그: window.AMBIG_BRANCH_ENABLED = false 즉시 숨김
+  try {
+    var __ambigOK = (typeof window.AMBIG_BRANCH_ENABLED === 'undefined') ? true : !!window.AMBIG_BRANCH_ENABLED;
+    if (__ambigOK && typeof AMBIGUOUS_MAP !== 'undefined' && AMBIGUOUS_MAP && AMBIGUOUS_MAP.ambiguous) {
+      var __qNorm = String(query || '').trim().toLowerCase().replace(/\s+/g, '');
+      var __cands = AMBIGUOUS_MAP.ambiguous[__qNorm];
+      if (Array.isArray(__cands) && __cands.length > 1) {
+        var __catIcons = { pet_clear:'💧', plastic:'♻️', paper:'📄', paper_pack:'🥛', vinyl:'🛍', can:'🥫', glass:'🍾', styrofoam:'📦', food:'🍎', general:'🗑', general_noncombustible:'🪨', general_or_bulky:'🛋', battery:'🔋', lamp:'💡', clothes:'👕', electronics:'🔌', furniture:'🛋', hazardous:'⚠️', medicine:'💊' };
+        var __catNames = { pet_clear:'무색페트', plastic:'플라스틱', paper:'종이', paper_pack:'종이팩', vinyl:'비닐', can:'금속', glass:'유리', styrofoam:'스티로폼', food:'음식물', general:'일반쓰레기', general_noncombustible:'불연성', general_or_bulky:'대형', battery:'전지', lamp:'조명', clothes:'의류', electronics:'전기전자', furniture:'대형(가구)', hazardous:'유해', medicine:'폐의약품' };
+        var __qSafe = String(query).replace(/[<>"']/g, '');
+        var __chipsHtml = __cands.map(function(opt, idx) {
+          var __idSafe = String(opt.id || '').replace(/[<>"']/g, '');
+          var __nameSafe = String(opt.name || opt.id || '').replace(/[<>"']/g, '');
+          var __catLabel = __catNames[opt.cat] || opt.cat || '';
+          var __catIcon = __catIcons[opt.cat] || '📦';
+          return '<button type="button" class="ambig-branch-chip" data-ambig-key="' + __idSafe + '" data-ambig-idx="' + idx + '">' +
+                 '<span>' + __catIcon + ' ' + __nameSafe + '</span>' +
+                 '<span class="ambig-branch-chip-cat">' + __catLabel + '</span>' +
+                 '</button>';
+        }).join('');
+        box.innerHTML =
+          '<div class="ambig-branch-card">' +
+            '<p class="ambig-branch-q">🤔 어떤 종류의 "' + __qSafe + '"인가요?</p>' +
+            '<p class="ambig-branch-hint">정확한 분리수거를 위해 해당하는 종류를 선택하세요</p>' +
+            '<div class="ambig-branch-chips">' + __chipsHtml + '</div>' +
+          '</div>';
+        // 칩 클릭 → 그 item으로 정밀 검색
+        box.querySelectorAll('.ambig-branch-chip').forEach(function(btn) {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            var key = btn.getAttribute('data-ambig-key');
+            if (!key) return;
+            try {
+              var ruleResult = matchRule(key, state.regionLevel2, null);
+              var aiData = {
+                item_id: key,
+                item_label_ko: (NATIONAL && NATIONAL.items && NATIONAL.items[key] && NATIONAL.items[key].name) || key,
+                confidence: 0.95,
+                source: 'ambig-branch',
+                category_hint: ruleResult.category,
+                _category_fallback: false,
+                _dbMatched: true
+              };
+              Object.assign(aiData, ruleResult);
+              closeSearch();
+              openSheet();
+              renderResult(aiData);
+            } catch (err) { console.error('[ambig-branch] click fail:', err); }
+          });
+        });
+        return;  // 분기 카드 표시 후 일반 검색 결과 표시 X
+      }
+    }
+  } catch (_e) { /* 분기 실패해도 기존 검색 흐름 정상 */ }
+
   const results = searchByText(query);
   if (!results.length) {
     box.innerHTML = `<p class="search-placeholder">"${_escGlobal(query)}"에 매칭되는 결과 없음.<br>다른 표현(별명·영어 등)으로 시도해보세요.</p>`;

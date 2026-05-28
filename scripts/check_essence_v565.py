@@ -370,6 +370,39 @@ def run_checks(check, ROOT):
         all_ok &= check("[본질㉒] 매장명·브랜드명 직접 언급 차단 (변동 가능 정보 일반화)",
                         len(brand_violations) == 0,
                         f"{len(brand_violations)}건: {brand_violations[:3]}" if brand_violations else "0건")
+
+        # ㉓ SYSTEM_PROMPT 응답 형식에 boxes 필드 존재 (v6.11 라이브 박스 회귀 차단)
+        prompts_path = os.path.join(ROOT, "js", "prompts.js")
+        boxes_ok = False
+        sec_ok = False
+        if os.path.exists(prompts_path):
+            with open(prompts_path, "r", encoding="utf-8") as f:
+                pjs = f.read()
+            boxes_ok = '"boxes"' in pjs and "x,y=박스" in pjs
+            sec_ok = '"secondary_items"' in pjs and "최대 3개" in pjs
+        all_ok &= check("[본질㉓] SYSTEM_PROMPT boxes 필드 존재 (v6.11 라이브 박스)",
+                        boxes_ok, "OK (boxes 정의됨)" if boxes_ok else "boxes 필드 누락 — v6.11 회귀")
+        all_ok &= check("[본질㉔] SYSTEM_PROMPT secondary_items 필드 존재 (v6.08 다중 객체)",
+                        sec_ok, "OK (secondary_items 정의됨)" if sec_ok else "secondary_items 누락 — v6.08 회귀")
+
+        # ㉕ SYSTEM_PROMPT 인용 핵심 items 존재 (검색 매칭 보장 — v6.13 진단 발견)
+        CORE_QUERIES = ["텀블러", "플라스틱 텀블러", "스테인리스 텀블러",
+                        "카페 일회용컵", "코팅 종이컵",
+                        "페트병", "우유팩", "두유팩", "주스팩",
+                        "소주병", "맥주병", "에어로졸 캔",
+                        "압력솥", "매트리스", "노트북"]
+        core_miss = []
+        for q in CORE_QUERIES:
+            found = False
+            for k, v in items.items():
+                if k == q or v.get("name") == q or q in v.get("aliases", []):
+                    found = True
+                    break
+            if not found:
+                core_miss.append(q)
+        all_ok &= check("[본질㉕] SYSTEM_PROMPT 인용 핵심 items 검색 매칭 (정확도 보장)",
+                        len(core_miss) == 0,
+                        f"{len(core_miss)}건 누락: {core_miss}" if core_miss else f"{len(CORE_QUERIES)}/{len(CORE_QUERIES)} 매칭")
     except Exception as e:
         check("[본질] 자동 감지 실행", False, f"검사 실패: {e}")
         all_ok = False
