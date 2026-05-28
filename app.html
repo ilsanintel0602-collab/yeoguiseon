@@ -141,7 +141,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   display: flex; align-items: center; justify-content: center;
 }
 .stage video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.permission-card { position: relative; z-index: 2; max-width: 320px; text-align: center; color: #fff; padding: 32px 24px 200px; }
+.permission-card { position: relative; z-index: 2; max-width: 320px; text-align: center; color: #fff; padding: 15vh 24px 200px; }
 .permission-card .icon { font-size: 64px; margin-bottom: 16px; }
 .permission-card h2 { font-size: 26px; margin-bottom: 12px; }
 .permission-card p { font-size: 18px; line-height: 1.6; opacity: 0.85; }
@@ -455,7 +455,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v6.19</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v6.21</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -471,7 +471,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     <div class="icon">📷</div>
     <h2>여기선 어떻게 버려요?</h2>
     <p>버릴 물건을 비춰주세요<br>대한민국 어디서나 안내해요</p>
-    <div style="margin:40px 0 32px;padding:22px 24px;background:rgba(46,204,113,0.18);border:3px solid #2ecc71;border-radius:16px;text-align:center;box-shadow:0 0 0 1px #2ecc71 inset, 0 6px 14px rgba(46,204,113,0.45);">
+    <div style="margin:24px 0 32px;padding:22px 24px;background:rgba(46,204,113,0.18);border:3px solid #2ecc71;border-radius:16px;text-align:center;box-shadow:0 0 0 1px #2ecc71 inset, 0 6px 14px rgba(46,204,113,0.45);">
       <p style="margin:0 0 16px;color:#fff;font-size:15px;font-weight:700;">💡 4가지 방법으로 검색</p>
       <p style="margin:0;color:#fff;font-size:15px;font-weight:700;line-height:2.2;">
         📷 사진 촬영 &nbsp; · &nbsp; 🖼️ 갤러리<br>
@@ -2447,6 +2447,18 @@ function renderResult(aiData) {
   const regionMeta = REGIONS.level2[regionCode];
   // v5.5: Gemini의 category_hint 전달 → DB 미스 시 카테고리 폴백
   const rule = matchRule(aiData.item_id, regionCode, aiData.category_hint);
+  // v6.20: medicine 카테고리 강제 — 폐의약품·약·연고·약통 → 일반쓰레기 칩 표시 금지
+  if (rule.category !== 'medicine') {
+    var __medKeywords = ['폐의약품','연고','알약','물약','감기약','한약','안약','약통','약병','medicine'];
+    var __itemId = String(aiData.item_id || rule.matchedKey || itemName || '');
+    if (__medKeywords.some(function(k){ return __itemId.indexOf(k) >= 0 || itemName.indexOf(k) >= 0; })) {
+      // 의약품 관련은 medicine 강제
+      var __medItem = NATIONAL.items[__itemId] || NATIONAL.items['medicine'];
+      if (__medItem && __medItem.category === 'medicine') {
+        rule.category = 'medicine';
+      }
+    }
+  }
   const cat = NATIONAL.categories[rule.category] || { name: rule.category === 'reusable' ? '재사용품' : '일반' };
   // v5.35: Gemini가 우리 DB에 없는 영문 item_id (coat·hat·shoes 등) 보낼 때 친절한 한국어 이름 폴백
   //   1순위: 우리 DB의 item.name (가장 정확)
