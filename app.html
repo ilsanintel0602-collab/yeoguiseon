@@ -455,7 +455,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v6.14</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v6.15</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -623,6 +623,7 @@ let BAG_PRICES = null;   // v5: 행안부 시군구별 종량제봉투 가격
 let RECYCLE_CENTERS = null; // v5: 행안부 전국 재활용센터
 let REGION_URLS = null;
 let AMBIGUOUS_MAP = null;  // v5.43: 모호 키워드 사용자 선택 데이터
+let BULKY_FEES = null;  // v6.15: 행안부 대형폐기물 수수료 (141 시군구)
 let RECYCLE_CENTER_FALLBACKS = null;  // v5.45: 센터 0개 시군구 광역도 fallback
 
 // v5.32: D1 의존 제거 — 정적 JSON만 사용 (Phase A2 cron 활성 전까지)
@@ -684,6 +685,14 @@ async function loadAllData() {
     RECYCLE_CENTERS = rc;
     REGION_URLS = ru;  // v5.9: 시군구 URL DB
     AMBIGUOUS_MAP = am;  // v5.45: 모호 키워드 (13개)
+    // v6.15: 행안부 대형폐기물 수수료 데이터
+    try {
+      const bfRes = await fetch('./data/bulky_fees.json', { cache: 'no-cache' });
+      if (bfRes.ok) {
+        BULKY_FEES = await bfRes.json();
+        console.log('[v6.15] BULKY_FEES loaded:', BULKY_FEES.sgguCount, '시군구');
+      }
+    } catch (e) { console.warn('[v6.15] bulky_fees 로드 실패:', e); }
     RECYCLE_CENTER_FALLBACKS = rcf;  // v5.45: 센터 0개 시군구 fallback
     console.log('[여기선 v5.32] 데이터 로드 (items source:',
       NATIONAL._source || '?', '):',
@@ -2898,6 +2907,33 @@ function renderResult(aiData) {
       if (cg.garbageBag.purchaseUrl) cityHtml += ` · <a href="${cg.garbageBag.purchaseUrl}" target="_blank" style="color:var(--primary);">🛒 종량제봉투 구입</a>`;
       cityHtml += `<br>`;
     }
+
+    // v6.15: 대형폐기물 수수료 (furniture 카테고리 시) — 행안부 표준데이터
+    try {
+      if (rule.category === 'furniture' && BULKY_FEES && BULKY_FEES.data && BULKY_FEES.data[regionCode]) {
+        const __bf = BULKY_FEES.data[regionCode];
+        const __keyword = (itemName || aiData.item_id || '').toLowerCase();
+        // 매칭: 정확 일치 우선, 부분 일치 폴백
+        const __feeEntries = Object.entries(__bf.fees || {});
+        const __exact = __feeEntries.filter(([k]) => k.toLowerCase() === __keyword);
+        const __partial = __feeEntries.filter(([k]) => {
+          const kl = k.toLowerCase();
+          return kl.includes(__keyword) || (__keyword.length >= 2 && __keyword.includes(kl.split(' ')[0]));
+        }).slice(0, 5);
+        const __show = __exact.length ? __exact : __partial;
+        if (__show.length) {
+          cityHtml += '<div style="margin-top:10px;padding:10px 12px;background:#fff7ed;border-left:3px solid #f97316;border-radius:8px;">' +
+            '<b>💰 ' + (regionMeta?.shortName || '지역') + ' 대형폐기물 수수료</b><br>' +
+            __show.map(([k, v]) => '<span style="font-size:13px;">• ' + String(k).replace(/[<>"\047]/g, '') + ': <b>' + v.toLocaleString() + '원</b></span>').join('<br>') +
+            '<br><span style="font-size:11px;opacity:0.7;">출처: 행정안전부 표준데이터 (data.go.kr)</span>' +
+            '</div>';
+        } else {
+          cityHtml += '<div style="margin-top:10px;padding:8px 12px;background:#fff7ed;border-left:3px solid #f97316;border-radius:8px;font-size:13px;">' +
+            '<b>💰 대형폐기물</b>: ' + (regionMeta?.shortName || '') + '에 신고·수수료 납부 후 스티커 부착 (시·구청 자원순환과 문의)' +
+            '</div>';
+        }
+      }
+    } catch (_e) { /* 수수료 표시 실패해도 기존 흐름 정상 */ }
 
     // 공통: 시청/구청 대표 연락처 (있으면)
     // v5.45: 라벨 명확화 — 각 전화번호가 어디 부서인지 사용자가 한눈에 보이도록.

@@ -4,7 +4,7 @@
    - 외부 API/모델 CDN: 캐시 안 함
 */
 
-const VERSION = 'v6.14';
+const VERSION = 'v6.15';
 const APP_SHELL_CACHE = `yeoguiseon-shell-${VERSION}`;
 const DATA_CACHE = `yeoguiseon-data-${VERSION}`;
 
@@ -29,6 +29,7 @@ const DATA_FILES = [
   './data/ocr_keywords.json',
   './data/brand_db.json',
   './data/ambiguous_map.json',  // v6.14: 충돌 검색어 분기
+  './data/bulky_fees.json',     // v6.15: 행안부 대형폐기물 수수료
 ];
 
 // ==================== Install ====================
