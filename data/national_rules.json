@@ -718,7 +718,11 @@
         "흰우유팩",
         "음료팩",
         "carton",
-        "paper_carton"
+        "paper_carton",
+        "종이팩",
+        "음료 카톤",
+        "두유 카톤",
+        "마시는 요거트 팩"
       ],
       "sourceUrl": "https://분리배출.kr/front/dischargeMethod/typeItem.do?searchCnd=110102",
       "official_classification": [
@@ -754,7 +758,11 @@
         "멸균 종이팩",
         "멸균 주스팩",
         "음료곽",
-        "주스곽"
+        "주스곽",
+        "두유 멸균팩",
+        "아몬드 음료팩",
+        "음료 멸균팩",
+        "수입 주스팩"
       ]
     },
     "paper_cup": {
@@ -984,7 +992,10 @@
         "통조림",
         "통조림 깡통",
         "통조림캔",
-        "햄캔"
+        "햄캔",
+        "스팸캔",
+        "황도캔",
+        "토마토소스캔"
       ],
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do",
       "sourceName": "분리배출.kr (한국폐기물협회·환경부)",
@@ -1039,7 +1050,11 @@
         "칙칙이",
         "칙칙이 깡통",
         "탈취제 캔",
-        "헤어스프레이 캔"
+        "헤어스프레이 캔",
+        "방향제 스프레이",
+        "모기 스프레이",
+        "윤활 스프레이",
+        "페인트 스프레이"
       ]
     },
     "glass_bottle": {
@@ -1078,7 +1093,9 @@
         "유리 음료병",
         "빈병 반환",
         "wine_bottle",
-        "liquor_bottle"
+        "liquor_bottle",
+        "유리잔",
+        "보존병"
       ],
       "_bunribaechulSeq": 534,
       "lastVerified": "2026-05-24",
@@ -24836,7 +24853,12 @@
         "탄산음료 캔",
         "헤어스프레이 캔(빈)",
         "환타 캔",
-        "쿠킹포일"
+        "쿠킹포일",
+        "음료 캔",
+        "맥주캔 일반",
+        "음료캔 알루미늄",
+        "에너지드링크 캔",
+        "콜라캔"
       ],
       "sourceUrl": "https://xn--oy2b29bd3a601b.kr/front/dischargeMethod/index.do",
       "sourceName": "분리배출.kr (한국폐기물협회·환경부)",

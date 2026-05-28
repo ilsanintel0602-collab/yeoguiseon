@@ -399,7 +399,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.86</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.88</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -2935,12 +2935,23 @@ function saveSettings() {
   applyTheme(theme);
   LS.set('theme', theme);
 
-  if (l1) { state.regionLevel1 = l1; LS.set('regionLevel1', l1); }
+  // v5.88: level1 변경 시 이전 시군구가 다른 광역에 속하면 자동 초기화 (강원도→일산서구 잔존 사고 차단)
+  if (l1) {
+    state.regionLevel1 = l1;
+    LS.set('regionLevel1', l1);
+    if (state.regionLevel2 && REGIONS) {
+      const oldL2 = REGIONS.level2[state.regionLevel2];
+      if (!oldL2 || oldL2.parent !== l1) {
+        state.regionLevel2 = null;
+        LS.remove('regionLevel2');
+      }
+    }
+  }
   if (l2) {
     state.regionLevel2 = l2;
     LS.set('regionLevel2', l2);
-    updateLocationChip();
   }
+  updateLocationChip();
   if (apiKey) { state.apiKey = apiKey; state.provider = provider; LS.set('apiKey', apiKey); LS.set('provider', provider); }
   else { state.apiKey = 'WORKER'; state.provider = 'google'; LS.remove('apiKey'); }  // v5.23: 본인 키 비우면 Worker 모드
   toast('저장됐어요');
