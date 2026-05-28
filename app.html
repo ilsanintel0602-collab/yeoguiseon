@@ -3056,6 +3056,10 @@ function saveSettings() {
   updateLocationChip();
   if (apiKey) { state.apiKey = apiKey; state.provider = provider; LS.set('apiKey', apiKey); LS.set('provider', provider); }
   else { state.apiKey = 'WORKER'; state.provider = 'google'; LS.remove('apiKey'); }  // v5.23: 본인 키 비우면 Worker 모드
+  // v5.92: 지역 변경 시 결과 카드 자동 재렌더 (속초→일산 사고 영구 차단)
+  if (state._lastAiData) {
+    try { renderResult(state._lastAiData); } catch (_) {}
+  }
   toast('저장됐어요');
   closeSettings();
 }
