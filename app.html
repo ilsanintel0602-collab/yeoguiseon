@@ -286,7 +286,11 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .category-pill.lamp { background: #d35400; }
 .category-pill.clothes { background: #8e44ad; }
 /* v5.33: 결과 카드 시선 순서 — 품목명 큰 글씨 먼저, 분류 라벨은 보조로 */
-.item-name { font-size: 32px; font-weight: 800; margin: 4px 0 8px; line-height: 1.2; }
+/* v6.06: 사물 명칭 강조 — 카드 맨 위 + 36px + 좌측 초록 바 + 라벨 prefix */
+.item-name-wrap { margin: 0 0 14px; padding: 14px 16px; background: rgba(46,204,113,0.10); border-left: 5px solid #2ecc71; border-radius: 10px; }
+.item-name-label { display: block; font-size: 12px; font-weight: 600; color: #2ecc71; letter-spacing: 0.5px; margin-bottom: 4px; }
+.item-name { font-size: 36px; font-weight: 800; margin: 0; line-height: 1.15; color: var(--text); }
+@media (prefers-color-scheme: dark) { .item-name-wrap { background: rgba(46,204,113,0.18); } }
 .category-pill { display: inline-block; padding: 4px 12px; border-radius: 999px; color: #fff; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
 .confidence { font-size: 13px; color: var(--text-soft); margin-bottom: 16px; }
 
@@ -413,7 +417,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v6.04</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v6.06</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -429,11 +433,11 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     <div class="icon">📷</div>
     <h2>여기선 어떻게 버려요?</h2>
     <p>버릴 물건을 비춰주세요<br>대한민국 어디서나 안내해요</p>
-    <div style="margin:16px 0 24px;padding:14px 16px;background:rgba(46,204,113,0.18);border:2px solid rgba(46,204,113,0.85);border-radius:14px;text-align:center;">
-      <p style="margin:0 0 10px;color:#fff;font-size:15px;font-weight:700;">💡 4가지 방법으로 검색</p>
-      <p style="margin:0;color:#fff;font-size:15px;font-weight:700;line-height:1.8;">
-        📷 사진 촬영 · 🖼️ 갤러리<br>
-        🔍 이름 입력 · 🎤 음성 검색
+    <div style="margin:20px 0 28px;padding:20px 22px;background:rgba(46,204,113,0.18);border:2px solid rgba(46,204,113,0.85);border-radius:16px;text-align:center;">
+      <p style="margin:0 0 16px;color:#fff;font-size:15px;font-weight:700;">💡 4가지 방법으로 검색</p>
+      <p style="margin:0;color:#fff;font-size:15px;font-weight:700;line-height:2.2;">
+        📷 사진 촬영 &nbsp; · &nbsp; 🖼️ 갤러리<br>
+        🔍 이름 입력 &nbsp; · &nbsp; 🎤 음성 검색
       </p>
     </div>
     <p class="hint">※ 첫 사용 시 카메라 권한 허용</p>
@@ -2265,9 +2269,9 @@ function renderResult(aiData) {
                     rule.source_type === 'national_default' ? '<span class="data-source national">🇰🇷 환경부 표준</span>' :
                     '<span class="data-source fallback">⚠️ 일반 가이드</span>';
 
-  // v5.33: 품목명 큰 글씨를 먼저 (사용자가 본 사물의 정체를 즉시 인지), 카테고리는 보조 라벨로
-  let html = aiBadge;
-  html += `<div class="item-name">${itemName}</div>`;
+  // v6.06: 사물 명칭 최상단 강조 박스 (사용자 "다중 인식 명칭 — 하나만이라도" 요청). 소스 뱃지는 아래로 이동.
+  let html = `<div class="item-name-wrap"><span class="item-name-label">🏷️ 이 물건은</span><div class="item-name">${itemName}</div></div>`;
+  html += aiBadge;
   // v5.81: multi_material:true 시 카테고리 칩 모순 정정 — "기본 추정·재질 확인" 명시
   const _catSuffix = rule.multi_material ? ' · 재질 확인' : '';
   html += `<div class="category-pill ${rule.category}">${cat?.name || '일반'}${_catSuffix}</div>`;
