@@ -412,7 +412,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.89</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v5.91</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -1727,9 +1727,85 @@ async function startCamera() {
     $('permissionCard').style.display = 'none';
     // v5: 실시간 객체 검출 + 바운딩 박스 시작
     startRealtimeDetection();
+    // v5.91: 핀치 줌 초기화 (capabilities 체크)
+    initPinchZoom();
     return true;
   } catch (err) { toast('카메라 권한이 필요해요', true); return false; }
 }
+
+// v5.91: 핀치 줌 (2 손가락) — track.applyConstraints zoom API
+let pinchState = { initialDistance: 0, currentZoom: 1.0, minZoom: 1.0, maxZoom: 1.0, supported: false };
+
+async function initPinchZoom() {
+  if (!state.stream) return;
+  const track = state.stream.getVideoTracks()[0];
+  if (!track || !track.getCapabilities) { pinchState.supported = false; return; }
+  const capabilities = track.getCapabilities();
+  if (!capabilities.zoom) { pinchState.supported = false; return; }
+  pinchState.minZoom = capabilities.zoom.min || 1.0;
+  pinchState.maxZoom = capabilities.zoom.max || 5.0;
+  pinchState.currentZoom = pinchState.minZoom;
+  pinchState.supported = true;
+}
+
+function getPinchDistance(touches) {
+  const dx = touches[0].clientX - touches[1].clientX;
+  const dy = touches[0].clientY - touches[1].clientY;
+  return Math.hypot(dx, dy);
+}
+
+function updateZoomIndicator(zoom) {
+  let el = document.getElementById('zoomIndicator');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'zoomIndicator';
+    el.style.cssText = 'position:absolute;top:60px;right:12px;padding:6px 12px;background:rgba(0,0,0,0.7);color:white;border-radius:14px;font-size:14px;font-weight:700;pointer-events:none;z-index:100;transition:opacity 0.3s;';
+    const stage = document.querySelector('.stage');
+    if (stage) stage.appendChild(el);
+  }
+  if (el) {
+    el.textContent = zoom.toFixed(1) + 'x';
+    el.style.opacity = '1';
+    clearTimeout(el._fadeTimer);
+    el._fadeTimer = setTimeout(() => { el.style.opacity = '0'; }, 1500);
+  }
+}
+
+(function setupPinchZoom() {
+  document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('bboxOverlay');
+    if (!canvas) return;
+    canvas.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 2 && pinchState.supported) {
+        e.preventDefault();
+        pinchState.initialDistance = getPinchDistance(e.touches);
+      }
+    }, { passive: false });
+    canvas.addEventListener('touchmove', async (e) => {
+      if (e.touches.length === 2 && pinchState.supported && pinchState.initialDistance > 0) {
+        e.preventDefault();
+        const currentDistance = getPinchDistance(e.touches);
+        const ratio = currentDistance / pinchState.initialDistance;
+        const newZoom = Math.min(pinchState.maxZoom, Math.max(pinchState.minZoom, pinchState.currentZoom * ratio));
+        try {
+          const track = state.stream && state.stream.getVideoTracks()[0];
+          if (track) {
+            await track.applyConstraints({ advanced: [{ zoom: newZoom }] });
+            updateZoomIndicator(newZoom);
+          }
+        } catch (_) {}
+      }
+    }, { passive: false });
+    canvas.addEventListener('touchend', (e) => {
+      if (e.touches.length < 2 && pinchState.supported) {
+        const track = state.stream && state.stream.getVideoTracks()[0];
+        const settings = track && track.getSettings && track.getSettings();
+        if (settings && typeof settings.zoom === 'number') pinchState.currentZoom = settings.zoom;
+        pinchState.initialDistance = 0;
+      }
+    });
+  });
+})();
 
 // ===== v5: 실시간 객체 검출 + 바운딩 박스 (모바일 카메라 표준 UX) =====
 let detectionState = {
