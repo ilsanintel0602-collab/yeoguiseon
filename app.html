@@ -455,7 +455,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v6.22</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version">v6.24</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -538,7 +538,10 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     <div style="display:flex;gap:8px;align-items:stretch;">
       <input type="text" class="search-input" id="searchInput" placeholder="예: 노트북, 건전지, 우유팩, 종이박스..." autocomplete="off" style="flex:1;">
       <button id="voiceSearchBtn" type="button" aria-label="음성으로 검색"
-              style="padding:0 14px;background:var(--bg);border:2px solid var(--divider);border-radius:10px;cursor:pointer;font-size:22px;min-width:54px;display:flex;align-items:center;justify-content:center;">🎤</button>
+              style="padding:6px 14px;background:rgba(46,204,113,0.18);border:3px solid #2ecc71;border-radius:12px;cursor:pointer;min-width:72px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 0 1px #2ecc71 inset, 0 2px 8px rgba(46,204,113,0.4);color:#2ecc71;font-weight:700;line-height:1;">
+        <span style="font-size:24px;line-height:1;">🎤</span>
+        <span style="font-size:11px;margin-top:3px;letter-spacing:-0.3px;">음성</span>
+      </button>
     </div>
     <p class="search-tip">사진 못 찍는 상황이거나 정확히 알고 싶을 때. 한글·영어·별명·🎤 음성 모두 OK.</p>
     <div class="search-results" id="searchResults">
@@ -2448,12 +2451,12 @@ function renderResult(aiData) {
   // v5.5: Gemini의 category_hint 전달 → DB 미스 시 카테고리 폴백
   const rule = matchRule(aiData.item_id, regionCode, aiData.category_hint);
   // v6.20: medicine 카테고리 강제 — 폐의약품·약·연고·약통 → 일반쓰레기 칩 표시 금지
+  // v6.24: TDZ 회복 — itemName 참조 제거 (itemName은 line 2498에 선언 — 여기서 쓰면 ReferenceError)
   if (rule.category !== 'medicine') {
     var __medKeywords = ['폐의약품','연고','알약','물약','감기약','한약','안약','약통','약병','medicine'];
-    var __itemId = String(aiData.item_id || rule.matchedKey || itemName || '');
-    if (__medKeywords.some(function(k){ return __itemId.indexOf(k) >= 0 || itemName.indexOf(k) >= 0; })) {
-      // 의약품 관련은 medicine 강제
-      var __medItem = NATIONAL.items[__itemId] || NATIONAL.items['medicine'];
+    var __checkStr = String(aiData.item_id || aiData.item_label_ko || rule.matchedKey || rule.name || '');
+    if (__medKeywords.some(function(k){ return __checkStr.indexOf(k) >= 0; })) {
+      var __medItem = NATIONAL.items[aiData.item_id] || NATIONAL.items['medicine'];
       if (__medItem && __medItem.category === 'medicine') {
         rule.category = 'medicine';
       }
