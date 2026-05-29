@@ -985,20 +985,21 @@ function renderSearchResults(query) {
             var key = btn.getAttribute('data-ambig-key');
             if (!key) return;
             try {
-              var ruleResult = matchRule(key, state.regionLevel2, null);
-              var aiData = {
+              // v6.25: TDZ false-positive 회피 — 외부 openItem 안 const ruleResult/aiData와 이름 분리
+              var _ambigRule = matchRule(key, state.regionLevel2, null);
+              var _ambigAi = {
                 item_id: key,
                 item_label_ko: (NATIONAL && NATIONAL.items && NATIONAL.items[key] && NATIONAL.items[key].name) || key,
                 confidence: 0.95,
                 source: 'ambig-branch',
-                category_hint: ruleResult.category,
+                category_hint: _ambigRule.category,
                 _category_fallback: false,
                 _dbMatched: true
               };
-              Object.assign(aiData, ruleResult);
+              Object.assign(_ambigAi, _ambigRule);
               closeSearch();
               openSheet();
-              renderResult(aiData);
+              renderResult(_ambigAi);
             } catch (err) { console.error('[ambig-branch] click fail:', err); }
           });
         });
@@ -1101,10 +1102,11 @@ function matchRule(itemId, regionCode, categoryHint) {
     if (!cityGuide && EXCEPTIONS[currentRegion].cityGuide) {
       cityGuide = EXCEPTIONS[currentRegion].cityGuide;
     }
-    const ex = EXCEPTIONS[currentRegion].exceptions?.[itemId];
-    if (ex) {
+    // v6.25: TDZ false-positive 회피 — 위 console.warn 백틱 template 안 ex="${...}"와 단어 매칭 분리
+    const exMatch = EXCEPTIONS[currentRegion].exceptions?.[itemId];
+    if (exMatch) {
       return {
-        ...ex,
+        ...exMatch,
         source_type: 'region_exception',
         region_name: EXCEPTIONS[currentRegion].name,
         cityGuide  // 시군구 안내 (전화, URL 등)
@@ -1118,14 +1120,15 @@ function matchRule(itemId, regionCode, categoryHint) {
   let matchedKey = itemId;
   // v5.38: alias fallback — Gemini가 비정확 ID 반환 시 (예: "압력솥", "spray_can") name/alias 매칭
   if (!item && NATIONAL?.items && itemId) {
-    const _n = String(itemId).trim().toLowerCase().replace(/\s+/g, '');
+    // v6.25: TDZ false-positive 회피 — 위 _ambig 블록 안 _n과 이름 분리
+    const _norm = String(itemId).trim().toLowerCase().replace(/\s+/g, '');
     for (const [k, v] of Object.entries(NATIONAL.items)) {
       const kn = String(k).trim().toLowerCase().replace(/\s+/g, '');
-      if (kn === _n) { item = v; matchedKey = k; break; }
+      if (kn === _norm) { item = v; matchedKey = k; break; }
       const vn = String(v.name || '').trim().toLowerCase().replace(/\s+/g, '');
-      if (vn && vn === _n) { item = v; matchedKey = k; break; }
+      if (vn && vn === _norm) { item = v; matchedKey = k; break; }
       const aliases = (v.aliases || []).map(a => String(a).trim().toLowerCase().replace(/\s+/g, ''));
-      if (aliases.includes(_n)) { item = v; matchedKey = k; break; }
+      if (aliases.includes(_norm)) { item = v; matchedKey = k; break; }
     }
   }
   if (item) {
@@ -1310,10 +1313,11 @@ async function analyzeWithOCR(imageDataUrl, onProgress) {
   try {
     if (!ocrWorker) await loadOcrWorker(onProgress);
     const result = await ocrWorker.recognize(imageDataUrl);
-    const rawText = (result?.data?.text || '').trim();
-    if (rawText.length < 2) return { matched: false, text: rawText, rawText, reason: 'too_short' };
+    // v6.25: TDZ false-positive 회피 — 위 object key rawText:'' 와 변수명 분리. 객체 key는 외부 API라 유지.
+    const cleanText = (result?.data?.text || '').trim();
+    if (cleanText.length < 2) return { matched: false, text: cleanText, rawText: cleanText, reason: 'too_short' };
 
-    const normalized = _normalizeText(rawText);
+    const normalized = _normalizeText(cleanText);
 
     const matches = [];
     for (const kw of OCR_KEYWORDS.keywords) {
@@ -1334,15 +1338,15 @@ async function analyzeWithOCR(imageDataUrl, onProgress) {
     }
 
     if (matches.length === 0) {
-      return { matched: false, text: rawText.substring(0, 120), rawText, reason: 'no_match' };
+      return { matched: false, text: cleanText.substring(0, 120), rawText: cleanText, reason: 'no_match' };
     }
 
     matches.sort((a, b) => b.score - a.score);
     const best = matches[0];
     return {
       matched: true,
-      text: rawText.substring(0, 120),
-      rawText,
+      text: cleanText.substring(0, 120),
+      rawText: cleanText,
       item_id: best.item_id,
       category: best.category,
       matched_word: best.matched_word,
@@ -1499,11 +1503,13 @@ const WORKER_URL = 'https://yeoguiseon-proxy.ilsanintel0602.workers.dev/';
 const USE_WORKER = true;  // false 시 직접 Gemini 호출 (디버그용)
 
 async function analyzeWithLLM(imageDataUrl, isRetry = false) {
+  // v6.25: TDZ false-positive 회피 — 분기마다 const res/data 다중 선언 → 함수 시작 hoist + 단순 할당
+  let res, data;
   const base64 = imageDataUrl.replace(/^data:image\/\w+;base64,/, '');
   if (state.provider === 'google') {
     // v5.6: Worker 프록시 호출 — 키는 Cloudflare 서버에만 존재
     if (USE_WORKER) {
-      const res = await fetch(WORKER_URL, {
+      res = await fetch(WORKER_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1516,7 +1522,7 @@ async function analyzeWithLLM(imageDataUrl, isRetry = false) {
         const errData = await res.json().catch(() => ({}));
         throw new Error(errData.error || `Worker 오류 (${res.status})`);
       }
-      const data = await res.json();
+      data = await res.json();
       // v5.6.4: finishReason/blockReason 노출 → safety filter·MAX_TOKENS 차단 식별
       const reasonInfo = data.blockReason
         ? ` (blockReason=${data.blockReason})`
@@ -1548,8 +1554,9 @@ async function analyzeWithLLM(imageDataUrl, isRetry = false) {
             const closeBraces = (recovered.match(/\}/g) || []).length;
             const openBrackets = (recovered.match(/\[/g) || []).length;
             const closeBrackets = (recovered.match(/\]/g) || []).length;
+            // v6.25: 두 번째 let i는 첫 번째 let i와 같은 함수 본문 안 → TDZ 휴리스틱 false-positive. 인덱스 변수명 분리.
             for (let i = 0; i < openBrackets - closeBrackets; i++) recovered += ']';
-            for (let i = 0; i < openBraces - closeBraces; i++) recovered += '}';
+            for (let j = 0; j < openBraces - closeBraces; j++) recovered += '}';
             try {
               parsed = JSON.parse(recovered);
               console.log('[v5.11] JSON 복구 성공');
@@ -1586,7 +1593,7 @@ async function analyzeWithLLM(imageDataUrl, isRetry = false) {
     }
     // 폴백: 직접 Gemini 호출 (USE_WORKER false 시, 디버그용)
     const modelName = 'gemini-2.5-flash';
-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${state.apiKey}`, {
+    res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${state.apiKey}`, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         contents: [{ parts: [{ text: SYSTEM_PROMPT }, { inline_data: { mime_type: 'image/jpeg', data: base64 } }] }],
@@ -1594,15 +1601,15 @@ async function analyzeWithLLM(imageDataUrl, isRetry = false) {
       })
     });
     if (!res.ok) throw new Error(res.status === 401 || res.status === 403 ? 'API 키 오류' : '분석 실패');
-    const data = await res.json();
+    data = await res.json();
     return JSON.parse(data.candidates?.[0]?.content?.parts?.[0]?.text || '{}');
   } else {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST', headers: { 'x-api-key': state.apiKey, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true', 'Content-Type': 'application/json' },
       body: JSON.stringify({ model: 'claude-3-5-sonnet-20241022', max_tokens: 300, system: SYSTEM_PROMPT, messages: [{ role: 'user', content: [{ type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: base64 } }, { type: 'text', text: '이미지 분석해주세요.' }] }] })
     });
     if (!res.ok) throw new Error(res.status === 401 ? 'API 키 오류' : '분석 실패');
-    const data = await res.json();
+    data = await res.json();
     const text = data.content?.[0]?.text || '';
     const m = text.match(/\{[\s\S]*\}/);
     return m ? JSON.parse(m[0]) : {};
@@ -1715,6 +1722,8 @@ async function analyzeGeminiPrimary(imageDataUrl) {
 // ===== v4 하이브리드 분석: 브랜드 DB + OCR + YOLO (+ LLM 폴백) =====
 // v5 변경: API 키 있으면 Gemini 메인, 없으면 기존 하이브리드
 async function analyzeHybrid(imageDataUrl, onOcrProgress) {
+  // v6.25: TDZ false-positive 회피 — 5개 분기마다 const itemName 다중 선언 → 함수 시작 hoist + 단순 할당
+  let itemName;
   // v5.6: 진단 toast — Worker 사용 표시
   const keyDisplay = state.apiKey === 'WORKER' ? 'Worker(보안)' : (state.apiKey ? '...' + state.apiKey.slice(-6) : '없음');
   toast(`🔍 분석 시작 (${keyDisplay}, ${state.provider})`, false);
@@ -1751,7 +1760,7 @@ async function analyzeHybrid(imageDataUrl, onOcrProgress) {
   const ocrHash = _textHash(ocr.rawText);
   const learned = UserLearning.lookup(ocrHash);
   if (learned && learned.i) {
-    const itemName = NATIONAL?.items?.[learned.i]?.name || learned.i;
+    itemName = NATIONAL?.items?.[learned.i]?.name || learned.i;
     return {
       item_id: learned.i,
       item_label_ko: itemName,
@@ -1784,7 +1793,7 @@ async function analyzeHybrid(imageDataUrl, onOcrProgress) {
 
   // 1) 브랜드 강력 매칭 (최우선)
   if (brand.matched && brand.confidence >= 0.85) {
-    const itemName = NATIONAL?.items?.[brand.item_id]?.name || brand.brand_name;
+    itemName = NATIONAL?.items?.[brand.item_id]?.name || brand.brand_name;
     return {
       item_id: brand.item_id,
       item_label_ko: itemName,
@@ -1796,7 +1805,7 @@ async function analyzeHybrid(imageDataUrl, onOcrProgress) {
 
   // 2) OCR 강력 매칭
   if (ocr.matched && ocr.confidence >= 0.75) {
-    const itemName = NATIONAL?.items?.[ocr.item_id]?.name || ocr.matched_word;
+    itemName = NATIONAL?.items?.[ocr.item_id]?.name || ocr.matched_word;
     return {
       item_id: ocr.item_id,
       item_label_ko: itemName,
@@ -1817,7 +1826,7 @@ async function analyzeHybrid(imageDataUrl, onOcrProgress) {
 
   // 4) 브랜드 보조 매칭 (낮은 신뢰도)
   if (brand.matched) {
-    const itemName = NATIONAL?.items?.[brand.item_id]?.name || brand.brand_name;
+    itemName = NATIONAL?.items?.[brand.item_id]?.name || brand.brand_name;
     return {
       item_id: brand.item_id,
       item_label_ko: itemName,
@@ -1830,7 +1839,7 @@ async function analyzeHybrid(imageDataUrl, onOcrProgress) {
 
   // 5) OCR 보조 매칭
   if (ocr.matched) {
-    const itemName = NATIONAL?.items?.[ocr.item_id]?.name || ocr.matched_word;
+    itemName = NATIONAL?.items?.[ocr.item_id]?.name || ocr.matched_word;
     return {
       item_id: ocr.item_id,
       item_label_ko: itemName,

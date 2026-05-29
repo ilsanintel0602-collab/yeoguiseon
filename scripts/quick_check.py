@@ -201,6 +201,95 @@ try:
                             r.stderr.strip()[:80] if r.returncode != 0 else f"{len(scripts)} blocks OK")
     except (FileNotFoundError, Exception):
         pass  # node 없으면 skip
+
+    # v6.24: TDZ (Temporal Dead Zone) 휴리스틱 — 함수 안 let/const 선언 전 참조 패턴
+    # syntax는 정상이지만 runtime ReferenceError 발생 (v6.20 itemName 사고처럼)
+    # node --check로는 안 잡힘. 보수적 검사: 흔한 패턴만 잡고 false positive 최소화.
+    try:
+        scripts = _re.findall(r'<script(?![^>]*\bsrc=)[^>]*>([\s\S]*?)</script>', html)
+        tdz_issues = []
+        # 안전 화이트리스트 (전역·잘 알려진 변수)
+        SAFE = {'window', 'document', 'console', 'navigator', 'location', 'localStorage',
+                'sessionStorage', 'fetch', 'Promise', 'JSON', 'Math', 'Date', 'Array',
+                'Object', 'String', 'Number', 'Boolean', 'parseInt', 'parseFloat',
+                'setTimeout', 'setInterval', 'clearTimeout', 'clearInterval',
+                'Image', 'FormData', 'FileReader', 'URL', 'URLSearchParams'}
+        for sc in scripts:
+            # 함수 본문 추출 (균형 중괄호)
+            pos = 0
+            while True:
+                m = _re.search(r'function\s+(\w+)?\s*\([^)]*\)\s*\{', sc[pos:])
+                if not m:
+                    break
+                name = m.group(1) or '<anon>'
+                body_start = pos + m.end()
+                depth = 1
+                i = body_start
+                while i < len(sc) and depth > 0:
+                    c = sc[i]
+                    if c == '{': depth += 1
+                    elif c == '}': depth -= 1
+                    i += 1
+                body = sc[body_start:i-1]
+                pos = i if i > pos else pos + 1
+                # 본문에서 let/const 선언 위치
+                # v6.25 hardening: false-positive 4종 차단
+                #   1) 같은 변수 다중 선언 — 첫 선언만 검사 (두 번째 이후는 별개 block scope일 가능성 높음)
+                #   2) 객체 key (X:)
+                #   3) 같은 line 미닫힌 quote 안 (string content)
+                #   4) 한글 변수명 (코드 변수 아닌 문자열 내용물)
+                seen_decl = set()
+                for dm in _re.finditer(r'\b(?:let|const)\s+(\w+)\b', body):
+                    v = dm.group(1)
+                    if v in SAFE:
+                        continue
+                    if v in seen_decl:
+                        continue  # 같은 변수 다중 선언 — 첫 선언만 (block scope 별개 false-positive 회피)
+                    seen_decl.add(v)
+                    # 한글 변수명은 거의 string content false positive (코드 변수 아님)
+                    if any('가' <= ch <= '힣' for ch in v):
+                        continue
+                    # v6.25 hardening: 1-3글자 변수 차단 (loop index/인자/iter var 흔함, 진짜 TDZ 위험 낮음)
+                    if len(v) <= 3:
+                        continue
+                    before = body[:dm.start()]
+                    # 단어 매칭 (앞에 . 또는 ' " 없는 — 객체 속성·문자열 제외)
+                    for rm in _re.finditer(r'(?<![\.\'"a-zA-Z0-9_])' + _re.escape(v) + r'\b', before):
+                        # 주석 안인지 (간단 검사)
+                        ref_line = before[:rm.start()].rsplit('\n', 1)[-1]
+                        if '//' in ref_line and ref_line.find('//') < len(ref_line):
+                            continue
+                        # 객체 key 차단 — 매칭 직후 ":" (옵셔널 공백) + 다음이 :가 아니면 (ternary 아님)
+                        rest_in_line = before[rm.end():].split('\n', 1)[0]
+                        if _re.match(r'\s*:(?!:)', rest_in_line):
+                            continue
+                        # 문자열 안 차단 — 같은 line 매칭 전 single/double quote 미닫힘
+                        sq_count = len(_re.findall(r"(?<!\\)'", ref_line))
+                        dq_count = len(_re.findall(r'(?<!\\)"', ref_line))
+                        if sq_count % 2 == 1 or dq_count % 2 == 1:
+                            continue
+                        # v6.25 hardening: arrow function 인자 / destructure 차단
+                        #   같은 line 또는 위 5줄 안에 `=>` 있으면 inner arrow function 본문 → 별개 scope
+                        full_line = ref_line + rest_in_line
+                        above_lines = before[:rm.start()].split('\n')[-6:-1] if before[:rm.start()] else []
+                        if '=>' in full_line or any('=>' in l for l in above_lines):
+                            continue
+                        # callback 시작 패턴도 차단 — forEach/map/filter/sort/reduce/find/some/every/then(... 안 매칭
+                        if any(_re.search(r'\b(?:forEach|map|filter|sort|reduce|find|some|every|then|catch|finally|addEventListener)\s*\(', l) for l in above_lines):
+                            continue
+                        # 발견
+                        line = before.count('\n') + 1
+                        tdz_issues.append(f"{name}() L{line}: '{v}' 선언 전 참조")
+                        break  # 변수당 1건만
+                if len(tdz_issues) >= 100:
+                    break
+            if len(tdz_issues) >= 5:
+                break
+        all_ok &= check("app.html JS TDZ 패턴 (선언 전 참조)",
+                        not tdz_issues,
+                        f"{len(tdz_issues)}건: " + " | ".join(tdz_issues) if tdz_issues else "0건")
+    except Exception as _e:
+        check("app.html JS TDZ 패턴", True, f"검사 skip: {_e}")
 except Exception as e:
     all_ok &= check("app.html", False, str(e))
 
