@@ -26,32 +26,29 @@
     <path d="M -35 0 Q 0 -3 35 0" stroke="#16a34a" stroke-width="3" fill="none" stroke-linecap="round"/>
   </g>
 
+  <!-- v6.27: 텍스트 제거 + 문양 중앙 + 크게 (사용자 요청) -->
   <!-- 큰 흰색 원 (재활용 심볼 컨테이너) -->
-  <circle cx="256" cy="240" r="125" fill="white" opacity="0.95"/>
-  <circle cx="256" cy="240" r="125" fill="none" stroke="white" stroke-width="3" opacity="0.4"/>
+  <circle cx="256" cy="256" r="174" fill="white" opacity="0.95"/>
+  <circle cx="256" cy="256" r="174" fill="none" stroke="white" stroke-width="3" opacity="0.4"/>
 
-  <!-- 표준 재활용 심볼 (3개의 삼각형 + 화살촉, 120도 대칭) -->
-  <g transform="translate(256 240)" fill="#0f766e">
-    <!-- Arrow 1 (top) -->
-    <g transform="rotate(0)">
-      <polygon points="-32,-65 32,-65 0,-95"/>
-      <rect x="-12" y="-65" width="24" height="35"/>
-    </g>
-    <!-- Arrow 2 (bottom-right, 120 deg) -->
-    <g transform="rotate(120)">
-      <polygon points="-32,-65 32,-65 0,-95"/>
-      <rect x="-12" y="-65" width="24" height="35"/>
-    </g>
-    <!-- Arrow 3 (bottom-left, 240 deg) -->
-    <g transform="rotate(240)">
-      <polygon points="-32,-65 32,-65 0,-95"/>
-      <rect x="-12" y="-65" width="24" height="35"/>
-    </g>
+  <!-- 표준 ♻️ Möbius 재활용 심볼 (3개 화살표 시계방향 흐름) -->
+  <!-- 정삼각형 꼭짓점 3개를 잇는 직선 stem + 끝에 화살촉 -->
+  <!-- 꼭짓점: (-90deg) top=(256,120) / (30deg) br=(374.4,324) / (150deg) bl=(137.6,324). R=136. -->
+  <g fill="#0f766e" stroke="#0f766e" stroke-width="42" stroke-linecap="round" stroke-linejoin="round">
+    <!-- stem 1: top → bottom-right -->
+    <line x1="256" y1="120" x2="334" y2="256"/>
+    <!-- stem 2: bottom-right → bottom-left -->
+    <line x1="374.4" y1="324" x2="137.6" y2="324"/>
+    <!-- stem 3: bottom-left → top -->
+    <line x1="178" y1="256" x2="256" y2="120"/>
   </g>
-
-  <!-- "여기선" 텍스트 (하단) -->
-  <text x="256" y="440" font-size="62" font-weight="900" fill="white"
-        text-anchor="middle"
-        font-family="Apple SD Gothic Neo, Malgun Gothic, Nanum Gothic, sans-serif"
-        letter-spacing="-2">여기선</text>
+  <!-- 화살촉 3개 (각 꼭짓점 = tip, 다음 변 방향) -->
+  <g fill="#0f766e">
+    <!-- 화살촉 1: bottom-right (tip), pointing along br→bl edge -->
+    <polygon points="374.4,324 320,290 320,358"/>
+    <!-- 화살촉 2: bottom-left (tip), pointing along bl→top edge -->
+    <polygon points="137.6,324 194,358 160,265"/>
+    <!-- 화살촉 3: top (tip), pointing along top→br edge -->
+    <polygon points="256,120 218,180 290,180"/>
+  </g>
 </svg>

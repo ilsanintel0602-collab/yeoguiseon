@@ -109,11 +109,10 @@ def make_icon(size, with_text=True):
         draw.line((mid_x1, mid_y1, mid_x2, mid_y2),
                  fill=LEAF_BOTTOM, width=max(2, size // 200))
 
-    # 4) 흰색 원 (재활용 심볼 컨테이너)
-    text_offset = 0 if not with_text else int(size * 0.06)
+    # 4) 흰색 원 (재활용 심볼 컨테이너) — v6.27: 텍스트 제거 + 중앙 + 크게
     cx = size // 2
-    cy = int(size * 0.43) - text_offset
-    r_circle = int(size * 0.245)
+    cy = size // 2
+    r_circle = int(size * 0.34)  # 0.245 → 0.34 (크게)
     draw.ellipse((cx - r_circle, cy - r_circle, cx + r_circle, cy + r_circle),
                 fill=WHITE)
     # 가는 흰색 outer ring
@@ -121,59 +120,47 @@ def make_icon(size, with_text=True):
                  cx + r_circle + 3, cy + r_circle + 3),
                 outline=(255, 255, 255, 100), width=max(2, size // 160))
 
-    # 5) 재활용 심볼 - 3개의 화살표 (120도 대칭)
-    arrow_radius = r_circle * 0.78
-    tri_w = arrow_radius * 0.50
-    tri_h = arrow_radius * 0.35
-    stem_h = arrow_radius * 0.42
-    stem_w = arrow_radius * 0.18
+    # 5) v6.27: Noto Emoji ♻️ PNG 합성 (사용자 요청 — 표준 OS 이모지 형태)
+    emoji_path = os.path.join(ICONS_DIR, 'emoji-source.png')
+    if os.path.exists(emoji_path):
+        emoji_img = Image.open(emoji_path).convert('RGBA')
+        # 흰 원 안에 약 90% 크기로 (원 안에 여백 살짝)
+        emoji_size = int(r_circle * 1.7)
+        emoji_resized = emoji_img.resize((emoji_size, emoji_size), Image.LANCZOS)
+        ex = cx - emoji_size // 2
+        ey = cy - emoji_size // 2
+        img.paste(emoji_resized, (ex, ey), emoji_resized)
+    else:
+        # 폴백: 단순 직선 화살표 (emoji-source.png 없을 때만)
+        R = r_circle * 0.78
+        thick = R * 0.30
+        head_w = R * 0.55
+        head_h = R * 0.40
+        verts = []
+        for angle_deg in [-90, 30, 150]:
+            rad = math.radians(angle_deg)
+            verts.append((cx + R * math.cos(rad), cy + R * math.sin(rad)))
+        for i in range(3):
+            p_start = verts[i]
+            p_end = verts[(i + 1) % 3]
+            dx, dy = p_end[0] - p_start[0], p_end[1] - p_start[1]
+            seg_len = math.hypot(dx, dy)
+            ux, uy = dx / seg_len, dy / seg_len
+            nx, ny = -uy, ux
+            stem_end_x = p_end[0] - head_h * ux
+            stem_end_y = p_end[1] - head_h * uy
+            offset = thick / 2
+            s1 = (p_start[0] + nx * offset, p_start[1] + ny * offset)
+            s2 = (p_start[0] - nx * offset, p_start[1] - ny * offset)
+            s3 = (stem_end_x - nx * offset, stem_end_y - ny * offset)
+            s4 = (stem_end_x + nx * offset, stem_end_y + ny * offset)
+            draw.polygon([s1, s2, s3, s4], fill=ARROW_COLOR)
+            h1 = p_end
+            h2 = (stem_end_x + nx * (head_w / 2), stem_end_y + ny * (head_w / 2))
+            h3 = (stem_end_x - nx * (head_w / 2), stem_end_y - ny * (head_w / 2))
+            draw.polygon([h1, h2, h3], fill=ARROW_COLOR)
 
-    for angle_deg in [-90, 30, 150]:  # top, bottom-right, bottom-left
-        rad = math.radians(angle_deg)
-        # 각 화살표 중심 위치
-        ax = cx + (arrow_radius * 0.55) * math.cos(rad)
-        ay = cy + (arrow_radius * 0.55) * math.sin(rad)
-
-        # 화살표는 안쪽을 향함 (회전 + 변환)
-        # local 좌표계: tip이 위쪽(-y)에 있는 모양을 그린 후 회전
-        local_pts = [
-            # 화살촉 (triangle)
-            (0, -tri_h * 0.9),                  # tip
-            (-tri_w * 0.7, -tri_h * 0.1),       # bottom-left
-            (-stem_w * 0.7, -tri_h * 0.1),      # stem top-left
-            (-stem_w * 0.7, stem_h * 0.55),     # stem bottom-left
-            (stem_w * 0.7, stem_h * 0.55),      # stem bottom-right
-            (stem_w * 0.7, -tri_h * 0.1),       # stem top-right
-            (tri_w * 0.7, -tri_h * 0.1),        # bottom-right
-        ]
-
-        # 화살표가 중심을 향하도록 회전 (안쪽 방향 = 중심 방향)
-        # 화살표 tip이 중심 방향으로 향하게: angle_deg + 90
-        rot = math.radians(angle_deg + 90)
-        cos_r, sin_r = math.cos(rot), math.sin(rot)
-        rotated_pts = []
-        for (px, py) in local_pts:
-            xr = px * cos_r - py * sin_r + ax
-            yr = px * sin_r + py * cos_r + ay
-            rotated_pts.append((xr, yr))
-        draw.polygon(rotated_pts, fill=ARROW_COLOR)
-
-    # 6) "여기선" 한글 텍스트
-    if with_text and size >= 100:
-        text_y = int(size * 0.84)
-        text_size_px = int(size * 0.14)
-        font = get_font(text_size_px)
-        text = "여기선"
-        try:
-            bbox = draw.textbbox((0, 0), text, font=font)
-            tw = bbox[2] - bbox[0]
-            th = bbox[3] - bbox[1]
-            draw.text(((size - tw) // 2 - bbox[0],
-                      text_y - th // 2 - bbox[1]),
-                     text, font=font, fill=WHITE)
-        except Exception as e:
-            print(f"  warn: text draw failed (size {size}): {e}")
-
+    # 6) 텍스트 제거 (v6.27 사용자 요청 — 글자는 안 그림)
     return img
 
 
