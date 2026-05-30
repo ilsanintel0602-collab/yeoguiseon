@@ -177,6 +177,74 @@ try:
     except Exception as _e:
         check("[본질] 면책 검사", True, f"skip: {_e}")
 
+    # ⭐ v6.30 정제: disposal_path 누락 — 매우 명백한 케이스만 (false positive 차단)
+    # 정제 기준:
+    #   - 첫 step이 "종량제봉투" 같은 명확 표현 + 수거함 흐름 없음 (가장 강력)
+    #   - 또는 note/feature에 "재활용 불가/어려움" 명시 + steps에 종량제봉투
+    # 환경부 official_classification만으로는 판단 X (의류수거함 등 모순 존재)
+    path_violations = []
+    for k_p, v_p in items.items():
+        cat_p = v_p.get("category")
+        if cat_p in ("general", "general_noncombustible"):
+            continue
+        if v_p.get("disposal_path") == "general_waste":
+            continue
+        steps_list_p = v_p.get("steps") or []
+        if not steps_list_p:
+            continue
+        first_step_p = str(steps_list_p[0]).strip()
+        all_steps_p = " ".join(steps_list_p)
+        note_feature_p = (v_p.get("note") or "") + " " + (v_p.get("feature") or "")
+        # 수거함 흐름이면 재활용 — 자동 차단
+        if "수거함" in all_steps_p:
+            continue
+        # 명확 조건 1: 첫 단계가 종량제봉투 (가장 강력)
+        is_first_general = "종량제봉투" in first_step_p
+        # 명확 조건 2: 재활용 불가/어려움 명시 + steps 종량제봉투
+        is_explicit_general = (("재활용 불가" in note_feature_p) or ("재활용이 어렵" in note_feature_p) or ("재활용 공정 달라" in note_feature_p)) and ("종량제봉투" in all_steps_p)
+        if is_first_general or is_explicit_general:
+            path_violations.append(f"{k_p}: '{v_p.get('name')}'({cat_p})")
+    path_violations = list(dict.fromkeys(path_violations))
+    all_ok &= check("[본질] 카테고리 안 종량제봉투 분기 자동 감지",
+                    not path_violations,
+                    f"{len(path_violations)}건: " + " | ".join(path_violations[:5]) if path_violations else "0건 (분기 정합)")
+
+    # ⭐ v6.30 정제: 캔류 aerosol_safety — 스프레이 캔만 (이름에 명시)
+    # 일반 캔·금속류는 폭발 위험 X — name 자체에 "스프레이"/"에어로졸" 있을 때만
+    can_safety_violations = []
+    for k_c, v_c in items.items():
+        if v_c.get("category") != "can":
+            continue
+        name_c = v_c.get("name", "")
+        # 이름에 "스프레이"/"에어로졸" 명시된 케이스만 — false positive 차단
+        is_spray_name = ("스프레이" in name_c) or ("에어로졸" in name_c)
+        if not is_spray_name:
+            continue
+        text_c = (v_c.get("caution") or "") + " " + (v_c.get("feature") or "")
+        # 추가 검증: 폭발 위험 명시
+        has_explosion = ("폭발" in text_c) or ("내부 가스" in text_c)
+        if has_explosion and v_c.get("disposal_path") != "aerosol_safety":
+            can_safety_violations.append(f"{k_c}: '{name_c}'")
+    can_safety_violations = list(dict.fromkeys(can_safety_violations))
+    all_ok &= check("[본질] 캔류 aerosol_safety 안전 분기 자동 감지",
+                    not can_safety_violations,
+                    f"{len(can_safety_violations)}건: " + " | ".join(can_safety_violations[:3]) if can_safety_violations else "0건 (안전 분기 정합)")
+
+    # ⭐ v6.29: 본질 자동 감지 — 환경부 1599-0903 무상수거 5종 size_tier 표준
+    # 사용자 본질 명령: "관할도 환경부도 아닌 룰은 따르지 않음"
+    # 환경부 E-순환거버넌스 1599-0903 단일 무상수거 5종: 냉장고·세탁기·텔레비전(TV)·에어컨·전자레인지
+    ENV_LARGE_5 = {"냉장고", "세탁기", "텔레비전(TV)", "에어컨", "전자레인지"}
+    large_violations = []
+    for k_check in ENV_LARGE_5:
+        item_check = items.get(k_check)
+        if not item_check:
+            large_violations.append(f"{k_check}: NATIONAL.items 누락")
+        elif item_check.get("size_tier") != "large":
+            large_violations.append(f"{k_check}: size_tier 누락/≠'large'")
+    all_ok &= check("[본질] 가전 5종 size_tier 환경부 표준 (1599-0903)",
+                    not large_violations,
+                    f"{len(large_violations)}건: {large_violations}" if large_violations else "5종 모두 'large' (환경부 1599-0903)")
+
     # ⭐ v6.28: 본질 자동 감지 — 시연 단어 안전 매칭
     # 사용자 본질 검증 (시연에서 실제 다룰 단어가 환경부 표준에 정확 매칭되는지)
     # 사용자 합의 시연 단어 19개 (재활용 6 + 비재활용 4 + 가전 5 + 일상 4)
