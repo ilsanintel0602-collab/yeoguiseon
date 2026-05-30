@@ -80,6 +80,150 @@ try:
                     len(noisy_1char) == 0,
                     f"노이즈 {len(noisy_1char)}건: {noisy_1char[:3]}" if noisy_1char else "0건 (옷·약·책만 보존)")
 
+    # ⭐ v6.28: 본질 자동 감지 — alias semantic mismatch (다른 item name과 정확 일치)
+    # 사고 예: 디지털 카메라.aliases에 "텔레비전" (2026-05-30 발견)
+    # 사용자 본질 명령 [feedback-no-regression]: "같은 사고 반복 X"
+    name_to_key = {}
+    for k, v in items.items():
+        n = (v.get("name") or k).strip()
+        if n:
+            name_to_key.setdefault(n, k)
+    mismatch_aliases = []
+    for k, v in items.items():
+        item_name = (v.get("name") or k).strip()
+        seen_alias = set()
+        for a in v.get("aliases", []):
+            s = str(a).strip()
+            if not s or s in seen_alias:
+                continue
+            seen_alias.add(s)
+            if s == item_name:
+                continue  # 자기 name과 일치는 OK
+            # 다른 item의 name과 정확 일치 → 충돌
+            other = name_to_key.get(s)
+            if other and other != k:
+                mismatch_aliases.append(f"{k}.aliases='{s}' ↔ {other}")
+            # 다른 item의 key와 정확 일치
+            elif s in items and s != k:
+                mismatch_aliases.append(f"{k}.aliases='{s}' ↔ {s}(key)")
+    mismatch_aliases = list(dict.fromkeys(mismatch_aliases))
+    all_ok &= check("[본질] alias semantic mismatch (다른 item과 충돌)",
+                    not mismatch_aliases,
+                    f"{len(mismatch_aliases)}건: " + " | ".join(mismatch_aliases[:8]) if mismatch_aliases else "0건")
+
+    # ⭐ v6.28: 본질 자동 감지 — catLabels/collectorName 라벨이 환경부 표준 단어 포함해야 함
+    # 사고 예: electronics='소형가전' (우리 임의) vs 환경부 'electronics='전기전자제품류'
+    # 사용자 본질 명령: "임의 X, 환경부·시·구청 공식만"
+    try:
+        with open(os.path.join(ROOT, "app.html"), encoding="utf-8") as f:
+            html = f.read()
+        STANDARD_WORDS = {
+            '재활용폐기물', '일반폐기물', '음식물쓰레기', '대형폐기물', '유해폐기물',
+            '전기전자제품', '전기전자 제품류', '전기전자제품류',
+            '폐가전', '폐건전지', '폐형광등', '폐의약품',
+            '의류', '비닐', '플라스틱', '종이', '캔', '유리',
+            '스티로폼', '발포합성수지',
+            '종이팩', '종이류', '유리류', '비닐류', '캔류',
+            '투명 페트병', '무색 페트병', '페트병',
+            '종량제봉투', '수거함', '전용수거함', '의류수거함',
+            '음료팩', '금속', '고철',
+        }
+        labels_violation = []
+        for var_name in ['catLabels', 'collectorName']:
+            m = _re.search(r'const\s+' + var_name + r'\s*=\s*\{([^}]+)\}', html)
+            if not m: continue
+            body = m.group(1)
+            for kv in _re.finditer(r"(\w+)\s*:\s*'([^']+)'", body):
+                key = kv.group(1)
+                label = kv.group(2)
+                if not any(sw in label for sw in STANDARD_WORDS):
+                    labels_violation.append(f"{var_name}.{key}='{label}'")
+        all_ok &= check("[본질] catLabels/collectorName 표준 단어 포함",
+                        not labels_violation,
+                        f"{len(labels_violation)}건: " + " | ".join(labels_violation[:5]) if labels_violation else "0건 (환경부 표준 단어 정합)")
+    except Exception as _e:
+        check("[본질] catLabels 검사", True, f"skip: {_e}")
+
+    # ⭐ v6.28: 본질 자동 감지 — alias 문장체 (크롤링 오염 흔적, fake_by_id 확장)
+    # 사고 예: v5.20 12,080건 alias 오염 (book.aliases에 "유리컵·식탁·의자" 등)
+    fake_aliases = []
+    for k, v in items.items():
+        for a in v.get("aliases", []):
+            s = str(a).strip()
+            if any(m in s for m in SENTENCE_MARKERS):
+                fake_aliases.append(f"{k}.aliases='{s[:30]}'")
+            elif len(s) > 25 and any(c in s for c in '(){}[],'):
+                fake_aliases.append(f"{k}.aliases='{s[:30]}'")
+    fake_aliases = list(dict.fromkeys(fake_aliases))
+    all_ok &= check("[본질] alias 문장체 (크롤링 오염)",
+                    not fake_aliases,
+                    f"{len(fake_aliases)}건: " + " | ".join(fake_aliases[:5]) if fake_aliases else "0건")
+
+    # ⭐ v6.28: 본질 자동 감지 — 카드 하단 면책 안내 + 시·구청 이동 존재
+    # 사용자 본질 명령: "참고용 면책 명확", "해당 지역 룰 우선"
+    try:
+        with open(os.path.join(ROOT, "app.html"), encoding="utf-8") as f:
+            html_check = f.read()
+        disclaimer_checks = {
+            "참고용 안내": "참고용" in html_check and "최종 책임" in html_check,
+            "최종 판단 사용자": "최종 판단은 사용자" in html_check or "AI 안내는 참고용" in html_check,
+            "시·구청 공식 분리수거 안내 박스": "공식 분리수거 안내" in html_check,
+            "정보 신고 버튼": "정보가 틀려요" in html_check or "reportBtn" in html_check,
+        }
+        missing_dc = [k for k, ok in disclaimer_checks.items() if not ok]
+        all_ok &= check("[본질] 면책·시·구청 이동 안내",
+                        not missing_dc,
+                        f"누락: {missing_dc}" if missing_dc else "4종 모두 존재")
+    except Exception as _e:
+        check("[본질] 면책 검사", True, f"skip: {_e}")
+
+    # ⭐ v6.28: 본질 자동 감지 — 시연 단어 안전 매칭
+    # 사용자 본질 검증 (시연에서 실제 다룰 단어가 환경부 표준에 정확 매칭되는지)
+    # 사용자 합의 시연 단어 19개 (재활용 6 + 비재활용 4 + 가전 5 + 일상 4)
+    DEMO_WORDS = [
+        "투명 페트병", "페트병", "종이팩", "우유팩", "캔", "유리병",
+        "알약", "폐의약품", "약병", "모기 스프레이",
+        "텔레비전", "TV", "핸드폰", "냉장고", "세탁기",
+        "의류", "옷", "비닐", "닭뼈",
+    ]
+    def _w_norm(s):
+        return str(s).strip().lower().replace(" ", "")
+    demo_failures = []
+    demo_partial = []
+    for word in DEMO_WORDS:
+        wn = _w_norm(word)
+        if not wn:
+            continue
+        found = None
+        for k, v in items.items():
+            kn = _w_norm(k)
+            nn = _w_norm(v.get("name") or k)
+            an = [_w_norm(a) for a in v.get("aliases", [])]
+            if kn == wn or nn == wn or wn in an:
+                found = (k, "exact")
+                break
+        if not found:
+            for k, v in items.items():
+                kn = _w_norm(k)
+                nn = _w_norm(v.get("name") or k)
+                if wn in kn or wn in nn:
+                    found = (k, "partial")
+                    break
+        if not found:
+            demo_failures.append(word)
+        elif found[1] == "partial":
+            demo_partial.append(f"{word}→{found[0]}")
+    detail = ""
+    if demo_failures:
+        detail = f"❌ 매칭 0: {demo_failures}"
+    elif demo_partial:
+        detail = f"⚠️ 부분 매칭 {len(demo_partial)}건: {demo_partial[:5]}"
+    else:
+        detail = f"{len(DEMO_WORDS)}/{len(DEMO_WORDS)} 정확 매칭"
+    all_ok &= check("[시연] 핵심 단어 환경부 표준 매칭",
+                    not demo_failures,
+                    detail)
+
     # 패턴 5: JSON 끝 null 바이트 (region_exceptions에서 발견했던 폭탄)
     with open(os.path.join(ROOT, "data", "national_rules.json"), "rb") as f:
         raw = f.read()

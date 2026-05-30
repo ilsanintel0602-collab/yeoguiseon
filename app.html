@@ -458,7 +458,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span>♻️</span><span>여기선</span><span class="version" style="display:none;">v6.27</span></div>
+    <div class="brand"><span>♻️</span><span>여기선</span><span class="version" style="display:none;">v6.28</span></div>
     <button class="location-chip" id="locationBtn"><span>📍</span> <span id="locationText">지역을 설정하세요</span></button>
     <button class="icon-btn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.67.24l2.33-.94c.49.38 1.03.7 1.62.94l.36 2.54c.05.24.25.42.49.42h3.84c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.33.94c.25.1.53 0 .67-.24l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
@@ -819,6 +819,8 @@ function searchByText(query) {
   if (!NATIONAL?.items || !query) return [];
   const q = query.trim().toLowerCase();
   if (q.length < 1) return [];
+  // v6.28: 공백 정규화 — 사용자가 "공기 청정기"(공백) 입력해도 "공기청정기"와 매칭
+  const qNoSpace = q.replace(/\s+/g, '');
 
   // catchall item ID (검색 1등 후보 아님, 동점 시 후순위)
   const CATCHALL_IDS = new Set(['기타_일반', '재활용가능한 것', 'general']);
@@ -830,14 +832,18 @@ function searchByText(query) {
     const idLower = String(key).toLowerCase();
     const name = (item.name || key).toLowerCase();
     const aliases = (item.aliases || []).map(a => String(a).toLowerCase());
+    // v6.28: 공백 제거 버전 같이 검사
+    const idNs = idLower.replace(/\s+/g, '');
+    const nameNs = name.replace(/\s+/g, '');
+    const aliasesNs = aliases.map(a => a.replace(/\s+/g, ''));
     let score = 0;
-    if (idLower === q) score = 100;                                          // ID 정확
-    else if (name === q) score = 95;                                          // name 정확
-    else if (aliases.includes(q)) score = 90;                                 // alias 정확
-    else if (name.startsWith(q)) score = 80;                                  // name 접두
-    else if (aliases.some(a => a.startsWith(q))) score = 70;                  // alias 접두
-    else if (name.includes(q)) score = 50;                                    // name 포함
-    else if (aliases.some(a => a.includes(q))) score = 40;                    // alias 포함
+    if (idLower === q || idNs === qNoSpace) score = 100;                      // ID 정확 (공백 무시)
+    else if (name === q || nameNs === qNoSpace) score = 95;                   // name 정확 (공백 무시)
+    else if (aliases.includes(q) || aliasesNs.includes(qNoSpace)) score = 90; // alias 정확
+    else if (name.startsWith(q) || nameNs.startsWith(qNoSpace)) score = 80;   // name 접두
+    else if (aliases.some(a => a.startsWith(q)) || aliasesNs.some(a => a.startsWith(qNoSpace))) score = 70; // alias 접두
+    else if (name.includes(q) || nameNs.includes(qNoSpace)) score = 50;       // name 포함
+    else if (aliases.some(a => a.includes(q)) || aliasesNs.some(a => a.includes(qNoSpace))) score = 40; // alias 포함
     else if (q.includes(name) && name.length >= 2) score = 30;                // 입력이 더 김
     if (score > 0) {
       const isCatchall = CATCHALL_IDS.has(key) || CATCHALL_CATS.has(item.category);
@@ -1156,10 +1162,11 @@ function matchRule(itemId, regionCode, categoryHint) {
   if (categoryHint && ['pet_clear', 'plastic', 'paper', 'paper_pack', 'vinyl', 'can', 'glass', 'styrofoam', 'food', 'general', 'general_noncombustible', 'general_or_bulky', 'bulky', 'battery', 'lamp', 'clothes', 'electronics', 'furniture', 'hazardous', 'medicine'].includes(categoryHint)) {
     const catLabels = {
       plastic: '플라스틱류', paper: '종이류', paper_pack: '종이팩류 (종이류와 별도)',
-      vinyl: '비닐류', can: '캔류', glass: '유리류', styrofoam: '스티로폼류',
+      pet_clear: '무색 페트병',
+      vinyl: '비닐류', can: '캔류', glass: '유리류', styrofoam: '발포합성수지(스티로폼)',
       food: '음식물쓰레기', general: '일반쓰레기 (종량제봉투)',
       battery: '폐건전지', lamp: '폐형광등', clothes: '의류',
-      electronics: '소형가전', furniture: '대형폐기물', hazardous: '위험물', medicine: '폐의약품'
+      electronics: '전기전자제품류', furniture: '대형폐기물', hazardous: '유해폐기물', medicine: '폐의약품'
     };
     // v5.36: 카테고리별 구체 수거함 이름 + 행동 안내 (사용자 신뢰 ↑)
     const catSteps = {
@@ -1181,10 +1188,11 @@ function matchRule(itemId, regionCode, categoryHint) {
       medicine: ['약국·보건소 폐의약품 수거함에 배출 (변기·종량제봉투 절대 금지)']
     };
     const collectorName = {
+      pet_clear: '무색 페트병 전용수거함',
       plastic: '플라스틱 수거함', paper: '종이류 수거함', paper_pack: '종이팩 전용 수거함',
       vinyl: '비닐류 수거함', can: '캔·금속(고철) 수거함', glass: '유리류 수거함',
-      styrofoam: '스티로폼 수거함', battery: '폐건전지 수거함', lamp: '폐형광등 수거함',
-      clothes: '의류수거함', electronics: '소형가전 수거함', furniture: '대형폐기물 신고',
+      styrofoam: '발포합성수지(스티로폼) 수거함', battery: '폐건전지 수거함', lamp: '폐형광등 수거함',
+      clothes: '의류수거함', electronics: '전기전자제품 전용수거함', furniture: '대형폐기물 신고',
       hazardous: '유해폐기물 수거함', medicine: '약국·보건소 폐의약품 수거함',
       food: '음식물쓰레기 봉투/RFID 종량기', general: '종량제봉투'
     };
