@@ -246,6 +246,18 @@
         "name": "에어로졸 캔 (스프레이·폭발 위험)",
         "cat": "can"
       }
+    ],
+    "페트병": [
+      {
+        "id": "pet_bottle",
+        "name": "무색·투명 페트병 (음료수·먹는샘물)",
+        "cat": "pet_clear"
+      },
+      {
+        "id": "plastic_bottle",
+        "name": "유색 페트병 (간장·식초·세제 등)",
+        "cat": "plastic"
+      }
     ]
   }
 }
