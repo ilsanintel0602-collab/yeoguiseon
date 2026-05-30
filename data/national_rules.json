@@ -247,6 +247,7 @@
     "pet_bottle": {
       "name": "무색페트병",
       "category": "pet_clear",
+      "disposal_path": "recyclable",
       "note": "먹는샘물·음료 무색 PET만 해당. 유색 페트병·식품용기·워셔액 용기·컵은 플라스틱류로",
       "steps": [
         "라벨·내용물 제거하고 물로 헹군 후 압착하여 뚜껑을 닫아 배출"
